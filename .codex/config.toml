@@ -1,0 +1,3 @@
+# Portable defaults for trusted repository sessions.
+[agents]
+enabled = true
