@@ -1,0 +1,78 @@
+name: Epic
+description: Coarse outcome and rolling-wave outline for related Task Issues.
+title: "Epic: "
+labels: ["type:epic"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Keep the distant plan coarse. Decompose only the next executable wave
+        into Task sub-issues, and record material changes in new comments.
+  - type: input
+    id: origin
+    attributes:
+      label: Origin
+      description: "Cite the discovery source as #N. Use 'Owner intake' only when no prior Issue exists."
+      placeholder: "#N — discovered while ..."
+    validations:
+      required: true
+  - type: input
+    id: outcome
+    attributes:
+      label: Outcome
+      description: The observable product or system state when this Epic is complete.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context & references
+      description: Agreements, source references, and constraints that ground this Epic.
+      value: |
+        - Requirements: REQ-
+        - Decisions: ADR-
+        - Context:
+    validations:
+      required: true
+  - type: textarea
+    id: success
+    attributes:
+      label: Success criteria
+      description: Observable Epic-level results; cite REQ-### where applicable.
+      value: |
+        - [ ]
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope & non-goals
+      description: Bound the outcome and state what is deliberately excluded.
+      value: |
+        - In scope:
+        - Out of scope:
+    validations:
+      required: true
+  - type: textarea
+    id: outline
+    attributes:
+      label: Phase outline
+      description: Coarse ordered phases; detail only the next rolling wave.
+      value: |
+        1.
+        2.
+    validations:
+      required: true
+  - type: textarea
+    id: graph
+    attributes:
+      label: Tracking graph
+      description: Known parent, sub-issue, dependency, or downstream relationships.
+      placeholder: "- Blocked by: #N"
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification
+      description: How completion of the Epic will be observed across its Tasks.
+    validations:
+      required: true

@@ -1,0 +1,136 @@
+name: "Task (work order)"
+description: Self-contained work order for one Codex session, worktree, branch, and PR.
+title: "Task: "
+labels: ["type:task"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The requester owns this body. After filing, set the parent Epic and
+        blocked-by edges, mirror the selected surface as one `exec:*` label,
+        and add `ai:ready` only when the brief is executable. Add `risk:high`
+        when the selected risk gate requires approval. Executors record start,
+        plan, revisions, and outcome as new Issue comments; they do not edit
+        this work order.
+  - type: input
+    id: origin
+    attributes:
+      label: Origin
+      description: "Every derived Task cites its discovery source as #N in one line."
+      placeholder: "#N — discovered while ..."
+    validations:
+      required: true
+  - type: input
+    id: objective
+    attributes:
+      label: Objective
+      description: One sentence describing the observable outcome this Task delivers.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context & references
+      description: Everything a context-free executor must read before starting.
+      value: |
+        - Epic: #
+        - Requirements: REQ-
+        - Decisions: ADR-
+        - Additional context:
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Each criterion must be an executable test or observable check placed before implementation.
+      value: |
+        - [ ]
+        - [ ]
+    validations:
+      required: true
+  - type: textarea
+    id: out-of-scope
+    attributes:
+      label: Out of scope
+      description: Explicit boundaries and non-goals for this Task.
+      placeholder: "-"
+    validations:
+      required: true
+  - type: textarea
+    id: ownership
+    attributes:
+      label: File ownership
+      description: The only paths this Task may modify; parallel Tasks must not overlap.
+      placeholder: "- path/to/owned/**"
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification
+      description: Exact commands and expected results that prove the acceptance criteria.
+      render: bash
+    validations:
+      required: true
+  - type: dropdown
+    id: risk
+    attributes:
+      label: Risk gate
+      description: Normal Tasks use lazy consensus; risk:high stops after the plan comment for human approval.
+      options:
+        - "normal — lazy consensus"
+        - "risk:high — exact plan-comment approval required"
+      default: 0
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Routing — Surface
+      description: Mirror the choice as the matching exec:* label.
+      options:
+        - "exec:cloud"
+        - "exec:app"
+        - "exec:cli"
+        - "exec:ide"
+    validations:
+      required: true
+  - type: dropdown
+    id: role
+    attributes:
+      label: Routing — Suggested role
+      options:
+        - default
+        - implementer
+        - planner
+        - orchestrator
+        - reviewer
+      default: 0
+    validations:
+      required: true
+  - type: dropdown
+    id: tier
+    attributes:
+      label: Routing — Model/reasoning tier
+      options:
+        - high-reasoning
+        - standard
+        - fast
+        - local
+      default: 1
+    validations:
+      required: true
+  - type: input
+    id: parallel-safe
+    attributes:
+      label: Routing — Parallel-safe
+      description: State yes/no and why, based on ownership and environment constraints.
+      placeholder: "Yes — owned paths are disjoint from ..."
+    validations:
+      required: true
+  - type: textarea
+    id: handoff
+    attributes:
+      label: Handoff notes
+      description: Optional state or account limitations a successor must know.

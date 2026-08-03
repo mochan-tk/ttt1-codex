@@ -1,0 +1,14 @@
+# Non-authoritative session plan cache; the Task Issue plan comment is durable.
+plan.md
+
+# Operating-system artifacts
+.DS_Store
+Thumbs.db
+
+# Editor-local artifacts
+.idea/
+*.swp
+*.swo
+*~
+*.code-workspace
+.vscode/*.local.*
