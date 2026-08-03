@@ -54,8 +54,13 @@ are the ledger entry.
 | 4. Route & execute | One Task runs in one session, worktree, branch, and PR | Task Issue timeline and Task branch |
 | 5. Verify & learn | Deterministic gates, review, retro, and upstream improve the system | Checks, Evidence table, retro and template PRs |
 
-## Codex-native architecture
+## GitHub control plane and Codex-native execution
 
+- GitHub is the mandatory ADLC control, ledger, and enforcement plane. Issues,
+  labels, sub-issues and dependencies hold the work graph; pull requests,
+  reviews, and `Closes #N` hold change and merge history; Actions, checks,
+  rulesets, CODEOWNERS, and security automation form the gates; Projects is a
+  derived planning view.
 - `AGENTS.md` is the small, always-on repository constitution. Nested
   `AGENTS.md` files may add narrower rules near the files they govern.
 - `.agents/skills/` contains repo-scoped reusable workflows. Codex loads a
@@ -65,8 +70,15 @@ are the ledger entry.
 - `.codex/config.toml` may hold trusted project settings that are safe to share;
   user-specific models, credentials, and personal defaults do not belong in
   the template.
-- GitHub Issues, pull requests, Actions, rulesets, Projects, and CODEOWNERS are
-  shared ledger and enforcement components, not compatibility shims.
+- Codex uses its native instructions, skills, agents, tools, GitHub connection,
+  and `gh` fallback to operate that GitHub plane end to end. Session-local state
+  is a cache and never replaces a durable GitHub capability.
+
+Codex-specific structure is expected in the execution plane. It must not remove
+or silently reimplement an applicable official GitHub control-plane capability.
+The shared scaffold therefore retains Issue forms, the PR Evidence template,
+CODEOWNERS, Actions, Dependabot, and safe setup scripts for labels, Projects,
+and rulesets even though its agent-facing files are Codex-specific.
 
 This layout follows the current Codex documentation for
 [AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md),
@@ -120,7 +132,8 @@ This repository is consolidated from
 the 2026-08-02 ADLC design review, and the
 [pinned chapter manuscript](https://github.com/mochan-tk/k-wk4-codex/blob/a7eb2629424282f9b8262e0248bed7f1879058db/manuscript/02_agentic_development.md).
 It was rebuilt with fresh history after the owner's 2026-08-03 decision to
-specialize this variant for Codex.
+specialize the execution plane for Codex while retaining GitHub as the
+mandatory ADLC control plane.
 
 The comparison with separately built Claude and GitHub Copilot templates is
 an outcome comparison, not a requirement for identical files. This repository

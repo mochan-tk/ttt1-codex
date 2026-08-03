@@ -58,8 +58,9 @@ Fresh-history Codex specialization consolidated from:
 - the proposed v0.6.0 semantics of `mochan-tk/tt1` PR #39 at `9450b52` for
   Task Issue plan-comment landing;
 - the 2026-08-02 ADLC design review and ADR-0006; and
-- the owner's 2026-08-03 decision to compare platform-native outcomes rather
-  than force cross-agent compatibility files.
+- the owner's 2026-08-03 decisions to compare platform-native outcomes rather
+  than force cross-agent compatibility files, and to preserve GitHub as the
+  mandatory ADLC control plane beneath Codex-native execution.
 
 The candidate starts at v1.0.0; it does not inherit the old repository's Git
 history or version numbers.
