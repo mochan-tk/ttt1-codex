@@ -1,0 +1,8 @@
+# Version-update PRs use the same Issue, review, and completion controls as
+# other repository changes.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"

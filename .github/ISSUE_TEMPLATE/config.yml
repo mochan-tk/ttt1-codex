@@ -1,0 +1,3 @@
+# Keep work orders structured. CLI-created Issues use the matching templates
+# under .agents/skills/plan-management/templates/.
+blank_issues_enabled: false
