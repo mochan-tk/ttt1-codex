@@ -1,0 +1,4 @@
+interface:
+  display_name: "Retro"
+  short_description: "Promote repeated friction into durable system fixes"
+  default_prompt: "Use $retro to turn recurring project friction into a traceable system improvement."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plan Management"
+  short_description: "Manage Epics, Tasks, dependencies, and frontier"
+  default_prompt: "Use $plan-management to build or update the GitHub Issue graph for this work."

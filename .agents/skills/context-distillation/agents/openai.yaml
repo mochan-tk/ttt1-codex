@@ -1,0 +1,4 @@
+interface:
+  display_name: "Context Distillation"
+  short_description: "Distill context into reviewable project agreements"
+  default_prompt: "Use $context-distillation to turn collected context into a reviewable agreement change."
