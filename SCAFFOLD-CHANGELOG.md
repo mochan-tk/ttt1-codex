@@ -8,6 +8,10 @@ elsewhere.
 
 **Current candidate:** v1.0.0
 
+**Candidate state:** GitHub control-plane, Codex-native execution, repository
+skills, CI, tuning visibility, and retro hygiene are implemented. The measured
+license trial and human license merge are still required before release.
+
 ## Upgrade an instance
 
 1. Add this template repository as a read-only remote and fetch its tags.
@@ -64,3 +68,31 @@ Fresh-history Codex specialization consolidated from:
 
 The candidate starts at v1.0.0; it does not inherit the old repository's Git
 history or version numbers.
+
+Implemented candidate surface:
+
+- GitHub Issue forms, PR Evidence template, CODEOWNERS, Dependabot, and safe
+  label, Project, and disabled-ruleset setup scripts;
+- concise `AGENTS.md`, portable `.codex/` configuration, focused custom agents,
+  and eight Codex-native workflows under `.agents/skills/`;
+- deterministic Markdown, form/template, skill, compatibility-path,
+  English-content, and shell checks;
+- separate `quality` and `scaffold-self-check` CI jobs with third-party Actions
+  pinned to complete commit SHAs; and
+- report-only retro hygiene plus an explicitly authorized, idempotent monthly
+  review Issue path. Issue-body edit-diff automation remains a candidate and is
+  deliberately not implemented before a second occurrence.
+
+Measure an instance before upgrade or license review:
+
+```bash
+scripts/tuning-status.sh
+scripts/check-md-links.sh
+scripts/check-template-sync.sh
+scripts/check-skills.sh
+scripts/retro-hygiene.sh
+```
+
+These commands report the current checkout; they do not enable a ruleset,
+change repository settings, promote a retro candidate, or complete a human
+merge gate.
