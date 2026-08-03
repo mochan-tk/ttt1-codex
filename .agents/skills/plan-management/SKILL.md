@@ -30,16 +30,28 @@ self-contained, traceable, bounded, test-first, path-partitioned, and routed.
    [templates/task-body.md](templates/task-body.md).
 4. Partition parallel Tasks by disjoint File ownership. Add a dependency when
    paths overlap or one Task consumes another's result.
-5. Use the deterministic helper to create a fully wired Task:
+5. Preview locally before any live GitHub action:
 
 ```bash
 .agents/skills/plan-management/scripts/new-task.sh \
   --title "Task: <outcome>" --body task-body.md --parent 12 \
-  --origin 12 --exec app --blocked-by 10,11 --ready
+  --origin 12 --exec app --blocked-by 10,11 --ready --dry-run
 ```
 
-The helper adds the parent, dependency, origin, routing, and ready records in
-one creation flow and prints the required completion link.
+6. After reviewing the transformed body and intended edges, explicitly authorize
+   the live GitHub action:
+
+```bash
+.agents/skills/plan-management/scripts/new-task.sh \
+  --title "Task: <outcome>" --body task-body.md --parent 12 \
+  --origin 12 --exec app --blocked-by 10,11 --ready --apply
+```
+
+The helper refuses when neither mode is present. Only `--apply` may invoke
+`gh`; `--dry-run` validates locally and makes no GitHub call.
+
+The applied helper adds the parent, dependency, origin, routing, and ready
+records in one creation flow and prints the required completion link.
 
 ## Calculate the frontier
 

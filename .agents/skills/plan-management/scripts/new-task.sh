@@ -1,27 +1,53 @@
 #!/usr/bin/env bash
-# Create one Task Issue with its tracking edges in a single GitHub create call.
+# Preview or create one Task Issue with its ADLC tracking edges.
 #
 # Usage:
-#   new-task.sh --title "Task: outcome" --body task-body.md \
+#   new-task.sh --dry-run --title "Task: outcome" --body task-body.md \
+#     --parent 12 --origin 12 --exec app [--blocked-by 10,11] \
+#     [--repo owner/repo] [--ready]
+#   new-task.sh --apply --title "Task: outcome" --body task-body.md \
 #     --parent 12 --origin 12 --exec app [--blocked-by 10,11] \
 #     [--repo owner/repo] [--ready]
 #
-# The body must contain "- Origin: #<origin-issue>" or the matching filled
-# "- Origin: #N" line. The completion PR must later contain "Closes #N".
+# Modes (choose exactly one):
+#   --dry-run  Validate and transform the body locally, print the intended
+#              action, and exit without invoking gh or contacting GitHub.
+#   --apply    Explicitly authorize GitHub preflight and live Issue creation.
+#
+# With neither mode, the helper refuses before any gh command. The body must
+# contain "- Origin: #<origin-issue>" or the matching filled "- Origin: #N"
+# line. The completion PR must later contain "Closes #N".
 
 set -euo pipefail
 
+mode=""
 title=""
 body=""
 parent=""
 origin=""
 exec_surface=""
 blocked_by=""
+repo=""
 ready=false
-repo_args=()
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
+    --dry-run)
+      if [[ -n "$mode" && "$mode" != "dry-run" ]]; then
+        echo "error: choose exactly one of --dry-run or --apply" >&2
+        exit 2
+      fi
+      mode="dry-run"
+      shift
+      ;;
+    --apply)
+      if [[ -n "$mode" && "$mode" != "apply" ]]; then
+        echo "error: choose exactly one of --dry-run or --apply" >&2
+        exit 2
+      fi
+      mode="apply"
+      shift
+      ;;
     -t|--title)
       [[ $# -ge 2 ]] || { echo "error: $1 requires a value" >&2; exit 2; }
       title="$2"
@@ -54,7 +80,7 @@ while [[ $# -gt 0 ]]; do
       ;;
     -R|--repo)
       [[ $# -ge 2 ]] || { echo "error: $1 requires owner/repo" >&2; exit 2; }
-      repo_args=(--repo "$2")
+      repo="$2"
       shift 2
       ;;
     --ready)
@@ -72,6 +98,13 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+# Safety gate: make live intent explicit before validation runs any command
+# outside the local filesystem.
+[[ -n "$mode" ]] || {
+  echo "error: choose --dry-run (no GitHub access) or --apply (live GitHub creation); no gh command was run" >&2
+  exit 2
+}
+
 [[ -n "$title" && -n "$body" && -n "$parent" && -n "$origin" && -n "$exec_surface" ]] || {
   echo "error: --title, --body, --parent, --origin, and --exec are required" >&2
   exit 2
@@ -83,15 +116,67 @@ if [[ -n "$blocked_by" && ! "$blocked_by" =~ ^[0-9]+(,[0-9]+)*$ ]]; then
   echo "error: --blocked-by must be comma-separated Issue numbers" >&2
   exit 2
 fi
+if [[ -n "$repo" && ! "$repo" =~ ^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$ ]]; then
+  echo "error: --repo must use owner/repo format" >&2
+  exit 2
+fi
 case "$exec_surface" in
   cloud|app|cli|ide) ;;
   *) echo "error: --exec must be cloud, app, cli, or ide" >&2; exit 2 ;;
 esac
 
+task_body=$(mktemp "${TMPDIR:-/tmp}/adlc-task-body.XXXXXX")
+cleanup() {
+  [[ -n "${task_body:-}" && -f "$task_body" ]] && rm -f -- "$task_body"
+}
+trap cleanup EXIT
+
+if grep -Fq -- '- Origin: #<origin-issue>' "$body"; then
+  sed "s|- Origin: #<origin-issue>|- Origin: #${origin}|" "$body" > "$task_body"
+elif grep -Eq "^- Origin: #${origin}[[:space:]]*$" "$body"; then
+  cp "$body" "$task_body"
+else
+  echo "error: body must contain '- Origin: #<origin-issue>' or '- Origin: #${origin}'" >&2
+  exit 2
+fi
+
+labels="type:task,exec:${exec_surface}"
+if $ready; then
+  labels+=",ai:ready"
+fi
+
+if [[ "$mode" == "dry-run" ]]; then
+  echo "Mode: dry-run (no gh invocation; no GitHub access)"
+  echo "Intended action: create one Task Issue"
+  printf 'Repository: %s\n' "${repo:-current repository}"
+  printf 'Title: %s\n' "$title"
+  printf 'Labels: %s\n' "$labels"
+  printf 'Sub-issue parent: Epic #%s\n' "$parent"
+  printf 'Blocked by: %s\n' "${blocked_by:-none}"
+  printf 'Origin reference: #%s\n' "$origin"
+  echo 'Completion PR body: Closes #<new-task-number>'
+  echo "--- Transformed body ---"
+  sed -n '1,$p' "$task_body"
+  echo "--- End transformed body ---"
+  exit 0
+fi
+
+[[ "$mode" == "apply" ]] || {
+  echo "error: internal mode error" >&2
+  exit 2
+}
+
+# LIVE GITHUB BOUNDARY: every gh lookup and mutation is below this line and is
+# reachable only after the caller explicitly supplies --apply.
 command -v gh >/dev/null 2>&1 || {
-  echo "error: gh CLI is required" >&2
+  echo "error: gh CLI is required for --apply" >&2
   exit 1
 }
+
+repo_args=()
+if [[ -n "$repo" ]]; then
+  repo_args=(--repo "$repo")
+fi
 
 # gh creates the Issue before it attaches some relationships. Fail early for
 # invalid references, labels, or an older CLI so a predictable input error does
@@ -160,21 +245,6 @@ if $ready; then
     echo "error: required label does not exist: ai:ready" >&2
     exit 1
   }
-fi
-
-task_body=$(mktemp "${TMPDIR:-/tmp}/adlc-task-body.XXXXXX")
-cleanup() {
-  [[ -n "${task_body:-}" && -f "$task_body" ]] && rm -f -- "$task_body"
-}
-trap cleanup EXIT
-
-if grep -Fq -- '- Origin: #<origin-issue>' "$body"; then
-  sed "s|- Origin: #<origin-issue>|- Origin: #${origin}|" "$body" > "$task_body"
-elif grep -Eq "^- Origin: #${origin}[[:space:]]*$" "$body"; then
-  cp "$body" "$task_body"
-else
-  echo "error: body must contain '- Origin: #<origin-issue>' or '- Origin: #${origin}'" >&2
-  exit 2
 fi
 
 create_args=(
