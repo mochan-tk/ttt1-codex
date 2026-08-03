@@ -1,7 +1,9 @@
 # Codex ADLC Template
 
-> Status: v1.0.0 is being built in this repository by running the lifecycle it
-> defines. The agreement set is the first human merge gate.
+> Status: the v1.0.0 candidate now contains the GitHub control plane, Codex
+> execution plane, repository skills, deterministic CI, and retro hygiene. The
+> agreement merge is complete; the measured license trial and license merge
+> remain pending.
 
 This is a reusable, Codex-native repository template for the **Agentic
 Development Lifecycle (ADLC)**. It keeps intent, plans, changes, evidence, and
@@ -14,20 +16,73 @@ when stateless agents execute work in parallel.
 
 ## This is a template — after copying
 
-1. Run `scripts/setup-labels.sh` to create the canonical Issue labels.
-2. Invoke `$project-onboarding`. It inventories the repository, asks only for
+1. Run `scripts/tuning-status.sh`. A copied repository reports `NOT TUNED`
+   until its CI placeholder is replaced with measured project commands.
+2. Run `scripts/setup-labels.sh` to create the canonical Issue labels.
+3. Invoke `$project-onboarding`. It inventories the repository, asks only for
    missing facts, runs the real build and test commands, and prepares an
    evidence pull request.
-3. Run one small trial Task through plan, implementation, checks, and review.
-   Merge the measured setup evidence only after the trial succeeds. That is
-   the **license merge**.
-4. Run `scripts/setup-ruleset.sh`. It creates the proposed ruleset disabled;
-   a human reviews and enables it in GitHub Settings.
-5. File the first Epic, detail only its next rolling wave, and dispatch Tasks
+4. Run `scripts/setup-ruleset.sh`. It creates the proposed ruleset disabled.
+   Review the proposal and record its state in the setup evidence, but do not
+   enable it yet.
+5. Run one small trial Task through plan, implementation, checks, and review.
+   Merge the measured setup evidence only after the trial and disabled-ruleset
+   review succeed. That is the **license merge**.
+6. After the license merge, a human enables the reviewed ruleset in GitHub
+   Settings.
+7. File the first Epic, detail only its next rolling wave, and dispatch Tasks
    from the mechanically calculated frontier.
 
-The setup scripts and skills named above are planned v1.0.0 artifacts and land
-in later Tasks under [Epic #1](https://github.com/mochan-tk/ttt1-codex/issues/1).
+The setup scripts, Codex skills, Issue forms, workflows, and self-checks are
+implemented v1.0.0 candidate artifacts under
+[Epic #1](https://github.com/mochan-tk/ttt1-codex/issues/1). They remain a
+candidate until the measured license trial is reviewed and merged.
+
+## Measured scaffold status
+
+`tuning-status.sh` has three stable modes:
+
+| Command | Output | Exit behavior |
+|---|---|---|
+| `scripts/tuning-status.sh` | Human report and measured next steps | `0` when tuned, `1` when incomplete |
+| `scripts/tuning-status.sh --quiet` | None | `0` when tuned, `1` when incomplete |
+| `scripts/tuning-status.sh --ci` | GitHub warning annotations when incomplete | Always `0` so onboarding remains visible without hiding scaffold defects |
+
+The canonical template repository intentionally retains the copied-template
+sentinel and is recognized by its GitHub origin. A repository created from the
+template has a different origin, so it remains visibly incomplete until
+`$project-onboarding` replaces the `CUSTOMIZE` block in
+`.github/workflows/ci.yml` with commands actually measured in that repository.
+
+Run the deterministic scaffold checks locally before every scaffold change:
+
+The checks use Git, Bash, Python 3, Ruby's standard YAML parser, and `gh` for
+the live read-only retro report. The hosted workflow supplies its lint tools
+from checksum-verified release archives.
+
+```bash
+git diff --check
+bash -n scripts/*.sh .agents/skills/plan-management/scripts/*.sh
+scripts/check-md-links.sh
+scripts/check-template-sync.sh
+scripts/check-skills.sh
+scripts/retro-hygiene.sh
+scripts/tuning-status.sh
+scripts/tuning-status.sh --quiet
+scripts/tuning-status.sh --ci
+```
+
+The `quality` and `scaffold-self-check` jobs in `.github/workflows/ci.yml` run
+the corresponding remote gates. `.github/workflows/retro-hygiene.yml` produces
+a read-only report on manual runs by default. Its repository-authorized monthly
+schedule, or a manual run with the explicit creation input, may create at most
+one `Retro hygiene review YYYY-MM` Issue. It never promotes a candidate or
+changes instructions without a reviewed PR. Begin confirmed recurrence
+comments with `Occurrence:` or `Occurrence evidence:`. A skill-produced comment
+that contains a GitHub Issue/PR evidence link but lacks the prefix is surfaced
+as unmarked evidence—not silently ignored or falsely counted. Confirm it with a
+new marked comment; its historical unmarked count remains visible because the
+ledger is append-only.
 
 ## The Three Merges
 

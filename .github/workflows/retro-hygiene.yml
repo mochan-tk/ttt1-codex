@@ -1,0 +1,63 @@
+# Monthly deterministic hygiene for the Codex-native retro skill. The default
+# manual path is read-only; Issue creation requires the schedule or an explicit
+# workflow-dispatch input.
+name: Retro hygiene
+
+on:
+  schedule:
+    - cron: "17 0 1 * *"
+  workflow_dispatch:
+    inputs:
+      create_issue:
+        description: Create the idempotent monthly review Issue
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: retro-hygiene-${{ github.repository }}
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  report:
+    name: report
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: read
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Build the read-only hygiene report
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: scripts/retro-hygiene.sh -R "$GITHUB_REPOSITORY"
+
+  create-monthly-issue:
+    name: create-monthly-issue
+    needs: report
+    if: github.event_name == 'schedule' || github.event.inputs.create_issue == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Create or reuse the monthly review Issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: scripts/retro-hygiene.sh --create-issue -R "$GITHUB_REPOSITORY"
