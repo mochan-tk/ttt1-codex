@@ -1,0 +1,4 @@
+interface:
+  display_name: "Task Routing"
+  short_description: "Route Tasks across Codex execution surfaces"
+  default_prompt: "Use $task-routing to choose the Codex surface and role for this Task."

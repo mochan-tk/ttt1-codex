@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Onboarding"
+  short_description: "Measure and tune a repository for ADLC delegation"
+  default_prompt: "Use $project-onboarding to measure this repository and prepare license evidence."
