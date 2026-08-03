@@ -65,6 +65,14 @@ outcome to the Task Issue:
 - Scaffold friction: <retro:candidate link or none>
 ```
 
+Any `deferred` criterion prohibits `Outcome: completed` and the completion
+merge. A follow-up link alone does not remove that block. Keep the outcome
+`blocked` or `needs-replan` until the requester revises the original work-order
+body to remove the criterion or move it into a linked, separate Task, then
+records that body change on the timeline. Creating the follow-up or split Task
+without revising the original body does not unblock completion. The executor
+may propose that change in a comment but never edit the body.
+
 Only then send a short pointer to a parent or human. An unrecorded report is not
 state and must be returned to the executor for landing.
 

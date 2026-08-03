@@ -3,10 +3,12 @@
 #
 # Usage:
 #   new-task.sh --dry-run --title "Task: outcome" --body task-body.md \
-#     --parent 12 --origin 12 --exec app [--blocked-by 10,11] \
+#     --parent 12 --origin 12 --exec app --risk normal|high \
+#     [--blocked-by 10,11] \
 #     [--repo owner/repo] [--ready]
 #   new-task.sh --apply --title "Task: outcome" --body task-body.md \
-#     --parent 12 --origin 12 --exec app [--blocked-by 10,11] \
+#     --parent 12 --origin 12 --exec app --risk normal|high \
+#     [--blocked-by 10,11] \
 #     [--repo owner/repo] [--ready]
 #
 # Modes (choose exactly one):
@@ -15,8 +17,8 @@
 #   --apply    Explicitly authorize GitHub preflight and live Issue creation.
 #
 # With neither mode, the helper refuses before any gh command. The body must
-# contain "- Origin: #<origin-issue>" or the matching filled "- Origin: #N"
-# line. The completion PR must later contain "Closes #N".
+# contain the canonical Origin and Risk placeholders, or matching filled values.
+# The completion PR must later contain "Closes #N".
 
 set -euo pipefail
 
@@ -26,6 +28,7 @@ body=""
 parent=""
 origin=""
 exec_surface=""
+risk=""
 blocked_by=""
 repo=""
 ready=false
@@ -73,6 +76,11 @@ while [[ $# -gt 0 ]]; do
       exec_surface="$2"
       shift 2
       ;;
+    --risk)
+      [[ $# -ge 2 ]] || { echo "error: $1 requires normal or high" >&2; exit 2; }
+      risk="$2"
+      shift 2
+      ;;
     -d|--blocked-by)
       [[ $# -ge 2 ]] || { echo "error: $1 requires comma-separated Issues" >&2; exit 2; }
       blocked_by="$2"
@@ -105,8 +113,8 @@ done
   exit 2
 }
 
-[[ -n "$title" && -n "$body" && -n "$parent" && -n "$origin" && -n "$exec_surface" ]] || {
-  echo "error: --title, --body, --parent, --origin, and --exec are required" >&2
+[[ -n "$title" && -n "$body" && -n "$parent" && -n "$origin" && -n "$exec_surface" && -n "$risk" ]] || {
+  echo "error: --title, --body, --parent, --origin, --exec, and --risk are required" >&2
   exit 2
 }
 [[ -f "$body" ]] || { echo "error: body file not found: $body" >&2; exit 2; }
@@ -124,23 +132,41 @@ case "$exec_surface" in
   cloud|app|cli|ide) ;;
   *) echo "error: --exec must be cloud, app, cli, or ide" >&2; exit 2 ;;
 esac
+case "$risk" in
+  normal|high) ;;
+  *) echo "error: --risk must be normal or high" >&2; exit 2 ;;
+esac
 
+origin_body=$(mktemp "${TMPDIR:-/tmp}/adlc-task-origin.XXXXXX")
 task_body=$(mktemp "${TMPDIR:-/tmp}/adlc-task-body.XXXXXX")
 cleanup() {
+  [[ -n "${origin_body:-}" && -f "$origin_body" ]] && rm -f -- "$origin_body"
   [[ -n "${task_body:-}" && -f "$task_body" ]] && rm -f -- "$task_body"
 }
 trap cleanup EXIT
 
 if grep -Fq -- '- Origin: #<origin-issue>' "$body"; then
-  sed "s|- Origin: #<origin-issue>|- Origin: #${origin}|" "$body" > "$task_body"
+  sed "s|- Origin: #<origin-issue>|- Origin: #${origin}|" "$body" > "$origin_body"
 elif grep -Eq "^- Origin: #${origin}[[:space:]]*$" "$body"; then
-  cp "$body" "$task_body"
+  cp "$body" "$origin_body"
 else
   echo "error: body must contain '- Origin: #<origin-issue>' or '- Origin: #${origin}'" >&2
   exit 2
 fi
 
+if grep -Fq -- 'Risk: <normal|high>' "$origin_body"; then
+  sed "s@Risk: <normal|high>@Risk: ${risk}@" "$origin_body" > "$task_body"
+elif grep -Eq "^Risk: ${risk}[[:space:]]*$" "$origin_body"; then
+  cp "$origin_body" "$task_body"
+else
+  echo "error: body must contain 'Risk: <normal|high>' or 'Risk: ${risk}'" >&2
+  exit 2
+fi
+
 labels="type:task,exec:${exec_surface}"
+if [[ "$risk" == "high" ]]; then
+  labels+=",risk:high"
+fi
 if $ready; then
   labels+=",ai:ready"
 fi
@@ -150,6 +176,7 @@ if [[ "$mode" == "dry-run" ]]; then
   echo "Intended action: create one Task Issue"
   printf 'Repository: %s\n' "${repo:-current repository}"
   printf 'Title: %s\n' "$title"
+  printf 'Risk: %s\n' "$risk"
   printf 'Labels: %s\n' "$labels"
   printf 'Sub-issue parent: Epic #%s\n' "$parent"
   printf 'Blocked by: %s\n' "${blocked_by:-none}"
@@ -234,18 +261,19 @@ available_labels=$(gh label list \
   --limit 200 \
   --json name \
   --template '{{range .}}{{.name}}{{"\n"}}{{end}}')
-for required_label in "type:task" "exec:${exec_surface}"; do
+required_labels=("type:task" "exec:${exec_surface}")
+if [[ "$risk" == "high" ]]; then
+  required_labels+=("risk:high")
+fi
+if $ready; then
+  required_labels+=("ai:ready")
+fi
+for required_label in "${required_labels[@]}"; do
   grep -Fxq "$required_label" <<< "$available_labels" || {
     echo "error: required label does not exist: ${required_label}" >&2
     exit 1
   }
 done
-if $ready; then
-  grep -Fxq 'ai:ready' <<< "$available_labels" || {
-    echo "error: required label does not exist: ai:ready" >&2
-    exit 1
-  }
-fi
 
 create_args=(
   --title "$title"
@@ -254,6 +282,9 @@ create_args=(
   --label "exec:${exec_surface}"
   --parent "$parent"
 )
+if [[ "$risk" == "high" ]]; then
+  create_args+=(--label "risk:high")
+fi
 if [[ -n "$blocked_by" ]]; then
   create_args+=(--blocked-by "$blocked_by")
 fi

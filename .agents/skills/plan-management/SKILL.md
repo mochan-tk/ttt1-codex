@@ -18,8 +18,10 @@ Preserve all four tracking edges:
 4. Require the completion PR body to contain `Closes #N` for its Task.
 
 Use `type:epic` for Epics and `type:task` for Tasks. Add exactly one `exec:*`
-label to each Task. Add `ai:ready` only when its requester-owned body is
-self-contained, traceable, bounded, test-first, path-partitioned, and routed.
+label to each Task. Classify every Task body as `Risk: normal` or `Risk: high`;
+add `risk:high` only for the latter. Add `ai:ready` only when its
+requester-owned body is self-contained, traceable, bounded, test-first,
+path-partitioned, and routed.
 
 ## Plan as a rolling wave
 
@@ -35,7 +37,7 @@ self-contained, traceable, bounded, test-first, path-partitioned, and routed.
 ```bash
 .agents/skills/plan-management/scripts/new-task.sh \
   --title "Task: <outcome>" --body task-body.md --parent 12 \
-  --origin 12 --exec app --blocked-by 10,11 --ready --dry-run
+  --origin 12 --exec app --risk normal --blocked-by 10,11 --ready --dry-run
 ```
 
 6. After reviewing the transformed body and intended edges, explicitly authorize
@@ -44,11 +46,14 @@ self-contained, traceable, bounded, test-first, path-partitioned, and routed.
 ```bash
 .agents/skills/plan-management/scripts/new-task.sh \
   --title "Task: <outcome>" --body task-body.md --parent 12 \
-  --origin 12 --exec app --blocked-by 10,11 --ready --apply
+  --origin 12 --exec app --risk normal --blocked-by 10,11 --ready --apply
 ```
 
-The helper refuses when neither mode is present. Only `--apply` may invoke
-`gh`; `--dry-run` validates locally and makes no GitHub call.
+The helper refuses when neither mode is present or `--risk normal|high` is
+missing. It replaces the canonical Origin and Risk placeholders and prints the
+risk choice during preview. Only `--apply` may invoke `gh`; `--dry-run`
+validates locally and makes no GitHub call. On apply, high risk also requires
+and adds `risk:high`; normal risk never adds that label.
 
 The applied helper adds the parent, dependency, origin, routing, and ready
 records in one creation flow and prints the required completion link.
@@ -73,8 +78,11 @@ the executor adds the authoritative working plan as a new Task comment. Never
 edit a plan comment. If approach, ownership, scope, or verification changes,
 add a revised-plan comment and apply the applicable risk gate.
 
-Only the requester or planner changes a Task body. Immediately add a timeline
-comment stating what changed, why, and whether an active executor must replan.
+Only the requester changes an existing Task body. A planner may propose exact
+body changes in a new comment but must not edit the body unless that same human
+is explicitly acting as the requester. Immediately after the requester edits
+the body, add a timeline comment stating what changed, why, and whether an
+active executor must replan.
 
 ## Replan from a durable trigger
 

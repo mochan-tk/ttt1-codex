@@ -60,8 +60,15 @@ Run every Verification command and map every criterion to a fresh result:
 ```
 
 Use `deferred` only with a linked follow-up Issue whose routing can execute the
-criterion. Confirm the diff stays inside File ownership and the worktree is
-clean. Record failures and deviations; do not summarize them away.
+criterion. Any `deferred` result blocks `Outcome: completed` and the completion
+merge; a follow-up link alone is insufficient. The requester must first revise
+the original requester-owned work-order body to remove the criterion or move it
+into a linked, separate Task, then record that body change. Merely creating the
+follow-up or split Task does not unblock completion. Until the body is revised,
+record `blocked` or `needs-replan`. The executor may propose the change in a
+comment but never edits the body. Confirm the diff stays inside File ownership
+and the worktree is clean. Record failures and deviations; do not summarize
+them away.
 
 ## Enforce outcome-before-report
 

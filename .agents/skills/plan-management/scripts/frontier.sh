@@ -45,9 +45,17 @@ candidates=$(gh issue list \
   --state open \
   --label "type:task" \
   --label "ai:ready" \
-  --limit 200 \
+  --limit 201 \
   --json number,title \
   --template '{{range .}}{{.number}}{{"\t"}}{{.title}}{{"\n"}}{{end}}')
+
+# The report supports at most 200 candidates. Fetch one sentinel beyond that
+# bound so a larger frontier fails visibly instead of being silently truncated.
+candidate_count=$(awk 'NF { count++ } END { print count + 0 }' <<< "$candidates")
+if (( candidate_count > 200 )); then
+  echo "error: actionable frontier is incomplete: more than 200 candidates matched; no partial report was emitted" >&2
+  exit 1
+fi
 
 if [[ -z "$candidates" ]]; then
   echo "No open type:task issues labeled ai:ready."

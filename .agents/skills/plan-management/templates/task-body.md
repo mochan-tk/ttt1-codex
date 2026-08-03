@@ -1,6 +1,6 @@
 <!-- Canonical Task Issue body for gh CLI creation.
 Delete instructional comments before filing. new-task.sh replaces the Origin
-placeholder. Keep headings stable for agents and checks. -->
+and Risk placeholders. Keep headings stable for agents and checks. -->
 
 ## Objective
 
@@ -13,6 +13,12 @@ placeholder. Keep headings stable for agents and checks. -->
 - Requirements: REQ-<number>
 - Decisions:
 - Other references:
+
+## Risk gate
+
+<!-- Required. Choose exactly one; high risk also receives the risk:high label. -->
+
+Risk: <normal|high>
 
 ## Acceptance criteria
 

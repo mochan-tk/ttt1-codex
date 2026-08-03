@@ -5,9 +5,19 @@ description: Guides Codex through measured onboarding of a new or existing repos
 
 # Project Onboarding
 
-Build Phase 0β from accepted project truth and measurements. Keep the reusable
-template generic; never promote a guessed command, product fact, credential,
-personal path, organization name, or model choice.
+Follow project onboarding in this explicit order:
+
+1. **Phase 0α — minimum receptacle:** establish only the Issue, agreement,
+   ownership, and verification surfaces needed to collect project truth. Do
+   not guess project-specific setup.
+2. **Agreement merge:** collect and distill that truth, then obtain its human
+   agreement merge.
+3. **Phase 0β — measured setup:** only after the agreement merge, measure the
+   repository and apply accepted project truth to its Codex setup.
+
+Never enter Phase 0β before the agreement merge. Keep the reusable template
+generic; never promote a guessed command, product fact, credential, personal
+path, organization name, or model choice.
 
 ## Establish the boundary
 

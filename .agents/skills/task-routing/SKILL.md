@@ -52,9 +52,11 @@ parallelism value never overrides overlapping paths or an unresolved blocker.
 
 ## Apply risk and rerouting
 
-Add `risk:high` when repository policy identifies a high-risk Task. Surface
-selection does not bypass its exact plan-approval gate.
+Record every Task's required Risk field as `normal` or `high`. Add `risk:high`
+only for high risk; surface selection does not bypass its exact plan-approval
+gate.
 
-Treat rerouting as a material plan change. Update the `exec:*` label and Routing
-fields through requester/planner authority, add the required work-order change
+Treat rerouting as a material plan change. A planner may propose exact Routing
+field changes in a comment, but only the requester may edit the Task body.
+After that edit, update the `exec:*` label, add the required work-order change
 comment, and require the executor to add a revised plan comment before moving.
