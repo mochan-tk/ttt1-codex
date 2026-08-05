@@ -15,6 +15,21 @@ command -v ruby >/dev/null 2>&1 || {
   exit 2
 }
 
+TOML_PYTHON=""
+for candidate in python3.13 python3.12 python3.11 python3; do
+  if command -v "$candidate" >/dev/null 2>&1 \
+    && "$candidate" -I -c \
+      'import sys, tomllib; raise SystemExit(0 if sys.version_info >= (3, 11) else 1)' \
+      >/dev/null 2>&1; then
+    TOML_PYTHON="$candidate"
+    break
+  fi
+done
+if [[ -z "$TOML_PYTHON" ]]; then
+  echo "check-skills: ERROR — Python 3.11+ with standard-library tomllib is required for Codex TOML validation" >&2
+  exit 2
+fi
+
 ruby - "$ROOT" <<'RUBY'
 # encoding: UTF-8
 require "psych"
@@ -113,6 +128,171 @@ unless errors.empty?
   exit 1
 end
 RUBY
+
+"$TOML_PYTHON" -I - "$ROOT" <<'PY'
+from __future__ import annotations
+
+import pathlib
+import re
+import sys
+import tomllib
+from collections.abc import Iterator
+from typing import Any
+
+root = pathlib.Path(sys.argv[1]).resolve()
+config_path = root / ".codex/config.toml"
+agents_root = root / ".codex/agents"
+expected_agents = {"orchestrator", "planner", "reviewer"}
+config_root_keys = {"agents"}
+config_agent_keys = {"enabled"}
+project_agent_keys = {
+    "name",
+    "description",
+    "sandbox_mode",
+    "developer_instructions",
+}
+model_pin_keys = {
+    "model",
+    "model_provider",
+    "model_reasoning_effort",
+    "reasoning_effort",
+}
+credential_key = re.compile(
+    r"(?:^|[_-])(?:api[_-]?key|access[_-]?token|auth[_-]?token|credential|password|private[_-]?key|secret|token)(?:$|[_-])",
+    re.IGNORECASE,
+)
+personal_path_key = re.compile(
+    r"(?:^|[_-])(?:cwd|home|path|working[_-]?directory|workspace)(?:$|[_-])",
+    re.IGNORECASE,
+)
+personal_path_value = re.compile(
+    r"(?:^|[\s='\"])(?:~[/\\]|/Users/|/home/[^/\s]+/|[A-Za-z]:[/\\]Users[/\\])",
+    re.IGNORECASE,
+)
+errors: list[str] = []
+
+
+def relative(path: pathlib.Path) -> str:
+    return path.relative_to(root).as_posix()
+
+
+def load_toml(path: pathlib.Path) -> dict[str, Any] | None:
+    name = relative(path)
+    if not path.is_file():
+        errors.append(f"{name}: missing")
+        return None
+    try:
+        with path.open("rb") as stream:
+            document = tomllib.load(stream)
+    except (OSError, tomllib.TOMLDecodeError) as error:
+        errors.append(f"{name}: invalid TOML: {error}")
+        return None
+    if not isinstance(document, dict):
+        errors.append(f"{name}: TOML root must be a table")
+        return None
+    return document
+
+
+def walk_settings(value: Any, prefix: tuple[str, ...] = ()) -> Iterator[tuple[tuple[str, ...], Any]]:
+    if isinstance(value, dict):
+        for key, child in value.items():
+            path = (*prefix, str(key))
+            yield path, child
+            yield from walk_settings(child, path)
+    elif isinstance(value, list):
+        for index, child in enumerate(value):
+            yield from walk_settings(child, (*prefix, f"[{index}]"))
+
+
+def check_portability(document: dict[str, Any], name: str) -> None:
+    reported: set[tuple[str, tuple[str, ...]]] = set()
+    for path, value in walk_settings(document):
+        key = path[-1]
+        normalized = key.lower().replace("-", "_")
+        if normalized in model_pin_keys:
+            finding = ("model", path)
+            if finding not in reported:
+                errors.append(f"{name}: model pin setting {'.'.join(path)!r} is not allowed")
+                reported.add(finding)
+        if credential_key.search(key):
+            finding = ("credential", path)
+            if finding not in reported:
+                errors.append(f"{name}: credential setting {'.'.join(path)!r} is not allowed")
+                reported.add(finding)
+        if personal_path_key.search(key):
+            finding = ("path-key", path)
+            if finding not in reported:
+                errors.append(f"{name}: personal-path setting {'.'.join(path)!r} is not allowed")
+                reported.add(finding)
+        if isinstance(value, str) and personal_path_value.search(value):
+            finding = ("path-value", path)
+            if finding not in reported:
+                errors.append(f"{name}: {'.'.join(path)!r} contains a personal path")
+                reported.add(finding)
+
+
+config = load_toml(config_path)
+if config is not None:
+    config_name = relative(config_path)
+    check_portability(config, config_name)
+    actual_root_keys = set(config)
+    if actual_root_keys != config_root_keys:
+        errors.append(
+            f"{config_name}: root keys must be exactly agents; update this validator "
+            "when an agreement accepts another portable setting"
+        )
+    agents_config = config.get("agents")
+    if not isinstance(agents_config, dict):
+        errors.append(f"{config_name}: agents must be a table")
+    else:
+        if set(agents_config) != config_agent_keys:
+            errors.append(
+                f"{config_name}: agents keys must be exactly enabled; update this validator "
+                "when an agreement accepts another portable setting"
+            )
+        if agents_config.get("enabled") is not True:
+            errors.append(f"{config_name}: agents.enabled must be boolean true")
+
+if not agents_root.is_dir():
+    errors.append(".codex/agents: missing")
+    agent_paths: list[pathlib.Path] = []
+else:
+    agent_paths = sorted(path for path in agents_root.glob("*.toml") if path.is_file())
+
+actual_agents = {path.stem for path in agent_paths}
+for name in sorted(expected_agents - actual_agents):
+    errors.append(f".codex/agents/{name}.toml: missing required project agent")
+for name in sorted(actual_agents - expected_agents):
+    errors.append(f".codex/agents/{name}.toml: unexpected project agent")
+
+for path in agent_paths:
+    document = load_toml(path)
+    if document is None:
+        continue
+    name = relative(path)
+    check_portability(document, name)
+    if set(document) != project_agent_keys:
+        errors.append(
+            f"{name}: keys must be exactly name, description, sandbox_mode, "
+            "developer_instructions; update this validator when an agreement accepts another "
+            "portable agent setting"
+        )
+    expected_name = path.stem
+    if document.get("name") != expected_name:
+        errors.append(f"{name}: name must equal filename stem {expected_name!r}")
+    for key in ("description", "developer_instructions"):
+        value = document.get(key)
+        if not isinstance(value, str) or not value.strip():
+            errors.append(f"{name}: {key} must be a non-empty string")
+    if document.get("sandbox_mode") != "read-only":
+        errors.append(f"{name}: sandbox_mode must equal 'read-only'")
+
+if errors:
+    print(f"check-skills: FAIL — {len(errors)} Codex TOML validation error(s)", file=sys.stderr)
+    for error in errors:
+        print(f"  {error}", file=sys.stderr)
+    raise SystemExit(1)
+PY
 
 python3 - "$ROOT" <<'PY'
 from __future__ import annotations
@@ -274,7 +454,8 @@ if errors:
     raise SystemExit(1)
 
 print(
-    "check-skills: OK — 8 Codex skills, metadata, path policy, English-only content, "
+    "check-skills: OK — 8 Codex skills, metadata, Codex TOML configuration, "
+    "path policy, English-only content, "
     f"and {len([item for item in shell_files if item])} shell file(s) validated."
 )
 PY
