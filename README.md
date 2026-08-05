@@ -14,7 +14,9 @@ lifecycle. It does not replace Scrum, Kanban, release management, or product
 governance. It supplies the durable memory and mechanical verification needed
 when stateless agents execute work in parallel.
 
-## Prerequisites for a copied repository
+## Getting Started
+
+### Prerequisites
 
 - Git, Bash 3.2 or later, Ruby with its standard YAML parser, `jq`, and a
   Python 3.11-or-later interpreter available as `python3`, `python3.13`,
@@ -26,7 +28,75 @@ when stateless agents execute work in parallel.
 - A Codex surface with repository access, plus an eligible human code owner who
   uses a GitHub identity other than the trial PR author and can approve it.
 
-## This is a template — after copying
+### First 10 minutes
+
+1. On GitHub, select **Use this template** and create the target repository.
+   Do not clone this canonical source as the project repository.
+
+2. From a terminal, confirm the local tools and GitHub identity before asking
+   Codex to change anything:
+
+   ```bash
+   git --version
+   bash --version
+   ruby --version
+   jq --version
+   python3 --version
+   gh auth status
+   ```
+
+   If `python3` is older than 3.11, install or expose `python3.11`,
+   `python3.12`, or `python3.13` before continuing.
+
+3. Clone the repository created in step 1, then open its root in the Codex app,
+   CLI, or IDE extension. Replace `OWNER` and `REPOSITORY` first:
+
+   ```bash
+   gh repo clone OWNER/REPOSITORY
+   cd REPOSITORY
+   ```
+
+4. Confirm that the copied repository fails closed instead of pretending to
+   be ready:
+
+   ```bash
+   scripts/tuning-status.sh
+   ```
+
+   The expected first result is exit `1`, `NOT TUNED`, and both
+   `.github/workflows/ci.yml` and `.github/CODEOWNERS` named as incomplete.
+
+5. Create the durable Phase 0α work graph. Run the label helper, then use the
+   GitHub **Epic** and **Task** Issue forms to create one setup Epic and the
+   first onboarding Task. From the Epic's **Sub-issues** section, add that Task
+   as a sub-issue:
+
+   ```bash
+   scripts/setup-labels.sh
+   ```
+
+6. Give Codex the onboarding Task as its work order. Replace `NUMBER`, then use
+   this prompt:
+
+   ```text
+   Work from Task #NUMBER and follow AGENTS.md. Use $context-collection and
+   $context-distillation to prepare only the project-specific agreement pull
+   request. Stop after opening the draft PR. Do not invoke $project-onboarding,
+   replace measured CI commands, or create a ruleset before the human agreement
+   merge.
+   ```
+
+The first session is complete when the setup Epic and its first sub-issue Task
+exist, their source links are durable on GitHub, and the repository still
+reports `NOT TUNED` for the known CI and ownership placeholders. Continue with
+the full onboarding gates below.
+
+### Full onboarding
+
+The following nine gates are the authoritative adoption sequence. Keep their
+`Done when` evidence across the setup Epic and its linked Task/PR records. Where
+a gate changes repository state, use a dedicated Task and one pull request;
+preserve the `1 Task = 1 PR` invariant.
 
 1. **Expose the untuned state.** Run `scripts/tuning-status.sh` in the copied
    repository. **Done when:** it returns `1` and names both
@@ -37,8 +107,9 @@ when stateless agents execute work in parallel.
    sub-issue of the setup Epic and all 11 canonical labels exist without
    applying guessed project commands.
 3. **Agree before setup.** Collect and distill the target project's actual
-   requirements and decisions, then obtain the human agreement merge. **Done
-   when:** the project-specific agreement PR is merged and Phase 0β may begin.
+   requirements and decisions, then obtain the human agreement merge.
+   **Done when:** the project-specific agreement PR is merged and Phase 0β may
+   begin.
 4. **Apply measured Phase 0β setup.** Invoke `$project-onboarding`; run the real
    install, format, lint, type-check, test, and build commands, replace the CI
    placeholder, and replace every template CODEOWNER with the eligible target
@@ -63,6 +134,19 @@ when stateless agents execute work in parallel.
    its next Tasks, and calculate the frontier. **Done when:** the frontier
    reports at least one open, `type:task`, `ai:ready`, unblocked Task for
    dispatch.
+
+### You are ready when
+
+Use the nine `Done when` clauses above as the source of truth. The repository
+is licensed for ordinary delivery only when all of these summary conditions
+are observable:
+
+- the agreement and license merges are present in GitHub history;
+- `scripts/tuning-status.sh` returns `0` for measured CI and review ownership;
+- a human has enabled the reviewed ruleset, and an Issue-backed negative trial
+  proves that an unapproved pull request cannot merge; and
+- the mechanically calculated frontier contains at least one open, ready,
+  unblocked delivery Task.
 
 The setup scripts, Codex skills, Issue forms, workflows, and self-checks are
 implemented v1.0.0 candidate artifacts under
