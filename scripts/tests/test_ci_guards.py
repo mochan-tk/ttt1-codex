@@ -139,6 +139,16 @@ class TaskRitualTests(unittest.TestCase):
         fixture["pull_request"]["body"] += "Closes #18\n"
         self.assertIn("found 2", "\n".join(ritual_errors(fixture)))
 
+    def test_closes_must_be_first_nonblank_not_a_code_fenced_example(self) -> None:
+        fixture = valid_fixture()
+        fixture["pull_request"]["body"] = (
+            "```text\n"
+            "Closes #17\n"
+            "```\n\n"
+            "Plan: https://github.com/example/project/issues/17#issuecomment-102\n"
+        )
+        self.assertIn("first nonblank", "\n".join(ritual_errors(fixture)))
+
     def test_closing_issue_must_be_task(self) -> None:
         fixture = valid_fixture()
         fixture["issue"]["labels"] = [{"name": "type:epic"}]
@@ -175,6 +185,20 @@ class TaskRitualTests(unittest.TestCase):
         )
         self.assertIn("must precede", "\n".join(ritual_errors(fixture)))
 
+    def test_late_claim_plus_later_revision_does_not_repair_initial_order(self) -> None:
+        fixture = valid_fixture()
+        fixture["comments"][0] = comment(
+            101, "## Resume\n\n- Executor: successor", "2026-08-05T01:01:30Z"
+        )
+        fixture["comments"].append(
+            comment(103, "## Revised Plan\n\n- Later revision.", "2026-08-05T01:03:00Z")
+        )
+        fixture["pull_request"]["body"] = (
+            "Closes #17\n\n"
+            "Plan: https://github.com/example/project/issues/17#issuecomment-103\n"
+        )
+        self.assertIn("precede the initial", "\n".join(ritual_errors(fixture)))
+
     def test_initial_plan_must_precede_earliest_commit(self) -> None:
         fixture = valid_fixture()
         fixture["commits"] = [commit("2026-08-05T01:00:30Z")]
@@ -198,6 +222,17 @@ class TaskRitualTests(unittest.TestCase):
         )
         self.assertIn("latest Plan", "\n".join(ritual_errors(fixture)))
 
+    def test_exactly_one_initial_plan_is_required(self) -> None:
+        fixture = valid_fixture()
+        fixture["comments"].append(
+            comment(103, "## Plan\n\n- Duplicate initial plan.", "2026-08-05T01:01:30Z")
+        )
+        fixture["pull_request"]["body"] = (
+            "Closes #17\n\n"
+            "Plan: https://github.com/example/project/issues/17#issuecomment-103\n"
+        )
+        self.assertIn("exactly one leading ## Plan", "\n".join(ritual_errors(fixture)))
+
     def test_latest_plan_must_be_unedited(self) -> None:
         fixture = valid_fixture()
         fixture["comments"][1] = comment(
@@ -206,7 +241,24 @@ class TaskRitualTests(unittest.TestCase):
             "2026-08-05T01:01:00Z",
             "2026-08-05T01:01:30Z",
         )
-        self.assertIn("was edited", "\n".join(ritual_errors(fixture)))
+        self.assertIn("must never be edited", "\n".join(ritual_errors(fixture)))
+
+    def test_edited_initial_plan_cannot_be_hidden_by_clean_revision(self) -> None:
+        fixture = valid_fixture()
+        fixture["comments"][1] = comment(
+            102,
+            "## Plan\n\n1. Edited in place.",
+            "2026-08-05T01:01:00Z",
+            "2026-08-05T01:01:30Z",
+        )
+        fixture["comments"].append(
+            comment(103, "## Revised Plan\n\n- Clean revision.", "2026-08-05T01:03:00Z")
+        )
+        fixture["pull_request"]["body"] = (
+            "Closes #17\n\n"
+            "Plan: https://github.com/example/project/issues/17#issuecomment-103\n"
+        )
+        self.assertIn("issuecomment-102", "\n".join(ritual_errors(fixture)))
 
     def test_bot_metadata_does_not_bypass_missing_ritual(self) -> None:
         fixture = valid_fixture()
@@ -214,7 +266,7 @@ class TaskRitualTests(unittest.TestCase):
         fixture["comments"] = []
         errors = "\n".join(ritual_errors(fixture))
         self.assertIn("no leading ## Start", errors)
-        self.assertIn("no leading ## Plan", errors)
+        self.assertIn("exactly one leading ## Plan", errors)
 
 
 class ApiRetryTests(unittest.TestCase):

@@ -17,7 +17,7 @@ from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
 
-CLOSES_LINE = re.compile(r"^[ \t]*Closes[ \t]+#([1-9][0-9]*)[ \t]*$", re.MULTILINE)
+CLOSES_LINE = re.compile(r"^Closes #([1-9][0-9]*)$", re.MULTILINE)
 PLAN_LINE = re.compile(r"^[ \t]*Plan:[ \t]+(\S+)[ \t]*$", re.MULTILINE)
 CLAIM_HEADING = re.compile(r"^##[ \t]+(?:Start|Resume)(?:[ \t]+.*)?$")
 INITIAL_PLAN_HEADING = re.compile(r"^##[ \t]+Plan(?:[ \t]+.*)?$")
@@ -206,6 +206,20 @@ def closing_task_numbers(body: str) -> list[int]:
     return [int(value) for value in CLOSES_LINE.findall(body)]
 
 
+def primary_closing_errors(body: str) -> list[str]:
+    errors: list[str] = []
+    task_numbers = closing_task_numbers(body)
+    if len(task_numbers) != 1:
+        errors.append(
+            "PR body must contain exactly one canonical local 'Closes #N' line; "
+            f"found {len(task_numbers)}"
+        )
+    first_line = _first_content_line(body)
+    if re.fullmatch(r"Closes #[1-9][0-9]*", first_line) is None:
+        errors.append("the canonical 'Closes #N' declaration must be the first nonblank PR-body line")
+    return errors
+
+
 def validate_ritual(
     repository: str,
     server_url: str,
@@ -219,12 +233,9 @@ def validate_ritual(
     if not isinstance(body, str):
         body = ""
 
+    errors.extend(primary_closing_errors(body))
     task_numbers = closing_task_numbers(body)
-    if len(task_numbers) != 1:
-        errors.append(
-            "PR body must contain exactly one canonical local 'Closes #N' line; "
-            f"found {len(task_numbers)}"
-        )
+    if errors:
         return errors
     task_number = task_numbers[0]
 
@@ -251,8 +262,11 @@ def validate_ritual(
     plans = [record for record in records if record.kind in {"initial-plan", "revised-plan"}]
     if not claims:
         errors.append(f"Task #{task_number} has no leading ## Start or ## Resume comment")
-    if not initial_plans:
-        errors.append(f"Task #{task_number} has no leading ## Plan comment")
+    if len(initial_plans) != 1:
+        errors.append(
+            f"Task #{task_number} must have exactly one leading ## Plan comment; "
+            f"found {len(initial_plans)}"
+        )
     if not plans:
         return errors
 
@@ -262,16 +276,22 @@ def validate_ritual(
             "Plan: URL must point to the latest Plan or Revised Plan comment "
             f"(expected issuecomment-{latest_plan.identifier})"
         )
-    if latest_plan.created_at != latest_plan.updated_at:
-        errors.append("the latest authoritative Plan/Revised Plan comment was edited")
-    if claims and not any(claim.chronology < latest_plan.chronology for claim in claims):
-        errors.append("a ## Start or ## Resume comment must precede the authoritative Plan comment")
+    edited_plan_ids = [
+        record.identifier for record in plans if record.created_at != record.updated_at
+    ]
+    if edited_plan_ids:
+        rendered = ", ".join(f"issuecomment-{identifier}" for identifier in edited_plan_ids)
+        errors.append(f"Plan/Revised Plan comments must never be edited; found {rendered}")
+    if len(initial_plans) == 1 and claims:
+        initial_plan = initial_plans[0]
+        if not any(claim.chronology < initial_plan.chronology for claim in claims):
+            errors.append("a ## Start or ## Resume comment must precede the initial ## Plan comment")
 
     commit_times = _commit_times(commits, errors)
     if not commit_times:
         errors.append("pull request has no commit timestamp to prove Plan chronology")
-    elif initial_plans:
-        initial_plan = min(initial_plans, key=lambda record: record.chronology)
+    elif len(initial_plans) == 1:
+        initial_plan = initial_plans[0]
         if initial_plan.created_at >= min(commit_times):
             errors.append("the initial ## Plan comment must predate the earliest pull-request commit")
 
@@ -309,12 +329,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     try:
         pull_request = api.get_object(f"repos/{repository}/pulls/{pr_number}")
         body = pull_request.get("body") if isinstance(pull_request.get("body"), str) else ""
+        closing_errors = primary_closing_errors(body)
         task_numbers = closing_task_numbers(body)
-        if len(task_numbers) != 1:
-            errors = [
-                "PR body must contain exactly one canonical local 'Closes #N' line; "
-                f"found {len(task_numbers)}"
-            ]
+        if closing_errors:
+            errors = closing_errors
         else:
             task_number = task_numbers[0]
             issue = api.get_object(f"repos/{repository}/issues/{task_number}")
