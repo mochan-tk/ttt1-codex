@@ -41,6 +41,7 @@ jobs:
     permissions:
       contents: read
       issues: read
+      pull-requests: read
     steps:
       - name: Check out the repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -95,18 +96,18 @@ jobs:
       - name: Check Codex skills and scaffold policy
         run: scripts/check-skills.sh
 
+      - name: Check CI guard regressions
+        run: python3 scripts/tests/test_ci_guards.py
+
       - name: Check third-party action pins
-        run: |
-          references="$(grep -RhE '^[[:space:]]*uses:' .github/workflows \
-            | sed -E 's/^[[:space:]]*uses:[[:space:]]*//; s/[[:space:]]+#.*$//')"
-          while IFS= read -r reference; do
-            [[ -n "$reference" ]] || continue
-            [[ "$reference" == ./* ]] && continue
-            if [[ ! "$reference" =~ ^[^@[:space:]]+@[0-9a-f]{40}$ ]]; then
-              echo "Action reference is not a full commit SHA: $reference" >&2
-              exit 1
-            fi
-          done <<< "$references"
+        run: python3 scripts/check_action_pins.py
+
+      - name: Check the Task ledger ritual
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: python3 scripts/check_task_ritual.py
 
       - name: Build the read-only retro report
         env:
