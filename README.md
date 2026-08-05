@@ -2,8 +2,8 @@
 
 > Status: the v1.0.0 candidate now contains the GitHub control plane, Codex
 > execution plane, repository skills, deterministic CI, and retro hygiene. The
-> agreement merge is complete; the measured license trial and license merge
-> remain pending.
+> canonical template's agreement merge is complete; its measured license trial
+> and license merge remain pending.
 
 This is a reusable, Codex-native repository template for the **Agentic
 Development Lifecycle (ADLC)**. It keeps intent, plans, changes, evidence, and
@@ -14,24 +14,55 @@ lifecycle. It does not replace Scrum, Kanban, release management, or product
 governance. It supplies the durable memory and mechanical verification needed
 when stateless agents execute work in parallel.
 
+## Prerequisites for a copied repository
+
+- Git, Bash 3.2 or later, Ruby with its standard YAML parser, `jq`, and a
+  Python 3.11-or-later interpreter available as `python3`, `python3.13`,
+  `python3.12`, or `python3.11`.
+- An authenticated GitHub CLI (`gh auth status`) with access to Issues, pull
+  requests, Actions, and labels in the target repository. Ruleset setup also
+  needs Administration write permission; optional Projects setup needs the
+  `project` scope.
+- A Codex surface with repository access, plus an eligible human code owner who
+  uses a GitHub identity other than the trial PR author and can approve it.
+
 ## This is a template — after copying
 
-1. Run `scripts/tuning-status.sh`. A copied repository reports `NOT TUNED`
-   until its CI placeholder is replaced with measured project commands.
-2. Run `scripts/setup-labels.sh` to create the canonical Issue labels.
-3. Invoke `$project-onboarding`. It inventories the repository, asks only for
-   missing facts, runs the real build and test commands, and prepares an
-   evidence pull request.
-4. Run `scripts/setup-ruleset.sh`. It creates the proposed ruleset disabled.
-   Review the proposal and record its state in the setup evidence, but do not
-   enable it yet.
-5. Run one small trial Task through plan, implementation, checks, and review.
-   Merge the measured setup evidence only after the trial and disabled-ruleset
-   review succeed. That is the **license merge**.
-6. After the license merge, a human enables the reviewed ruleset in GitHub
-   Settings.
-7. File the first Epic, detail only its next rolling wave, and dispatch Tasks
-   from the mechanically calculated frontier.
+1. **Expose the untuned state.** Run `scripts/tuning-status.sh` in the copied
+   repository. **Done when:** it returns `1` and names both
+   `.github/workflows/ci.yml` and `.github/CODEOWNERS` as incomplete targets.
+2. **Create the Phase 0α receptacle and labels.** Create a setup Epic with an
+   onboarding Task, run `scripts/setup-labels.sh`, and collect only the source
+   references needed to establish project truth. **Done when:** the Task is a
+   sub-issue of the setup Epic and all 11 canonical labels exist without
+   applying guessed project commands.
+3. **Agree before setup.** Collect and distill the target project's actual
+   requirements and decisions, then obtain the human agreement merge. **Done
+   when:** the project-specific agreement PR is merged and Phase 0β may begin.
+4. **Apply measured Phase 0β setup.** Invoke `$project-onboarding`; run the real
+   install, format, lint, type-check, test, and build commands, replace the CI
+   placeholder, and replace every template CODEOWNER with the eligible target
+   user or team. **Done when:** the evidence PR records fresh command results,
+   the non-author code-owner path is verified, and `scripts/tuning-status.sh`
+   returns `0`.
+5. **Propose the review wall disabled.** Run `scripts/setup-ruleset.sh` with the
+   measured required checks and inspect the result. **Done when:** GitHub shows
+   the ruleset as disabled and its pull-request, code-owner, and required-check
+   rules match the evidence; no agent has enabled it.
+6. **Run the license trial.** Carry one small Task through its Issue plan,
+   implementation, checks, Evidence, and completion PR. **Done when:** required
+   checks pass and an eligible non-author human code owner approves the trial
+   PR.
+7. **Perform the license merge.** Review the setup evidence only after the
+   trial and disabled-ruleset review succeed. **Done when:** a human merges the
+   setup evidence PR and its review history records the license decision.
+8. **Enable only after licensing.** A human may enable the reviewed ruleset in
+   GitHub Settings. **Done when:** it is active and an Issue-backed, unapproved
+   test pull request cannot merge.
+9. **Open the first delivery wave.** File the first delivery Epic, detail only
+   its next Tasks, and calculate the frontier. **Done when:** the frontier
+   reports at least one open, `type:task`, `ai:ready`, unblocked Task for
+   dispatch.
 
 The setup scripts, Codex skills, Issue forms, workflows, and self-checks are
 implemented v1.0.0 candidate artifacts under
@@ -48,17 +79,18 @@ candidate until the measured license trial is reviewed and merged.
 | `scripts/tuning-status.sh --quiet` | None | `0` when tuned, `1` when incomplete |
 | `scripts/tuning-status.sh --ci` | GitHub warning annotations when incomplete | Always `0` so onboarding remains visible without hiding scaffold defects |
 
-The canonical template repository intentionally retains the copied-template
-sentinel and is recognized by its GitHub origin. A repository created from the
-template has a different origin, so it remains visibly incomplete until
-`$project-onboarding` replaces the `CUSTOMIZE` block in
-`.github/workflows/ci.yml` with commands actually measured in that repository.
+The canonical template repository intentionally retains both copied-template
+sentinels and is recognized by its exact GitHub origin. A repository created
+from the template has a different origin, so it remains visibly incomplete
+until `$project-onboarding` replaces the CI `CUSTOMIZE` block with measured
+commands and the CODEOWNERS marker with eligible review ownership.
 
 Run the deterministic scaffold checks locally before every scaffold change:
 
-The checks use Git, Bash, Python 3, Ruby's standard YAML parser, and `gh` for
-the live read-only retro report. The hosted workflow supplies its lint tools
-from checksum-verified release archives.
+The checks use Git, Bash, Python 3.11 or later, Ruby's standard YAML parser,
+and `gh` for the live read-only retro report. Ruleset and Project setup also
+use `jq`. The hosted workflow supplies its lint tools from checksum-verified
+release archives.
 
 ```bash
 git diff --check

@@ -23,7 +23,7 @@ path, organization name, or model choice.
 
 1. Start from a Task Issue and use the Issue timeline as the durable ledger.
 2. Read `docs/agreements/`, the repository guidance, manifests, lockfiles,
-   existing CI, and linked source context.
+   existing CI, `.github/CODEOWNERS`, and linked source context.
 3. Confirm the agreement merge has accepted the project truth to be applied.
    If truth is missing or disputed, stop onboarding and route it through
    collection, distillation, and a dedicated agreement PR.
@@ -60,6 +60,14 @@ command synchronized with its deterministic CI gate and its applicable
 execution environment. Remove placeholders and inapplicable examples instead
 of leaving ambiguous alternatives.
 
+Replace every template owner in `.github/CODEOWNERS` with a user or team that
+has the required access in the target repository. Confirm that an eligible
+human using a GitHub identity other than the trial PR author can perform the
+required code-owner review. Remove the `CUSTOMIZE:` marker only after both the
+ownership and non-author review path are verified. Propose the default-branch
+ruleset with enforcement disabled and inspect its owned paths and required
+checks; neither onboarding nor an agent enables it.
+
 Do not weaken a check to make onboarding pass. Record a real failure, file the
 derived Task with its origin `#N`, and keep unattended work inside the measured
 area.
@@ -74,15 +82,19 @@ Open one setup-evidence PR and map every claim to a fresh observation:
 | Guidance matches CI | Diff plus a successful deterministic run |
 | Codex can discover the setup | Fresh-session discovery result |
 | Delegation path works | One small Task carried from Issue plan comment through checks, Evidence, `Closes #N`, and non-author human review |
-| Enforcement is ready | Proposed ruleset and review state; keep enforcement disabled until human approval |
+| Review ownership works | CODEOWNERS diff plus a trial PR review by an eligible non-author human code owner |
+| Enforcement is ready | Inspected ruleset with enforcement disabled, matching owned paths and required checks |
 
 Post the measured outcome and Evidence to the onboarding Task before reporting
-completion. A human reviews the evidence and performs the license merge; the
-agent does not declare or enable its own autonomy license.
+completion. License evidence is incomplete until review ownership and the
+disabled-ruleset proposal are both proven. A human reviews the evidence and
+performs the license merge; the agent does not declare or enable its own
+autonomy license.
 
 ## Stop conditions
 
 Stop and create or update the durable Issue record when an agreement is wrong,
 a required command cannot be measured, credentials or PII would need copying,
-the routed environment cannot execute a criterion, or the proposed setup would
-silently replace an official GitHub control.
+the routed environment cannot execute a criterion, no eligible non-author
+human code owner can review the trial, the proposed ruleset is not disabled,
+or the proposed setup would silently replace an official GitHub control.
