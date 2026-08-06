@@ -179,6 +179,8 @@ release archives.
 ```bash
 git diff --check
 bash -n scripts/*.sh .agents/skills/plan-management/scripts/*.sh
+python3 -m unittest discover -s scripts/tests -p 'test_*.py' -v
+python3 scripts/check_action_pins.py
 scripts/check-md-links.sh
 scripts/check-template-sync.sh
 scripts/check-skills.sh
