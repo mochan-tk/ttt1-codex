@@ -24,6 +24,8 @@ Use these terms consistently in Issues, PRs, skills, scripts, and documentation.
 | Frontier | Open, ready Task Issues whose blockers are all resolved; the set is mechanically calculated. |
 | Rolling wave | Keeping distant work coarse and detailing only the next executable wave when information is freshest. |
 | Single writer | The constraint that concurrent Tasks do not modify overlapping owned paths. |
+| Scaffold control plane | A cross-cutting ownership view of explicitly named ADLC contracts across the GitHub control plane and Codex execution plane, not a third authority plane. It includes `.github/docs/**`, `.github/scripts/**`, `.agents/**`, `.codex/**`, root `AGENTS.md`, and the enumerated GitHub-common controls. Ownership defines validation and upgrade-review responsibility; it never permits an upgrade to overwrite accepted instance truth. |
+| Application workspace | Adopter-owned product paths outside the named scaffold contracts, including top-level `docs/**`, `scripts/**`, and adopter-specific `.github/**` files not explicitly named by a scaffold contract. Scaffold-only gates do not sweep this space; onboarding supplies its measured project checks. |
 | Evidence | A command result, check, diff, or observed behavior mapped to an acceptance criterion; an agent statement is not evidence. |
 | Four-part diagnosis | Locating a mismatch in the work order, plan comment, PR diff, or Evidence/checks. |
 | Risk gate | The exception that stops a `risk:high` Task after its plan comment until an authorized human approves it. |
