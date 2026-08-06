@@ -2,6 +2,7 @@
 
 - Status: accepted by the agreement merge
 - Date: 2026-08-03
+- Amended: 2026-08-06 by Task #25
 - Owners: repository owner and agreement reviewers
 - Supersedes: the handoff requirement for identical cross-agent file layouts
 
@@ -27,6 +28,14 @@ execute, not to whether the repository uses GitHub. GitHub capabilities are
 indispensable to ADLC and must remain the durable control, ledger, and
 enforcement foundation beneath the Codex-native layer.
 
+Applying the template to an actual application exposed a namespace collision:
+ordinary product repositories already use top-level `docs/` and `scripts/`.
+The original whole-repository Markdown, English, Bash, and ShellCheck scans
+also treated adopter content as if it were a scaffold contract. Moving only
+the shipped files would therefore leave the behavioral collision in place.
+The architecture needs an explicit physical and validation boundary without
+giving up GitHub controls or Codex-native discovery.
+
 ## Decision
 
 Adopt two cooperating planes:
@@ -47,6 +56,78 @@ state are replaceable caches. Account-dependent GitHub features may degrade
 visibly with documented setup or fallback behavior, but never silently into
 session-only state.
 
+### Namespace and ownership contract
+
+`.github/**` is reserved for GitHub control-plane use and shared between the
+scaffold and adopter. It contains both reusable ADLC controls and
+adopter-specific GitHub configuration, so location under `.github/**` alone
+does not establish scaffold ownership. Each scaffold check explicitly names
+the files or subtrees whose contract it enforces.
+
+For namespace ownership, the Scaffold control plane is a cross-cutting view of
+named contracts across the two authority planes above, not a third authority
+plane. It includes these paths:
+
+- `.github/docs/**` contains reviewed ADLC agreements, minimum
+  provenance-linked context extracts, and scaffold operating documentation.
+- `.github/scripts/**` contains ADLC setup helpers, deterministic scaffold
+  checks, and their tests.
+- `.agents/**` and `.codex/**` remain the Codex-native skill, skill-local
+  helper, role, and project configuration surfaces.
+- Root `AGENTS.md` remains the always-on repository constitution.
+
+The GitHub-common contracts required by REQ-034 are also explicitly named:
+
+- `.github/CODEOWNERS`;
+- `.github/ISSUE_TEMPLATE/config.yml`,
+  `.github/ISSUE_TEMPLATE/epic.yml`, and
+  `.github/ISSUE_TEMPLATE/task.yml`;
+- `.github/PULL_REQUEST_TEMPLATE.md`;
+- `.github/dependabot.yml`; and
+- `.github/workflows/ci.yml` and
+  `.github/workflows/retro-hygiene.yml`.
+
+These named files may contain accepted instance customization. Scaffold
+upgrades review and merge those differences; they do not replace them. Other
+Issue forms, workflows, and GitHub files beside the named contracts remain
+adopter-owned.
+
+Top-level `docs/**`, `scripts/**`, and other non-reserved product paths form the
+Application workspace. The scaffold does not ship, rewrite, or sweep those
+paths by filename extension alone. Adopter-specific files under `.github/**`
+are likewise application-owned unless an explicit scaffold contract names
+them. Onboarding measures the application's toolchain and adds suitable
+project checks to the existing quality wall.
+
+Root distribution files have explicit, mixed responsibilities rather than
+implying ownership of the whole repository root:
+
+- `README.md` is the shipped discovery and onboarding surface, then becomes a
+  shared document that the adopter integrates with the application README.
+- `LICENSE` is the reviewed distribution license; changing or replacing it is
+  a separate human legal decision.
+- `SCAFFOLD-CHANGELOG.md` preserves scaffold lineage and upgrade directions.
+- `.gitignore` is shared configuration that adopters may extend; upgrades
+  review its diff and do not replace instance additions blindly.
+
+Scaffold ownership defines default validation and upgrade-review
+responsibility. It never authorizes an upstream release to overwrite accepted
+instance agreements, tuned guidance, or project truth. Persistent extracts in
+`.github/docs/context/**` remain minimum English template artifacts under
+REQ-025 and REQ-029; source originals and controlled data stay in their
+governed external locations.
+
+### Initial migration requirement
+
+The initial transition to this contract must be one atomic,
+history-preserving Task: move the current `docs/**` and `scripts/**` scaffold
+artifacts to their named target paths, update every reference, workflow, and
+test, and land positive and negative boundary fixtures together. It must
+preserve form and template synchronization, immutable Action pins, actionlint,
+CODEOWNERS coverage, ruleset and required-check linkage, and the existing CI
+job names. Splitting the physical moves would leave an intermediate repository
+with broken commands and ambiguous ownership.
+
 The GitHub capability contract is:
 
 | Capability | Required ADLC role |
@@ -66,8 +147,9 @@ roles, prompts, and tool configuration are the platform-specific portion.
 
 Within those planes, build this template with the following authority layers:
 
-1. **Agreement layer:** `docs/agreements/` contains reviewed requirements,
-   non-goals, vocabulary, and ADRs.
+1. **Agreement layer:** `.github/docs/agreements/` contains reviewed
+   requirements, non-goals, vocabulary, and ADRs after the namespace
+   transition.
 2. **Always-on layer:** root `AGENTS.md` contains only durable rules needed for
    every Task. Nested `AGENTS.md` files are allowed when a subtree needs
    narrower review or execution rules.
@@ -112,6 +194,10 @@ versioned artifact.
 - Codex receives one authoritative instruction chain instead of duplicated
   guidance that can drift.
 - Skills use progressive disclosure and protect the always-on context budget.
+- Real applications can use top-level `docs/**` and `scripts/**` without their
+  content being claimed or linted by the generic scaffold.
+- Explicit control-path allowlists keep scaffold failures fail-closed without
+  turning adopter-specific `.github/**` files into upstream-owned artifacts.
 - Comparison artifacts differ by platform while D1-D10, lifecycle gates, CI
   evidence, onboarding quality, and ledger readability remain comparable.
 - Codex can execute the full lifecycle natively without weakening the shared
@@ -127,6 +213,15 @@ versioned artifact.
   from `.agents/skills/`.
 - Spawn each project custom agent and confirm its name and role are available.
 - Run CI negative checks for forbidden compatibility paths.
+- Add fixture application files under top-level `docs/**` and `scripts/**` and
+  confirm Japanese text, a broken application-only link, and invalid shell are
+  outside scaffold-only gates.
+- Add equivalent applicable violations under `.github/docs/**`,
+  `.github/scripts/**`, `.agents/**`, `.codex/**`, and root `AGENTS.md`; confirm
+  the corresponding scaffold gates fail closed.
+- Confirm adopter-specific `.github/**` files are ignored unless an explicit
+  scaffold contract includes them, while all shipped GitHub controls still
+  receive their deterministic checks.
 - From a fresh Codex session, traverse one Task from an Issue plan comment
   through implementation, Actions and required checks, PR review, Evidence,
   `Closes #N`, and the completion merge record.
@@ -141,4 +236,6 @@ versioned artifact.
 - [Codex subagents and project custom agents](https://learn.chatgpt.com/docs/agent-configuration/subagents)
 - [Deprecated Codex custom prompts](https://learn.chatgpt.com/docs/custom-prompts)
 - [Pinned Claude-built comparison baseline](https://github.com/mochan-tk/ttt1-claude/tree/e88688c80095036f255b1353f827a4b2f32fdc49)
+- [Copilot namespace migration PR #78](https://github.com/mochan-tk/ttt1-copilot/pull/78)
+- [Codex Task #25 owner observation](https://github.com/mochan-tk/ttt1-codex/issues/25)
 - [Epic #1](https://github.com/mochan-tk/ttt1-codex/issues/1)

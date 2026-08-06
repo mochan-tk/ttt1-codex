@@ -34,3 +34,8 @@ dedicated agreement pull request.
   control-plane capability merely to make the repository tree Codex-specific.
   Codex specialization applies to execution, not to the durable ledger or
   enforcement plane.
+- **NG-014:** Do not claim top-level `docs/**`, `scripts/**`, every file under
+  `.github/**`, or every tracked file with a familiar extension as
+  scaffold-owned. Generic scaffold checks use explicit control-path
+  allowlists; application quality gates are measured and added during
+  onboarding.
