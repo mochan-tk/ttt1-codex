@@ -4,6 +4,9 @@ name: CI
 
 on:
   pull_request:
+    # The Task ledger gate parses the PR body. Re-run it when that body is
+    # edited so a previously green task or Plan link cannot go stale.
+    types: [opened, synchronize, reopened, edited]
   push:
     branches:
       - main
@@ -97,7 +100,7 @@ jobs:
         run: scripts/check-skills.sh
 
       - name: Check CI guard regressions
-        run: python3 scripts/tests/test_ci_guards.py
+        run: python3 -m unittest discover -s scripts/tests -p 'test_*.py' -v
 
       - name: Check third-party action pins
         run: python3 scripts/check_action_pins.py
