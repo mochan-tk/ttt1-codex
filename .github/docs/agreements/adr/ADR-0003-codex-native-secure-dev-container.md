@@ -88,18 +88,22 @@ probes can protect the session. The active configuration is therefore never
 auto-discovered from an untrusted branch and passed directly to a Dev Container
 client.
 
-Before every build, rebuild, or start, a trusted external preflight obtains the
-expected manifest from the immutable commit accepted by the implementation PR
-and verifies every transitive control artifact by exact hash or digest. It also
-requires regular files with no symlink escape and rejects missing, untracked,
-or drifted active `.devcontainer/**`; host-side lifecycle commands such as
-`initializeCommand`; privileged mode; unexpected mounts, capabilities, or
-security relaxations; mutable feature/image references; and a build context
+Before every build, rebuild, or start, a trusted external preflight obtains two
+immutable anchors: the canonical reference manifest accepted by the canonical
+implementation PR, and the active manifest accepted by this repository's most
+recent activation or control-change PR. The active manifest records its
+canonical provenance but may contain reviewed instance customization. The
+preflight verifies every transitive control artifact by exact hash or digest.
+It also requires regular files with no symlink escape and rejects missing,
+untracked, or drifted active `.devcontainer/**`; host-side lifecycle commands
+such as `initializeCommand`; privileged mode; unexpected mounts, capabilities,
+or security relaxations; mutable feature/image references; and a build context
 outside the reviewed allowlist. The preflight itself is pinned outside the
 candidate worktree or independently verified by the human; it never executes a
 checker supplied by the untrusted branch. Any mismatch fails before the client
 reads or launches the active configuration. Changing a trusted-control artifact
-requires a new Issue, pull request, required checks, and human review.
+requires a new Issue, pull request, required checks, and human review; the
+accepted immutable commit then becomes the new active manifest anchor.
 
 The container is never privileged and never receives the Docker socket.
 Capabilities and relaxed Docker security options use this allowlist and must
