@@ -3,13 +3,13 @@
 # measured project commands and eligible review ownership.
 #
 # Usage:
-#   scripts/tuning-status.sh          Human report; 0 when tuned, 1 otherwise.
-#   scripts/tuning-status.sh --quiet  No output; the same status code.
-#   scripts/tuning-status.sh --ci     GitHub warning annotations; always 0.
+#   .github/scripts/tuning-status.sh          Human report; 0 when tuned, 1 otherwise.
+#   .github/scripts/tuning-status.sh --quiet  No output; the same status code.
+#   .github/scripts/tuning-status.sh --ci     GitHub warning annotations; always 0.
 
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$ROOT"
 
 MODE="report"

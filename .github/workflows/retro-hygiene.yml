@@ -41,7 +41,7 @@ jobs:
       - name: Build the read-only hygiene report
         env:
           GH_TOKEN: ${{ github.token }}
-        run: scripts/retro-hygiene.sh -R "$GITHUB_REPOSITORY"
+        run: .github/scripts/retro-hygiene.sh -R "$GITHUB_REPOSITORY"
 
   create-monthly-issue:
     name: create-monthly-issue
@@ -60,4 +60,4 @@ jobs:
       - name: Create or reuse the monthly review Issue
         env:
           GH_TOKEN: ${{ github.token }}
-        run: scripts/retro-hygiene.sh --create-issue -R "$GITHUB_REPOSITORY"
+        run: .github/scripts/retro-hygiene.sh --create-issue -R "$GITHUB_REPOSITORY"

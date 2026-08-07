@@ -60,7 +60,7 @@ when stateless agents execute work in parallel.
    be ready:
 
    ```bash
-   scripts/tuning-status.sh
+   .github/scripts/tuning-status.sh
    ```
 
    The expected first result is exit `1`, `NOT TUNED`, and both
@@ -72,7 +72,7 @@ when stateless agents execute work in parallel.
    as a sub-issue:
 
    ```bash
-   scripts/setup-labels.sh
+   .github/scripts/setup-labels.sh
    ```
 
 6. Give Codex the onboarding Task as its work order. Replace `NUMBER`, then use
@@ -98,11 +98,11 @@ The following nine gates are the authoritative adoption sequence. Keep their
 a gate changes repository state, use a dedicated Task and one pull request;
 preserve the `1 Task = 1 PR` invariant.
 
-1. **Expose the untuned state.** Run `scripts/tuning-status.sh` in the copied
+1. **Expose the untuned state.** Run `.github/scripts/tuning-status.sh` in the copied
    repository. **Done when:** it returns `1` and names both
    `.github/workflows/ci.yml` and `.github/CODEOWNERS` as incomplete targets.
 2. **Create the Phase 0α receptacle and labels.** Create a setup Epic with an
-   onboarding Task, run `scripts/setup-labels.sh`, and collect only the source
+   onboarding Task, run `.github/scripts/setup-labels.sh`, and collect only the source
    references needed to establish project truth. **Done when:** the Task is a
    sub-issue of the setup Epic and all 11 canonical labels exist without
    applying guessed project commands.
@@ -114,9 +114,9 @@ preserve the `1 Task = 1 PR` invariant.
    install, format, lint, type-check, test, and build commands, replace the CI
    placeholder, and replace every template CODEOWNER with the eligible target
    user or team. **Done when:** the evidence PR records fresh command results,
-   the non-author code-owner path is verified, and `scripts/tuning-status.sh`
+   the non-author code-owner path is verified, and `.github/scripts/tuning-status.sh`
    returns `0`.
-5. **Propose the review wall disabled.** Run `scripts/setup-ruleset.sh` with the
+5. **Propose the review wall disabled.** Run `.github/scripts/setup-ruleset.sh` with the
    measured required checks and inspect the result. **Done when:** GitHub shows
    the ruleset as disabled and its pull-request, code-owner, and required-check
    rules match the evidence; no agent has enabled it.
@@ -142,7 +142,7 @@ is licensed for ordinary delivery only when all of these summary conditions
 are observable:
 
 - the agreement and license merges are present in GitHub history;
-- `scripts/tuning-status.sh` returns `0` for measured CI and review ownership;
+- `.github/scripts/tuning-status.sh` returns `0` for measured CI and review ownership;
 - a human has enabled the reviewed ruleset, and an Issue-backed negative trial
   proves that an unapproved pull request cannot merge; and
 - the mechanically calculated frontier contains at least one open, ready,
@@ -159,9 +159,9 @@ candidate until the measured license trial is reviewed and merged.
 
 | Command | Output | Exit behavior |
 |---|---|---|
-| `scripts/tuning-status.sh` | Human report and measured next steps | `0` when tuned, `1` when incomplete |
-| `scripts/tuning-status.sh --quiet` | None | `0` when tuned, `1` when incomplete |
-| `scripts/tuning-status.sh --ci` | GitHub warning annotations when incomplete | Always `0` so onboarding remains visible without hiding scaffold defects |
+| `.github/scripts/tuning-status.sh` | Human report and measured next steps | `0` when tuned, `1` when incomplete |
+| `.github/scripts/tuning-status.sh --quiet` | None | `0` when tuned, `1` when incomplete |
+| `.github/scripts/tuning-status.sh --ci` | GitHub warning annotations when incomplete | Always `0` so onboarding remains visible without hiding scaffold defects |
 
 The canonical template repository intentionally retains both copied-template
 sentinels and is recognized by its exact GitHub origin. A repository created
@@ -178,16 +178,16 @@ release archives.
 
 ```bash
 git diff --check
-bash -n scripts/*.sh .agents/skills/plan-management/scripts/*.sh
-python3 -m unittest discover -s scripts/tests -p 'test_*.py' -v
-python3 scripts/check_action_pins.py
-scripts/check-md-links.sh
-scripts/check-template-sync.sh
-scripts/check-skills.sh
-scripts/retro-hygiene.sh
-scripts/tuning-status.sh
-scripts/tuning-status.sh --quiet
-scripts/tuning-status.sh --ci
+bash -n .github/scripts/*.sh .agents/skills/plan-management/scripts/*.sh
+python3 -m unittest discover -s .github/scripts/tests -p 'test_*.py' -v
+python3 .github/scripts/check_action_pins.py
+.github/scripts/check-md-links.sh
+.github/scripts/check-template-sync.sh
+.github/scripts/check-skills.sh
+.github/scripts/retro-hygiene.sh
+.github/scripts/tuning-status.sh
+.github/scripts/tuning-status.sh --quiet
+.github/scripts/tuning-status.sh --ci
 ```
 
 The `quality` and `scaffold-self-check` jobs in `.github/workflows/ci.yml` run
@@ -219,9 +219,9 @@ are the ledger entry.
 
 | Phase | Outcome | Primary durable home |
 |---|---|---|
-| 0α. Minimum receptacle | A thin template instance can receive distilled knowledge | Repository template, `docs/`, Issue forms |
-| 1. Collect | Source references and minimum extracted notes arrive with provenance; originals and controlled data stay outside | `docs/context/` and governed source links |
-| 2. Distill & agree | Requirements, decisions, vocabulary, and boundaries become reviewed truth | `docs/agreements/` and the agreement merge |
+| 0α. Minimum receptacle | A thin template instance can receive distilled knowledge | Repository template, `.github/docs/`, Issue forms |
+| 1. Collect | Source references and minimum extracted notes arrive with provenance; originals and controlled data stay outside | `.github/docs/context/` and governed source links |
+| 2. Distill & agree | Requirements, decisions, vocabulary, and boundaries become reviewed truth | `.github/docs/agreements/` and the agreement merge |
 | 0β. Measured setup | Codex guidance, skills, agents, tools, and commands are filled from agreed truth and verified by running them | `AGENTS.md`, `.agents/skills/`, `.codex/`, evidence PR |
 | 3. Plan & orchestrate | Epic sub-issues and dependencies expose the actionable frontier | Issue graph; Projects is a view |
 | 4. Route & execute | One Task runs in one session, worktree, branch, and PR | Task Issue timeline and Task branch |
@@ -281,7 +281,7 @@ Deprecated custom prompts are not part of the design.
   access-controlled systems; Issues and PRs contain only the minimum reference.
 
 The reviewed requirements and decisions live in
-[`docs/agreements/`](docs/agreements/README.md).
+[`.github/docs/agreements/`](.github/docs/agreements/README.md).
 
 ## Human boundary
 

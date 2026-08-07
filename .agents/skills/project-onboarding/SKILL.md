@@ -22,7 +22,7 @@ path, organization name, or model choice.
 ## Establish the boundary
 
 1. Start from a Task Issue and use the Issue timeline as the durable ledger.
-2. Read `docs/agreements/`, the repository guidance, manifests, lockfiles,
+2. Read `.github/docs/agreements/`, the repository guidance, manifests, lockfiles,
    existing CI, `.github/CODEOWNERS`, and linked source context.
 3. Confirm the agreement merge has accepted the project truth to be applied.
    If truth is missing or disputed, stop onboarding and route it through

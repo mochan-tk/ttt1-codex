@@ -9,7 +9,7 @@ of GitHub. Apply `record-before-report`, `verify-before-done`, and
 - GitHub commits, Issues, comments, pull requests, reviews, and checks are the
   durable ledger. Chat, session state, internal plans, and Projects views are
   replaceable caches.
-- `docs/agreements/` is the reviewed project truth. Do not change an agreement
+- `.github/docs/agreements/` is the reviewed project truth. Do not change an agreement
   as a side effect; open a derived Issue and land a dedicated agreement PR.
 - Every change starts from a Task Issue, including quick fixes, infrastructure,
   smoke tests, secrets setup, deployments, and repository Settings actions.

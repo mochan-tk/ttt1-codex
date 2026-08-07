@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Validate the Codex-native skill surface and repository-wide scaffold rules.
+# Validate the Codex-native skill surface and named scaffold contracts.
 
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$ROOT"
 
 command -v python3 >/dev/null 2>&1 || {
@@ -317,6 +317,41 @@ expected_skills = {
 }
 errors: list[str] = []
 
+control_prefixes = (
+    ".github/docs/",
+    ".github/scripts/",
+    ".agents/",
+    ".codex/",
+)
+control_files = {
+    "AGENTS.md",
+    ".github/CODEOWNERS",
+    ".github/ISSUE_TEMPLATE/config.yml",
+    ".github/ISSUE_TEMPLATE/epic.yml",
+    ".github/ISSUE_TEMPLATE/task.yml",
+    ".github/PULL_REQUEST_TEMPLATE.md",
+    ".github/dependabot.yml",
+    ".github/workflows/ci.yml",
+    ".github/workflows/retro-hygiene.yml",
+}
+
+
+def in_control_scope(item: str) -> bool:
+    return item in control_files or item.startswith(control_prefixes)
+
+
+tracked = [
+    item
+    for item in subprocess.run(
+        ["git", "ls-files", "-z"], check=True, stdout=subprocess.PIPE
+    ).stdout.decode("utf-8").split("\0")
+    if item
+]
+tracked_set = set(tracked)
+control_tracked = sorted(item for item in tracked if in_control_scope(item))
+for item in sorted(control_files - tracked_set):
+    errors.append(f"required scaffold contract is not tracked: {item}")
+
 if not skills_root.is_dir():
     print("check-skills: FAIL — .agents/skills is missing", file=sys.stderr)
     raise SystemExit(1)
@@ -399,11 +434,10 @@ for path in forbidden:
     if path.exists():
         errors.append(f"forbidden compatibility path exists: {path.relative_to(root)}")
 
-for path in root.rglob("*"):
-    if ".git" in path.parts or not path.is_file():
-        continue
+for item in control_tracked:
+    path = root / item
     if path.name.endswith((".prompt.md", ".agent.md")):
-        errors.append(f"deprecated agent-facing file exists: {path.relative_to(root)}")
+        errors.append(f"deprecated agent-facing file exists: {item}")
 
 agents_path = root / "AGENTS.md"
 if not agents_path.is_file():
@@ -411,15 +445,10 @@ if not agents_path.is_file():
 elif len(agents_path.read_text(encoding="utf-8").splitlines()) > 200:
     errors.append("AGENTS.md exceeds its 200-line constitution ceiling")
 
-# Persistent template content may use Unicode punctuation and the deliberate
+# Named control-plane content may use Unicode punctuation and the deliberate
 # phase symbols α/β, but alphabetic prose must be Latin-script English.
 allowed_non_latin_letters = {"α", "β"}
-tracked = subprocess.run(
-    ["git", "ls-files", "-z"], check=True, stdout=subprocess.PIPE
-).stdout.decode("utf-8").split("\0")
-for item in tracked:
-    if not item:
-        continue
+for item in control_tracked:
     path = root / item
     raw = path.read_bytes()
     if b"\0" in raw:
@@ -437,12 +466,13 @@ for item in tracked:
                 errors.append(f"{item}:{number}: persistent scaffold content must be English-only")
                 break
 
-shell_files = subprocess.run(
-    ["git", "ls-files", "-z", "--", "*.sh"], check=True, stdout=subprocess.PIPE
-).stdout.decode("utf-8").split("\0")
+shell_files = [
+    item
+    for item in control_tracked
+    if item.endswith(".sh")
+    and item.startswith((".github/scripts/", ".agents/"))
+]
 for item in shell_files:
-    if not item:
-        continue
     result = subprocess.run(["bash", "-n", str(root / item)], capture_output=True, text=True)
     if result.returncode:
         errors.append(f"{item}: bash -n failed: {result.stderr.strip()}")
@@ -455,7 +485,7 @@ if errors:
 
 print(
     "check-skills: OK — 8 Codex skills, metadata, Codex TOML configuration, "
-    "path policy, English-only content, "
-    f"and {len([item for item in shell_files if item])} shell file(s) validated."
+    "path policy, English-only control-plane content, "
+    f"and {len(shell_files)} shell file(s) validated."
 )
 PY

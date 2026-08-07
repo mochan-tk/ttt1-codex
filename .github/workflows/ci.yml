@@ -34,9 +34,9 @@ jobs:
 
       # CUSTOMIZE: replace this copied-template placeholder with the measured
       # build, lint, test, and environment gates recorded by $project-onboarding.
-      # Keep scripts/tuning-status.sh until the license trial is accepted.
+      # Keep .github/scripts/tuning-status.sh until the license trial is accepted.
       - name: Show scaffold onboarding status
-        run: scripts/tuning-status.sh --ci
+        run: .github/scripts/tuning-status.sh --ci
 
   scaffold-self-check:
     name: scaffold-self-check
@@ -61,7 +61,17 @@ jobs:
           else
             git show --check --format= "$GITHUB_SHA"
           fi
-          bash -n scripts/*.sh .agents/skills/plan-management/scripts/*.sh
+          scaffold_shells=()
+          while IFS= read -r -d '' path; do
+            case "$path" in
+              .github/scripts/*.sh|.agents/*.sh) scaffold_shells+=("$path") ;;
+            esac
+          done < <(git ls-files -z -- .github/scripts .agents)
+          ((${#scaffold_shells[@]} > 0)) || {
+            echo "no tracked scaffold shell files found" >&2
+            exit 1
+          }
+          bash -n "${scaffold_shells[@]}"
 
       - name: Check shell scripts with ShellCheck
         env:
@@ -74,8 +84,18 @@ jobs:
             --output "$archive"
           printf '%s  %s\n' "$SHELLCHECK_SHA256" "$archive" | sha256sum --check --strict
           tar -xJf "$archive" -C "$RUNNER_TEMP"
-          git ls-files -z '*.sh' \
-            | xargs -0 "$RUNNER_TEMP/shellcheck-v${SHELLCHECK_VERSION}/shellcheck" -S warning
+          scaffold_shells=()
+          while IFS= read -r -d '' path; do
+            case "$path" in
+              .github/scripts/*.sh|.agents/*.sh) scaffold_shells+=("$path") ;;
+            esac
+          done < <(git ls-files -z -- .github/scripts .agents)
+          ((${#scaffold_shells[@]} > 0)) || {
+            echo "no tracked scaffold shell files found" >&2
+            exit 1
+          }
+          "$RUNNER_TEMP/shellcheck-v${SHELLCHECK_VERSION}/shellcheck" \
+            -S warning "${scaffold_shells[@]}"
 
       - name: Validate GitHub workflows with actionlint
         env:
@@ -88,31 +108,33 @@ jobs:
             --output "$archive"
           printf '%s  %s\n' "$ACTIONLINT_SHA256" "$archive" | sha256sum --check --strict
           tar -xzf "$archive" -C "$RUNNER_TEMP" actionlint
-          "$RUNNER_TEMP/actionlint" -color
+          "$RUNNER_TEMP/actionlint" -color \
+            .github/workflows/ci.yml \
+            .github/workflows/retro-hygiene.yml
 
       - name: Check Markdown links
-        run: scripts/check-md-links.sh
+        run: .github/scripts/check-md-links.sh
 
       - name: Check Issue form and body-template synchronization
-        run: scripts/check-template-sync.sh
+        run: .github/scripts/check-template-sync.sh
 
       - name: Check Codex skills and scaffold policy
-        run: scripts/check-skills.sh
+        run: .github/scripts/check-skills.sh
 
       - name: Check CI guard regressions
-        run: python3 -m unittest discover -s scripts/tests -p 'test_*.py' -v
+        run: python3 -m unittest discover -s .github/scripts/tests -p 'test_*.py' -v
 
       - name: Check third-party action pins
-        run: python3 scripts/check_action_pins.py
+        run: python3 .github/scripts/check_action_pins.py
 
       - name: Check the Task ledger ritual
         if: github.event_name == 'pull_request'
         env:
           GH_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: python3 scripts/check_task_ritual.py
+        run: python3 .github/scripts/check_task_ritual.py
 
       - name: Build the read-only retro report
         env:
           GH_TOKEN: ${{ github.token }}
-        run: scripts/retro-hygiene.sh -R "$GITHUB_REPOSITORY"
+        run: .github/scripts/retro-hygiene.sh -R "$GITHUB_REPOSITORY"

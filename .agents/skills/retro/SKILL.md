@@ -43,7 +43,7 @@ At two durable occurrences of the same class:
 3. Write the smallest preventive diff. Prefer a gate over advice when both can
    express the same rule.
 4. Open one `retro: <prevention>` PR, link the candidate and occurrences, and
-   append one row to `docs/agreements/retro-log.md`.
+   append one row to `.github/docs/agreements/retro-log.md`.
 5. Let human review decide the system change. Close the candidate only after the
    retro PR merges.
 
