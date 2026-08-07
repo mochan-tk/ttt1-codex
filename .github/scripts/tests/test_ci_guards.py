@@ -307,6 +307,41 @@ class NamespaceBoundaryTests(unittest.TestCase):
     def run_guard(self, relative: str) -> subprocess.CompletedProcess[str]:
         return self.run_command(str(self.repo / relative))
 
+    def check_ignore(self, relative: str) -> subprocess.CompletedProcess[str]:
+        return self.run_command(
+            "git",
+            "-c",
+            f"core.excludesFile={os.devnull}",
+            "check-ignore",
+            "-v",
+            "--no-index",
+            relative,
+        )
+
+    def test_session_plan_ignore_is_root_anchored(self) -> None:
+        root = self.check_ignore("plan.md")
+        root_output = root.stdout + root.stderr
+        self.assertEqual(0, root.returncode, root_output)
+        source, checked_path = root.stdout.rstrip("\n").split("\t")
+        source_path, line_number, pattern = source.rsplit(":", 2)
+        self.assertEqual(".gitignore", source_path)
+        self.assertTrue(line_number.isdigit())
+        self.assertEqual("/plan.md", pattern)
+        self.assertEqual("plan.md", checked_path)
+        self.assertEqual("", root.stderr)
+
+        nested_plans = (
+            "specs/001-feature/plan.md",
+            ".github/docs/context/example/plan.md",
+            "app/plan.md",
+        )
+        for relative in nested_plans:
+            with self.subTest(path=relative):
+                nested = self.check_ignore(relative)
+                nested_output = nested.stdout + nested.stderr
+                self.assertEqual(1, nested.returncode, nested_output)
+                self.assertEqual("", nested_output)
+
     def test_application_and_unlisted_github_paths_are_outside_scope(self) -> None:
         japanese = "\u65e5\u672c\u8a9e"
         self.track("docs/app.md", f"{japanese}\n[broken](missing.md)\n")
