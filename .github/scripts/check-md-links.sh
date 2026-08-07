@@ -4,7 +4,7 @@
 
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$ROOT"
 
 command -v python3 >/dev/null 2>&1 || {
@@ -22,18 +22,45 @@ import sys
 import urllib.parse
 
 root = pathlib.Path(sys.argv[1]).resolve()
+control_prefixes = (
+    ".github/docs/",
+    ".github/scripts/",
+    ".agents/",
+    ".codex/",
+)
+control_files = {
+    "AGENTS.md",
+    ".github/CODEOWNERS",
+    ".github/ISSUE_TEMPLATE/config.yml",
+    ".github/ISSUE_TEMPLATE/epic.yml",
+    ".github/ISSUE_TEMPLATE/task.yml",
+    ".github/PULL_REQUEST_TEMPLATE.md",
+    ".github/dependabot.yml",
+    ".github/workflows/ci.yml",
+    ".github/workflows/retro-hygiene.yml",
+}
+
+
+def in_control_scope(item: str) -> bool:
+    return item in control_files or item.startswith(control_prefixes)
+
+
 tracked = subprocess.run(
-    ["git", "ls-files", "-z", "--", "*.md"],
+    ["git", "ls-files", "-z"],
     check=True,
     stdout=subprocess.PIPE,
 ).stdout.decode("utf-8").split("\0")
-markdown_files = [pathlib.Path(item) for item in tracked if item]
+markdown_files = [
+    pathlib.Path(item)
+    for item in tracked
+    if item.endswith(".md") and in_control_scope(item)
+]
 
 inline_link = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
 reference_link = re.compile(r"^\s*\[[^\]]+\]:\s*(\S+)", re.MULTILINE)
 documented_path = re.compile(
     r"(?<![A-Za-z0-9_.-])"
-    r"((?:\.agents|\.codex|\.github|docs|scripts)/"
+    r"((?:\.agents|\.codex|\.github)/"
     r"[A-Za-z0-9_./*?-]+\.(?:md|ya?ml|toml|sh|json))"
 )
 

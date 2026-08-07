@@ -12,10 +12,10 @@ from dataclasses import dataclass
 from typing import Iterable, Sequence
 
 
-ROOT = pathlib.Path(__file__).resolve().parents[1]
-WORKFLOW_PATHSPECS = (
-    ".github/workflows/*.yml",
-    ".github/workflows/*.yaml",
+ROOT = pathlib.Path(__file__).resolve().parents[2]
+WORKFLOW_PATHS = (
+    ".github/workflows/ci.yml",
+    ".github/workflows/retro-hygiene.yml",
 )
 USES_LINE = re.compile(r"^[ \t]*(?:-[ \t]+)?uses[ \t]*:[ \t]*(?P<value>.*)$")
 FULL_SHA_REFERENCE = re.compile(r"^[^/@\s]+/[^@\s]+@[0-9A-Fa-f]{40}$")
@@ -75,7 +75,7 @@ def validate_workflow_text(path: str, text: str) -> tuple[list[Violation], int]:
 
 def tracked_workflow_paths(root: pathlib.Path) -> list[pathlib.Path]:
     result = subprocess.run(
-        ["git", "ls-files", "-z", "--", *WORKFLOW_PATHSPECS],
+        ["git", "ls-files", "-z", "--", *WORKFLOW_PATHS],
         cwd=root,
         check=True,
         stdout=subprocess.PIPE,
@@ -105,7 +105,7 @@ def parse_args(argv: Sequence[str]) -> argparse.Namespace:
         "paths",
         nargs="*",
         type=pathlib.Path,
-        help="Optional workflow paths. By default, inspect tracked workflow YAML files.",
+        help="Optional workflow paths. By default, inspect the named scaffold workflows.",
     )
     parser.add_argument("--root", type=pathlib.Path, default=ROOT, help=argparse.SUPPRESS)
     return parser.parse_args(argv)
@@ -119,8 +119,17 @@ def main(argv: Sequence[str] | None = None) -> int:
     try:
         if not paths:
             paths = tracked_workflow_paths(root)
+            found = {path.relative_to(root).as_posix() for path in paths}
+            missing = sorted(set(WORKFLOW_PATHS) - found)
+            if missing:
+                print(
+                    "check-action-pins: FAIL — required workflow(s) are not tracked: "
+                    + ", ".join(missing),
+                    file=sys.stderr,
+                )
+                return 1
         if not paths:
-            print("check-action-pins: FAIL — no tracked workflow YAML files found", file=sys.stderr)
+            print("check-action-pins: FAIL — no named workflow files found", file=sys.stderr)
             return 1
         violations, reference_count, file_count = validate_paths(root, paths)
     except (OSError, subprocess.CalledProcessError, UnicodeError) as error:
@@ -135,7 +144,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     print(
         "check-action-pins: OK — "
-        f"{reference_count} Action reference(s) across {file_count} tracked workflow file(s) are immutable."
+        f"{reference_count} Action reference(s) across {file_count} named workflow file(s) are immutable."
     )
     return 0
 

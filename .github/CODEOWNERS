@@ -1,7 +1,7 @@
 # Review ownership for reviewed truth and deterministic enforcement.
 # CUSTOMIZE: template adopters replace @mochan-tk on every rule with an
 # eligible owner or team for their repository, then review the disabled
-# ruleset proposed by scripts/setup-ruleset.sh.
+# ruleset proposed by .github/scripts/setup-ruleset.sh.
 
-/docs/agreements/**     @mochan-tk
-/.github/workflows/**   @mochan-tk
+/.github/docs/agreements/**     @mochan-tk
+/.github/workflows/**           @mochan-tk

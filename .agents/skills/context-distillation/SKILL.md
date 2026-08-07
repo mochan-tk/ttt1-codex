@@ -10,17 +10,17 @@ decide whether it becomes authoritative.
 
 ## Distill one bounded topic
 
-1. Read `docs/context/<topic>/INDEX.md`, every flagged conflict, and only the
+1. Read `.github/docs/context/<topic>/INDEX.md`, every flagged conflict, and only the
    linked source notes needed for the topic. Follow governed links when access
    is available; do not infer missing source content.
 2. Extract candidates into the appropriate artifacts:
 
 | Candidate | Durable proposal |
 |---|---|
-| Verifiable behavior or constraint | `docs/agreements/requirements.md` with a permanent `REQ-###` |
-| Architectural or operating choice | One `docs/agreements/adr/ADR-####-<slug>.md` |
-| Explicit boundary | `docs/agreements/non-goals.md` |
-| Shared project term | `docs/agreements/glossary.md` |
+| Verifiable behavior or constraint | `.github/docs/agreements/requirements.md` with a permanent `REQ-###` |
+| Architectural or operating choice | One `.github/docs/agreements/adr/ADR-####-<slug>.md` |
+| Explicit boundary | `.github/docs/agreements/non-goals.md` |
+| Shared project term | `.github/docs/agreements/glossary.md` |
 
 3. Link every candidate to provenance. Reject or return any candidate whose
    source is absent, too broad, or only an unverified AI summary.

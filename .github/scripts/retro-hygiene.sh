@@ -3,9 +3,9 @@
 # authorized, create the idempotent monthly review Issue.
 #
 # Usage:
-#   scripts/retro-hygiene.sh [-R owner/repo]
-#   scripts/retro-hygiene.sh --create-issue [-R owner/repo]
-#   scripts/retro-hygiene.sh --help
+#   .github/scripts/retro-hygiene.sh [-R owner/repo]
+#   .github/scripts/retro-hygiene.sh --create-issue [-R owner/repo]
+#   .github/scripts/retro-hygiene.sh --help
 #
 # Report mode is read-only. --create-issue is the sole mutation mode. The
 # workflow grants issues:write only to its scheduled or explicitly requested
@@ -13,7 +13,7 @@
 
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 BUDGET_TARGET=150
 CREATE_ISSUE=0
 REPOSITORY=""

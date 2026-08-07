@@ -10,7 +10,7 @@ distillation. Collection preserves evidence; it does not decide what is true.
 
 ## Collect one topic
 
-1. Create or select `docs/context/<topic>/` and read its `INDEX.md` first.
+1. Create or select `.github/docs/context/<topic>/` and read its `INDEX.md` first.
 2. Keep the source original in its governed system. Store an access-controlled
    URL or stable identifier plus the smallest excerpt or notes required to
    evaluate candidate requirements, decisions, terms, and conflicts.

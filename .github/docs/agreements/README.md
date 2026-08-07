@@ -1,6 +1,6 @@
 # Reviewed Truth
 
-`docs/agreements/` is the authoritative, human-reviewed project memory for
+`.github/docs/agreements/` is the authoritative, human-reviewed project memory for
 Phase 2. A document becomes an agreement only when its pull request is merged.
 
 | Artifact | Purpose |

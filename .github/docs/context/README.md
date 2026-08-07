@@ -1,8 +1,8 @@
 # Context intake
 
-`docs/context/` holds only the minimum notes and provenance references needed
+`.github/docs/context/` holds only the minimum notes and provenance references needed
 to distill project truth. It is background, not authority; implementation must
-follow reviewed agreements in `docs/agreements/`.
+follow reviewed agreements in `.github/docs/agreements/`.
 
 Keep source originals in their governed external locations. Do not commit raw
 archives, exports, recordings, credentials, PII, or controlled business data.

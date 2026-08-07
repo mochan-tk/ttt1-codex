@@ -27,7 +27,7 @@ Example inspection flow:
 ```bash
 git remote add scaffold https://github.com/mochan-tk/ttt1-codex.git
 git fetch scaffold 'refs/tags/*:refs/tags/scaffold/*'
-git diff scaffold/v1.0.0..scaffold/v1.1.0 -- . ':!docs/context' ':!docs/agreements'
+git diff scaffold/v1.0.0..scaffold/v1.1.0 -- . ':!.github/docs/context' ':!.github/docs/agreements'
 ```
 
 Do not blindly replace `AGENTS.md`, `.codex/config.toml`, or agreement content
@@ -35,7 +35,7 @@ that the instance deliberately tuned. Inspect agreement changes separately,
 then reconcile accepted changes through an agreement pull request:
 
 ```bash
-git diff scaffold/v1.0.0..scaffold/v1.1.0 -- docs/agreements
+git diff scaffold/v1.0.0..scaffold/v1.1.0 -- .github/docs/agreements
 ```
 
 ## Upstream learning
@@ -86,11 +86,11 @@ Implemented candidate surface:
 Measure an instance before upgrade or license review:
 
 ```bash
-scripts/tuning-status.sh
-scripts/check-md-links.sh
-scripts/check-template-sync.sh
-scripts/check-skills.sh
-scripts/retro-hygiene.sh
+.github/scripts/tuning-status.sh
+.github/scripts/check-md-links.sh
+.github/scripts/check-template-sync.sh
+.github/scripts/check-skills.sh
+.github/scripts/retro-hygiene.sh
 ```
 
 These commands report the current checkout; they do not enable a ruleset,
