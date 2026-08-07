@@ -39,3 +39,7 @@ dedicated agreement pull request.
   scaffold-owned. Generic scaffold checks use explicit control-path
   allowlists; application quality gates are measured and added during
   onboarding.
+- **NG-015:** Do not claim or heuristically sweep adopter-owned
+  `.devcontainer/**`, auto-activate the inactive `.codex/devcontainer/**`
+  reference, or overwrite a collision. Distribution by **Use this template**
+  is not consent to materialize, execute, or manage an application container.

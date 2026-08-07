@@ -2,7 +2,7 @@
 
 - Status: accepted by the agreement merge
 - Date: 2026-08-03
-- Amended: 2026-08-06 by Task #25
+- Amended: 2026-08-06 by Task #25; 2026-08-08 by Task #31
 - Owners: repository owner and agreement reviewers
 - Supersedes: the handoff requirement for identical cross-agent file layouts
 
@@ -74,6 +74,10 @@ plane. It includes these paths:
   checks, and their tests.
 - `.agents/**` and `.codex/**` remain the Codex-native skill, skill-local
   helper, role, and project configuration surfaces.
+- `.codex/devcontainer/**` is the Codex-owned location for an inactive,
+  optional secure Dev Container reference. GitHub **Use this template** copies
+  this payload, but copying does not activate it or transfer ownership of an
+  adopter's application container.
 - Root `AGENTS.md` remains the always-on repository constitution.
 
 The GitHub-common contracts required by REQ-034 are also explicitly named:
@@ -98,6 +102,12 @@ paths by filename extension alone. Adopter-specific files under `.github/**`
 are likewise application-owned unless an explicit scaffold contract names
 them. Onboarding measures the application's toolchain and adds suitable
 project checks to the existing quality wall.
+
+Application `.devcontainer/**` is also adopter-owned. Activating the canonical
+reference there is a later, explicit setup action: it must preview the proposed
+change and refuse any collision by default. Neither a familiar filename nor a
+heuristic sentinel establishes scaffold ownership, and no materializer or
+installer behavior is implemented by this architecture amendment.
 
 Root distribution files have explicit, mixed responsibilities rather than
 implying ownership of the whole repository root:
@@ -198,6 +208,8 @@ versioned artifact.
   content being claimed or linted by the generic scaffold.
 - Explicit control-path allowlists keep scaffold failures fail-closed without
   turning adopter-specific `.github/**` files into upstream-owned artifacts.
+- A copied repository can inspect the inactive secure Dev Container reference
+  without silently changing or executing its application `.devcontainer/**`.
 - Comparison artifacts differ by platform while D1-D10, lifecycle gates, CI
   evidence, onboarding quality, and ledger readability remain comparable.
 - Codex can execute the full lifecycle natively without weakening the shared
@@ -238,4 +250,6 @@ versioned artifact.
 - [Pinned Claude-built comparison baseline](https://github.com/mochan-tk/ttt1-claude/tree/e88688c80095036f255b1353f827a4b2f32fdc49)
 - [Copilot namespace migration PR #78](https://github.com/mochan-tk/ttt1-copilot/pull/78)
 - [Codex Task #25 owner observation](https://github.com/mochan-tk/ttt1-codex/issues/25)
+- [ADR-0003 secure Dev Container contract](ADR-0003-codex-native-secure-dev-container.md)
+- [Codex Task #31](https://github.com/mochan-tk/ttt1-codex/issues/31)
 - [Epic #1](https://github.com/mochan-tk/ttt1-codex/issues/1)
