@@ -80,6 +80,27 @@ exfiltrate anything available inside the Dev Container, including Codex
 credentials. The exception requires a separate recorded human decision and
 must not be selected by fallback logic.
 
+The Dev Container client and engine, active configuration, Dockerfile, build
+context allowlist, local features, bootstrap and firewall programs, materializer
+output, and pinned image/feature artifacts form the pre-container trusted
+computing base. They are evaluated before the inner sandbox or in-container
+probes can protect the session. The active configuration is therefore never
+auto-discovered from an untrusted branch and passed directly to a Dev Container
+client.
+
+Before every build, rebuild, or start, a trusted external preflight obtains the
+expected manifest from the immutable commit accepted by the implementation PR
+and verifies every transitive control artifact by exact hash or digest. It also
+requires regular files with no symlink escape and rejects missing, untracked,
+or drifted active `.devcontainer/**`; host-side lifecycle commands such as
+`initializeCommand`; privileged mode; unexpected mounts, capabilities, or
+security relaxations; mutable feature/image references; and a build context
+outside the reviewed allowlist. The preflight itself is pinned outside the
+candidate worktree or independently verified by the human; it never executes a
+checker supplied by the untrusted branch. Any mismatch fails before the client
+reads or launches the active configuration. Changing a trusted-control artifact
+requires a new Issue, pull request, required checks, and human review.
+
 The container is never privileged and never receives the Docker socket.
 Capabilities and relaxed Docker security options use this allowlist and must
 be retained only when architecture-specific runtime evidence proves them
@@ -261,8 +282,11 @@ must record all of the following on its actual pull request head:
 1. strict JSON parsing and Dev Container schema validation;
 2. Bash syntax, ShellCheck, actionlint where applicable, and repository scaffold
    checks without new suppressions;
-3. immutable-reference, checksum, lockfile, build-context, and prohibited-flag
-   checks;
+3. immutable-reference, checksum, lockfile, build-context, prohibited-flag, and
+   trusted-control-manifest checks; negative fixtures alter the active config,
+   add a host lifecycle command, mount, capability, mutable feature, or symlink,
+   and prove the trusted external preflight refuses them before a mock Dev
+   Container client can run;
 4. an explicit `linux/amd64` and `linux/arm64` dependency/capability mapping;
 5. a disposable image build for each supported architecture;
 6. post-create and post-start smoke tests for every baseline tool, authenticated
