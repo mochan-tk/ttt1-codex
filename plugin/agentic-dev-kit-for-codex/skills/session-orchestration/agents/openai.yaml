@@ -1,0 +1,4 @@
+interface:
+  display_name: "Session Orchestration"
+  short_description: "Run and resume durable Task sessions through GitHub"
+  default_prompt: "Use $session-orchestration to start, resume, or hand off this GitHub Task safely."

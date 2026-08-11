@@ -53,7 +53,7 @@ end
 root = ARGV.fetch(0)
 skills = %w[
   project-onboarding context-collection context-distillation plan-management
-  task-routing session-orchestration verification retro
+  task-routing session-orchestration verification retro codex-automation
 ]
 expected_interface = %w[display_name short_description default_prompt]
 errors = []
@@ -142,9 +142,9 @@ from typing import Any
 root = pathlib.Path(sys.argv[1]).resolve()
 config_path = root / ".codex/config.toml"
 agents_root = root / ".codex/agents"
-expected_agents = {"orchestrator", "planner", "reviewer"}
-config_root_keys = {"agents"}
-config_agent_keys = {"enabled"}
+expected_agents = {"explorer", "orchestrator", "planner", "reviewer"}
+allowed_config_root_keys = {"agents", "mcp_servers"}
+allowed_agents_config_keys = {"enabled"}
 project_agent_keys = {
     "name",
     "description",
@@ -212,7 +212,7 @@ def check_portability(document: dict[str, Any], name: str) -> None:
         if normalized in model_pin_keys:
             finding = ("model", path)
             if finding not in reported:
-                errors.append(f"{name}: model pin setting {'.'.join(path)!r} is not allowed")
+                errors.append(f"{name}: model pin setting {'.'.join(path)!r} is not portable")
                 reported.add(finding)
         if credential_key.search(key):
             finding = ("credential", path)
@@ -235,23 +235,27 @@ config = load_toml(config_path)
 if config is not None:
     config_name = relative(config_path)
     check_portability(config, config_name)
-    actual_root_keys = set(config)
-    if actual_root_keys != config_root_keys:
+    unexpected_root_keys = set(config) - allowed_config_root_keys
+    if unexpected_root_keys:
         errors.append(
-            f"{config_name}: root keys must be exactly agents; update this validator "
-            "when an agreement accepts another portable setting"
+            f"{config_name}: unsupported root keys: "
+            + ", ".join(sorted(unexpected_root_keys))
         )
     agents_config = config.get("agents")
     if not isinstance(agents_config, dict):
         errors.append(f"{config_name}: agents must be a table")
     else:
-        if set(agents_config) != config_agent_keys:
+        unexpected_agent_keys = set(agents_config) - allowed_agents_config_keys
+        if unexpected_agent_keys:
             errors.append(
-                f"{config_name}: agents keys must be exactly enabled; update this validator "
-                "when an agreement accepts another portable setting"
+                f"{config_name}: unsupported agents keys: "
+                + ", ".join(sorted(unexpected_agent_keys))
             )
         if agents_config.get("enabled") is not True:
             errors.append(f"{config_name}: agents.enabled must be boolean true")
+    mcp_config = config.get("mcp_servers")
+    if mcp_config is not None and not isinstance(mcp_config, dict):
+        errors.append(f"{config_name}: mcp_servers must be a table when present")
 
 if not agents_root.is_dir():
     errors.append(".codex/agents: missing")
@@ -262,8 +266,6 @@ else:
 actual_agents = {path.stem for path in agent_paths}
 for name in sorted(expected_agents - actual_agents):
     errors.append(f".codex/agents/{name}.toml: missing required project agent")
-for name in sorted(actual_agents - expected_agents):
-    errors.append(f".codex/agents/{name}.toml: unexpected project agent")
 
 for path in agent_paths:
     document = load_toml(path)
@@ -271,11 +273,15 @@ for path in agent_paths:
         continue
     name = relative(path)
     check_portability(document, name)
-    if set(document) != project_agent_keys:
+    if path.stem in expected_agents and set(document) != project_agent_keys:
         errors.append(
-            f"{name}: keys must be exactly name, description, sandbox_mode, "
-            "developer_instructions; update this validator when an agreement accepts another "
-            "portable agent setting"
+            f"{name}: bundled agent keys must be exactly name, description, "
+            "sandbox_mode, and developer_instructions"
+        )
+    elif not project_agent_keys.issubset(document):
+        errors.append(
+            f"{name}: required keys are name, description, sandbox_mode, and "
+            "developer_instructions"
         )
     expected_name = path.stem
     if document.get("name") != expected_name:
@@ -284,8 +290,8 @@ for path in agent_paths:
         value = document.get(key)
         if not isinstance(value, str) or not value.strip():
             errors.append(f"{name}: {key} must be a non-empty string")
-    if document.get("sandbox_mode") != "read-only":
-        errors.append(f"{name}: sandbox_mode must equal 'read-only'")
+    if path.stem in expected_agents and document.get("sandbox_mode") != "read-only":
+        errors.append(f"{name}: bundled coordination agents must use sandbox_mode 'read-only'")
 
 if errors:
     print(f"check-skills: FAIL — {len(errors)} Codex TOML validation error(s)", file=sys.stderr)
@@ -298,6 +304,7 @@ python3 - "$ROOT" <<'PY'
 from __future__ import annotations
 
 import pathlib
+import json
 import re
 import subprocess
 import sys
@@ -314,26 +321,36 @@ expected_skills = {
     "session-orchestration",
     "verification",
     "retro",
+    "codex-automation",
 }
 errors: list[str] = []
 
 control_prefixes = (
     ".github/docs/",
+    ".github/connectors/",
     ".github/scripts/",
     ".agents/",
     ".codex/",
+    "plugin/agentic-dev-kit-for-codex/",
 )
-control_files = {
+required_control_files = {
     "AGENTS.md",
+    "SCAFFOLD-CHANGELOG.md",
     ".github/CODEOWNERS",
+    ".github/docs/AGENTIC-DEV-KIT-LICENSE.txt",
+    ".github/docs/AGENTIC-DEV-KIT-NOTICE.md",
     ".github/ISSUE_TEMPLATE/config.yml",
     ".github/ISSUE_TEMPLATE/epic.yml",
     ".github/ISSUE_TEMPLATE/task.yml",
+    ".github/ISSUE_TEMPLATE/feedback.yml",
     ".github/PULL_REQUEST_TEMPLATE.md",
     ".github/dependabot.yml",
     ".github/workflows/ci.yml",
     ".github/workflows/retro-hygiene.yml",
+    ".github/workflows/adopter-feedback.yml",
 }
+optional_control_files = {"README.md", "CONTRIBUTING.md", "NOTICE.md", "SECURITY.md"}
+control_files = required_control_files | optional_control_files
 
 
 def in_control_scope(item: str) -> bool:
@@ -349,7 +366,7 @@ tracked = [
 ]
 tracked_set = set(tracked)
 control_tracked = sorted(item for item in tracked if in_control_scope(item))
-for item in sorted(control_files - tracked_set):
+for item in sorted(required_control_files - tracked_set):
     errors.append(f"required scaffold contract is not tracked: {item}")
 
 if not skills_root.is_dir():
@@ -359,8 +376,6 @@ if not skills_root.is_dir():
 actual_skills = {path.name for path in skills_root.iterdir() if path.is_dir()}
 for name in sorted(expected_skills - actual_skills):
     errors.append(f"missing skill directory: .agents/skills/{name}")
-for name in sorted(actual_skills - expected_skills):
-    errors.append(f"unexpected skill directory: .agents/skills/{name}")
 
 
 def frontmatter(text: str, path: pathlib.Path) -> dict[str, str]:
@@ -420,6 +435,128 @@ for name in sorted(expected_skills & actual_skills):
             errors.append(f"{metadata_path.relative_to(root)}: short_description must be 25-64 characters")
     if re.search(r"^\s*(?:model|model_reasoning_effort):", metadata, re.MULTILINE):
         errors.append(f"{metadata_path.relative_to(root)}: project metadata must not pin a model")
+    if name == "project-onboarding":
+        for boundary_phrase in (
+            "plugin-only",
+            "partial",
+            "Do not invoke, fabricate, or silently substitute a missing helper",
+            "template or installer",
+        ):
+            if boundary_phrase not in skill_text:
+                errors.append(
+                    f"{skill_path.relative_to(root)}: missing plugin boundary "
+                    f"{boundary_phrase!r}"
+                )
+
+plugin_root = root / "plugin/agentic-dev-kit-for-codex"
+manifest_path = plugin_root / ".codex-plugin/plugin.json"
+plugin_status = "plugin omitted by installer boundary"
+canonical_readme = root / "README.md"
+canonical_distribution = (
+    canonical_readme.is_file()
+    and canonical_readme.read_text(encoding="utf-8").startswith("# Agentic Dev Kit for Codex\n")
+)
+if canonical_distribution and not plugin_root.exists():
+    errors.append("plugin/agentic-dev-kit-for-codex: canonical distribution plugin is missing")
+if plugin_root.exists():
+    plugin_status = "synchronized plugin package"
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        errors.append(f"{manifest_path.relative_to(root)}: invalid or missing JSON: {error}")
+        manifest = {}
+    if manifest.get("name") != "agentic-dev-kit-for-codex":
+        errors.append(f"{manifest_path.relative_to(root)}: name must match the plugin directory")
+    if manifest.get("skills") != "./skills/":
+        errors.append(f"{manifest_path.relative_to(root)}: skills must equal './skills/'")
+    if manifest.get("license") != "MIT":
+        errors.append(f"{manifest_path.relative_to(root)}: license must equal 'MIT'")
+    interface = manifest.get("interface", {})
+    if not isinstance(interface, dict):
+        errors.append(f"{manifest_path.relative_to(root)}: interface must be an object")
+        interface = {}
+    if "Full GitHub governance requires the repository template or installer" not in str(
+        interface.get("longDescription", "")
+    ):
+        errors.append(
+            f"{manifest_path.relative_to(root)}: interface must disclose the plugin-only boundary"
+        )
+
+    if canonical_distribution:
+        changelog_path = root / "SCAFFOLD-CHANGELOG.md"
+        changelog_text = changelog_path.read_text(encoding="utf-8")
+        candidate_match = re.search(
+            r"^\*\*Current candidate:\*\* v([^\s]+)$", changelog_text, re.MULTILINE
+        )
+        plugin_version = manifest.get("version")
+        if not candidate_match:
+            errors.append(f"{changelog_path.relative_to(root)}: current candidate is missing")
+        elif plugin_version != candidate_match.group(1):
+            errors.append(
+                f"{manifest_path.relative_to(root)}: version {plugin_version!r} must match "
+                f"changelog current candidate {candidate_match.group(1)!r}"
+            )
+        if isinstance(plugin_version, str) and not re.search(
+            rf"^### v{re.escape(plugin_version)}(?:\s|$)", changelog_text, re.MULTILINE
+        ):
+            errors.append(
+                f"{changelog_path.relative_to(root)}: missing version heading for "
+                f"plugin {plugin_version!r}"
+            )
+
+    plugin_license = plugin_root / "LICENSE"
+    root_license = root / "LICENSE"
+    if not plugin_license.is_file():
+        errors.append(f"{plugin_license.relative_to(root)}: standalone package license is missing")
+    elif root_license.is_file() and plugin_license.read_bytes() != root_license.read_bytes():
+        errors.append(f"{plugin_license.relative_to(root)}: must match the repository MIT license")
+    plugin_notice = plugin_root / "NOTICE.md"
+    if not plugin_notice.is_file():
+        errors.append(f"{plugin_notice.relative_to(root)}: standalone package notice is missing")
+    else:
+        notice_text = plugin_notice.read_text(encoding="utf-8")
+        for required_notice in (
+            "agentic-dev-kit-for-copilot",
+            "f466c7e169243e2bea03b4b33a20f8c557328d96",
+        ):
+            if required_notice not in notice_text:
+                errors.append(
+                    f"{plugin_notice.relative_to(root)}: missing attribution {required_notice!r}"
+                )
+
+    plugin_skills_root = plugin_root / "skills"
+    for name in sorted(expected_skills):
+        canonical = skills_root / name
+        packaged = plugin_skills_root / name
+        if not packaged.is_dir():
+            errors.append(f"{packaged.relative_to(root)}: packaged skill is missing")
+            continue
+        canonical_files = {
+            path.relative_to(canonical).as_posix(): path
+            for path in canonical.rglob("*")
+            if path.is_file()
+        }
+        packaged_files = {
+            path.relative_to(packaged).as_posix(): path
+            for path in packaged.rglob("*")
+            if path.is_file()
+        }
+        if canonical_files.keys() != packaged_files.keys():
+            errors.append(f"{packaged.relative_to(root)}: file set differs from the canonical skill")
+            continue
+        for relative_name, canonical_path in canonical_files.items():
+            if canonical_path.read_bytes() != packaged_files[relative_name].read_bytes():
+                errors.append(
+                    f"{packaged_files[relative_name].relative_to(root)}: differs from canonical "
+                    f".agents/skills/{name}/{relative_name}"
+                )
+            canonical_mode = canonical_path.stat().st_mode & 0o111
+            packaged_mode = packaged_files[relative_name].stat().st_mode & 0o111
+            if canonical_mode != packaged_mode:
+                errors.append(
+                    f"{packaged_files[relative_name].relative_to(root)}: executable mode differs "
+                    f"from canonical .agents/skills/{name}/{relative_name}"
+                )
 
 forbidden = [
     root / "CLAUDE.md",
@@ -484,8 +621,8 @@ if errors:
     raise SystemExit(1)
 
 print(
-    "check-skills: OK — 8 Codex skills, metadata, Codex TOML configuration, "
-    "path policy, English-only control-plane content, "
+    f"check-skills: OK — 9 Codex skills, {plugin_status}, metadata, "
+    "Codex TOML configuration, path policy, English-only control-plane content, "
     f"and {len(shell_files)} shell file(s) validated."
 )
 PY

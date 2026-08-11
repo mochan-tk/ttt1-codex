@@ -4,4 +4,13 @@
 # ruleset proposed by .github/scripts/setup-ruleset.sh.
 
 /.github/docs/agreements/**     @mochan-tk
+/.github/connectors/**          @mochan-tk
+/.github/ISSUE_TEMPLATE/**      @mochan-tk
+/.github/PULL_REQUEST_TEMPLATE.md @mochan-tk
+/.github/scripts/**             @mochan-tk
 /.github/workflows/**           @mochan-tk
+/AGENTS.md                      @mochan-tk
+/.agents/**                     @mochan-tk
+/.codex/**                      @mochan-tk
+/plugin/**                      @mochan-tk
+/SCAFFOLD-CHANGELOG.md          @mochan-tk

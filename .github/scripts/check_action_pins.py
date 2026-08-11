@@ -13,7 +13,8 @@ from typing import Iterable, Sequence
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-WORKFLOW_PATHS = (
+REQUIRED_WORKFLOW_PATHS = (
+    ".github/workflows/adopter-feedback.yml",
     ".github/workflows/ci.yml",
     ".github/workflows/retro-hygiene.yml",
 )
@@ -75,13 +76,18 @@ def validate_workflow_text(path: str, text: str) -> tuple[list[Violation], int]:
 
 def tracked_workflow_paths(root: pathlib.Path) -> list[pathlib.Path]:
     result = subprocess.run(
-        ["git", "ls-files", "-z", "--", *WORKFLOW_PATHS],
+        ["git", "ls-files", "-z", "--", ".github/workflows"],
         cwd=root,
         check=True,
         stdout=subprocess.PIPE,
     )
     entries = result.stdout.decode("utf-8").split("\0")
-    return [root / entry for entry in sorted(item for item in entries if item)]
+    return [
+        root / entry
+        for entry in sorted(
+            item for item in entries if item.endswith((".yml", ".yaml"))
+        )
+    ]
 
 
 def validate_paths(root: pathlib.Path, paths: Iterable[pathlib.Path]) -> tuple[list[Violation], int, int]:
@@ -120,7 +126,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         if not paths:
             paths = tracked_workflow_paths(root)
             found = {path.relative_to(root).as_posix() for path in paths}
-            missing = sorted(set(WORKFLOW_PATHS) - found)
+            missing = sorted(set(REQUIRED_WORKFLOW_PATHS) - found)
             if missing:
                 print(
                     "check-action-pins: FAIL — required workflow(s) are not tracked: "
@@ -129,7 +135,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 )
                 return 1
         if not paths:
-            print("check-action-pins: FAIL — no named workflow files found", file=sys.stderr)
+            print("check-action-pins: FAIL — no tracked workflow files found", file=sys.stderr)
             return 1
         violations, reference_count, file_count = validate_paths(root, paths)
     except (OSError, subprocess.CalledProcessError, UnicodeError) as error:
@@ -144,7 +150,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     print(
         "check-action-pins: OK — "
-        f"{reference_count} Action reference(s) across {file_count} named workflow file(s) are immutable."
+        f"{reference_count} Action reference(s) across {file_count} tracked workflow file(s) are immutable."
     )
     return 0
 

@@ -24,20 +24,26 @@ import urllib.parse
 root = pathlib.Path(sys.argv[1]).resolve()
 control_prefixes = (
     ".github/docs/",
+    ".github/connectors/",
     ".github/scripts/",
     ".agents/",
     ".codex/",
+    "plugin/agentic-dev-kit-for-codex/",
 )
 control_files = {
     "AGENTS.md",
+    "README.md",
+    "SCAFFOLD-CHANGELOG.md",
     ".github/CODEOWNERS",
     ".github/ISSUE_TEMPLATE/config.yml",
     ".github/ISSUE_TEMPLATE/epic.yml",
     ".github/ISSUE_TEMPLATE/task.yml",
+    ".github/ISSUE_TEMPLATE/feedback.yml",
     ".github/PULL_REQUEST_TEMPLATE.md",
     ".github/dependabot.yml",
     ".github/workflows/ci.yml",
     ".github/workflows/retro-hygiene.yml",
+    ".github/workflows/adopter-feedback.yml",
 }
 
 
@@ -64,8 +70,13 @@ documented_path = re.compile(
     r"[A-Za-z0-9_./*?-]+\.(?:md|ya?ml|toml|sh|json))"
 )
 
-# These are deliberate negative examples in the accepted requirements.
-allowed_missing = {".github/copilot-instructions.md"}
+# These are deliberate historical or disabled-by-default examples. Their
+# absence is part of the documented Codex distribution boundary.
+allowed_missing = {
+    ".codex/hooks.json",
+    ".github/copilot-instructions.md",
+    ".github/workflows/copilot-setup-steps.yml",
+}
 errors: list[str] = []
 checked_links = 0
 checked_paths = 0

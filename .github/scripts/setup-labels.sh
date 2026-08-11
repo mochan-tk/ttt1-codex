@@ -1,18 +1,29 @@
 #!/usr/bin/env bash
-# Ensure the canonical ADLC label set. Live runs are idempotent because
+# Ensure the canonical ADLC label set. Live runs require --apply and are idempotent because
 # `gh label create --force` creates missing labels and refreshes existing ones.
 
 set -euo pipefail
+
+# Unexpected interactive failures may offer a privacy-minimized upstream
+# report. CI, non-interactive use, missing metadata, or no explicit consent is
+# always silent; deleting feedback-lib.sh disables the offer.
+if [[ -n "${BASH_SOURCE[0]:-}" && -r "$(dirname "${BASH_SOURCE[0]}")/feedback-lib.sh" ]]; then
+  # shellcheck source=/dev/null
+  if . "$(dirname "${BASH_SOURCE[0]}")/feedback-lib.sh" 2>/dev/null; then
+    feedback_arm setup-labels || true
+  fi
+fi
 
 usage() {
   cat <<'EOF'
 Usage: setup-labels.sh [options]
 
-Ensure the 11 canonical ADLC labels.
+Ensure the 12 canonical ADLC labels.
 
 Options:
   -R, --repo <owner/repo>  Target repository. Default: current repository.
   --dry-run                Print planned label changes; do not call GitHub.
+  --apply                  Explicitly authorize live GitHub changes.
   -h, --help               Show this help and exit.
 EOF
 }
@@ -25,6 +36,7 @@ usage_error() {
 
 REPO=""
 DRY_RUN="false"
+MODE=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -34,7 +46,14 @@ while [[ $# -gt 0 ]]; do
       shift 2
       ;;
     --dry-run)
+      [[ -z "$MODE" || "$MODE" == "dry-run" ]] || usage_error "choose exactly one of --dry-run or --apply"
+      MODE="dry-run"
       DRY_RUN="true"
+      shift
+      ;;
+    --apply)
+      [[ -z "$MODE" || "$MODE" == "apply" ]] || usage_error "choose exactly one of --dry-run or --apply"
+      MODE="apply"
       shift
       ;;
     -h|--help)
@@ -47,14 +66,30 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+[[ -n "$MODE" ]] || usage_error "choose --dry-run (no GitHub writes) or --apply (live GitHub changes)"
+
 repo_re='^[^/[:space:]]+/[^/[:space:]]+$'
-if [[ -n "$REPO" && ! "$REPO" =~ $repo_re ]]; then
+if [[ -z "$REPO" ]]; then
+  remote="$(git remote get-url origin 2>/dev/null || true)"
+  case "$remote" in
+    https://github.com/*) REPO="${remote#https://github.com/}" ;;
+    ssh://git@github.com/*) REPO="${remote#ssh://git@github.com/}" ;;
+    git@github.com:*) REPO="${remote#git@github.com:}" ;;
+    *) usage_error "could not infer a GitHub.com origin; pass -R owner/repo" ;;
+  esac
+  REPO="${REPO%.git}"
+fi
+if [[ ! "$REPO" =~ $repo_re ]]; then
   usage_error "repository must be owner/repo, got: $REPO"
 fi
 
 if [[ "$DRY_RUN" != "true" ]]; then
   command -v gh >/dev/null 2>&1 || {
     echo "error: gh CLI not found on PATH" >&2
+    exit 1
+  }
+  gh auth status --hostname github.com >/dev/null 2>&1 || {
+    echo "error: gh is not authenticated; run 'gh auth login --hostname github.com'" >&2
     exit 1
   }
 fi
@@ -64,11 +99,8 @@ ensure_label() {
   if [[ "$DRY_RUN" == "true" ]]; then
     printf "Would ensure label '%s' (color %s): %s\n" \
       "$name" "$color" "$description"
-  elif [[ -n "$REPO" ]]; then
-    gh label create "$name" --repo "$REPO" --color "$color" \
-      --description "$description" --force
   else
-    gh label create "$name" --color "$color" \
+    gh label create "$name" --repo "github.com/$REPO" --color "$color" \
       --description "$description" --force
   fi
 }
@@ -84,13 +116,10 @@ ensure_label "exec:app" "BFDADC" "Route: Codex app task; steerable and worktree-
 ensure_label "exec:cli" "FEF2C0" "Route: Codex CLI; terminal-first local or scripted work"
 ensure_label "exec:ide" "F9D0C4" "Route: Codex IDE; human-close ambiguous or environment-bound work"
 ensure_label "retro:candidate" "EDEDED" "Observed scaffold friction; promote on repeated occurrence"
+ensure_label "from:adopter" "D4C5F9" "Consent-gated or manually filed adopter feedback"
 
 if [[ "$DRY_RUN" == "true" ]]; then
-  if [[ -n "$REPO" ]]; then
-    echo "Dry run complete for $REPO; no GitHub calls were made."
-  else
-    echo "Dry run complete for the current repository; no GitHub calls were made."
-  fi
+  echo "Dry run complete for github.com/$REPO; no GitHub calls were made."
 else
-  echo "Done. 11 labels ensured."
+  echo "Done. 12 labels ensured in github.com/$REPO by explicit --apply."
 fi

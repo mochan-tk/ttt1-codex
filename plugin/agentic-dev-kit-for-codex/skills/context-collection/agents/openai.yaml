@@ -1,0 +1,4 @@
+interface:
+  display_name: "Context Collection"
+  short_description: "Collect minimum sourced context with provenance"
+  default_prompt: "Use $context-collection to land this source as minimum, provenance-linked project context."
