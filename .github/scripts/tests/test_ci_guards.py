@@ -179,6 +179,21 @@ steps:
 
 
 class ScaffoldContractTests(unittest.TestCase):
+    def test_controller_uses_the_runner_event_payload_path_directly(self) -> None:
+        workflow = (ROOT / ".github/workflows/ci.yml").read_text(encoding="utf-8")
+        runner_name = "GITHUB_EVENT_PATH"
+        obsolete_context = "github.event" + "_path"
+        obsolete_alias = runner_name.removeprefix("GITHUB_")
+
+        self.assertNotIn(obsolete_context, workflow)
+        for shadowed_name in (runner_name, obsolete_alias):
+            self.assertNotRegex(
+                workflow,
+                re.compile(rf"(?m)^\s+{re.escape(shadowed_name)}:"),
+            )
+        self.assertEqual(1, workflow.count(f'os.environ.get("{runner_name}")'))
+        self.assertNotIn(f'os.environ.get("{obsolete_alias}")', workflow)
+
     def test_ci_rechecks_pull_request_body_edits_and_discovers_guard_tests(self) -> None:
         workflow = (ROOT / ".github/workflows/ci.yml").read_text(encoding="utf-8")
         self.assertRegex(
@@ -1632,13 +1647,21 @@ class FakeTask35GitHub:
         *,
         event_name: str = "pull_request_target",
         event: dict | None = None,
+        event_text: str | None = None,
         extra_env: dict[str, str] | None = None,
+        unset_env: tuple[str, ...] = (),
     ) -> tuple[subprocess.CompletedProcess[str], dict[str, str]]:
         with tempfile.TemporaryDirectory() as temporary:
             temp = pathlib.Path(temporary)
             event_path = temp / "event.json"
             event_path.write_text(
-                json.dumps(event or self.event(event_name), separators=(",", ":")),
+                (
+                    event_text
+                    if event_text is not None
+                    else json.dumps(
+                        event or self.event(event_name), separators=(",", ":")
+                    )
+                ),
                 encoding="utf-8",
             )
             output_path = temp / "output"
@@ -1647,7 +1670,7 @@ class FakeTask35GitHub:
                 "TASK35_MODE": mode,
                 "GH_TOKEN": "fixture-token",
                 "EVENT_NAME": event_name,
-                "EVENT_PATH": str(event_path),
+                "GITHUB_EVENT_PATH": str(event_path),
                 "REPOSITORY": self.repository,
                 "REPOSITORY_ID": str(self.repository_id),
                 "API_URL": self.url,
@@ -1659,6 +1682,9 @@ class FakeTask35GitHub:
                 "ACCEPTED_REPOSITORY": self.head_repository,
             }
             environment.update(extra_env or {})
+            environment.pop("GITHUB_EVENT_PATH".removeprefix("GITHUB_"), None)
+            for name in unset_env:
+                environment.pop(name, None)
             for item in self.comments:
                 if isinstance(item.get("issue_url"), str) and item["issue_url"].startswith(
                     "PLACEHOLDER/"
@@ -1690,6 +1716,100 @@ class Task35AdmissionBehaviorTests(unittest.TestCase):
         self.assertIn("def admission()", script)
         self.assertIn("def publisher()", script)
         self.assertIn("def cancel_runs()", script)
+
+    def test_non_pull_request_issue_comment_is_an_api_free_noop(self) -> None:
+        with FakeTask35GitHub() as fixture:
+            event = fixture.event("issue_comment", "created")
+            event["issue"].pop("pull_request")
+            completed, outputs = fixture.run(
+                "admission", event_name="issue_comment", event=event
+            )
+
+            self.assertEqual(0, completed.returncode, completed.stderr)
+            self.assertEqual(
+                {
+                    "pr_number": "1",
+                    "head_sha": "0" * 40,
+                    "head_repository": "none/none",
+                    "head_repository_id": "1",
+                    "base_sha": "0" * 40,
+                    "changed_files": "0",
+                    "diff_digest": "0" * 64,
+                    "classification": "none",
+                    "decision": "noop",
+                    "reason": "not-a-pull-request",
+                    "auth_comment_id": "0",
+                    "publish": "false",
+                    "cancel": "false",
+                    "cancel_scope": "none",
+                    "run_quality": "false",
+                    "run_scaffold": "false",
+                    "run_secure": "false",
+                    "secure_applicable": "false",
+                },
+                outputs,
+            )
+            self.assertEqual([], fixture.requests)
+            self.assertEqual([], fixture.status_posts)
+            self.assertEqual([], fixture.cancelled)
+
+    def test_runner_event_payload_path_fails_closed(self) -> None:
+        runner_path = "GITHUB_EVENT_PATH"
+        cases = (
+            (
+                "absent",
+                {},
+                None,
+                (runner_path,),
+                "GITHUB_EVENT_PATH must be a non-empty string",
+            ),
+            (
+                "empty",
+                {runner_path: ""},
+                None,
+                (),
+                "GITHUB_EVENT_PATH must be a non-empty string",
+            ),
+            (
+                "unreadable",
+                {runner_path: str(ROOT / ".github/task46-missing-event.json")},
+                None,
+                (),
+                "event payload could not be read",
+            ),
+            ("malformed", {}, "{", (), "event payload is not strict JSON"),
+        )
+        for name, extra_env, event_text, unset_env, error in cases:
+            with self.subTest(name=name), FakeTask35GitHub() as fixture:
+                completed, outputs = fixture.run(
+                    "admission",
+                    event_text=event_text,
+                    extra_env=extra_env,
+                    unset_env=unset_env,
+                )
+                self.assertNotEqual(0, completed.returncode)
+                self.assertIn(error, completed.stderr)
+                self.assertEqual({}, outputs)
+                self.assertEqual([], fixture.requests)
+                self.assertEqual([], fixture.status_posts)
+                self.assertEqual([], fixture.cancelled)
+
+        with FakeTask35GitHub() as fixture:
+            event = fixture.event()
+            event["repository"] = {
+                "id": fixture.repository_id + 1,
+                "full_name": fixture.repository,
+            }
+            completed, outputs = fixture.run("admission", event=event)
+            self.assertNotEqual(0, completed.returncode)
+            self.assertIn(
+                "event repository identity does not match the trusted environment",
+                completed.stderr,
+            )
+            self.assertEqual({}, outputs)
+            self.assertEqual([], fixture.requests)
+            self.assertEqual([], fixture.status_posts)
+            self.assertEqual([], fixture.cancelled)
 
     def test_pull_request_target_classification_and_release_matrix(self) -> None:
         cases = (

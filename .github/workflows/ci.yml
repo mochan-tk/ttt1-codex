@@ -53,7 +53,6 @@ jobs:
           TASK35_MODE: admission
           GH_TOKEN: ${{ github.token }}
           EVENT_NAME: ${{ github.event_name }}
-          EVENT_PATH: ${{ github.event_path }}
           REPOSITORY: ${{ github.repository }}
           REPOSITORY_ID: ${{ github.repository_id }}
           API_URL: ${{ github.api_url }}
@@ -932,7 +931,11 @@ jobs:
 
 
           def event_document(repository: str, repository_id: int) -> dict[str, object]:
-              path = pathlib.Path(exact_string(os.environ.get("EVENT_PATH"), "EVENT_PATH"))
+              path = pathlib.Path(
+                  exact_string(
+                      os.environ.get("GITHUB_EVENT_PATH"), "GITHUB_EVENT_PATH"
+                  )
+              )
               try:
                   raw = path.read_bytes()
               except OSError as error:
