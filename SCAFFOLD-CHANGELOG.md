@@ -6,11 +6,16 @@ elsewhere.
 
 **Template line:** Codex-native ADLC
 
-**Current candidate:** v1.0.0
+**Current candidate:** v1.1.0-rc.1
 
-**Candidate state:** GitHub control-plane, Codex-native execution, repository
-skills, CI, tuning visibility, and retro hygiene are implemented. The measured
-license trial and human license merge are still required before release.
+**Candidate state:** GitHub control-plane, Codex-native execution, safe
+install/upgrade, connectors, a skills-only plugin artifact, migration and
+operations documentation, CI, tuning visibility, and retro hygiene are
+implemented. A reviewed tag, live adoption trial, Windows PowerShell exercise,
+and human license merge remain release gates.
+
+<!-- scaffold-version: repo=mochan-tk/ttt1-codex sha=unknown date=unknown -->
+**Scaffold version adopted by this instance:** canonical release candidate
 
 ## Upgrade an instance
 
@@ -52,6 +57,31 @@ Each applicable instance PR records exactly one result:
 
 ## Versions
 
+### v1.1.0-rc.1 — unreleased
+
+Reconstructs the current Copilot kit at
+`f466c7e169243e2bea03b4b33a20f8c557328d96` as native Codex capabilities while
+retaining the stronger existing Codex ledger and test foundation.
+
+- adds the ninth `codex-automation` skill and an `explorer` custom agent with
+  a read-only default and explicit no-write instructions;
+- packages all nine skills as a validated, byte-synchronized skills-only
+  plugin artifact without modifying a marketplace;
+- ports context connectors, source activation, consent-gated adopter feedback,
+  and the safe Bash/PowerShell installer to Codex discovery paths;
+- makes label, Project, and source mutation explicit with `--apply`, keeps
+  preview paths non-mutating, and leaves the separately owned ruleset
+  admission boundary unchanged;
+- adds architecture, capability mapping, Copilot/earlier-Codex migration,
+  examples, limitations, security, contribution, and maintenance guidance;
+- expands deterministic checks to the plugin, connectors, all shipped
+  workflows, installer behavior, permissions, and lineage; and
+- deliberately excludes the separately frozen optional Dev Container work.
+
+Existing instances should run `scaffold-init.sh --upgrade --dry-run`, review
+every refreshed file, and manually reconcile preserved workflows,
+CODEOWNERS, `AGENTS.md`, `.codex/config.toml`, agreements, and context.
+
 ### v1.0.0 — candidate
 
 Fresh-history Codex specialization consolidated from:
@@ -74,7 +104,7 @@ Implemented candidate surface:
 - GitHub Issue forms, PR Evidence template, CODEOWNERS, Dependabot, and safe
   label, Project, and disabled-ruleset setup scripts;
 - concise `AGENTS.md`, portable `.codex/` configuration, focused custom agents,
-  and eight Codex-native workflows under `.agents/skills/`;
+  and eight initial Codex-native workflows under `.agents/skills/`;
 - deterministic Markdown, form/template, skill, compatibility-path,
   English-content, and shell checks;
 - separate `quality` and `scaffold-self-check` CI jobs with third-party Actions

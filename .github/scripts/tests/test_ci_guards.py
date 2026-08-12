@@ -145,11 +145,12 @@ steps:
         self.assertEqual(1, len(errors))
         self.assertIn("40-hex", errors[0].message)
 
-    def test_discovery_requests_only_named_scaffold_workflows(self) -> None:
+    def test_discovery_requests_all_tracked_workflows(self) -> None:
         completed = subprocess.CompletedProcess(
             args=[],
             returncode=0,
             stdout=(
+                b".github/workflows/adopter-feedback.yml\0"
                 b".github/workflows/ci.yml\0"
                 b".github/workflows/retro-hygiene.yml\0"
             ),
@@ -158,6 +159,7 @@ steps:
             paths = action_pins.tracked_workflow_paths(ROOT)
         self.assertEqual(
             [
+                ROOT / ".github/workflows/adopter-feedback.yml",
                 ROOT / ".github/workflows/ci.yml",
                 ROOT / ".github/workflows/retro-hygiene.yml",
             ],
@@ -165,7 +167,7 @@ steps:
         )
         command = run.call_args.args[0]
         self.assertEqual(
-            ["git", "ls-files", "-z", "--", *action_pins.WORKFLOW_PATHS],
+            ["git", "ls-files", "-z", "--", ".github/workflows"],
             command,
         )
 
@@ -187,17 +189,13 @@ class ScaffoldContractTests(unittest.TestCase):
             re.compile(rf"(?m)^[ \t]+run: {re.escape(discovery_command)}$"),
         )
 
-    def test_readme_lists_guard_and_action_pin_checks(self) -> None:
-        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    def test_ci_lists_guard_and_action_pin_checks(self) -> None:
+        workflow = (ROOT / ".github/workflows/ci.yml").read_text(encoding="utf-8")
         self.assertIn(
             "python3 -m unittest discover -s .github/scripts/tests -p 'test_*.py' -v",
-            readme,
+            workflow,
         )
-        self.assertIn("python3 .github/scripts/check_action_pins.py", readme)
-        self.assertIn(
-            "[`.github/docs/agreements/`](.github/docs/agreements/README.md)",
-            readme,
-        )
+        self.assertIn("python3 .github/scripts/check_action_pins.py", workflow)
         self.assertTrue((ROOT / ".github/docs/agreements/README.md").is_file())
 
     def test_ci_selectors_are_explicit_and_codeowners_preserves_workflow_coverage(self) -> None:
@@ -223,12 +221,16 @@ class ScaffoldContractTests(unittest.TestCase):
         )
         self.assertEqual(2, workflow.count(shell_selector))
         self.assertNotIn("git ls-files -z '*.sh'", workflow)
-        actionlint_command = (
-            '"$RUNNER_TEMP/actionlint" -color \\\n'
-            "            .github/workflows/ci.yml \\\n"
-            "            .github/workflows/retro-hygiene.yml"
+        actionlint_selector = (
+            "          workflow_files=()\n"
+            "          while IFS= read -r -d '' workflow_file; do\n"
+            "            case \"$workflow_file\" in\n"
+            "              *.yml|*.yaml) workflow_files+=(\"$workflow_file\") ;;\n"
+            "            esac\n"
+            "          done < <(git ls-files -z -- .github/workflows)"
         )
-        self.assertEqual(1, workflow.count(actionlint_command))
+        self.assertEqual(1, workflow.count(actionlint_selector))
+        self.assertIn('"$RUNNER_TEMP/actionlint" -color "${workflow_files[@]}"', workflow)
         self.assertNotIn(".github/workflows/*.yml", workflow)
         self.assertIn("/.github/docs/agreements/**", codeowners)
         self.assertIn("/.github/workflows/**", codeowners)
@@ -353,11 +355,6 @@ class NamespaceBoundaryTests(unittest.TestCase):
             ".github/ISSUE_TEMPLATE/custom.yml",
             "name: adopter\nbody: [\n",
         )
-        self.track(
-            ".github/workflows/app.yml",
-            "jobs:\n  app:\n    steps:\n      - uses: example/action@main\n",
-        )
-
         skills = self.run_guard(".github/scripts/check-skills.sh")
         links = self.run_guard(".github/scripts/check-md-links.sh")
         templates = self.run_guard(".github/scripts/check-template-sync.sh")
@@ -367,7 +364,7 @@ class NamespaceBoundaryTests(unittest.TestCase):
         self.assertEqual(0, links.returncode, links.stdout + links.stderr)
         self.assertEqual(0, templates.returncode, templates.stdout + templates.stderr)
         self.assertEqual(0, pins.returncode, pins.stdout + pins.stderr)
-        self.assertIn("across 2 named workflow file(s)", pins.stdout)
+        self.assertIn("across 3 tracked workflow file(s)", pins.stdout)
 
     def test_named_control_content_fails_closed(self) -> None:
         japanese = "\u65e5\u672c\u8a9e"
@@ -409,7 +406,23 @@ class NamespaceBoundaryTests(unittest.TestCase):
         self.assertIn(".github/ISSUE_TEMPLATE/task.yml", template_output)
         self.assertIn("invalid YAML", template_output)
 
-    def test_codex_contract_fails_closed(self) -> None:
+    def test_plugin_version_must_match_release_lineage(self) -> None:
+        relative = "plugin/agentic-dev-kit-for-codex/.codex-plugin/plugin.json"
+        manifest = (self.repo / relative).read_text(encoding="utf-8")
+        manifest = re.sub(
+            r'("version"\s*:\s*")[^"]+(")',
+            lambda match: match.group(1) + "9.9.9" + match.group(2),
+            manifest,
+            count=1,
+        )
+        self.track(relative, manifest)
+
+        result = self.run_guard(".github/scripts/check-skills.sh")
+        output = result.stdout + result.stderr
+        self.assertNotEqual(0, result.returncode, output)
+        self.assertIn("must match changelog current candidate", output)
+
+    def test_additional_project_agent_is_an_extension_point(self) -> None:
         self.track(
             ".codex/agents/unexpected.toml",
             'name = "unexpected"\n'
@@ -419,8 +432,20 @@ class NamespaceBoundaryTests(unittest.TestCase):
         )
         result = self.run_guard(".github/scripts/check-skills.sh")
         output = result.stdout + result.stderr
+        self.assertEqual(0, result.returncode, output)
+
+    def test_bundled_agent_contract_fails_closed(self) -> None:
+        explorer = (self.repo / ".codex/agents/explorer.toml").read_text(
+            encoding="utf-8"
+        )
+        self.track(
+            ".codex/agents/explorer.toml",
+            explorer + 'model = "organization-specific-model"\n',
+        )
+        result = self.run_guard(".github/scripts/check-skills.sh")
+        output = result.stdout + result.stderr
         self.assertEqual(1, result.returncode, output)
-        self.assertIn("unexpected project agent", output)
+        self.assertIn("model pin setting 'model' is not portable", output)
 
     def test_root_agents_contract_fails_closed(self) -> None:
         self.track("AGENTS.md", "\u65e5\u672c\u8a9e\n")
@@ -430,13 +455,19 @@ class NamespaceBoundaryTests(unittest.TestCase):
         self.assertIn("AGENTS.md:1", output)
         self.assertIn("persistent scaffold content must be English-only", output)
 
-    def test_named_workflow_fails_while_adopter_sibling_is_ignored(self) -> None:
+    def test_every_tracked_workflow_is_checked(self) -> None:
         self.track(
             ".github/workflows/app.yml",
             "jobs:\n  app:\n    steps:\n      - uses: example/action@main\n",
         )
         sibling = self.run_command(sys.executable, ".github/scripts/check_action_pins.py")
-        self.assertEqual(0, sibling.returncode, sibling.stdout + sibling.stderr)
+        sibling_output = sibling.stdout + sibling.stderr
+        self.assertEqual(1, sibling.returncode, sibling_output)
+        self.assertIn(".github/workflows/app.yml", sibling_output)
+        self.assertIn("40-hex", sibling_output)
+
+        self.run_command("git", "rm", "--cached", "--", ".github/workflows/app.yml", check=True)
+        (self.repo / ".github/workflows/app.yml").unlink()
 
         ci_path = self.repo / ".github/workflows/ci.yml"
         ci_text = ci_path.read_text(encoding="utf-8")

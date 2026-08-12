@@ -5,6 +5,13 @@
 
 set -euo pipefail
 
+if [[ -n "${BASH_SOURCE[0]:-}" && -r "$(dirname "${BASH_SOURCE[0]}")/feedback-lib.sh" ]]; then
+  # shellcheck source=/dev/null
+  if . "$(dirname "${BASH_SOURCE[0]}")/feedback-lib.sh" 2>/dev/null; then
+    feedback_arm setup-project || true
+  fi
+fi
+
 usage() {
   cat <<'EOF'
 Usage:
@@ -28,12 +35,14 @@ Options:
   --target <YYYY-MM-DD>    dates only. Target date, not before Start date.
   -R, --repo <owner/repo>  Target repository. Default: current repository.
   --dry-run                Print planned actions without calling GitHub.
+  --apply                  Explicitly authorize live GitHub changes.
   -h, --help               Show this help and exit.
 
 Projects v2 requires an authenticated gh CLI with the project scope and an
 account allowed to create/link Projects. Organization policy or account tier
-may limit those operations. Roadmap view creation and grouping are manual UI
-steps because the API does not expose that view configuration.
+may limit those operations. The helper creates Roadmap, Kanban, and Backlog
+views by exact name where the API permits it; selecting date fields and grouping
+the Roadmap by Kind remain manual UI steps.
 EOF
 }
 
@@ -51,12 +60,35 @@ usage_error() {
 require_tools() {
   command -v gh >/dev/null 2>&1 || fail "gh CLI not found on PATH"
   command -v jq >/dev/null 2>&1 || fail "jq not found on PATH"
+  # owner/repo and Project owner arguments do not carry a hostname. Fix the
+  # live process to the github.com support boundary so GH_HOST cannot retarget
+  # an approved preview to a same-named resource on another host.
+  export GH_HOST=github.com
+  gh auth status --hostname github.com >/dev/null 2>&1 \
+    || fail "gh is not authenticated; run 'gh auth login --hostname github.com'"
 }
 
 REPO=""
 REPO_NAME=""
 REPO_OWNER=""
 DRY_RUN="false"
+MODE=""
+
+select_mode() {
+  local requested="$1"
+  if [[ -n "$MODE" && "$MODE" != "$requested" ]]; then
+    usage_error "choose exactly one of --dry-run or --apply"
+  fi
+  MODE="$requested"
+  if [[ "$requested" == "dry-run" ]]; then
+    DRY_RUN="true"
+  fi
+}
+
+require_mode() {
+  [[ -n "$MODE" ]] || usage_error \
+    "choose --dry-run (no GitHub writes) or --apply (live GitHub changes)"
+}
 
 infer_repo_from_git() {
   local remote=""
@@ -81,12 +113,8 @@ infer_repo_from_git() {
 
 resolve_repo() {
   if [[ -z "$REPO" ]]; then
-    if [[ "$DRY_RUN" == "true" ]]; then
-      infer_repo_from_git || usage_error \
-        "dry run could not infer a GitHub origin; pass -R owner/repo"
-    else
-      REPO="$(gh repo view --json nameWithOwner --jq .nameWithOwner)"
-    fi
+    infer_repo_from_git || usage_error \
+      "could not infer a GitHub.com origin; pass -R owner/repo"
   fi
   local repo_re='^[^/[:space:]]+/[^/[:space:]]+$'
   [[ "$REPO" =~ $repo_re ]] || \
@@ -212,7 +240,11 @@ cmd_init() {
         shift 2
         ;;
       --dry-run)
-        DRY_RUN="true"
+        select_mode "dry-run"
+        shift
+        ;;
+      --apply)
+        select_mode "apply"
         shift
         ;;
       -h|--help)
@@ -225,6 +257,8 @@ cmd_init() {
     esac
   done
 
+  require_mode
+
   if [[ "$DRY_RUN" != "true" ]]; then
     require_tools
   fi
@@ -236,6 +270,7 @@ cmd_init() {
     echo "Would create or reuse project '$title' owned by $owner."
     echo "Would ensure DATE fields 'Start date' and 'Target date'."
     echo "Would ensure SINGLE_SELECT field 'Kind' with options Epic and Task."
+    echo "Would ensure Roadmap, Kanban, and Backlog views by exact name."
     echo "Would link the project to $REPO."
     echo "Dry run complete; no GitHub calls were made."
     return 0
@@ -250,10 +285,27 @@ cmd_init() {
   if [[ -n "$number" ]]; then
     echo "Reusing project #$number ('$title') owned by $owner."
   else
+    local closed_number=""
+    # shellcheck disable=SC2016
+    closed_number="$(gh project list --owner "$owner" --closed --limit 100 \
+      --format json | jq -r --arg title "$title" \
+        '[.projects[] | select(.title == $title and .closed == true) | .number] | first // empty')"
+    if [[ "$closed_number" =~ ^[1-9][0-9]*$ ]]; then
+      fail "project '$title' owned by '$owner' exists but is closed (#$closed_number); reopen it explicitly before rerunning init"
+    fi
     number="$(gh project create --owner "$owner" --title "$title" \
       --format json --jq '.number')"
+    if ! [[ "$number" =~ ^[1-9][0-9]*$ ]]; then
+      # shellcheck disable=SC2016
+      number="$(gh project list --owner "$owner" --limit 100 --format json \
+        | jq -r --arg title "$title" \
+            '[.projects[] | select(.title == $title) | .number] | first // empty')"
+    fi
     echo "Created project #$number ('$title') owned by $owner."
   fi
+
+  [[ "$number" =~ ^[1-9][0-9]*$ ]] || \
+    fail "could not determine the number of project '$title' owned by '$owner'"
 
   local project_json="" project_id="" url="" fields_json=""
   local field_name="" count="" data_type="" node_type="" option=""
@@ -305,13 +357,39 @@ cmd_init() {
     echo "Field 'Kind' already has SINGLE_SELECT options Epic and Task; skipping."
   fi
 
+  local existing_views="" view_spec="" view_name="" view_layout=""
+  # shellcheck disable=SC2016
+  existing_views="$(gh api graphql -f query='
+    query($id: ID!) {
+      node(id: $id) { ... on ProjectV2 { views(first: 50) { nodes { name } } } }
+    }' -f id="$project_id" --jq '.data.node.views.nodes[].name' 2>/dev/null || true)"
+  for view_spec in "Roadmap:ROADMAP_LAYOUT" "Kanban:BOARD_LAYOUT" "Backlog:TABLE_LAYOUT"; do
+    view_name="${view_spec%%:*}"
+    view_layout="${view_spec##*:}"
+    if printf '%s\n' "$existing_views" | grep -Fxq "$view_name"; then
+      echo "View '$view_name' already exists; skipping."
+      continue
+    fi
+    # shellcheck disable=SC2016
+    if gh api graphql -f query='
+      mutation($p: ID!, $n: String!, $l: ProjectV2ViewLayout!) {
+        createProjectV2View(input: {projectId: $p, name: $n, layout: $l}) {
+          projectV2View { id }
+        }
+      }' -f p="$project_id" -f n="$view_name" -f l="$view_layout" >/dev/null 2>&1; then
+      echo "Created '$view_name' view ($view_layout)."
+    else
+      echo "warning: could not create '$view_name'; add it in the Project UI."
+    fi
+  done
+
   gh project link "$number" --owner "$owner" --repo "$REPO"
   echo "Linked project #$number to $REPO."
 
   echo "Project number: $number"
   echo "Project URL:    $url"
-  echo "Manual step: create a Roadmap view using Start date and Target date,"
-  echo "then group it by Kind. Do not treat that view as planning authority."
+  echo "Manual step: configure the Roadmap view to use Start date and Target"
+  echo "date, then group it by Kind. The Issue graph remains planning authority."
 }
 
 cmd_dates() {
@@ -349,7 +427,11 @@ cmd_dates() {
         shift 2
         ;;
       --dry-run)
-        DRY_RUN="true"
+        select_mode "dry-run"
+        shift
+        ;;
+      --apply)
+        select_mode "apply"
         shift
         ;;
       -h|--help)
@@ -361,6 +443,9 @@ cmd_dates() {
         ;;
     esac
   done
+
+
+  require_mode
 
   [[ -n "$project" && -n "$issue" && -n "$start" && -n "$target" ]] || \
     usage_error "dates requires --project, --issue, --start, and --target"

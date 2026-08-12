@@ -1,316 +1,231 @@
-# Codex ADLC Template
+# Agentic Dev Kit for Codex
 
-> Status: the v1.0.0 candidate now contains the GitHub control plane, Codex
-> execution plane, repository skills, deterministic CI, and retro hygiene. The
-> canonical template's agreement merge is complete; its measured license trial
-> and license merge remain pending.
+A Codex-native, evidence-driven development lifecycle built on GitHub's durable
+ledger. It turns intent, plans, changes, verification, and lessons into records
+that a fresh agent session can reconstruct without chat history.
 
-This is a reusable, Codex-native repository template for the **Agentic
-Development Lifecycle (ADLC)**. It keeps intent, plans, changes, evidence, and
-lessons in versioned GitHub records instead of ephemeral chat history.
+This is a deliberate reconstruction of
+[`agentic-dev-kit-for-copilot`](https://github.com/mochan-tk/agentic-dev-kit-for-copilot)
+for current Codex concepts. It is not a filename substitution: Copilot
+instructions, agents, prompts, skills, setup, and MCP assumptions are mapped to
+`AGENTS.md`, repo skills, project custom agents, portable config, GitHub
+controls, plugins, connectors, and safe optional integrations.
 
-ADLC is an operating layer on top of a team's existing software development
-lifecycle. It does not replace Scrum, Kanban, release management, or product
-governance. It supplies the durable memory and mechanical verification needed
-when stateless agents execute work in parallel.
+## What is included
 
-## Getting Started
+- A concise root `AGENTS.md` constitution and support for nested instructions.
+- Nine workflows under `.agents/skills/`: context collection, distillation,
+  onboarding, planning, routing, orchestration, verification, retro, and safe
+  Codex automation design.
+- Four focused custom agents under `.codex/agents/`: explorer, planner,
+  orchestrator, and reviewer. They have read-only defaults and explicit
+  no-write instructions; parent and user runtime policy remains authoritative.
+- GitHub Issue forms, plan/outcome chronology, PR Evidence, CODEOWNERS,
+  Dependabot, required-check scaffolding, ruleset/Project/label helpers, and
+  retro hygiene.
+- Pluggable builtin and spec-kit context connectors.
+- A collision-safe Bash installer, Windows Git Bash launcher, upgrade
+  preservation, provenance marker, and LF-safe distribution.
+- A validated skills-only Codex plugin artifact.
+- Deterministic validators, regression tests, CI, migration guidance,
+  capability traceability, examples, limitations, and maintenance procedures.
 
-### Prerequisites
+## Quick start
 
-- Git, Bash 3.2 or later, Ruby with its standard YAML parser, `jq`, and a
-  Python 3.11-or-later interpreter available as `python3`, `python3.13`,
-  `python3.12`, or `python3.11`.
-- An authenticated GitHub CLI (`gh auth status`) with access to Issues, pull
-  requests, Actions, and labels in the target repository. Ruleset setup also
-  needs Administration write permission; optional Projects setup needs the
-  `project` scope.
-- A Codex surface with repository access, plus an eligible human code owner who
-  uses a GitHub identity other than the trial PR author and can approve it.
+Prerequisites are Git, Bash 3.2+, Ruby with its standard YAML parser, `jq`,
+Python 3.11+, and a current Codex surface. Live GitHub setup also needs an
+authenticated `gh` session for `github.com`; optional Projects and rulesets
+need their corresponding account permissions. Windows uses Git for Windows
+and the included PowerShell launcher.
 
-### First 10 minutes
+### New repository
 
-1. On GitHub, select **Use this template** and create the target repository.
-   Do not clone this canonical source as the project repository.
+Use this repository as a GitHub template, clone the result, and open its root in
+Codex app, CLI, IDE, or cloud. Confirm the copied instance is visibly untuned:
 
-2. From a terminal, confirm the local tools and GitHub identity before asking
-   Codex to change anything:
+```bash
+.github/scripts/tuning-status.sh
+```
 
-   ```bash
-   git --version
-   bash --version
-   ruby --version
-   jq --version
-   python3 --version
-   gh auth status
-   ```
+Preview and then explicitly apply the canonical labels:
 
-   If `python3` is older than 3.11, install or expose `python3.11`,
-   `python3.12`, or `python3.13` before continuing.
+```bash
+.github/scripts/setup-labels.sh --dry-run
+.github/scripts/setup-labels.sh --apply
+```
 
-3. Clone the repository created in step 1, then open its root in the Codex app,
-   CLI, or IDE extension. Replace `OWNER` and `REPOSITORY` first:
+Create a setup Epic and Task with the Issue forms. Give the Task to Codex and
+invoke `$context-collection`, `$context-distillation`, and then
+`$project-onboarding`. Do not enter measured setup until a human agreement
+merge accepts the project truth.
 
-   ```bash
-   gh repo clone OWNER/REPOSITORY
-   cd REPOSITORY
-   ```
+### Existing repository
 
-4. Confirm that the copied repository fails closed instead of pretending to
-   be ready:
+Preview from a local kit checkout without network access:
 
-   ```bash
-   .github/scripts/tuning-status.sh
-   ```
+```bash
+SCAFFOLD_SOURCE_DIR=/absolute/path/to/agentic-dev-kit-for-codex \
+  bash /absolute/path/to/agentic-dev-kit-for-codex/.github/scripts/scaffold-init.sh \
+  --dry-run /absolute/path/to/target-repository
+```
 
-   The expected first result is exit `1`, `NOT TUNED`, and both
-   `.github/workflows/ci.yml` and `.github/CODEOWNERS` named as incomplete.
+Remove `--dry-run` only after reviewing the plan. A fresh install refuses
+collisions and all symlink paths, stages the result, and never commits. For an
+adopted instance, use `--upgrade --dry-run` first; upgrades refresh kit-owned
+machinery and preserve project agreements, context, workflows, ownership,
+constitution, and Codex config for manual reconciliation.
 
-5. Create the durable Phase 0α work graph. Run the label helper, then use the
-   GitHub **Epic** and **Task** Issue forms to create one setup Epic and the
-   first onboarding Task. From the Epic's **Sub-issues** section, add that Task
-   as a sub-issue:
+See the [complete quickstart](.github/docs/guides/quickstart.md).
 
-   ```bash
-   .github/scripts/setup-labels.sh
-   ```
+### Skills-only plugin
 
-6. Give Codex the onboarding Task as its work order. Replace `NUMBER`, then use
-   this prompt:
+[`plugin/agentic-dev-kit-for-codex/`](plugin/agentic-dev-kit-for-codex/)
+contains the same nine skills as a valid plugin artifact. It intentionally does
+not install the repository constitution, custom project agents, GitHub
+controls, config, or scripts. Its `LICENSE` and `NOTICE.md` make the directory
+self-contained for packaging. This repository does not alter a personal/team
+marketplace; marketplace publication or registration is a separate maintainer
+step.
 
-   ```text
-   Work from Task #NUMBER and follow AGENTS.md. Use $context-collection and
-   $context-distillation to prepare only the project-specific agreement pull
-   request. Stop after opening the draft PR. Do not invoke $project-onboarding,
-   replace measured CI commands, or create a ruleset before the human agreement
-   merge.
-   ```
+## Lifecycle
 
-The first session is complete when the setup Epic and its first sub-issue Task
-exist, their source links are durable on GitHub, and the repository still
-reports `NOT TUNED` for the known CI and ownership placeholders. Continue with
-the full onboarding gates below.
-
-### Full onboarding
-
-The following nine gates are the authoritative adoption sequence. Keep their
-`Done when` evidence across the setup Epic and its linked Task/PR records. Where
-a gate changes repository state, use a dedicated Task and one pull request;
-preserve the `1 Task = 1 PR` invariant.
-
-1. **Expose the untuned state.** Run `.github/scripts/tuning-status.sh` in the copied
-   repository. **Done when:** it returns `1` and names both
-   `.github/workflows/ci.yml` and `.github/CODEOWNERS` as incomplete targets.
-2. **Create the Phase 0α receptacle and labels.** Create a setup Epic with an
-   onboarding Task, run `.github/scripts/setup-labels.sh`, and collect only the source
-   references needed to establish project truth. **Done when:** the Task is a
-   sub-issue of the setup Epic and all 11 canonical labels exist without
-   applying guessed project commands.
-3. **Agree before setup.** Collect and distill the target project's actual
-   requirements and decisions, then obtain the human agreement merge.
-   **Done when:** the project-specific agreement PR is merged and Phase 0β may
-   begin.
-4. **Apply measured Phase 0β setup.** Invoke `$project-onboarding`; run the real
-   install, format, lint, type-check, test, and build commands, replace the CI
-   placeholder, and replace every template CODEOWNER with the eligible target
-   user or team. **Done when:** the evidence PR records fresh command results,
-   the non-author code-owner path is verified, and `.github/scripts/tuning-status.sh`
-   returns `0`.
-5. **Propose the review wall disabled.** Run `.github/scripts/setup-ruleset.sh` with the
-   measured required checks and inspect the result. **Done when:** GitHub shows
-   the ruleset as disabled and its pull-request, code-owner, and required-check
-   rules match the evidence; no agent has enabled it.
-6. **Run the license trial.** Carry one small Task through its Issue plan,
-   implementation, checks, Evidence, and completion PR. **Done when:** required
-   checks pass and an eligible non-author human code owner approves the trial
-   PR.
-7. **Perform the license merge.** Review the setup evidence only after the
-   trial and disabled-ruleset review succeed. **Done when:** a human merges the
-   setup evidence PR and its review history records the license decision.
-8. **Enable only after licensing.** A human may enable the reviewed ruleset in
-   GitHub Settings. **Done when:** it is active and an Issue-backed, unapproved
-   test pull request cannot merge.
-9. **Open the first delivery wave.** File the first delivery Epic, detail only
-   its next Tasks, and calculate the frontier. **Done when:** the frontier
-   reports at least one open, `type:task`, `ai:ready`, unblocked Task for
-   dispatch.
-
-### You are ready when
-
-Use the nine `Done when` clauses above as the source of truth. The repository
-is licensed for ordinary delivery only when all of these summary conditions
-are observable:
-
-- the agreement and license merges are present in GitHub history;
-- `.github/scripts/tuning-status.sh` returns `0` for measured CI and review ownership;
-- a human has enabled the reviewed ruleset, and an Issue-backed negative trial
-  proves that an unapproved pull request cannot merge; and
-- the mechanically calculated frontier contains at least one open, ready,
-  unblocked delivery Task.
-
-The setup scripts, Codex skills, Issue forms, workflows, and self-checks are
-implemented v1.0.0 candidate artifacts under
-[Epic #1](https://github.com/mochan-tk/ttt1-codex/issues/1). They remain a
-candidate until the measured license trial is reviewed and merged.
-
-## Measured scaffold status
-
-`tuning-status.sh` has three stable modes:
-
-| Command | Output | Exit behavior |
+| Phase | Result | Durable home |
 |---|---|---|
-| `.github/scripts/tuning-status.sh` | Human report and measured next steps | `0` when tuned, `1` when incomplete |
-| `.github/scripts/tuning-status.sh --quiet` | None | `0` when tuned, `1` when incomplete |
-| `.github/scripts/tuning-status.sh --ci` | GitHub warning annotations when incomplete | Always `0` so onboarding remains visible without hiding scaffold defects |
+| 0α. Minimum receptacle | The project can receive reviewed context without guessed setup | Issue forms, context and agreement directories |
+| 1. Collect | Sources and minimum extracts are captured with provenance | `.github/docs/context/`, connector pins |
+| 2. Distill and agree | Requirements, decisions, boundaries, and terms become reviewed truth | Agreement PR and merge |
+| 0β. Measured setup | Codex guidance and CI use commands actually run in the target environment | `AGENTS.md`, skills, config, CI, evidence PR |
+| 3. Plan and orchestrate | Epic/Task dependencies expose the actionable frontier | GitHub Issue graph and plan comments |
+| 4. Route and execute | One owner changes one bounded Task | Task session, worktree, branch, PR |
+| 5. Verify and learn | Evidence passes checks/review and recurring friction improves the system | Checks, outcome comment, completion merge, retro |
 
-The canonical template repository intentionally retains both copied-template
-sentinels and is recognized by its exact GitHub origin. A repository created
-from the template has a different origin, so it remains visibly incomplete
-until `$project-onboarding` replaces the CI `CUSTOMIZE` block with measured
-commands and the CODEOWNERS marker with eligible review ownership.
+## The Three Merges
 
-Run the deterministic scaffold checks locally before every scaffold change:
+Human judgment is concentrated in three durable events:
 
-The checks use Git, Bash, Python 3.11 or later, Ruby's standard YAML parser,
-and `gh` for the live read-only retro report. Ruleset and Project setup also
-use `jq`. The hosted workflow supplies its lint tools from checksum-verified
-release archives.
+| Merge | Human accepts | Evidence |
+|---|---|---|
+| Agreement | What to build and the constraints | Reviewed requirements, ADRs, non-goals, glossary |
+| License | The measured repository setup is safe enough to delegate | Setup evidence plus one complete trial Task |
+| Completion | One Task meets its work order | Fresh Evidence, required checks, Codex review, non-author human approval |
+
+A chat approval is not a merge. Agents do not approve their own high-risk plan,
+enable enforcement, merge a PR, or declare the repository licensed.
+
+## Operating invariants
+
+- GitHub commits, Issues, comments, PRs, reviews, and checks are the durable
+  ledger. Session state and Projects views are replaceable caches.
+- `1 Task = 1 session = 1 worktree = 1 branch = 1 PR` with one active writer.
+- The requester owns the Task body. The executor records Start, Plan, Revised
+  Plan, Resume, and Outcome as append-only comments.
+- Acceptance criteria and measures precede implementation. An agent statement
+  is never Evidence.
+- Parallel Tasks own disjoint paths; overlap becomes a dependency.
+- A high-risk Task stops after the exact Plan comment until an authorized human
+  approves it. Normal Tasks use lazy consensus.
+- Credentials, PII, controlled data, private endpoints, personal paths, and
+  concrete model pins do not belong in the generic kit or public ledger.
+- After three same-command, same-root-cause attempts at a level, escalate
+  rather than grind until green.
+
+## Codex-native structure
+
+```text
+AGENTS.md                           repository constitution
+.agents/skills/                    nine canonical workflows
+.codex/agents/                     four agents with read-only defaults
+.codex/config.toml                 portable trusted-project settings
+.github/connectors/                context source contract and definitions
+.github/docs/                      agreements, context, and operating guides
+.github/scripts/                   setup, installer, validators, and tests
+.github/workflows/                 deterministic CI and hygiene
+plugin/agentic-dev-kit-for-codex/  synchronized skills-only package
+```
+
+The architecture follows current official guidance for
+[AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md),
+[skills](https://learn.chatgpt.com/docs/build-skills),
+[custom agents](https://learn.chatgpt.com/docs/agent-configuration/subagents),
+[plugins](https://learn.chatgpt.com/docs/build-plugins), and
+[hooks](https://learn.chatgpt.com/docs/hooks).
+
+No active hook, organization-specific MCP server, app automation, or
+secret-bearing Codex Action is enabled by default. Use `$codex-automation` to
+select and review the smallest supported mechanism.
+
+## Safe setup helpers
+
+The label, Project, and source helpers are preview-first and require explicit
+`--apply` before mutation:
+
+```bash
+.github/scripts/setup-labels.sh --dry-run
+.github/scripts/setup-project.sh init --dry-run
+.github/scripts/setup-ruleset.sh --dry-run
+.github/scripts/setup-sources.sh --source builtin --dry-run
+```
+
+The ruleset helper is deliberately preserved unchanged for the separately
+owned admission-boundary work. In this release candidate, use it only with
+`--dry-run`; do not automate its live path. A human reviews and enables any
+future enforcement proposal after accepted license evidence. The source
+activation helper writes only a local registry; its activation PR remains the
+durable decision.
+
+## Validation
+
+Run scaffold checks before every kit change:
 
 ```bash
 git diff --check
+git diff --cached --check
 bash -n .github/scripts/*.sh .agents/skills/plan-management/scripts/*.sh
-python3 -m unittest discover -s .github/scripts/tests -p 'test_*.py' -v
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover \
+  -s .github/scripts/tests -p 'test_*.py' -v
+.github/scripts/tests/run-portable-tests.sh
 python3 .github/scripts/check_action_pins.py
 .github/scripts/check-md-links.sh
 .github/scripts/check-template-sync.sh
 .github/scripts/check-skills.sh
+.github/scripts/check-connectors.sh
+.github/scripts/check-changelog-refs.sh
+.github/scripts/check-escalation-wording.sh
+.github/scripts/check-workflow-permissions.sh
 .github/scripts/retro-hygiene.sh
-.github/scripts/tuning-status.sh
-.github/scripts/tuning-status.sh --quiet
 .github/scripts/tuning-status.sh --ci
 ```
 
-The `quality` and `scaffold-self-check` jobs in `.github/workflows/ci.yml` run
-the corresponding remote gates. `.github/workflows/retro-hygiene.yml` produces
-a read-only report on manual runs by default. Its repository-authorized monthly
-schedule, or a manual run with the explicit creation input, may create at most
-one `Retro hygiene review YYYY-MM` Issue. It never promotes a candidate or
-changes instructions without a reviewed PR. Begin confirmed recurrence
-comments with `Occurrence:` or `Occurrence evidence:`. A skill-produced comment
-that contains a GitHub Issue/PR evidence link but lacks the prefix is surfaced
-as unmarked evidence—not silently ignored or falsely counted. Confirm it with a
-new marked comment; its historical unmarked count remains visible because the
-ledger is append-only.
+The copied project also runs the exact install, format, lint, type-check, test,
+build, and security commands measured by `$project-onboarding`.
 
-## The Three Merges
+## Documentation
 
-Human judgment is concentrated in dispatch and three durable merge events.
+- [`.github/docs/agreements/`](.github/docs/agreements/README.md) — reviewed
+  requirements, decisions, boundaries, terminology, and retrospectives
+- [Architecture](.github/docs/guides/architecture.md)
+- [Copilot source capability map](.github/docs/guides/copilot-capability-map.md)
+- [Migration from Copilot and earlier Codex versions](.github/docs/guides/migration-from-copilot.md)
+- [Examples](.github/docs/guides/examples.md)
+- [Limitations](.github/docs/guides/limitations.md)
+- [Maintenance and release procedure](.github/docs/guides/maintenance.md)
+- [Context connector contract](.github/connectors/README.md)
+- [Adopter feedback privacy boundary](.github/docs/adopter-feedback.md)
+- [Installed-kit license and attribution](.github/docs/AGENTIC-DEV-KIT-NOTICE.md)
+- [Security policy](SECURITY.md)
+- [Attribution](NOTICE.md)
 
-| Merge | What the human accepts | Durable record |
-|---|---|---|
-| **Agreement merge** | What to build, why, and what not to build | Reviewed REQ, ADR, non-goals, and glossary pull request |
-| **License merge** | That the measured repository setup is safe enough for unattended delegation | Setup evidence pull request plus one end-to-end trial Task |
-| **Completion merge** | That a Task meets its executable acceptance tests, required checks, non-author human approval, and design expectations | Task pull request linked with `Closes #N` |
+## Source, license, and status
 
-A chat approval is not one of the Three Merges. The merge and its review history
-are the ledger entry.
+The reconstruction audits the Copilot source at commit
+`f466c7e169243e2bea03b4b33a20f8c557328d96`. The detailed mapping records a
+Codex implementation or an explicit non-port reason for every major source
+surface. Existing Codex-native work was retained where it was stronger; the
+source was not copied as a compatibility tree.
 
-## Lifecycle
+Licensed under the [MIT License](LICENSE). Copyright (c) 2026 Takashi Kawamoto
+(Mr.Mo). See [NOTICE.md](NOTICE.md) for source attribution.
 
-| Phase | Outcome | Primary durable home |
-|---|---|---|
-| 0α. Minimum receptacle | A thin template instance can receive distilled knowledge | Repository template, `.github/docs/`, Issue forms |
-| 1. Collect | Source references and minimum extracted notes arrive with provenance; originals and controlled data stay outside | `.github/docs/context/` and governed source links |
-| 2. Distill & agree | Requirements, decisions, vocabulary, and boundaries become reviewed truth | `.github/docs/agreements/` and the agreement merge |
-| 0β. Measured setup | Codex guidance, skills, agents, tools, and commands are filled from agreed truth and verified by running them | `AGENTS.md`, `.agents/skills/`, `.codex/`, evidence PR |
-| 3. Plan & orchestrate | Epic sub-issues and dependencies expose the actionable frontier | Issue graph; Projects is a view |
-| 4. Route & execute | One Task runs in one session, worktree, branch, and PR | Task Issue timeline and Task branch |
-| 5. Verify & learn | Deterministic gates, review, retro, and upstream improve the system | Checks, Evidence table, retro and template PRs |
-
-## GitHub control plane and Codex-native execution
-
-- GitHub is the mandatory ADLC control, ledger, and enforcement plane. Issues,
-  labels, sub-issues and dependencies hold the work graph; pull requests,
-  reviews, and `Closes #N` hold change and merge history; Actions, checks,
-  rulesets, CODEOWNERS, and security automation form the gates; Projects is a
-  derived planning view.
-- `AGENTS.md` is the small, always-on repository constitution. Nested
-  `AGENTS.md` files may add narrower rules near the files they govern.
-- `.agents/skills/` contains repo-scoped reusable workflows. Codex loads a
-  skill's full `SKILL.md` only when its description or an explicit invocation
-  selects it.
-- `.codex/agents/` contains project-scoped custom subagents for focused roles.
-- `.codex/config.toml` may hold trusted project settings that are safe to share;
-  user-specific models, credentials, and personal defaults do not belong in
-  the template.
-- Codex uses its native instructions, skills, agents, tools, GitHub connection,
-  and `gh` fallback to operate that GitHub plane end to end. Session-local state
-  is a cache and never replaces a durable GitHub capability.
-
-Codex-specific structure is expected in the execution plane. It must not remove
-or silently reimplement an applicable official GitHub control-plane capability.
-The shared scaffold therefore retains Issue forms, the PR Evidence template,
-CODEOWNERS, Actions, Dependabot, and safe setup scripts for labels, Projects,
-and rulesets even though its agent-facing files are Codex-specific.
-
-This layout follows the current Codex documentation for
-[AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md),
-[repo-scoped skills](https://learn.chatgpt.com/docs/build-skills), and
-[project-scoped custom agents](https://learn.chatgpt.com/docs/agent-configuration/subagents).
-Deprecated custom prompts are not part of the design.
-
-## Operating invariants
-
-- **Record before report:** write the start, plan, changes, outcome, and
-  evidence to the Task Issue or PR before summarizing them in a session.
-- **Verify before done:** an agent's statement is not evidence; commands,
-  checks, diffs, and observable behavior are.
-- **Single writer:** parallel Tasks do not own overlapping paths.
-- **One work unit:** `1 Task = 1 session = 1 worktree = 1 branch = 1 PR`.
-- **Requester-owned work order:** the executing agent never edits its Task
-  Issue body. Changed instructions receive a change comment from the requester.
-- **Plan authority:** the working plan lands as an added Task Issue comment
-  before implementation. Revised plans are new comments, never edits. PR text
-  may copy the plan but must link to the authoritative comment.
-- **Outcome authority:** the executor posts the measured outcome and evidence
-  to the Task Issue before reporting completion; the PR remains the change
-  artifact and links both the plan and Task.
-- **Tests first:** acceptance criteria land as executable tests or checks before
-  implementation. Retries have a budget and an escalation path.
-- **Reference, do not paste:** credentials, PII, and controlled data remain in
-  access-controlled systems; Issues and PRs contain only the minimum reference.
-
-The reviewed requirements and decisions live in
-[`.github/docs/agreements/`](.github/docs/agreements/README.md).
-
-## Human boundary
-
-Humans own the work order, review bandwidth, exceptions, and the Three Merges.
-Agents collect, plan, implement, run checks, record evidence, diagnose, and
-propose improvements. High-risk Tasks are the exception to lazy consensus:
-they stop after the plan comment until an authorized human approves it.
-
-Every repository setting change, however small, starts from an Issue. An agent
-prepares the exact action and evidence; a human performs only a non-delegable UI
-or trust decision, and the observed result is recorded back on the Issue.
-Automation may propose a disabled ruleset, but it must not enable enforcement
-or mark the repository as a GitHub template on its own.
-
-## Origin and comparison scope
-
-This repository is consolidated from
-[`mochan-tk/tt1` main at `74b8b65`](https://github.com/mochan-tk/tt1/tree/74b8b6500b0138c1f667262ced6894d808e73404)
-(released there as v0.5.0), the proposed v0.6.0 plan-landing semantics at
-[`9450b52`](https://github.com/mochan-tk/tt1/commit/9450b52874a22943d5424c5239a1ffa46c4032c7),
-the 2026-08-02 ADLC design review, and the
-[pinned chapter manuscript](https://github.com/mochan-tk/k-wk4-codex/blob/a7eb2629424282f9b8262e0248bed7f1879058db/manuscript/02_agentic_development.md).
-It was rebuilt with fresh history after the owner's 2026-08-03 decision to
-specialize the execution plane for Codex while retaining GitHub as the
-mandatory ADLC control plane.
-
-The comparison with separately built Claude and GitHub Copilot templates is
-an outcome comparison, not a requirement for identical files. This repository
-therefore does not carry `CLAUDE.md` or product-specific compatibility copies.
-The released template uses the MIT software license and serves as the book's
-Appendix C Codex-native sample repository; the agreement merge is the approval
-event for that relationship.
+Until a reviewed tag/release and live adoption trial exist, use an exact commit
+SHA for repeatable installation and treat the current version as a release
+candidate rather than a published marketplace package.

@@ -1,0 +1,36 @@
+{
+  "name": "agentic-dev-kit-for-codex",
+  "version": "1.1.0-rc.1",
+  "description": "Codex-native skills for an evidence-driven Agentic Development Lifecycle on GitHub.",
+  "author": {
+    "name": "Takashi Kawamoto (Mr.Mo)",
+    "url": "https://github.com/mochan-tk"
+  },
+  "homepage": "https://github.com/mochan-tk/ttt1-codex",
+  "repository": "https://github.com/mochan-tk/ttt1-codex",
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "agentic-development",
+    "github",
+    "skills",
+    "adlc"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Agentic Dev Kit for Codex",
+    "shortDescription": "Plan, execute, verify, and learn through a durable GitHub ledger.",
+    "longDescription": "Nine Codex-native skills implement context collection, agreements, read-only assessment, planning, routing, orchestration, verification, retrospectives, and safe automation design. Full GitHub governance requires the repository template or installer.",
+    "developerName": "Takashi Kawamoto (Mr.Mo)",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Use $project-onboarding to assess this repository and detect whether full-kit controls are installed.",
+      "Use $plan-management to identify the actionable frontier.",
+      "Use $verification to audit this Task's evidence."
+    ]
+  }
+}

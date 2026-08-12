@@ -1,0 +1,4 @@
+interface:
+  display_name: "Verification"
+  short_description: "Verify Task outcomes with evidence and required checks"
+  default_prompt: "Use $verification to prove this Task against its acceptance criteria and checks."

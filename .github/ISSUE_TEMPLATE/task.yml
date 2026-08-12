@@ -102,7 +102,8 @@ body:
       label: Routing — Suggested role
       options:
         - default
-        - implementer
+        - worker
+        - explorer
         - planner
         - orchestrator
         - reviewer

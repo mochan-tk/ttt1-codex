@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Automation"
+  short_description: "Design safe Codex hooks, MCP, and scheduled workflows."
+  default_prompt: "Use $codex-automation to design a safe, supported automation for this repository."
