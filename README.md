@@ -162,16 +162,64 @@ The label, Project, and source helpers are preview-first and require explicit
 ```bash
 .github/scripts/setup-labels.sh --dry-run
 .github/scripts/setup-project.sh init --dry-run
-.github/scripts/setup-ruleset.sh --dry-run
+.github/scripts/setup-ruleset.sh --dry-run --integration-id 123456
 .github/scripts/setup-sources.sh --source builtin --dry-run
 ```
 
-The ruleset helper is deliberately preserved unchanged for the separately
-owned admission-boundary work. In this release candidate, use it only with
-`--dry-run`; do not automate its live path. A human reviews and enables any
-future enforcement proposal after accepted license evidence. The source
+The ruleset helper requires exactly one of `--dry-run` or `--apply`, a reviewed
+positive GitHub App integration ID, and the exact three source-bound contexts
+`quality`, `scaffold-self-check`, and `secure-devcontainer`. Dry-run is
+hermetic. Apply targets GitHub.com, shows the exact repository, name, and
+integration ID, then requires an exact confirmation before its first GitHub
+call. It may create or reuse only a fully compatible enforcement-disabled
+proposal; it cannot activate, overwrite, update, or delete a ruleset and never
+falls back to an any-source check. A human must independently prove the trusted
+publisher identity before deciding whether to enforce the proposal. The source
 activation helper writes only a local registry; its activation PR remains the
 durable decision.
+
+## Base-owned Actions admission boundary
+
+The repository's base-owned CI workflow listens only to default-branch
+`pull_request_target` and `issue_comment` activity. Its no-checkout admission
+controller re-fetches the open pull request, exact repository identities and
+SHAs, every paginated file and rename origin, and the complete live human
+authorization set before it can release an isolated candidate worker. It
+classifies runtime controls separately from bootstrap-only Actions,
+CODEOWNERS, ruleset, and controller-test paths. Public-fork code is never
+checked out from a `pull_request_target` run. Workers use a fresh runner,
+read-only contents, a pinned checkout of the accepted repository and SHA, and
+no credentials, environments, OIDC, cache, or artifact handoff to the
+write-capable publisher.
+
+The external, human-applied GitHub Actions Policy allows exactly
+`pull_request_target`, `issue_comment`, `issues`, and `schedule`. The `issues`
+exception exists only for the unchanged default-branch adopter-feedback
+receiver on `types: [opened]`; `schedule` exists only for monthly Retro hygiene.
+Candidate-selected `pull_request`, `push`, `workflow_dispatch`, `merge_group`,
+and every other event stay denied. A blocked event is evidence only when an
+Active Policy capture and a GitHub-hosted `startup_failure` record bind the
+exact event, actor, trusted SHA, denial annotation, zero jobs, zero steps, and
+no side effect. Branch-ruleset API output is not Actions Policy evidence.
+
+Only the isolated publisher can write the exact commit-status contexts
+`quality`, `scaffold-self-check`, and `secure-devcontainer`. It establishes a
+failure/pending exact-head baseline before workers start, revalidates live
+identity, diff, and authorization on a fresh runner, rejects a newer run's
+status ownership, and treats failure, cancellation, or skipped applicable work
+as failure. Commit statuses are not atomic, so a complete source-bound ruleset
+and hosted same-repository/public-fork proof remain mandatory before these
+contexts are enforced.
+
+Hosted Retro is schedule-only. Run a local report with
+`.github/scripts/retro-hygiene.sh -R owner/repo`; create the idempotent monthly
+Issue explicitly with
+`.github/scripts/retro-hygiene.sh --create-issue -R owner/repo`. A future
+remote manual route requires its own reviewed,
+default-branch-owned receiver. Future bootstrap-only controller changes are
+high-risk and human-only; they must not fall back to candidate-triggered code.
+CODEOWNERS on this bootstrap PR is still evaluated from the base branch, so the
+separate non-author review on the exact final SHA remains the merge gate.
 
 ## Validation
 

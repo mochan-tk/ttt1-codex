@@ -70,13 +70,20 @@ retaining the stronger existing Codex ledger and test foundation.
 - ports context connectors, source activation, consent-gated adopter feedback,
   and the safe Bash/PowerShell installer to Codex discovery paths;
 - makes label, Project, and source mutation explicit with `--apply`, keeps
-  preview paths non-mutating, and leaves the separately owned ruleset
-  admission boundary unchanged;
+  preview paths non-mutating, and adds the Task #35 base-owned Actions
+  admission controller, isolated workers, and exact-head publisher;
+- records the human-applied exact-four-event Actions Policy contract and its
+  pre-execution blocked-run evidence model, keeps hosted Retro schedule-only,
+  and hardens the ruleset helper to a source-bound, disabled-only,
+  non-overwriting proposal with exact CODEOWNERS pairing;
 - adds architecture, capability mapping, Copilot/earlier-Codex migration,
   examples, limitations, security, contribution, and maintenance guidance;
 - expands deterministic checks to the plugin, connectors, all shipped
   workflows, installer behavior, permissions, and lineage; and
-- deliberately excludes the separately frozen optional Dev Container work.
+- deliberately excludes the separately frozen optional Dev Container payload.
+  Its final hosted same-repository/public-fork proof, trusted publisher source
+  binding, actual merge blocking, recovery decision, and human enforcement
+  remain ordered gates rather than claims of this release candidate.
 
 Existing instances should run `scaffold-init.sh --upgrade --dry-run`, review
 every refreshed file, and manually reconcile preserved workflows,
