@@ -8,6 +8,7 @@ schema may have changed:
 - [GitHub Action](https://learn.chatgpt.com/docs/github-action)
 - [Skills](https://learn.chatgpt.com/docs/build-skills)
 - [Custom agents](https://learn.chatgpt.com/docs/agent-configuration/subagents)
+- [Scheduled tasks](https://learn.chatgpt.com/docs/automations)
 
 ## Repository hook pattern
 
@@ -15,6 +16,9 @@ Repository hooks live at `.codex/hooks.json` and become active only for a
 trusted project. Keep examples outside that path until a project Task reviews
 the command, event, timeout, and failure policy. Validate the JSON and execute
 the referenced command directly in a clean checkout before enabling it.
+Only `type: "command"` handlers execute in the current runtime; `prompt` and
+`agent` handlers are parsed but skipped. Do not use a skipped type as a policy
+or evidence boundary.
 
 ## MCP pattern
 
@@ -24,12 +28,17 @@ environment variable but must never contain its value. Confirm the currently
 installed Codex CLI schema with official documentation or `codex mcp --help`
 before editing; do not copy a configuration from another client.
 
-## App automation pattern
+## Scheduled task pattern
 
-An app automation is product state, not a tracked repository file. Define its
+A Scheduled task is product state, not a tracked repository file. Define its
 prompt so each run re-reads the durable ledger and exits safely when no action
 is needed. Write schedules with an explicit time zone, use the longest useful
 interval, and include a stop condition. The creating user remains the owner.
+
+Choose the owning surface deliberately: web can use uploaded or connected
+context but not a local folder; the desktop app can use a local project or
+isolated worktree while the computer and app remain running. CLI and IDE may
+test inputs but do not provide the Scheduled management interface.
 
 ## GitHub Action pattern
 

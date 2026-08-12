@@ -9,6 +9,19 @@ Record routing in the requester-owned Task body and mirror the surface with
 exactly one `exec:*` label. Keep concrete model selection in user or
 organization policy; do not pin a model in the reusable repository.
 
+## Detect the distribution boundary
+
+Before editing a Task body or label, check for root `AGENTS.md`, the canonical
+Task Issue template, a readable requester-owned Task, the `exec:*` and risk
+labels, and the repository guidance they implement. If any are absent, name
+the missing controls and treat this as a plugin-only or partial installation.
+Assess the supplied brief read-only and return a draft Routing block, proposed
+single `exec:*` label, role, reasoning tier, risk, and unresolved facts. Do not
+edit an Issue, add or remove a label, invent a project agent, or claim the route
+is durably recorded or enforced. A later live GitHub write requires the full
+controls to be restored and verified first, then separate explicit requester
+authority.
+
 ## Evaluate the Task
 
 Assess these inputs before choosing a surface:

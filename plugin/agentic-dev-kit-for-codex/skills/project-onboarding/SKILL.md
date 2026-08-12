@@ -33,6 +33,9 @@ installation:
    full-kit installation path, then stop before the bootstrap and mutation
    steps below.
 
+Any live write requires every missing control to be restored and verified
+first, then separate explicit authority.
+
 
 ## Land an installer handoff
 
@@ -61,9 +64,12 @@ During Phase 0α, preview each action before requesting consent:
    `.github/scripts/setup-sources.sh --source <name> --dry-run`; after the
    source choice is accepted and the local write is approved, use `--apply`
    and carry that registry change in the onboarding PR.
-3. Prepare the first Epic/Task graph with `$plan-management`. Draft bodies and
-   dependencies before any `new-task.sh --apply` call; live Issue creation
-   requires separate explicit approval.
+3. Prepare the phase outline with `$plan-management`: one coarse Epic per
+   phase, all siblings, ordered with `blocked-by`; never put an Epic under an
+   Epic. Draft bodies and dependencies before any live Issue creation, which
+   requires separate explicit approval. Do not decompose Tasks during
+   onboarding. Once the phase Epics exist, a program session may coordinate
+   their sibling Epic-parent sessions.
 4. Preview the ruleset only as described below. Never enable it from onboarding.
 
 
@@ -144,10 +150,58 @@ disabled-ruleset proposal are both proven. A human reviews the evidence and
 performs the license merge; the agent does not declare or enable its own
 autonomy license.
 
+## Record the durable onboarding handoff
+
+Before the evidence PR is complete, collect every onboarding item that remains
+unrun, unverified, declined, blocked, or external. This includes missing-tool
+commands, credentials, provisioning, pushes, deploys, hardware checks, skipped
+consent steps, and live settings or account checks. Put them in one durable
+checklist with reasons:
+
+```markdown
+## Deferred from onboarding
+
+- [ ] <item> — <why it was not completed and the next accountable surface>
+```
+
+Append this ledger to the first-phase Epic. If no Epic was created, put it in
+the evidence PR instead. A chat summary is not a carrier: a deferred item that
+exists only in chat is lost and does not count as recorded.
+
+Keep the first-phase Epic durable and actionable:
+
+- its body has the onboarding draft marker until approval;
+- its `## Decomposition state` has exactly one current line; and
+- its body names the next move: review the Epic, then decompose its first Task
+  wave with `$plan-management`.
+
+Later phase Epics remain coarse siblings with `blocked-by` ordering. Hand them
+off first phase first. The program session starts the applicable Epic-parent
+session when predecessors close; onboarding does not recursively start a
+successor phase.
+
+The evidence PR body must end with this durable section (fill in the links):
+
+```markdown
+## Next steps
+
+1. Review and merge this evidence PR (the license merge).
+2. Review the phase Epics, first phase first: <Epic links or Epic-form pointer>.
+3. When the first Epic is accepted, use `$plan-management` to decompose its
+   first Task wave and `$session-orchestration` to run ready Tasks.
+```
+
+Also return the same three moves in the final chat handoff because adopters
+read chat, while keeping the PR and Epic copies authoritative because chat can
+disappear. Pushing a branch is not completion: the evidence PR must exist. If
+PR creation lacks permission or approval, record the blocker and provide the
+exact proposed PR command without implying it ran.
+
 ## Stop conditions
 
 Stop and create or update the durable Issue record when an agreement is wrong,
 a required command cannot be measured, credentials or PII would need copying,
 the routed environment cannot execute a criterion, no eligible non-author
 human code owner can review the trial, the proposed ruleset is not disabled,
-or the proposed setup would silently replace an official GitHub control.
+the deferred ledger or durable `Next steps` handoff cannot be recorded, or the
+proposed setup would silently replace an official GitHub control.

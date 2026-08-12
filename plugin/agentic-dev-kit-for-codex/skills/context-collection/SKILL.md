@@ -8,9 +8,24 @@ description: Collects the minimum project context needed for later distillation 
 Land durable references and only the minimum extracted notes needed for
 distillation. Collection preserves evidence; it does not decide what is true.
 
+## Detect the distribution boundary
+
+Before any filesystem or GitHub write, check for root `AGENTS.md`,
+`.github/docs/context/README.md`, the applicable Task/PR controls, and the
+repository guidance they name. If any are absent, this is a plugin-only or
+partial installation. Name the missing controls, inspect supplied sources
+read-only, and return draft provenance headers, filenames, and `INDEX.md`
+entries for review. Do not create `.github/docs/context/`, copy source
+material, commit, open a PR, or claim that collection is durable. Never
+fabricate a governed source, context index, Task gate, or review control. Offer
+the full-kit installation when repository collection is required. Any live
+write requires every missing control to be restored and verified first, then
+separate explicit authority.
+
 ## Collect one topic
 
-1. Create or select `.github/docs/context/<topic>/` and read its `INDEX.md` first.
+1. After the boundary check passes and the Task authorizes the write, create or
+   select `.github/docs/context/<topic>/` and read its `INDEX.md` first.
 2. Keep the source original in its governed system. Store an access-controlled
    URL or stable identifier plus the smallest excerpt or notes required to
    evaluate candidate requirements, decisions, terms, and conflicts.
