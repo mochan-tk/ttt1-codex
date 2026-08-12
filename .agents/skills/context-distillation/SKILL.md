@@ -8,9 +8,25 @@ description: Distills provenance-linked context into reviewable requirements, de
 Turn collected evidence into proposed truth, then let a human agreement merge
 decide whether it becomes authoritative.
 
+## Detect the distribution boundary
+
+Before editing an agreement or performing a live GitHub step, check for root
+`AGENTS.md`, `.github/docs/context/`, `.github/docs/agreements/README.md`, the
+canonical agreement artifacts, and the repository's Task/PR review controls.
+If any are absent, name the missing controls and treat this as a plugin-only or
+partial installation. Read only the supplied provenance-linked material and
+return draft requirement, ADR, non-goal, glossary, provenance, and conflict
+text for human review. Do not assign a live `REQ-###`, edit an agreement, mark
+a source distilled, file an Issue, open a PR, or claim agreement authority.
+Never fabricate a source, agreement path, human gate, or merge. Offer the
+full-kit installation when durable distillation is required. Any live write
+requires every missing control to be restored and verified first, then
+separate explicit authority.
+
 ## Distill one bounded topic
 
-1. Read `.github/docs/context/<topic>/INDEX.md`, every flagged conflict, and only the
+1. After the boundary check passes and the agreement Task authorizes the work,
+   read `.github/docs/context/<topic>/INDEX.md`, every flagged conflict, and only the
    linked source notes needed for the topic. Follow governed links when access
    is available; do not infer missing source content.
 2. Extract candidates into the appropriate artifacts:

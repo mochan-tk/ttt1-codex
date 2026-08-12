@@ -21,6 +21,26 @@ Session messages, internal plans, Projects views, and local scratch state are
 caches. A fresh Codex session must be able to reconstruct the work from Git,
 the Task Issue, its comments, the PR, and checks.
 
+The Codex-native session hierarchy mirrors the two-level Issue graph:
+
+```text
+Program session (whole project; conductor of conductors)
+  +-- Epic-parent session: phase A ---- sole-writer Task session ---- read-only subagent(s)
+  +-- Epic-parent session: phase B ---- sole-writer Task session ---- read-only subagent(s)
+  +-- Epic-parent session: phase C ---- sole-writer Task session ---- read-only subagent(s)
+```
+
+Phase Epics are siblings ordered by `blocked-by`. The program starts or wakes
+Epic parents and replans across phases, but never decomposes or dispatches
+Tasks. Each Epic parent decomposes just in time, dispatches its Task frontier,
+steers, and verifies. The literal contract remains
+`1 Task = 1 session = 1 worktree = 1 branch = 1 PR`: that Task session is the
+sole implementing writer. It may delegate only independent parallel read-only
+exploration, review, or test observation to Codex subagents. They receive no
+File ownership and make no edits. Reports climb one hop, parents independently
+verify ground truth, and completed threads close leaf first. No Epic parent
+recursively spawns its successor.
+
 ## Instruction and workflow layering
 
 Codex reads root-to-working-directory `AGENTS.md` files. The root file carries
@@ -43,7 +63,11 @@ The nine skills implement the lifecycle:
 The bundled `explorer`, `planner`, `orchestrator`, and `reviewer` agents use
 read-only defaults plus explicit no-write instructions. Parent and user runtime
 overrides remain authoritative, so this is a safe default rather than a hard
-security boundary. Implementation remains in the owning Codex task.
+security boundary. Codex reapplies the parent permission mode and live runtime
+overrides when spawning a child. The project custom agent named `explorer`
+intentionally takes precedence over the built-in `explorer`. Implementation
+remains in the owning Codex Task. See the
+[official subagent behavior](https://learn.chatgpt.com/docs/agent-configuration/subagents).
 
 ## Distribution boundaries
 
@@ -51,23 +75,31 @@ security boundary. Implementation remains in the owning Codex task.
 |---|---|---|
 | GitHub template | Entire tracked repository | User credentials and external settings |
 | `scaffold-init` | GitHub control plane, canonical skills, bundled agents/config, constitution, lineage, kit-scoped license/notice | Application README/license, plugin copy, editor config, frozen optional Dev Container |
-| Plugin artifact | Nine synchronized skills plus license/notice | GitHub controls, agents, repo config, installer, settings |
+| Plugin artifact | Nine synchronized skills plus license/notice | GitHub controls, agents, repo config, installer, settings; skills degrade to read-only/draft guidance when these controls are absent |
 
 ## Native capability boundaries
 
 - **Hooks:** executable trusted-repository configuration. None is active by
-  default. Add `.codex/hooks.json` only through a reviewed project Task.
+  default. Add `.codex/hooks.json` only through a reviewed project Task. Only
+  `type: "command"` handlers execute today; `prompt` and `agent` are parsed but
+  skipped. Recheck the [official Hooks schema](https://learn.chatgpt.com/docs/hooks).
 - **MCP:** external tool configuration belongs in `.codex/config.toml` only
   when portable. Secrets and private endpoints stay in managed environment or
   organization policy.
-- **App automations:** schedules and recurring tasks are app state, not fake
-  repository files. Their prompt must re-read the ledger and include a stop
-  condition.
+- **Scheduled tasks:** schedules are product state, not fake repository files.
+  Web and desktop manage them; only desktop can use a local project/worktree,
+  while CLI and IDE provide no Scheduled management UI. Their prompt must
+  re-read the ledger and include a stop condition. See
+  [Scheduled tasks](https://learn.chatgpt.com/docs/automations).
 - **Codex GitHub Action:** optional and secret-bearing. The default kit does
   not enable it; deterministic Actions remain sufficient for the base
   scaffold.
 - **Plugins:** package reusable capabilities. A skills-only plugin cannot
   install repository governance and never claims to do so.
+- **Cloud Tasks and CI:** cloud execution result, branch/PR state, and PR
+  workflows are separate evidence lanes. `action_required` can be an
+  organization Actions approval boundary; it does not prove cloud execution
+  failed and it does not satisfy required checks.
 
 ## Safety properties
 
@@ -81,3 +113,8 @@ security boundary. Implementation remains in the owning Codex task.
   persisted.
 - Credentials, PII, controlled data, personal paths, model pins, and private
   endpoints are absent from the generic distribution.
+
+The capability trace is pinned to the 110-file Copilot source at
+`20637b703cbde6abd8934fc222abbe6c82bb4568`. Task #33 still owns optional
+Dev Container runtime evidence and Task #35 still owns ruleset admission; the
+architecture does not infer completion from their drafts or previews.

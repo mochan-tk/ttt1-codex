@@ -6,7 +6,24 @@ description: Builds and maintains the executable GitHub Issue graph of Epics, Ta
 # Plan Management
 
 Treat the Issue graph as planning truth and Projects as a derived view. Treat
-session plans and local `plan.md` files as replaceable caches.
+session plans, chat handoffs, and local `plan.md` files as replaceable caches.
+
+## Detect the distribution boundary
+
+Check for root `AGENTS.md`, the Epic and Task Issue templates, the configured
+labels, and the agreements or validators named by repository guidance. In a
+plugin-only or partial installation, list the missing controls and restrict
+work to read-only graph analysis, locally previewed bodies, or draft text. Do
+not claim that the full ADLC graph is installed or enforced. Any live write
+requires every missing control to be restored and verified first, then
+separate explicit authority.
+
+The plugin bundles `new-task.sh` and `frontier.sh`, but their presence is not
+authority to mutate GitHub. Before `new-task.sh --apply`, separately confirm
+the GitHub.com repository and authenticated account, a readable `type:epic`
+parent, every origin and blocker, all required labels, compatible `gh`
+features, and explicit authority for live Issue creation. If any prerequisite
+is absent, keep `--dry-run` output as the handoff; never fabricate a control.
 
 ## Model the graph
 
@@ -23,11 +40,23 @@ add `risk:high` only for the latter. Add `ai:ready` only when its
 requester-owned body is self-contained, traceable, bounded, test-first,
 path-partitioned, and routed.
 
+Model a multi-phase plan as two Issue levels:
+
+- one coarse Epic per phase, all phase Epics siblings;
+- Task sub-issues under exactly one Epic.
+
+Never make an Epic a sub-issue of another Epic. Encode phase order with
+`blocked-by` edges between sibling Epics, not hierarchy or prose. A program
+session coordinates the sibling set; each Epic-parent session owns only its
+phase and reports the next phase upward instead of spawning a nested successor.
+
 ## Plan as a rolling wave
 
-1. Keep the whole Epic coarse enough to preserve direction.
-2. Detail only the next executable wave or replenish it when the frontier is
-   nearly empty.
+1. Create the complete phase outline as coarse sibling Epics so the durable
+   graph names what comes next; wire their order with `blocked-by`.
+2. Decompose only the next phase when its blockers close. Within that Epic,
+   detail only the next executable Task wave or replenish it when the frontier
+   is nearly empty. Distant Task detail decays and must not be pre-created.
 3. Start bodies from [templates/epic-body.md](templates/epic-body.md) and
    [templates/task-body.md](templates/task-body.md).
 4. Partition parallel Tasks by disjoint File ownership. Add a dependency when
@@ -60,6 +89,18 @@ and adds `risk:high`; normal risk never adds that label.
 The applied helper adds the parent, dependency, origin, routing, and ready
 records in one creation flow and prints the required completion link.
 
+7. After every decomposition or replenishment wave, update the Epic body's
+   `## Decomposition state` section. Keep exactly one current state line under
+   that heading and replace the prior line rather than appending history:
+
+```text
+Phase <name> decomposed on YYYY-MM-DD into Tasks #<n>, #<n>; next trigger: <condition>.
+```
+
+Name the phase, date, current Task references, and next replenishment trigger.
+Replace any onboarding draft marker when the first wave is approved. Comments
+and body history preserve prior states; the visible line must describe now.
+
 ## Optionally materialize a roadmap
 
 Projects are a convenience view, never planning authority. If the full kit's
@@ -90,6 +131,11 @@ closed`. Calculate it from GitHub rather than session memory:
 Before dispatch, recheck disjoint ownership and limit the count to available
 human review capacity.
 
+An empty frontier is not permission to skip a phase dependency. If the active
+Epic is incomplete, replenish or replan it. The program session may wake the
+responsible Epic parent when the frontier dries up, but only an Epic parent
+decomposes or dispatches its Tasks.
+
 ## Preserve plan-comment authority
 
 Keep the requester-owned Task body as the work order. Before implementation,
@@ -119,3 +165,7 @@ active executor must replan.
 5. Remove `ai:ready` from stale briefs. Restore it only after repair.
 6. Add one Epic rationale comment listing changed Issues and why, then clear
    `needs:replan` only when the graph is coherent again.
+7. Rewrite that Epic's single decomposition-state line so the visible body
+   matches the repaired Task wave. For a cross-phase change, update every
+   affected sibling Epic and its `blocked-by` edges; never nest one phase under
+   another.

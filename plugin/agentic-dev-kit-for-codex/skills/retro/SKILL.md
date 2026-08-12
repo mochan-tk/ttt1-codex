@@ -9,6 +9,20 @@ Treat the first occurrence as information and the second occurrence of the same
 class as a system-change trigger. Keep both occurrences in GitHub, not session
 memory.
 
+## Detect the distribution boundary
+
+Before creating or commenting on an Issue, editing the retro log, or opening a
+PR, check for root `AGENTS.md`, the canonical labels and Task/PR controls,
+`.github/docs/agreements/retro-log.md`, and the repository retro guidance. If
+any are absent, name the missing controls and treat this as a plugin-only or
+partial installation. Inspect supplied occurrence links and any readable
+Issues read-only, then return a draft candidate Issue/comment, proposed
+retro-log row, prevention diff outline, and upstream-result line. Do not run a
+live `gh issue` mutation, edit the log, open a PR, or claim the candidate is
+recorded or promoted. Never fabricate an occurrence, origin, label, gate, or
+upstream submission. Any live write requires every missing control to be
+restored and verified first, then separate explicit authority.
+
 ## Record the first occurrence
 
 1. Search before filing:

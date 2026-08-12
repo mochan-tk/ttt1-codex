@@ -8,6 +8,21 @@ description: Proves a Task against test-first acceptance criteria using fresh Ev
 Treat an agent statement as a claim, never as Evidence. Build the verification
 wall before implementation and preserve failures as information.
 
+## Detect the distribution boundary
+
+Before running a command that writes workspace artifacts or performing a live
+GitHub step, check for root `AGENTS.md`, a readable Task with Acceptance,
+Verification, and File ownership, its authoritative Plan comment, and the
+repository PR/check controls. If any are absent, name the missing controls and
+treat this as a plugin-only or partial installation. Inspect supplied files,
+logs, diffs, and existing results read-only and return a draft verification
+matrix with proposed commands and expected results. Do not edit code, generate
+test artifacts, post an Outcome, change a label, approve, merge, or claim a
+required gate passed. Never fabricate Evidence or enforcement. Offer the
+full-kit installation when durable verification is required. Any live write
+requires every missing control to be restored and verified first, then
+separate explicit authority.
+
 ## Write a test-first work order
 
 For every acceptance criterion, state an executable command or observable check
