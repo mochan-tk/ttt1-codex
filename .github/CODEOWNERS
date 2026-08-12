@@ -1,6 +1,7 @@
 # Review ownership for reviewed truth and deterministic enforcement.
-# CUSTOMIZE: template adopters replace @mochan-tk on every rule with an
-# eligible owner or team for their repository, then review the disabled
+# CUSTOMIZE: template adopters replace every repository-specific account.
+# The four dual-owner trust-control rules require two distinct eligible humans
+# with write access; replace both accounts there, then review the disabled
 # ruleset proposed by .github/scripts/setup-ruleset.sh.
 
 /.github/docs/agreements/**     @mochan-tk
@@ -8,7 +9,10 @@
 /.github/ISSUE_TEMPLATE/**      @mochan-tk
 /.github/PULL_REQUEST_TEMPLATE.md @mochan-tk
 /.github/scripts/**             @mochan-tk
-/.github/workflows/**           @mochan-tk
+/.github/scripts/tests/test_ci_guards.py @mochan-tk @liner-takashi-kawamoto
+/.github/scripts/setup-ruleset.sh @mochan-tk @liner-takashi-kawamoto
+/.github/workflows/**           @mochan-tk @liner-takashi-kawamoto
+/.github/CODEOWNERS             @mochan-tk @liner-takashi-kawamoto
 /AGENTS.md                      @mochan-tk
 /.agents/**                     @mochan-tk
 /.codex/**                      @mochan-tk
