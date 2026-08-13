@@ -647,6 +647,137 @@ class TaskRitualTests(unittest.TestCase):
     def test_valid_task_ritual_passes(self) -> None:
         self.assertEqual([], ritual_errors(valid_fixture()))
 
+    def test_plan_heading_grammar_distinguishes_authority_from_audits(self) -> None:
+        canonical = {
+            "## Plan": "initial-plan",
+            "## Plan (authoritative)": "initial-plan",
+            "## Plan — bounded title": "initial-plan",
+            "## Revised Plan": "revised-plan",
+            "## Revised Plan 2": "revised-plan",
+            "## Revised Plan v3": "revised-plan",
+            "## Revised Plan v3.1": "revised-plan",
+            "## Revised Plan clarification": "revised-plan",
+            "## Revised Plan — bounded title": "revised-plan",
+            "## Revised Plan 2 — bounded title": "revised-plan",
+            "## Revised Plan v3.1 — bounded title": "revised-plan",
+            "## Revised Plan clarification — bounded title": "revised-plan",
+        }
+        non_authority = (
+            "## Plan v3 audit — superseded before approval",
+            "## Plan audit",
+            "## Plan status",
+            "## Plan note",
+            "## Plan superseded",
+            "## Plan (draft)",
+            "## Plan —",
+            "## Plan - wrong dash",
+            "## Revised Plan 0",
+            "## Revised Plan v0",
+            "## Revised Plan audit",
+            "## Revised Plan note",
+            "## Revised Plan superseded",
+            "## Revised Plan —",
+            "## revised Plan v3.1",
+        )
+
+        for heading, expected in canonical.items():
+            with self.subTest(heading=heading):
+                self.assertEqual(expected, task_ritual._comment_kind(f"{heading}\n\nDetails"))
+        for heading in non_authority:
+            with self.subTest(heading=heading):
+                self.assertEqual("other", task_ritual._comment_kind(f"{heading}\n\nDetails"))
+
+    def test_issue_35_audit_heading_is_not_plan_authority(self) -> None:
+        fixture = {
+            "pull_request": {
+                "body": (
+                    "Closes #35\n\n"
+                    "Plan: https://github.com/example/project/issues/35"
+                    "#issuecomment-5264223122\n"
+                )
+            },
+            "issue": {"number": 35, "labels": [{"name": "type:task"}]},
+            "comments": [
+                comment(
+                    5224368000,
+                    "## Start — bootstrap ownership",
+                    "2026-08-08T03:40:00Z",
+                ),
+                comment(
+                    5224368411,
+                    "## Plan — bootstrap the base-owned boundary",
+                    "2026-08-08T03:51:28Z",
+                ),
+                comment(
+                    5264209657,
+                    "## Plan v3 audit — superseded before approval",
+                    "2026-08-12T08:21:26Z",
+                ),
+                comment(
+                    5264223122,
+                    "## Revised Plan v3.1 — authoritative execution order",
+                    "2026-08-12T08:22:44Z",
+                ),
+            ],
+            "commits": [commit("2026-08-12T08:30:00Z")],
+        }
+
+        self.assertEqual([], ritual_errors(fixture))
+
+    def test_audit_heading_does_not_satisfy_missing_initial_plan(self) -> None:
+        fixture = valid_fixture()
+        fixture["comments"][1] = comment(
+            102,
+            "## Plan v3 audit — superseded before approval",
+            "2026-08-05T01:01:00Z",
+        )
+
+        self.assertIn("found 0", "\n".join(ritual_errors(fixture)))
+
+    def test_later_audit_heading_does_not_steal_latest_revised_plan(self) -> None:
+        fixture = valid_fixture()
+        fixture["comments"].extend(
+            [
+                comment(
+                    103,
+                    "## Revised Plan v3.1 — final authority",
+                    "2026-08-05T01:03:00Z",
+                ),
+                comment(
+                    104,
+                    "## Plan v3 audit — superseded before approval",
+                    "2026-08-05T01:04:00Z",
+                ),
+            ]
+        )
+        fixture["pull_request"]["body"] = (
+            "Closes #17\n\n"
+            "Plan: https://github.com/example/project/issues/17#issuecomment-103\n"
+        )
+
+        self.assertEqual([], ritual_errors(fixture))
+
+    def test_historical_canonical_plan_cannot_be_hidden_by_audit_heading(self) -> None:
+        fixture = valid_fixture()
+        fixture["comments"].append(
+            comment(
+                103,
+                "## Plan v3 audit — superseded before approval",
+                "2026-08-05T01:03:00Z",
+                "2026-08-05T01:03:30Z",
+            )
+        )
+        fixture["comment_histories"] = {
+            103: [
+                "## Plan v3 audit — superseded before approval",
+                "## Plan — original authority",
+            ]
+        }
+
+        errors = "\n".join(ritual_errors(fixture))
+        self.assertIn("Plan/Revised Plan comments must never be edited", errors)
+        self.assertIn("issuecomment-103", errors)
+
     def test_missing_task_link_fails(self) -> None:
         fixture = valid_fixture()
         fixture["pull_request"]["body"] = "Plan: https://github.com/example/project/issues/17#issuecomment-102\n"

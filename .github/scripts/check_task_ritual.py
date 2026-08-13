@@ -20,8 +20,14 @@ from urllib.request import Request, urlopen
 CLOSES_LINE = re.compile(r"^Closes #([1-9][0-9]*)$", re.MULTILINE)
 PLAN_LINE = re.compile(r"^[ \t]*Plan:[ \t]+(\S+)[ \t]*$", re.MULTILINE)
 CLAIM_HEADING = re.compile(r"^##[ \t]+(?:Start|Resume)(?:[ \t]+.*)?$")
-INITIAL_PLAN_HEADING = re.compile(r"^##[ \t]+Plan(?:[ \t]+.*)?$")
-REVISED_PLAN_HEADING = re.compile(r"^##[ \t]+Revised[ \t]+Plan(?:[ \t]+.*)?$")
+INITIAL_PLAN_HEADING = re.compile(
+    r"^##[ \t]+Plan(?:[ \t]+\(authoritative\)|[ \t]+—[ \t]+\S.*)?$"
+)
+REVISED_PLAN_HEADING = re.compile(
+    r"^##[ \t]+Revised[ \t]+Plan"
+    r"(?:[ \t]+(?:[1-9][0-9]*|v[1-9][0-9]*(?:\.[0-9]+)*|clarification))?"
+    r"(?:[ \t]+—[ \t]+\S.*)?$"
+)
 REPOSITORY = re.compile(r"^[^/\s]+/[^/\s]+$")
 TRANSIENT_HTTP_CODES = {429, 500, 502, 503, 504}
 GRAPHQL_BATCH_SIZE = 100
