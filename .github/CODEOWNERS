@@ -1,6 +1,6 @@
 # Review ownership for reviewed truth and deterministic enforcement.
 # CUSTOMIZE: template adopters replace every repository-specific account.
-# The four dual-owner trust-control rules require two distinct eligible humans
+# The dual-owner trust-control rules require two distinct eligible humans
 # with write access; replace both accounts there, then review the disabled
 # ruleset proposed by .github/scripts/setup-ruleset.sh.
 
@@ -9,6 +9,7 @@
 /.github/ISSUE_TEMPLATE/**      @mochan-tk
 /.github/PULL_REQUEST_TEMPLATE.md @mochan-tk
 /.github/scripts/**             @mochan-tk
+/.github/scripts/check_task_ritual.py @mochan-tk @liner-takashi-kawamoto
 /.github/scripts/tests/test_ci_guards.py @mochan-tk @liner-takashi-kawamoto
 /.github/scripts/setup-ruleset.sh @mochan-tk @liner-takashi-kawamoto
 /.github/workflows/**           @mochan-tk @liner-takashi-kawamoto
