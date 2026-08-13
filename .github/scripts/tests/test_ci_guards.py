@@ -1215,6 +1215,10 @@ class FakeTask35GitHub:
         self.status_failure_at: int | None = None
         self.status_commit_then_failure_at: int | None = None
         self.status_response_overrides: dict[str, object] = {}
+        self.status_response_omissions: set[str] = set()
+        self.status_response_body_override: object | None = None
+        self.status_response_overrides_by_call: dict[int, dict[str, object]] = {}
+        self.status_responses: list[object] = []
         self.runs: list[dict] = []
         self.jobs: dict[int, list[dict]] = {}
         self.jobs_by_filter: dict[tuple[int, str], list[dict]] = {}
@@ -1590,17 +1594,6 @@ class FakeTask35GitHub:
                             status=500,
                         )
                         return
-                    self.send_json(
-                        {
-                            "id": len(fixture.status_posts),
-                            "state": body["state"],
-                            "context": body["context"],
-                            "sha": status_match.group(1),
-                            "target_url": body["target_url"],
-                            **fixture.status_response_overrides,
-                        },
-                        status=201,
-                    )
                     fixture.commit_statuses.insert(
                         0,
                         {
@@ -1610,6 +1603,24 @@ class FakeTask35GitHub:
                             "target_url": body["target_url"],
                         },
                     )
+                    response: object = {
+                        "id": len(fixture.status_posts),
+                        "state": body["state"],
+                        "context": body["context"],
+                        "target_url": body["target_url"],
+                        "url": f"{fixture.url}{path}",
+                        **fixture.status_response_overrides,
+                        **fixture.status_response_overrides_by_call.get(
+                            len(fixture.status_posts), {}
+                        ),
+                    }
+                    if isinstance(response, dict):
+                        for key in fixture.status_response_omissions:
+                            response.pop(key, None)
+                    if fixture.status_response_body_override is not None:
+                        response = fixture.status_response_body_override
+                    fixture.status_responses.append(response)
+                    self.send_json(response, status=201)
                     return
                 cancel_match = re.fullmatch(
                     rf"/repos/{re.escape(fixture.repository)}/actions/runs/([1-9][0-9]*)/cancel",
@@ -2496,6 +2507,214 @@ class Task35AdmissionBehaviorTests(unittest.TestCase):
                 any(item.get("state") == "success" for item in fixture.status_posts)
             )
 
+    def test_live_status_response_binds_exact_head_and_route(self) -> None:
+        with FakeTask35GitHub() as fixture:
+            extra = {
+                "ACCEPTED_PR": str(fixture.pr_number),
+                "ACCEPTED_HEAD": fixture.head_sha,
+                "ACCEPTED_REPOSITORY": fixture.repository,
+                "ACCEPTED_REPOSITORY_ID": str(fixture.repository_id),
+                "ACCEPTED_BASE": fixture.base_sha,
+                "ACCEPTED_CHANGED_FILES": str(len(fixture.files)),
+                "ACCEPTED_DIFF_DIGEST": fixture.diff_digest(),
+                "ACCEPTED_CLASS": "safe",
+                "ACCEPTED_SECURE": "false",
+                "DECISION": "release",
+                "DECISION_REASON": "same-repository-safe",
+                "ACCEPTED_AUTH_COMMENT": "0",
+            }
+            completed, _ = fixture.run("preflight", extra_env=extra)
+
+            self.assertEqual(0, completed.returncode, completed.stderr)
+            expected_path = (
+                f"/repos/{fixture.repository}/statuses/{fixture.head_sha}"
+            )
+            status_paths = [
+                path
+                for method, path, _body in fixture.requests
+                if method == "POST" and path == expected_path
+            ]
+            self.assertTrue(status_paths)
+            self.assertEqual(
+                {expected_path},
+                {
+                    path
+                    for method, path, _body in fixture.requests
+                    if method == "POST" and "/statuses/" in path
+                },
+            )
+            self.assertTrue(fixture.status_responses)
+            for response in fixture.status_responses:
+                self.assertIsInstance(response, dict)
+                assert isinstance(response, dict)
+                self.assertNotIn("sha", response)
+                self.assertEqual(f"{fixture.url}{expected_path}", response["url"])
+
+    def test_status_response_binding_failures_close_the_required_wall(self) -> None:
+        cases = (
+            "missing-url-with-synthetic-sha",
+            "non-string-url",
+            "cross-origin-url",
+            "wrong-repository-url",
+            "wrong-head-url",
+            "wrong-resource-url",
+            "query-url",
+            "fragment-url",
+            "trailing-slash-url",
+            "encoded-path-url",
+            "case-variant-url",
+            "wrong-context",
+            "wrong-state",
+            "wrong-target-url",
+            "missing-id",
+            "zero-id",
+            "negative-id",
+            "boolean-id",
+            "string-id",
+            "non-object-response",
+        )
+        for case in cases:
+            with self.subTest(case=case), FakeTask35GitHub() as fixture:
+                expected_path = (
+                    f"/repos/{fixture.repository}/statuses/{fixture.head_sha}"
+                )
+                expected_url = f"{fixture.url}{expected_path}"
+                if case == "missing-url-with-synthetic-sha":
+                    fixture.status_response_omissions.add("url")
+                    fixture.status_response_overrides["sha"] = fixture.head_sha
+                elif case == "non-string-url":
+                    fixture.status_response_overrides["url"] = 7
+                elif case == "cross-origin-url":
+                    fixture.status_response_overrides["url"] = (
+                        f"https://attacker.invalid{expected_path}"
+                    )
+                elif case == "wrong-repository-url":
+                    fixture.status_response_overrides["url"] = expected_url.replace(
+                        fixture.repository, "other/project"
+                    )
+                elif case == "wrong-head-url":
+                    fixture.status_response_overrides["url"] = expected_url.replace(
+                        fixture.head_sha, "2" * 40
+                    )
+                elif case == "wrong-resource-url":
+                    fixture.status_response_overrides["url"] = (
+                        f"{fixture.url}/repos/{fixture.repository}/commits/"
+                        f"{fixture.head_sha}/status"
+                    )
+                elif case == "query-url":
+                    fixture.status_response_overrides["url"] = f"{expected_url}?page=1"
+                elif case == "fragment-url":
+                    fixture.status_response_overrides["url"] = f"{expected_url}#status"
+                elif case == "trailing-slash-url":
+                    fixture.status_response_overrides["url"] = f"{expected_url}/"
+                elif case == "encoded-path-url":
+                    fixture.status_response_overrides["url"] = expected_url.replace(
+                        "/statuses/", "/%73tatuses/"
+                    )
+                elif case == "case-variant-url":
+                    fixture.status_response_overrides["url"] = expected_url.replace(
+                        "/statuses/", "/Statuses/"
+                    )
+                elif case == "wrong-context":
+                    fixture.status_response_overrides["context"] = "wrong-context"
+                elif case == "wrong-state":
+                    fixture.status_response_overrides["state"] = "success"
+                elif case == "wrong-target-url":
+                    fixture.status_response_overrides["target_url"] = (
+                        "https://attacker.invalid/run"
+                    )
+                elif case == "missing-id":
+                    fixture.status_response_omissions.add("id")
+                elif case == "zero-id":
+                    fixture.status_response_overrides["id"] = 0
+                elif case == "negative-id":
+                    fixture.status_response_overrides["id"] = -1
+                elif case == "boolean-id":
+                    fixture.status_response_overrides["id"] = True
+                elif case == "string-id":
+                    fixture.status_response_overrides["id"] = "1"
+                elif case == "non-object-response":
+                    fixture.status_response_body_override = []
+                else:
+                    self.fail(f"unhandled case: {case}")
+
+                extra = {
+                    "ACCEPTED_PR": str(fixture.pr_number),
+                    "ACCEPTED_HEAD": fixture.head_sha,
+                    "ACCEPTED_REPOSITORY": fixture.repository,
+                    "ACCEPTED_REPOSITORY_ID": str(fixture.repository_id),
+                    "ACCEPTED_BASE": fixture.base_sha,
+                    "ACCEPTED_CHANGED_FILES": str(len(fixture.files)),
+                    "ACCEPTED_DIFF_DIGEST": fixture.diff_digest(),
+                    "ACCEPTED_CLASS": "safe",
+                    "ACCEPTED_SECURE": "false",
+                    "DECISION": "release",
+                    "DECISION_REASON": "same-repository-safe",
+                    "ACCEPTED_AUTH_COMMENT": "0",
+                }
+                completed, _ = fixture.run("preflight", extra_env=extra)
+
+                self.assertNotEqual(0, completed.returncode)
+                self.assertFalse(
+                    any(post.get("state") == "success" for post in fixture.status_posts)
+                )
+                latest: dict[str, str] = {}
+                for status in fixture.commit_statuses:
+                    latest.setdefault(status["context"], status["state"])
+                self.assertEqual(
+                    {
+                        "quality": "failure",
+                        "scaffold-self-check": "failure",
+                        "secure-devcontainer": "failure",
+                    },
+                    latest,
+                )
+
+        with FakeTask35GitHub() as fixture:
+            fixture.status_response_overrides_by_call[4] = {
+                "url": "https://attacker.invalid/committed-before-rejection"
+            }
+            extra = {
+                "ACCEPTED_PR": str(fixture.pr_number),
+                "ACCEPTED_HEAD": fixture.head_sha,
+                "ACCEPTED_REPOSITORY": fixture.repository,
+                "ACCEPTED_REPOSITORY_ID": str(fixture.repository_id),
+                "ACCEPTED_BASE": fixture.base_sha,
+                "ACCEPTED_CHANGED_FILES": str(len(fixture.files)),
+                "ACCEPTED_DIFF_DIGEST": fixture.diff_digest(),
+                "ACCEPTED_CLASS": "safe",
+                "ACCEPTED_SECURE": "false",
+                "DECISION": "release",
+                "DECISION_REASON": "same-repository-safe",
+                "ACCEPTED_AUTH_COMMENT": "0",
+            }
+            completed, _ = fixture.run("preflight", extra_env=extra)
+
+            self.assertNotEqual(0, completed.returncode)
+            self.assertGreaterEqual(len(fixture.status_responses), 7)
+            expected_url = (
+                f"{fixture.url}/repos/{fixture.repository}/statuses/{fixture.head_sha}"
+            )
+            self.assertEqual(
+                [expected_url, expected_url, expected_url],
+                [response["url"] for response in fixture.status_responses[:3]],
+            )
+            self.assertEqual(
+                "https://attacker.invalid/committed-before-rejection",
+                fixture.status_responses[3]["url"],
+            )
+            latest = {}
+            for status in fixture.commit_statuses:
+                latest.setdefault(status["context"], status["state"])
+            self.assertEqual(
+                {
+                    "quality": "failure",
+                    "scaffold-self-check": "failure",
+                    "secure-devcontainer": "failure",
+                },
+                latest,
+            )
+
     def test_status_api_uncertainty_never_posts_success(self) -> None:
         with FakeTask35GitHub() as fixture:
             fixture.status_failure_at = 1
@@ -2584,34 +2803,6 @@ class Task35AdmissionBehaviorTests(unittest.TestCase):
                         "secure-devcontainer": "failure",
                     },
                     latest,
-                )
-
-        for field, value in (
-            ("sha", "2" * 40),
-            ("context", "wrong-context"),
-            ("state", "success"),
-            ("target_url", "https://attacker.invalid/run"),
-        ):
-            with self.subTest(field=field), FakeTask35GitHub() as fixture:
-                fixture.status_response_overrides[field] = value
-                extra = {
-                    "ACCEPTED_PR": str(fixture.pr_number),
-                    "ACCEPTED_HEAD": fixture.head_sha,
-                    "ACCEPTED_REPOSITORY": fixture.repository,
-                    "ACCEPTED_REPOSITORY_ID": str(fixture.repository_id),
-                    "ACCEPTED_BASE": fixture.base_sha,
-                    "ACCEPTED_CHANGED_FILES": str(len(fixture.files)),
-                    "ACCEPTED_DIFF_DIGEST": fixture.diff_digest(),
-                    "ACCEPTED_CLASS": "safe",
-                    "ACCEPTED_SECURE": "false",
-                    "DECISION": "release",
-                    "DECISION_REASON": "same-repository-safe",
-                    "ACCEPTED_AUTH_COMMENT": "0",
-                }
-                completed, _ = fixture.run("preflight", extra_env=extra)
-                self.assertNotEqual(0, completed.returncode)
-                self.assertFalse(
-                    any(post.get("state") == "success" for post in fixture.status_posts)
                 )
 
         with FakeTask35GitHub() as fixture:
