@@ -248,6 +248,44 @@ class ScaffoldContractTests(unittest.TestCase):
                 r"(?m)^    name: (?:quality|scaffold-self-check|secure-devcontainer)$"
             ),
         )
+        rules = [
+            line.split()
+            for line in codeowners.splitlines()
+            if line.strip() and not line.lstrip().startswith("#")
+        ]
+        generic_rules = [
+            rule for rule in rules if rule[0] == "/.github/scripts/**"
+        ]
+        validator_rules = [
+            rule
+            for rule in rules
+            if rule[0] == "/.github/scripts/check_task_ritual.py"
+        ]
+        self.assertEqual(
+            [["/.github/scripts/**", "@mochan-tk"]], generic_rules
+        )
+        self.assertEqual(
+            [
+                [
+                    "/.github/scripts/check_task_ritual.py",
+                    "@mochan-tk",
+                    "@liner-takashi-kawamoto",
+                ]
+            ],
+            validator_rules,
+        )
+        self.assertEqual(
+            rules.index(generic_rules[0]) + 1,
+            rules.index(validator_rules[0]),
+        )
+        self.assertEqual(
+            1,
+            codeowners.count(
+                "# The dual-owner trust-control rules require two distinct "
+                "eligible humans\n"
+            ),
+        )
+        self.assertNotIn("The four dual-owner trust-control rules", codeowners)
 
     def test_candidate_workers_refuse_job_only_reruns_before_checkout(self) -> None:
         workflow = (ROOT / ".github/workflows/ci.yml").read_text(encoding="utf-8")
