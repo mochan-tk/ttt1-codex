@@ -1335,8 +1335,9 @@ jobs:
                   if mode == "publisher":
                       assert_status_ownership()
                   revalidate()
+                  status_path = f"/repos/{repository}/statuses/{expected_head}"
                   response = github.request(
-                      f"/repos/{repository}/statuses/{expected_head}",
+                      status_path,
                       method="POST",
                       expected=201,
                       payload={
@@ -1350,13 +1351,16 @@ jobs:
                       not isinstance(response, dict)
                       or response.get("state") != state
                       or response.get("context") != context
-                      or response.get("sha") != expected_head
+                      or response.get("url") != f"{github.api_url}{status_path}"
                       or response.get("target_url") != target_url
                       or not isinstance(response.get("id"), int)
                       or isinstance(response.get("id"), bool)
                       or response.get("id", 0) <= 0
                   ):
-                      fail("commit-status response did not bind the requested state and context")
+                      fail(
+                          "commit-status response did not bind the requested head, "
+                          "state, and context"
+                      )
 
               try:
                   snap, classification, secure_applicable = revalidate()
