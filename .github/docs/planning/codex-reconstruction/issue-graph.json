@@ -1,0 +1,1000 @@
+{
+  "schema_version": "1.0",
+  "repository": "mochan-tk/ttt1-codex",
+  "verified_at_utc": "2026-08-19T03:44:49Z",
+  "fixed_target_baseline": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+  "planning_rule": "Phase Epics are siblings ordered by blocked-by. Phase 1 and the explicitly required phase-2 evidence backlog are decomposed; later implementation Tasks are created just in time.",
+  "readiness_rule": "Only Task #59 is ready. Every acceptance, implementation, and spike Task remains without ai:ready until the Planning PR is human-merged and its conductor rechecks prerequisites.",
+  "phase_epics": [
+    58,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65
+  ],
+  "nodes": [
+    {
+      "number": 58,
+      "database_id": 5188175604,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/58",
+      "title": "Epic: establish current baselines and Codex-native reconstruction plan",
+      "state": "open",
+      "kind": "epic",
+      "phase": 1,
+      "parent_issue": null,
+      "blocked_by": [],
+      "labels": [
+        "type:epic"
+      ],
+      "readiness": "not-ready",
+      "risk": "normal",
+      "routing": null,
+      "ownership": [],
+      "output_mode": "repository planning or phase control",
+      "decomposition": "detailed-current-wave"
+    },
+    {
+      "number": 59,
+      "database_id": 5188180671,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/59",
+      "title": "Task: audit and plan the current Copilot-to-Codex reconstruction",
+      "state": "open",
+      "kind": "task",
+      "phase": 1,
+      "parent_issue": 58,
+      "blocked_by": [],
+      "labels": [
+        "type:task",
+        "ai:ready",
+        "exec:app"
+      ],
+      "readiness": "ready",
+      "risk": "normal",
+      "routing": "exec:app",
+      "ownership": [
+        ".github/docs/guides/copilot-capability-map.md",
+        ".github/docs/agreements/requirements.md",
+        ".github/docs/agreements/adr/ADR-0005-codex-reconstruction-execution-model.md",
+        ".github/docs/planning/codex-reconstruction/**"
+      ],
+      "output_mode": "repository planning or phase control",
+      "decomposition": null
+    },
+    {
+      "number": 60,
+      "database_id": 5188243700,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/60",
+      "title": "Epic: prove Codex runtime and cross-surface capabilities",
+      "state": "open",
+      "kind": "epic",
+      "phase": 2,
+      "parent_issue": null,
+      "blocked_by": [
+        58
+      ],
+      "labels": [
+        "type:epic"
+      ],
+      "readiness": "not-ready",
+      "risk": "normal",
+      "routing": null,
+      "ownership": [],
+      "output_mode": "repository planning or phase control",
+      "decomposition": "detailed-runtime-spike-backlog"
+    },
+    {
+      "number": 61,
+      "database_id": 5188243813,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/61",
+      "title": "Epic: introduce Task-supervisor and isolated PR-worker lifecycle",
+      "state": "open",
+      "kind": "epic",
+      "phase": 3,
+      "parent_issue": null,
+      "blocked_by": [
+        60
+      ],
+      "labels": [
+        "type:epic"
+      ],
+      "readiness": "not-ready",
+      "risk": "normal",
+      "routing": null,
+      "ownership": [],
+      "output_mode": "repository planning or phase control",
+      "decomposition": "coarse-phase"
+    },
+    {
+      "number": 62,
+      "database_id": 5188243937,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/62",
+      "title": "Epic: implement provider-neutral worker isolation and replacement",
+      "state": "open",
+      "kind": "epic",
+      "phase": 4,
+      "parent_issue": null,
+      "blocked_by": [
+        61
+      ],
+      "labels": [
+        "type:epic"
+      ],
+      "readiness": "not-ready",
+      "risk": "normal",
+      "routing": null,
+      "ownership": [],
+      "output_mode": "repository planning or phase control",
+      "decomposition": "coarse-phase"
+    },
+    {
+      "number": 63,
+      "database_id": 5188244074,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/63",
+      "title": "Epic: synchronize ritual, ownership, governance, review, and CI walls",
+      "state": "open",
+      "kind": "epic",
+      "phase": 5,
+      "parent_issue": null,
+      "blocked_by": [
+        62,
+        33
+      ],
+      "labels": [
+        "type:epic"
+      ],
+      "readiness": "not-ready",
+      "risk": "normal",
+      "routing": null,
+      "ownership": [],
+      "output_mode": "repository planning or phase control",
+      "decomposition": "coarse-phase"
+    },
+    {
+      "number": 64,
+      "database_id": 5188244198,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/64",
+      "title": "Epic: synchronize onboarding, installer, plugin, Windows, and distribution",
+      "state": "open",
+      "kind": "epic",
+      "phase": 6,
+      "parent_issue": null,
+      "blocked_by": [
+        63
+      ],
+      "labels": [
+        "type:epic"
+      ],
+      "readiness": "not-ready",
+      "risk": "normal",
+      "routing": null,
+      "ownership": [],
+      "output_mode": "repository planning or phase control",
+      "decomposition": "coarse-phase"
+    },
+    {
+      "number": 65,
+      "database_id": 5188244334,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/65",
+      "title": "Epic: prove live adoption, recovery, and release readiness",
+      "state": "open",
+      "kind": "epic",
+      "phase": 7,
+      "parent_issue": null,
+      "blocked_by": [
+        64,
+        40
+      ],
+      "labels": [
+        "type:epic"
+      ],
+      "readiness": "not-ready",
+      "risk": "normal",
+      "routing": null,
+      "ownership": [],
+      "output_mode": "repository planning or phase control",
+      "decomposition": "coarse-phase"
+    },
+    {
+      "number": 66,
+      "database_id": 5188247804,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/66",
+      "title": "Task: accept the pinned baseline and complete file inventories",
+      "state": "open",
+      "kind": "task",
+      "phase": 1,
+      "parent_issue": 58,
+      "blocked_by": [
+        59
+      ],
+      "labels": [
+        "type:task",
+        "exec:app"
+      ],
+      "readiness": "not-ready",
+      "risk": "normal",
+      "routing": "exec:app",
+      "ownership": [],
+      "output_mode": "read-only Issue Outcome/Evidence",
+      "decomposition": null
+    },
+    {
+      "number": 67,
+      "database_id": 5188248049,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/67",
+      "title": "Task: accept the behavioral parity ledger and retained extensions",
+      "state": "open",
+      "kind": "task",
+      "phase": 1,
+      "parent_issue": 58,
+      "blocked_by": [
+        59
+      ],
+      "labels": [
+        "type:task",
+        "exec:app"
+      ],
+      "readiness": "not-ready",
+      "risk": "normal",
+      "routing": "exec:app",
+      "ownership": [],
+      "output_mode": "read-only Issue Outcome/Evidence",
+      "decomposition": null
+    },
+    {
+      "number": 68,
+      "database_id": 5188248235,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/68",
+      "title": "Task: accept the official Codex capability baseline",
+      "state": "open",
+      "kind": "task",
+      "phase": 1,
+      "parent_issue": 58,
+      "blocked_by": [
+        59
+      ],
+      "labels": [
+        "type:task",
+        "exec:app"
+      ],
+      "readiness": "not-ready",
+      "risk": "normal",
+      "routing": "exec:app",
+      "ownership": [],
+      "output_mode": "read-only Issue Outcome/Evidence",
+      "decomposition": null
+    },
+    {
+      "number": 69,
+      "database_id": 5188248435,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/69",
+      "title": "Task: accept runtime-spike briefs and evidence controls",
+      "state": "open",
+      "kind": "task",
+      "phase": 1,
+      "parent_issue": 58,
+      "blocked_by": [
+        59
+      ],
+      "labels": [
+        "type:task",
+        "exec:app"
+      ],
+      "readiness": "not-ready",
+      "risk": "normal",
+      "routing": "exec:app",
+      "ownership": [],
+      "output_mode": "read-only Issue Outcome/Evidence",
+      "decomposition": null
+    },
+    {
+      "number": 70,
+      "database_id": 5188248631,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/70",
+      "title": "Task: verify the human execution-model agreement decision",
+      "state": "open",
+      "kind": "task",
+      "phase": 1,
+      "parent_issue": 58,
+      "blocked_by": [
+        59,
+        66,
+        67,
+        68,
+        69
+      ],
+      "labels": [
+        "type:task",
+        "exec:app"
+      ],
+      "readiness": "not-ready",
+      "risk": "normal",
+      "routing": "exec:app",
+      "ownership": [],
+      "output_mode": "read-only Issue Outcome/Evidence",
+      "decomposition": null
+    },
+    {
+      "number": 71,
+      "database_id": 5188248857,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/71",
+      "title": "Task: checkpoint current-source drift after the fixed audit",
+      "state": "open",
+      "kind": "task",
+      "phase": 1,
+      "parent_issue": 58,
+      "blocked_by": [
+        59
+      ],
+      "labels": [
+        "type:task",
+        "exec:app"
+      ],
+      "readiness": "not-ready",
+      "risk": "normal",
+      "routing": "exec:app",
+      "ownership": [],
+      "output_mode": "read-only Issue Outcome/Evidence",
+      "decomposition": null
+    },
+    {
+      "number": 72,
+      "database_id": 5188256453,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/72",
+      "title": "Spike: observe Codex thread lineage, nesting, and control semantics",
+      "state": "open",
+      "kind": "task",
+      "phase": 2,
+      "parent_issue": 60,
+      "blocked_by": [
+        58
+      ],
+      "labels": [
+        "type:task",
+        "exec:cli"
+      ],
+      "readiness": "not-ready",
+      "risk": "normal",
+      "routing": "exec:cli",
+      "ownership": [
+        ".github/docs/evidence/codex-runtime/thread-topology.md"
+      ],
+      "output_mode": "future evidence-only spike",
+      "decomposition": null
+    },
+    {
+      "number": 73,
+      "database_id": 5188256694,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/73",
+      "title": "Spike: observe subagent checkout isolation and concurrent write behavior",
+      "state": "open",
+      "kind": "task",
+      "phase": 2,
+      "parent_issue": 60,
+      "blocked_by": [
+        58
+      ],
+      "labels": [
+        "type:task",
+        "exec:app"
+      ],
+      "readiness": "not-ready",
+      "risk": "normal",
+      "routing": "exec:app",
+      "ownership": [
+        ".github/docs/evidence/codex-runtime/subagent-workspace-isolation.md"
+      ],
+      "output_mode": "future evidence-only spike",
+      "decomposition": null
+    },
+    {
+      "number": 74,
+      "database_id": 5188256919,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/74",
+      "title": "Spike: observe Codex managed-worktree branch and handoff semantics",
+      "state": "open",
+      "kind": "task",
+      "phase": 2,
+      "parent_issue": 60,
+      "blocked_by": [
+        58
+      ],
+      "labels": [
+        "type:task",
+        "exec:app"
+      ],
+      "readiness": "not-ready",
+      "risk": "normal",
+      "routing": "exec:app",
+      "ownership": [
+        ".github/docs/evidence/codex-runtime/managed-worktree-handoff.md"
+      ],
+      "output_mode": "future evidence-only spike",
+      "decomposition": null
+    },
+    {
+      "number": 75,
+      "database_id": 5188257090,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/75",
+      "title": "Spike: observe permission inheritance and failure propagation",
+      "state": "open",
+      "kind": "task",
+      "phase": 2,
+      "parent_issue": 60,
+      "blocked_by": [
+        58
+      ],
+      "labels": [
+        "type:task",
+        "exec:app"
+      ],
+      "readiness": "not-ready",
+      "risk": "normal",
+      "routing": "exec:app",
+      "ownership": [
+        ".github/docs/evidence/codex-runtime/permission-and-failure-propagation.md"
+      ],
+      "output_mode": "future evidence-only spike",
+      "decomposition": null
+    },
+    {
+      "number": 76,
+      "database_id": 5188257276,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/76",
+      "title": "Spike: observe crash recovery, worker replacement, and stale-writer exclusion",
+      "state": "open",
+      "kind": "task",
+      "phase": 2,
+      "parent_issue": 60,
+      "blocked_by": [
+        58
+      ],
+      "labels": [
+        "type:task",
+        "exec:app"
+      ],
+      "readiness": "not-ready",
+      "risk": "normal",
+      "routing": "exec:app",
+      "ownership": [
+        ".github/docs/evidence/codex-runtime/recovery-and-replacement.md"
+      ],
+      "output_mode": "future evidence-only spike",
+      "decomposition": null
+    },
+    {
+      "number": 77,
+      "database_id": 5188257459,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/77",
+      "title": "Spike: observe cross-surface continuity across app, CLI, IDE, and cloud",
+      "state": "open",
+      "kind": "task",
+      "phase": 2,
+      "parent_issue": 60,
+      "blocked_by": [
+        58
+      ],
+      "labels": [
+        "type:task",
+        "exec:app"
+      ],
+      "readiness": "not-ready",
+      "risk": "normal",
+      "routing": "exec:app",
+      "ownership": [
+        ".github/docs/evidence/codex-runtime/cross-surface-continuity.md"
+      ],
+      "output_mode": "future evidence-only spike",
+      "decomposition": null
+    },
+    {
+      "number": 78,
+      "database_id": 5188257636,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/78",
+      "title": "Spike: measure Codex concurrency limits, budgets, and observability",
+      "state": "open",
+      "kind": "task",
+      "phase": 2,
+      "parent_issue": 60,
+      "blocked_by": [
+        58
+      ],
+      "labels": [
+        "type:task",
+        "exec:cli"
+      ],
+      "readiness": "not-ready",
+      "risk": "normal",
+      "routing": "exec:cli",
+      "ownership": [
+        ".github/docs/evidence/codex-runtime/limits-and-observability.md"
+      ],
+      "output_mode": "future evidence-only spike",
+      "decomposition": null
+    }
+  ],
+  "edges": [
+    {
+      "type": "sub_issue",
+      "from": 59,
+      "to": 58,
+      "meaning": "#59 is a child of #58"
+    },
+    {
+      "type": "blocked_by",
+      "from": 60,
+      "to": 58,
+      "meaning": "#60 cannot complete before #58"
+    },
+    {
+      "type": "blocked_by",
+      "from": 61,
+      "to": 60,
+      "meaning": "#61 cannot complete before #60"
+    },
+    {
+      "type": "blocked_by",
+      "from": 62,
+      "to": 61,
+      "meaning": "#62 cannot complete before #61"
+    },
+    {
+      "type": "blocked_by",
+      "from": 63,
+      "to": 62,
+      "meaning": "#63 cannot complete before #62"
+    },
+    {
+      "type": "blocked_by",
+      "from": 63,
+      "to": 33,
+      "meaning": "#63 cannot complete before #33"
+    },
+    {
+      "type": "blocked_by",
+      "from": 64,
+      "to": 63,
+      "meaning": "#64 cannot complete before #63"
+    },
+    {
+      "type": "blocked_by",
+      "from": 65,
+      "to": 64,
+      "meaning": "#65 cannot complete before #64"
+    },
+    {
+      "type": "blocked_by",
+      "from": 65,
+      "to": 40,
+      "meaning": "#65 cannot complete before #40"
+    },
+    {
+      "type": "sub_issue",
+      "from": 66,
+      "to": 58,
+      "meaning": "#66 is a child of #58"
+    },
+    {
+      "type": "blocked_by",
+      "from": 66,
+      "to": 59,
+      "meaning": "#66 cannot complete before #59"
+    },
+    {
+      "type": "sub_issue",
+      "from": 67,
+      "to": 58,
+      "meaning": "#67 is a child of #58"
+    },
+    {
+      "type": "blocked_by",
+      "from": 67,
+      "to": 59,
+      "meaning": "#67 cannot complete before #59"
+    },
+    {
+      "type": "sub_issue",
+      "from": 68,
+      "to": 58,
+      "meaning": "#68 is a child of #58"
+    },
+    {
+      "type": "blocked_by",
+      "from": 68,
+      "to": 59,
+      "meaning": "#68 cannot complete before #59"
+    },
+    {
+      "type": "sub_issue",
+      "from": 69,
+      "to": 58,
+      "meaning": "#69 is a child of #58"
+    },
+    {
+      "type": "blocked_by",
+      "from": 69,
+      "to": 59,
+      "meaning": "#69 cannot complete before #59"
+    },
+    {
+      "type": "sub_issue",
+      "from": 70,
+      "to": 58,
+      "meaning": "#70 is a child of #58"
+    },
+    {
+      "type": "blocked_by",
+      "from": 70,
+      "to": 59,
+      "meaning": "#70 cannot complete before #59"
+    },
+    {
+      "type": "blocked_by",
+      "from": 70,
+      "to": 66,
+      "meaning": "#70 cannot complete before #66"
+    },
+    {
+      "type": "blocked_by",
+      "from": 70,
+      "to": 67,
+      "meaning": "#70 cannot complete before #67"
+    },
+    {
+      "type": "blocked_by",
+      "from": 70,
+      "to": 68,
+      "meaning": "#70 cannot complete before #68"
+    },
+    {
+      "type": "blocked_by",
+      "from": 70,
+      "to": 69,
+      "meaning": "#70 cannot complete before #69"
+    },
+    {
+      "type": "sub_issue",
+      "from": 71,
+      "to": 58,
+      "meaning": "#71 is a child of #58"
+    },
+    {
+      "type": "blocked_by",
+      "from": 71,
+      "to": 59,
+      "meaning": "#71 cannot complete before #59"
+    },
+    {
+      "type": "sub_issue",
+      "from": 72,
+      "to": 60,
+      "meaning": "#72 is a child of #60"
+    },
+    {
+      "type": "blocked_by",
+      "from": 72,
+      "to": 58,
+      "meaning": "#72 cannot complete before #58"
+    },
+    {
+      "type": "sub_issue",
+      "from": 73,
+      "to": 60,
+      "meaning": "#73 is a child of #60"
+    },
+    {
+      "type": "blocked_by",
+      "from": 73,
+      "to": 58,
+      "meaning": "#73 cannot complete before #58"
+    },
+    {
+      "type": "sub_issue",
+      "from": 74,
+      "to": 60,
+      "meaning": "#74 is a child of #60"
+    },
+    {
+      "type": "blocked_by",
+      "from": 74,
+      "to": 58,
+      "meaning": "#74 cannot complete before #58"
+    },
+    {
+      "type": "sub_issue",
+      "from": 75,
+      "to": 60,
+      "meaning": "#75 is a child of #60"
+    },
+    {
+      "type": "blocked_by",
+      "from": 75,
+      "to": 58,
+      "meaning": "#75 cannot complete before #58"
+    },
+    {
+      "type": "sub_issue",
+      "from": 76,
+      "to": 60,
+      "meaning": "#76 is a child of #60"
+    },
+    {
+      "type": "blocked_by",
+      "from": 76,
+      "to": 58,
+      "meaning": "#76 cannot complete before #58"
+    },
+    {
+      "type": "sub_issue",
+      "from": 77,
+      "to": 60,
+      "meaning": "#77 is a child of #60"
+    },
+    {
+      "type": "blocked_by",
+      "from": 77,
+      "to": 58,
+      "meaning": "#77 cannot complete before #58"
+    },
+    {
+      "type": "sub_issue",
+      "from": 78,
+      "to": 60,
+      "meaning": "#78 is a child of #60"
+    },
+    {
+      "type": "blocked_by",
+      "from": 78,
+      "to": 58,
+      "meaning": "#78 cannot complete before #58"
+    }
+  ],
+  "preexisting_open_constraints": {
+    "issues": [
+      {
+        "number": 1,
+        "database_id": 5047167756,
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/1",
+        "title": "Epic: Build the Codex-native ADLC template v1.0.0",
+        "labels": [
+          "type:epic"
+        ],
+        "state": "open",
+        "parent_issue": null
+      },
+      {
+        "number": 13,
+        "database_id": 5048013545,
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/13",
+        "title": "retro-candidate: auto-comment issue-body edit diffs via an Action",
+        "labels": [
+          "retro:candidate"
+        ],
+        "state": "open",
+        "parent_issue": null
+      },
+      {
+        "number": 33,
+        "database_id": 5094527673,
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/33",
+        "title": "Task: implement and prove the Codex-native secure Dev Container reference",
+        "labels": [
+          "type:task",
+          "risk:high",
+          "exec:app"
+        ],
+        "state": "open",
+        "parent_issue": 1
+      },
+      {
+        "number": 40,
+        "database_id": 5126101716,
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/40",
+        "title": "Epic: prove and release the Codex-native kit",
+        "labels": [
+          "type:epic"
+        ],
+        "state": "open",
+        "parent_issue": null
+      },
+      {
+        "number": 49,
+        "database_id": 5133340525,
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/49",
+        "title": "Epic: prove the base-owned Actions admission and source-bound merge wall",
+        "labels": [
+          "type:epic"
+        ],
+        "state": "open",
+        "parent_issue": null
+      },
+      {
+        "number": 50,
+        "database_id": 5133343230,
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/50",
+        "title": "Task: prove same-repository Actions admission",
+        "labels": [
+          "type:task",
+          "needs:human",
+          "needs:replan",
+          "risk:high",
+          "exec:app"
+        ],
+        "state": "open",
+        "parent_issue": 49
+      },
+      {
+        "number": 51,
+        "database_id": 5133347129,
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/51",
+        "title": "Task: prove public-fork Actions admission and exact-SHA authorization",
+        "labels": [
+          "type:task",
+          "risk:high",
+          "exec:app"
+        ],
+        "state": "open",
+        "parent_issue": 49
+      },
+      {
+        "number": 52,
+        "database_id": 5133350444,
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/52",
+        "title": "Task: bind required checks to the trusted publisher and activate the merge wall",
+        "labels": [
+          "type:task",
+          "risk:high",
+          "exec:app"
+        ],
+        "state": "open",
+        "parent_issue": 49
+      }
+    ],
+    "dependency_projection_rule": "blocked_by_all records every live GitHub dependency edge, including closed blockers. blocked_by_open is the actionable open-blocker projection; no closed edge is silently omitted.",
+    "dependency_summary": [
+      {
+        "blocked": 33,
+        "blocked_by_all": [
+          31,
+          35,
+          49,
+          50,
+          51,
+          52
+        ],
+        "blocked_by_open": [
+          49,
+          50,
+          51,
+          52
+        ],
+        "note": "Frozen secure Dev Container Task retains ownership and proof chain."
+      },
+      {
+        "blocked": 40,
+        "blocked_by_all": [
+          33,
+          39
+        ],
+        "blocked_by_open": [
+          33
+        ],
+        "note": "Existing release Epic remains authoritative and is integrated by phase #65."
+      },
+      {
+        "blocked": 49,
+        "blocked_by_all": [
+          35
+        ],
+        "blocked_by_open": [],
+        "note": "The proof Epic's only blocker is closed; its child proof sequence remains open."
+      },
+      {
+        "blocked": 50,
+        "blocked_by_all": [
+          35,
+          48
+        ],
+        "blocked_by_open": [],
+        "note": "Risk-high same-repository admission proof waits for exact human Plan approval; no implementation artifact exists."
+      },
+      {
+        "blocked": 51,
+        "blocked_by_all": [
+          50
+        ],
+        "blocked_by_open": [
+          50
+        ],
+        "note": "Public-fork proof remains unstarted and not ready."
+      },
+      {
+        "blocked": 52,
+        "blocked_by_all": [
+          51
+        ],
+        "blocked_by_open": [
+          51
+        ],
+        "note": "Trusted status source/live merge-wall proof remains unstarted and not ready."
+      }
+    ],
+    "protected_ownership": [
+      {
+        "issue": 33,
+        "paths": [
+          ".codex/devcontainer/**",
+          ".github/scripts/{check_devcontainer.py,materialize_devcontainer.py,preflight_devcontainer.py,check-skills.sh,setup-ruleset.sh}",
+          ".github/scripts/tests/{test_devcontainer.py,test_ci_guards.py}",
+          ".github/workflows/ci.yml",
+          ".github/CODEOWNERS",
+          "README.md",
+          "SCAFFOLD-CHANGELOG.md"
+        ]
+      },
+      {
+        "issue": 50,
+        "paths": [
+          "temporary .github/workflows/ci.yml canary",
+          ".github/docs/evidence/actions-admission-same-repository.md"
+        ]
+      },
+      {
+        "issue": 51,
+        "paths": [
+          "temporary .github/workflows/ci.yml canary",
+          ".github/docs/evidence/actions-admission-public-fork.md"
+        ]
+      },
+      {
+        "issue": 52,
+        "paths": [
+          ".github/docs/guides/actions-admission-recovery.md"
+        ]
+      }
+    ],
+    "overlap_resolution": "Phase #63 is additionally blocked by #33. Phase #65 is additionally blocked by #40. Later decomposition must reconcile rather than duplicate their paths."
+  },
+  "counts": {
+    "planned_phase_epics": 7,
+    "phase_1_tasks": 7,
+    "runtime_spike_tasks": 7,
+    "planned_nodes": 21,
+    "planned_edges": 39,
+    "ready_planned_tasks": 1,
+    "not_ready_planned_tasks": 13
+  },
+  "verification": {
+    "phase_58_sub_issues": [
+      59,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71
+    ],
+    "phase_60_sub_issues": [
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78
+    ],
+    "checked_endpoints": [
+      "GET /repos/mochan-tk/ttt1-codex/issues/{number}",
+      "GET /repos/mochan-tk/ttt1-codex/issues/{number}/sub_issues",
+      "GET /repos/mochan-tk/ttt1-codex/issues/{number}/dependencies/blocked_by"
+    ],
+    "expected_ai_ready": [
+      59
+    ],
+    "actual_ai_ready": [
+      59
+    ],
+    "note": "Graph mutations are planning records only; no reconstruction implementation, branch, commit, PR, Settings, ruleset, release, or tag was created by the graph."
+  }
+}
