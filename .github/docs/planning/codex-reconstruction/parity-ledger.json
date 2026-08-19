@@ -1,0 +1,3047 @@
+{
+  "schema_version": "1.0",
+  "generated_at_utc": "2026-08-19T03:44:49Z",
+  "fixed_source_baseline": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+  "fixed_target_baseline": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+  "allowed_statuses": [
+    "PARITY",
+    "CODEX_NATIVE",
+    "EXTENSION",
+    "GAP",
+    "PARTIAL",
+    "NON_PORTABLE",
+    "UNKNOWN"
+  ],
+  "evidence_scale": {
+    "pinned-tree": "File exists with the cited content at an immutable commit; not runtime proof.",
+    "deterministic-test": "Fixture or local check proves only the modeled behavior.",
+    "hosted-observation": "Observed GitHub/product state at a timestamp; can drift.",
+    "official-doc": "Current primary documentation; surface and maturity limits apply.",
+    "official-source": "Version-pinned implementation evidence; not a forward compatibility promise.",
+    "source-open-work": "Open source Issue or PR context; planned or unresolved work, never merged implementation proof.",
+    "target-open-proof": "Open target proof Task with durable observations but incomplete acceptance; not merged capability proof.",
+    "target-open-work": "Open target work order or artifact context; planned or unmerged and not implementation proof.",
+    "target-proof-chain": "Open target Epic/Task proof chain; durable control-plane context whose remaining gates are incomplete."
+  },
+  "rolling_wave_rule": "Rows needing later implementation point to the owning phase Epic until that phase is decomposed just in time. Existing runtime/acceptance Tasks are linked directly.",
+  "status_counts": {
+    "PARITY": 10,
+    "CODEX_NATIVE": 5,
+    "EXTENSION": 14,
+    "GAP": 10,
+    "PARTIAL": 13,
+    "NON_PORTABLE": 4,
+    "UNKNOWN": 5
+  },
+  "rows": [
+    {
+      "id": "CAP-001",
+      "source_capability": "GitHub as durable lifecycle ledger",
+      "source_paths": [
+        "AGENTS.md",
+        ".github/skills/session-orchestration/SKILL.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Issues, comments, dependencies, PRs, checks, and Git history carry durable truth; sessions are transport.",
+      "source_enforcement_level": "normative guidance plus GitHub platform records",
+      "target_paths": [
+        "AGENTS.md",
+        ".agents/skills/session-orchestration/SKILL.md",
+        ".github/docs/agreements/requirements.md"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "The same durable-ledger rule is explicit and survives a fresh Codex session.",
+      "target_enforcement_level": "normative guidance plus GitHub platform records",
+      "status": "PARITY",
+      "behavioral_difference": "Product session state is non-authoritative in both.",
+      "retained_target_extension": "Base-owned admission adds stronger target verification but is tracked separately.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/AGENTS.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/session-orchestration/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/AGENTS.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/session-orchestration/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/docs/agreements/requirements.md"
+        }
+      ],
+      "known_limitation": "Human record quality still requires review.",
+      "implementation_task": null,
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-002",
+      "source_capability": "Four-edge Issue/PR tracking graph",
+      "source_paths": [
+        ".github/skills/plan-management/SKILL.md",
+        ".github/ISSUE_TEMPLATE/ai-task.yml"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Origin, sub-issue, blocked-by, cross-reference, and closing PR edges define work provenance.",
+      "source_enforcement_level": "platform schema, helper, and procedure",
+      "target_paths": [
+        ".agents/skills/plan-management/SKILL.md",
+        ".github/ISSUE_TEMPLATE/task.yml"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "The same edges are required; helpers validate parents, blockers, references, and labels.",
+      "target_enforcement_level": "platform schema, helper, and procedure",
+      "status": "PARITY",
+      "behavioral_difference": "Names differ but durable graph semantics match.",
+      "retained_target_extension": "Target new-task helper is preview/apply explicit and fail-closed.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/plan-management/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/ISSUE_TEMPLATE/ai-task.yml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/plan-management/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/ISSUE_TEMPLATE/task.yml"
+        }
+      ],
+      "known_limitation": null,
+      "implementation_task": null,
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-003",
+      "source_capability": "Three distinct human merge decisions",
+      "source_paths": [
+        "AGENTS.md",
+        ".github/skills/project-onboarding/SKILL.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Agreement, license/onboarding, and completion remain separate human decisions.",
+      "source_enforcement_level": "normative/human gate",
+      "target_paths": [
+        "AGENTS.md",
+        ".agents/skills/project-onboarding/SKILL.md",
+        ".github/docs/agreements/requirements.md"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target preserves the Three Merges and non-author completion review.",
+      "target_enforcement_level": "normative/human gate",
+      "status": "PARITY",
+      "behavioral_difference": "No material behavioral difference.",
+      "retained_target_extension": "Target explicitly separates repository proof from the human decision.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/AGENTS.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/project-onboarding/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/AGENTS.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/project-onboarding/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/docs/agreements/requirements.md"
+        }
+      ],
+      "known_limitation": null,
+      "implementation_task": null,
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-004",
+      "source_capability": "Sibling phase Epics and rolling-wave decomposition",
+      "source_paths": [
+        ".github/skills/plan-management/SKILL.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Phase Epics are siblings ordered by blocked-by and only the next wave is decomposed.",
+      "source_enforcement_level": "normative skill plus GitHub graph",
+      "target_paths": [
+        ".agents/skills/plan-management/SKILL.md"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target has the same sibling/blocked-by/frontier/decomposition-state contract.",
+      "target_enforcement_level": "normative skill plus deterministic helpers",
+      "status": "PARITY",
+      "behavioral_difference": "Equivalent behavior; this Planning Task exercised it in #58-#78.",
+      "retained_target_extension": "Target helper refuses malformed live creation rather than improvising.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/plan-management/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/plan-management/SKILL.md"
+        }
+      ],
+      "known_limitation": null,
+      "implementation_task": null,
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-005",
+      "source_capability": "GitHub Projects as a derived roadmap",
+      "source_paths": [
+        ".github/scripts/setup-project.sh"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Projects v2 is a derived view with typed fields and partly manual view configuration.",
+      "source_enforcement_level": "explicit GitHub mutation plus fixtures",
+      "target_paths": [
+        ".github/scripts/setup-project.sh"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target helper preserves derived-view semantics with dry-run/apply and conflict checks.",
+      "target_enforcement_level": "explicit GitHub mutation plus fixtures",
+      "status": "PARITY",
+      "behavioral_difference": "Target live repository has no linked Project, so only implementation parity is claimed.",
+      "retained_target_extension": "Target preview/apply safety is stronger.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/setup-project.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/setup-project.sh"
+        }
+      ],
+      "known_limitation": null,
+      "implementation_task": null,
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-006",
+      "source_capability": "Project conductor above sibling Epic parents",
+      "source_paths": [
+        "README.md",
+        ".github/skills/session-orchestration/SKILL.md",
+        ".github/docs/context/session-naming/2026-08-18-owner-decision.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Current source names a Project session above sibling Epic conductors and binds durable names to Project/Epic/Task/PR identity.",
+      "source_enforcement_level": "normative guidance; naming evidence descriptive",
+      "target_paths": [
+        ".agents/skills/session-orchestration/SKILL.md",
+        ".codex/agents/orchestrator.toml",
+        ".github/docs/guides/architecture.md"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target has a whole-program conductor above sibling Epic parents but uses older Program terminology and overstates mirroring between Issue and thread hierarchies.",
+      "target_enforcement_level": "normative Codex guidance",
+      "status": "PARTIAL",
+      "behavioral_difference": "Logical hierarchy is close; naming, transport truth, and current source handoff details differ.",
+      "retained_target_extension": null,
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/README.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/session-orchestration/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/docs/context/session-naming/2026-08-18-owner-decision.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/session-orchestration/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.codex/agents/orchestrator.toml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/docs/guides/architecture.md"
+        }
+      ],
+      "known_limitation": "Codex supplies threads, not native Project/Epic lifecycle semantics.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/61",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-007",
+      "source_capability": "Task supervisor coordinating isolated PR workers",
+      "source_paths": [
+        "docs/agreements/adr/ADR-0003-two-tier-task-execution.md",
+        ".github/skills/session-orchestration/SKILL.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "One Task supervisor owns lifecycle while one active worker owns each PR/worktree/branch; replacement on that PR requires release of the predecessor.",
+      "source_enforcement_level": "normative guidance plus ritual checks",
+      "target_paths": [
+        "AGENTS.md",
+        ".agents/skills/session-orchestration/SKILL.md"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target currently requires the Task session itself to be the sole implementing writer and permits only read-only support subagents.",
+      "target_enforcement_level": "normative guidance",
+      "status": "GAP",
+      "behavioral_difference": "The active supervisor/per-PR-worker split does not exist. Stacked or multi-PR activation is separated into CAP-061 because the source keeps it gated.",
+      "retained_target_extension": null,
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/docs/agreements/adr/ADR-0003-two-tier-task-execution.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/session-orchestration/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/AGENTS.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/session-orchestration/SKILL.md"
+        }
+      ],
+      "known_limitation": "Runtime role identity is not a hard product boundary.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/61",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-008",
+      "source_capability": "Durable worker dispatch, release, and successor identity",
+      "source_paths": [
+        ".github/skills/session-orchestration/SKILL.md",
+        ".github/scripts/check-task-ritual.sh"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Exact Dispatching worker/Releasing worker comments bind session ID and PR branch; replacement requires an interposed release. The reconstruction contract must additionally bind provider, attempt, and durable supervisor/worker references.",
+      "source_enforcement_level": "deterministic ritual sensor plus guidance",
+      "target_paths": [
+        ".github/scripts/check_task_ritual.py",
+        ".agents/skills/session-orchestration/SKILL.md"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target validator has no worker dispatch/release grammar or successor fencing.",
+      "target_enforcement_level": "deterministic validator for other chronology only",
+      "status": "GAP",
+      "behavioral_difference": "Target cannot reconstruct or exclude replacement workers from a durable dispatch trail, and neither baseline provides the complete provider/attempt/supervisor/worker identity tuple required by ADR-0005.",
+      "retained_target_extension": null,
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/session-orchestration/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/check-task-ritual.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/check_task_ritual.py"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/session-orchestration/SKILL.md"
+        }
+      ],
+      "known_limitation": "Source syntax does not authenticate the runtime session ID and omits explicit provider, attempt, and supervisor-reference fields.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/62",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-009",
+      "source_capability": "Pre-commit small-Task no-worker exemption",
+      "source_paths": [
+        ".github/skills/session-orchestration/SKILL.md",
+        ".github/scripts/check-task-ritual.sh"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Only a Task supervisor may declare `no worker will be spawned` in the Plan before the first commit; conductors cannot.",
+      "source_enforcement_level": "deterministic ritual sensor plus guidance",
+      "target_paths": [
+        "AGENTS.md",
+        ".agents/skills/session-orchestration/SKILL.md"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Current target has no supervisor exemption because the Task session is always the writer.",
+      "target_enforcement_level": "normative guidance",
+      "status": "GAP",
+      "behavioral_difference": "The future two-tier model needs an explicit, auditable exception without weakening writer isolation.",
+      "retained_target_extension": null,
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/session-orchestration/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/check-task-ritual.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/AGENTS.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/session-orchestration/SKILL.md"
+        }
+      ],
+      "known_limitation": null,
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/61",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-010",
+      "source_capability": "One active writer per PR/worktree/branch/ownership boundary",
+      "source_paths": [
+        "AGENTS.md",
+        ".github/skills/session-orchestration/SKILL.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Each PR worker is the only writer for its isolated branch/worktree and owned paths.",
+      "source_enforcement_level": "normative guidance",
+      "target_paths": [
+        "AGENTS.md",
+        ".agents/skills/session-orchestration/SKILL.md"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "The current stricter target contract gives the Task session one worktree, branch, PR, and sole-writer authority.",
+      "target_enforcement_level": "normative guidance plus Task/PR records",
+      "status": "PARITY",
+      "behavioral_difference": "Topology differs, but the no-concurrent-writer safety invariant matches.",
+      "retained_target_extension": "Target forbids write-heavy subagent delegation because current subagents share state.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/AGENTS.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/session-orchestration/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/AGENTS.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/session-orchestration/SKILL.md"
+        }
+      ],
+      "known_limitation": "Neither repository proves active process exclusion.",
+      "implementation_task": null,
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-011",
+      "source_capability": "Crash-only recovery and replacement",
+      "source_paths": [
+        ".github/skills/session-orchestration/SKILL.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Supervisor reconstructs from GitHub/Git, records release, and dispatches a replacement; hidden chat history is not authority.",
+      "source_enforcement_level": "normative procedure",
+      "target_paths": [
+        ".agents/skills/session-orchestration/SKILL.md",
+        "AGENTS.md"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target supports fresh-session resume from GitHub/Git but has no worker lease, release, stale-writer exclusion, or multi-PR replacement.",
+      "target_enforcement_level": "normative procedure",
+      "status": "PARTIAL",
+      "behavioral_difference": "Recovery principle matches; replacement safety is missing.",
+      "retained_target_extension": null,
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/session-orchestration/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/session-orchestration/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/AGENTS.md"
+        }
+      ],
+      "known_limitation": "Runtime resume/orphan behavior remains product-version dependent.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/76",
+        "kind": "task",
+        "readiness": "not-ready",
+        "note": "Evidence or acceptance Task exists and has no ai:ready label."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-012",
+      "source_capability": "Descendants spawning descendants",
+      "source_paths": [
+        ".github/skills/session-orchestration/SKILL.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source uses product-specific child-session tools and a four-layer model.",
+      "source_enforcement_level": "product-specific runtime guidance",
+      "target_paths": [
+        ".agents/skills/session-orchestration/SKILL.md"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Official Codex stable V2 source explicitly allows descendants and records lineage; target policy intentionally limits ordinary delegation to one-hop read-only work.",
+      "target_enforcement_level": "Codex stable implementation plus project policy",
+      "status": "CODEX_NATIVE",
+      "behavioral_difference": "Codex-native descendant transport exists, but it is not durable lifecycle authority.",
+      "retained_target_extension": null,
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/session-orchestration/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/session-orchestration/SKILL.md"
+        },
+        {
+          "level": "official-source",
+          "ref": "https://github.com/openai/codex/blob/3ba0f711642a888aec92a611a3f3b2211157ff89/codex-rs/core/src/session/multi_agents.rs#L11-L38"
+        }
+      ],
+      "known_limitation": "Public subagent docs omit a compatibility guarantee and exact V2 depth is unknown.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/72",
+        "kind": "task",
+        "readiness": "not-ready",
+        "note": "Evidence or acceptance Task exists and has no ai:ready label."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-013",
+      "source_capability": "Isolated checkout for writing workers",
+      "source_paths": [
+        "docs/agreements/adr/ADR-0003-two-tier-task-execution.md",
+        ".github/skills/session-orchestration/SKILL.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Writing PR workers require distinct worktrees/branches.",
+      "source_enforcement_level": "normative procedure",
+      "target_paths": [
+        ".codex/agents/explorer.toml",
+        ".codex/agents/planner.toml",
+        ".codex/agents/orchestrator.toml",
+        ".codex/agents/reviewer.toml"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Project agents default read-only; official V2 source says ordinary agents share one CWD/filesystem and see edits immediately.",
+      "target_enforcement_level": "runtime default plus official source",
+      "status": "GAP",
+      "behavioral_difference": "A child thread is not a managed worktree; provider-neutral worktree allocation/lease is required.",
+      "retained_target_extension": null,
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/docs/agreements/adr/ADR-0003-two-tier-task-execution.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/session-orchestration/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.codex/agents/explorer.toml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.codex/agents/planner.toml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.codex/agents/orchestrator.toml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.codex/agents/reviewer.toml"
+        },
+        {
+          "level": "official-source",
+          "ref": "https://github.com/openai/codex/blob/3ba0f711642a888aec92a611a3f3b2211157ff89/codex-rs/core/src/session/multi_agents.rs#L53-L58"
+        }
+      ],
+      "known_limitation": "Ordinary subagents cannot supply native writer isolation in current V2.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/73",
+        "kind": "task",
+        "readiness": "not-ready",
+        "note": "Evidence or acceptance Task exists and has no ai:ready label."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-014",
+      "source_capability": "Stable parent/ancestor lifecycle identity",
+      "source_paths": [
+        ".github/skills/session-orchestration/SKILL.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source records a session ID in dispatch comments but does not authenticate it.",
+      "source_enforcement_level": "procedural record",
+      "target_paths": [
+        ".agents/skills/session-orchestration/SKILL.md"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Codex App Server exposes parent/ancestor filters and lifecycle methods only through an experimental surface; no arbitrary durable parent binding is documented.",
+      "target_enforcement_level": "experimental API",
+      "status": "UNKNOWN",
+      "behavioral_difference": "Thread metadata may correlate evidence but is not yet safe as the ownership authority.",
+      "retained_target_extension": null,
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/session-orchestration/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/session-orchestration/SKILL.md"
+        },
+        {
+          "level": "official-doc",
+          "ref": "https://learn.chatgpt.com/docs/app-server"
+        }
+      ],
+      "known_limitation": "Experimental fields may change and archive is non-atomic.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/72",
+        "kind": "task",
+        "readiness": "not-ready",
+        "note": "Evidence or acceptance Task exists and has no ai:ready label."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-015",
+      "source_capability": "V2 nesting depth, concurrency, budget, and observability limits",
+      "source_paths": [
+        ".github/skills/session-orchestration/SKILL.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source defines behavioral escalation but cannot enforce platform depth, budget, heartbeat, or circuit breakers.",
+      "source_enforcement_level": "procedural guidance",
+      "target_paths": [
+        ".agents/skills/session-orchestration/SKILL.md"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "V1 enforces max_depth, while current V2 ignores that setting; concurrency configuration exists but exact defaults, queues, budgets, and heartbeat are not a durable contract.",
+      "target_enforcement_level": "stable source plus unknown runtime behavior",
+      "status": "UNKNOWN",
+      "behavioral_difference": "No fixed safe operating envelope can be claimed.",
+      "retained_target_extension": null,
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/session-orchestration/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/session-orchestration/SKILL.md"
+        },
+        {
+          "level": "official-source",
+          "ref": "https://github.com/openai/codex/blob/3ba0f711642a888aec92a611a3f3b2211157ff89/codex-rs/config/src/config_toml.rs#L668-L674"
+        }
+      ],
+      "known_limitation": "No V2 depth check in inspected code does not prove unlimited depth.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/78",
+        "kind": "task",
+        "readiness": "not-ready",
+        "note": "Evidence or acceptance Task exists and has no ai:ready label."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-016",
+      "source_capability": "Sandbox and approval inheritance",
+      "source_paths": [
+        ".github/agents/orchestrator.agent.md",
+        ".github/agents/reviewer.agent.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source tool grants aim at read-only conductor/reviewer roles, but execute access can still write.",
+      "source_enforcement_level": "runtime configuration and guidance",
+      "target_paths": [
+        ".codex/agents/orchestrator.toml",
+        ".codex/agents/reviewer.toml",
+        ".codex/config.toml"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target uses read-only role defaults; official docs say children inherit current permissions, with surface-specific live overrides and possible narrower custom role sandboxes.",
+      "target_enforcement_level": "runtime defaults plus documentation",
+      "status": "PARTIAL",
+      "behavioral_difference": "Target is Codex-native but exact cross-surface precedence is not fully proven.",
+      "retained_target_extension": "Read-only defaults and explicit no-write text reduce accidental mutation.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/agents/orchestrator.agent.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/agents/reviewer.agent.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.codex/agents/orchestrator.toml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.codex/agents/reviewer.toml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.codex/config.toml"
+        },
+        {
+          "level": "official-doc",
+          "ref": "https://learn.chatgpt.com/docs/agent-configuration/subagents"
+        }
+      ],
+      "known_limitation": "A role TOML is not an unbypassable security boundary.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/75",
+        "kind": "task",
+        "readiness": "not-ready",
+        "note": "Evidence or acceptance Task exists and has no ai:ready label."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-017",
+      "source_capability": "Failure, interruption, parent termination, and orphan propagation",
+      "source_paths": [
+        ".github/skills/session-orchestration/SKILL.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source prescribes steer/stop/close and leaf-first teardown without a trusted runtime propagation sensor.",
+      "source_enforcement_level": "procedural guidance",
+      "target_paths": [
+        ".agents/skills/session-orchestration/SKILL.md"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Codex documents steer/interrupt/close on some surfaces, but exact process, partial-write, parent-death, and orphan behavior is not a stable contract.",
+      "target_enforcement_level": "documented controls; runtime unknown",
+      "status": "UNKNOWN",
+      "behavioral_difference": "Lifecycle fallback must inspect processes, Git, and durable records rather than infer child state.",
+      "retained_target_extension": null,
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/session-orchestration/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/session-orchestration/SKILL.md"
+        },
+        {
+          "level": "official-doc",
+          "ref": "https://learn.chatgpt.com/docs/agent-configuration/subagents"
+        }
+      ],
+      "known_limitation": "Web cannot steer/stop individual hosted subagents; App Server archive may partially cascade.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/75",
+        "kind": "task",
+        "readiness": "not-ready",
+        "note": "Evidence or acceptance Task exists and has no ai:ready label."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-018",
+      "source_capability": "Lazy consensus and exact high-risk Plan approval",
+      "source_paths": [
+        "AGENTS.md",
+        ".github/skills/session-orchestration/SKILL.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Normal reversible work uses lazy consensus; risk:high waits for exact human approval of the Plan comment.",
+      "source_enforcement_level": "normative human gate",
+      "target_paths": [
+        "AGENTS.md",
+        ".agents/skills/session-orchestration/SKILL.md",
+        ".github/docs/agreements/requirements.md"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target carries the same human authority rule.",
+      "target_enforcement_level": "normative human gate",
+      "status": "PARITY",
+      "behavioral_difference": "No material difference.",
+      "retained_target_extension": "Target also separates Settings/ruleset/release authority explicitly.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/AGENTS.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/session-orchestration/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/AGENTS.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/session-orchestration/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/docs/agreements/requirements.md"
+        }
+      ],
+      "known_limitation": null,
+      "implementation_task": null,
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-019",
+      "source_capability": "Immutable Start/Plan chronology and Plan-before-commit provenance",
+      "source_paths": [
+        ".github/scripts/check-task-ritual.sh"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source checks claim, Plan, dispatch/exemption chronology, and linkage with shell/API fixtures.",
+      "source_enforcement_level": "deterministic CI sensor",
+      "target_paths": [
+        ".github/scripts/check_task_ritual.py",
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target trusted-base Python validator checks exact Task/Plan links, edit history, unique initial Plan, revised-plan grammar, Start-before-Plan, and Plan-before-first-commit.",
+      "target_enforcement_level": "deterministic trusted-base CI sensor",
+      "status": "EXTENSION",
+      "behavioral_difference": "Target chronology and edit-history acquisition are stronger; dispatch-specific checks remain a separate GAP.",
+      "retained_target_extension": "Preserve GraphQL edit-history and exact-link validation.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/check-task-ritual.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/check_task_ritual.py"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/tests/test_ci_guards.py"
+        }
+      ],
+      "known_limitation": "Does not enforce Outcome, Evidence completeness, ownership, or approval.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/63",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-020",
+      "source_capability": "Worker dispatch validator",
+      "source_paths": [
+        ".github/scripts/check-task-ritual.sh",
+        ".github/scripts/tests/test-ritual-dispatch.sh"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "CI checks dispatch first line, branch, chronology, exemption, release before replacement, and successor sequence, but not the reconstruction's full provider/attempt/supervisor/worker identity tuple.",
+      "source_enforcement_level": "deterministic CI sensor",
+      "target_paths": [
+        ".github/scripts/check_task_ritual.py"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target ritual validator stops at Task session chronology and has no worker markers.",
+      "target_enforcement_level": "deterministic CI sensor without worker layer",
+      "status": "GAP",
+      "behavioral_difference": "Supervisor/worker parity and complete provider-neutral dispatch identity cannot be admitted deterministically.",
+      "retained_target_extension": null,
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/check-task-ritual.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/tests/test-ritual-dispatch.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/check_task_ritual.py"
+        }
+      ],
+      "known_limitation": "Source cannot validate the actual runtime session ID and does not require explicit provider, attempt, or supervisor reference.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/63",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-021",
+      "source_capability": "Ritual actor authenticity and comment-event freshness",
+      "source_paths": [
+        ".github/scripts/check-task-ritual.sh"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Current source wall accepts marker-shaped comments without actor authorization and its workflow does not rerun on comment change; source Issue #6 records the threat.",
+      "source_enforcement_level": "deterministic sensor with open threat gap",
+      "target_paths": [
+        ".github/workflows/ci.yml",
+        ".github/scripts/check_task_ritual.py"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target base-owned workflow reruns on issue_comment create/edit/delete and verifies immutable comment history, but not every ritual actor/role or worker identity.",
+      "target_enforcement_level": "deterministic trusted-base workflow",
+      "status": "PARTIAL",
+      "behavioral_difference": "Target fixes freshness substantially; complete actor authorization and worker authentication remain incomplete.",
+      "retained_target_extension": "Comment-event retrigger and immutable edit-history checks must not be weakened.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/check-task-ritual.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/workflows/ci.yml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/check_task_ritual.py"
+        },
+        {
+          "level": "source-open-work",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/issues/6"
+        },
+        {
+          "level": "target-proof-chain",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/issues/49"
+        }
+      ],
+      "known_limitation": "Commit statuses are not atomic, the interim ruleset does not require them, and full actor/expected-issuer/worker authentication remains incomplete.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/63",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-022",
+      "source_capability": "Outcome and Evidence before reporting",
+      "source_paths": [
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".github/skills/verification/SKILL.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Supervisor verifies records, posts Outcome/Evidence, then reports one hop.",
+      "source_enforcement_level": "procedural/template",
+      "target_paths": [
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".agents/skills/verification/SKILL.md",
+        "AGENTS.md"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target requires fresh measured Evidence and Outcome before chat completion.",
+      "target_enforcement_level": "procedural/template",
+      "status": "PARITY",
+      "behavioral_difference": "Behavior matches at the human/agent layer.",
+      "retained_target_extension": "Target fresh-Evidence doctrine is more explicit.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/PULL_REQUEST_TEMPLATE.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/verification/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/PULL_REQUEST_TEMPLATE.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/verification/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/AGENTS.md"
+        }
+      ],
+      "known_limitation": "Neither CI wall validates Outcome content or truth.",
+      "implementation_task": null,
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-023",
+      "source_capability": "Separated review mechanisms and formal human authority",
+      "source_paths": [
+        ".github/instructions/code-review.instructions.md",
+        ".github/skills/verification/SKILL.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Rubber Duck, Copilot review, custom reviewer, and human/ruleset approval have distinct roles.",
+      "source_enforcement_level": "product guidance plus human/platform gates",
+      "target_paths": [
+        ".codex/agents/reviewer.toml",
+        ".agents/skills/verification/SKILL.md",
+        ".github/CODEOWNERS"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target separates Codex review, deterministic checks, code-owner/human approval, and merge; it lacks an evidenced Rubber Duck-equivalent in-loop mechanism.",
+      "target_enforcement_level": "Codex guidance plus platform controls",
+      "status": "PARTIAL",
+      "behavioral_difference": "Core review separation exists; one source-product mechanism is non-portable.",
+      "retained_target_extension": "Dual CODEOWNER trust paths and independent reviewer scope remain protected.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/instructions/code-review.instructions.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/verification/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.codex/agents/reviewer.toml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/verification/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/CODEOWNERS"
+        }
+      ],
+      "known_limitation": "Active ruleset has no required status checks and formal reviewer eligibility remains hosted state.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/63",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-024",
+      "source_capability": "Copilot Rubber Duck in-loop critique",
+      "source_paths": [
+        ".github/instructions/code-review.instructions.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Rubber Duck supplies a named product-specific plan/design/implementation critique lane.",
+      "source_enforcement_level": "Copilot product feature",
+      "target_paths": [],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "No official Codex source establishes a directly equivalent named mechanism.",
+      "target_enforcement_level": "none",
+      "status": "NON_PORTABLE",
+      "behavioral_difference": "Use ordinary human steering or an explicitly scoped reviewer, without claiming feature equivalence.",
+      "retained_target_extension": null,
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/instructions/code-review.instructions.md"
+        }
+      ],
+      "known_limitation": "Product availability and semantics are Copilot-specific.",
+      "implementation_task": null,
+      "non_port_rationale": "The named Rubber Duck surface is specific to GitHub Copilot and has no evidenced one-to-one Codex port."
+    },
+    {
+      "id": "CAP-025",
+      "source_capability": "HOTL, HITL, and Human-in-Command authority split",
+      "source_paths": [
+        "README.md",
+        ".github/docs/agreements/adr/ADR-0004-hotl-governance-sensors.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Human-on-the-Loop is the default observation model; ambiguity/high risk return to HITL; agreement/acceptance/merge remain human command.",
+      "source_enforcement_level": "normative agreement plus guidance",
+      "target_paths": [
+        "AGENTS.md",
+        ".github/docs/agreements/requirements.md",
+        ".github/docs/guides/architecture.md"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target preserves high-risk pauses, human merge/Settings authority, and evidence review but lacks the current HOTL sensor doctrine and operator mapping.",
+      "target_enforcement_level": "normative guidance",
+      "status": "PARTIAL",
+      "behavioral_difference": "Authority is mostly aligned; current sensor/operator model is missing.",
+      "retained_target_extension": null,
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/README.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/docs/agreements/adr/ADR-0004-hotl-governance-sensors.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/AGENTS.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/docs/agreements/requirements.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/docs/guides/architecture.md"
+        }
+      ],
+      "known_limitation": "Source README itself omits detailed commands claimed by its changelog.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/63",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-026",
+      "source_capability": "Ownership grammar and conservative overlap sensor",
+      "source_paths": [
+        ".github/scripts/ownership-overlap.sh",
+        ".github/scripts/tests/test-ownership-overlap.sh"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Strict headings and literal-prefix overlap fail closed with UNCHECKABLE rc 3.",
+      "source_enforcement_level": "deterministic sensor and fixtures",
+      "target_paths": [
+        ".agents/skills/plan-management/scripts/new-task.sh",
+        ".github/ISSUE_TEMPLATE/task.yml"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target captures ownership and validates Task structure but has no live overlap sensor.",
+      "target_enforcement_level": "procedural/helper checks",
+      "status": "GAP",
+      "behavioral_difference": "Disjoint ownership is not mechanically compared against open work.",
+      "retained_target_extension": null,
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/ownership-overlap.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/tests/test-ownership-overlap.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/plan-management/scripts/new-task.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/ISSUE_TEMPLATE/task.yml"
+        }
+      ],
+      "known_limitation": "Source comparison is intentionally conservative, not exact glob algebra.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/63",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-027",
+      "source_capability": "Governance control manifest and drift sensor",
+      "source_paths": [
+        ".github/scripts/governance-controls.tsv",
+        ".github/scripts/governance-drift.sh",
+        ".github/scripts/tests/test-governance-drift.sh"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Manifest reports ACTIVE/MISSING/WAIVED and can fail strict on missing/unknown control signatures.",
+      "source_enforcement_level": "deterministic local sensor",
+      "target_paths": [],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "No equivalent merged target sensor exists.",
+      "target_enforcement_level": "none",
+      "status": "GAP",
+      "behavioral_difference": "Target governance changes can drift without a single local fail-visible report.",
+      "retained_target_extension": null,
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/governance-controls.tsv"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/governance-drift.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/tests/test-governance-drift.sh"
+        }
+      ],
+      "known_limitation": "Signature presence does not prove effective behavior.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/63",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-028",
+      "source_capability": "GET-only effective governance status",
+      "source_paths": [
+        ".github/scripts/governance-status.sh",
+        ".github/scripts/tests/test-governance-status.sh"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Reads effective rules, parents, bypass, Actions permissions, CODEOWNERS, check contexts/sources, and merge-queue applicability; UNKNOWN/UNCHECKABLE are non-success.",
+      "source_enforcement_level": "deterministic live-state sensor plus fixtures",
+      "target_paths": [],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target audit performed those reads manually; no distributable sensor exists.",
+      "target_enforcement_level": "manual audit",
+      "status": "GAP",
+      "behavioral_difference": "Effective enforcement cannot be reproduced by an adopter command.",
+      "retained_target_extension": null,
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/governance-status.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/tests/test-governance-status.sh"
+        }
+      ],
+      "known_limitation": "GitHub APIs and UI-only Actions Policy still leave some state unobservable.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/63",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-029",
+      "source_capability": "Source-bound disabled-only ruleset proposal",
+      "source_paths": [
+        ".github/scripts/setup-ruleset.sh"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Current source supports legacy and profile-aware ruleset mutation with source binding for team mode.",
+      "source_enforcement_level": "explicit platform actuator plus fixtures",
+      "target_paths": [
+        ".github/scripts/setup-ruleset.sh",
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target helper accepts one positive integration ID, proposes exactly three strict source-bound contexts, creates/reuses only an exact disabled object, and never updates/activates/deletes.",
+      "target_enforcement_level": "explicit fail-closed actuator plus extensive fixtures",
+      "status": "EXTENSION",
+      "behavioral_difference": "Target exact disabled-only proposal is stricter and must remain intact.",
+      "retained_target_extension": "Preserve exact integration binding, no bypass/extra rules, confirmation, and disabled enforcement.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/setup-ruleset.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/setup-ruleset.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/tests/test_ci_guards.py"
+        }
+      ],
+      "known_limitation": "No live proposal exists; active interim ruleset has no status rule.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/63",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-030",
+      "source_capability": "Solo/team governance profiles and persisted intent",
+      "source_paths": [
+        ".github/scripts/setup-ruleset.sh",
+        ".github/scripts/governance-status.sh"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source has solo/team profiles, persisted SCAFFOLD_GOVERNANCE_PROFILE, canonical reconcile, and team App-ID discovery.",
+      "source_enforcement_level": "actuator/sensor plus fixtures",
+      "target_paths": [
+        ".github/scripts/setup-ruleset.sh"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target has one strong team-like proposal but no solo/team profiles, persisted intent, reconcile workflow, or effective-status reader.",
+      "target_enforcement_level": "actuator plus fixtures",
+      "status": "PARTIAL",
+      "behavioral_difference": "Source profile semantics are missing; target source-binding safety must not be weakened to add them.",
+      "retained_target_extension": "Retain target disabled-only and exact compatibility properties.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/setup-ruleset.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/governance-status.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/setup-ruleset.sh"
+        }
+      ],
+      "known_limitation": "Source onboarding still calls the legacy no-profile path.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/63",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-031",
+      "source_capability": "Merge-queue applicability and merge_group admission",
+      "source_paths": [
+        ".github/scripts/governance-status.sh",
+        ".github/workflows/ci.yml"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source sensor reports applicability; tracked CI lacks merge_group and notes organization eligibility constraints.",
+      "source_enforcement_level": "sensor plus workflow",
+      "target_paths": [
+        ".github/workflows/ci.yml",
+        ".github/scripts/setup-ruleset.sh"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target base-owned custom admission has no merge_group trigger and live personal-repo ruleset has no status requirements.",
+      "target_enforcement_level": "workflow and live-state audit",
+      "status": "PARTIAL",
+      "behavioral_difference": "Neither baseline proves merge-queue readiness; target architecture must reconcile custom admission before organization use.",
+      "retained_target_extension": null,
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/governance-status.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/workflows/ci.yml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/workflows/ci.yml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/setup-ruleset.sh"
+        }
+      ],
+      "known_limitation": "Personal repository state cannot prove organization merge-queue behavior.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/63",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-032",
+      "source_capability": "Base-owned admission and candidate classification",
+      "source_paths": [
+        ".github/workflows/ci.yml"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source has conventional pull_request CI and no equivalent base-owned admission controller.",
+      "source_enforcement_level": "workflow",
+      "target_paths": [
+        ".github/workflows/ci.yml",
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target trusted default-branch controller re-fetches exact PR/repo/base/head/files/renames, classifies safe/runtime/bootstrap, digests the diff, and never checks out candidate code in the controller.",
+      "target_enforcement_level": "merged workflow plus extensive deterministic tests and partial hosted observations",
+      "status": "EXTENSION",
+      "behavioral_difference": "This is a stronger target security boundary.",
+      "retained_target_extension": "Preserve base-owned controller, full pagination/rename handling, exact IDs/SHAs, diff digest, fail-closed classification, and bootstrap denial.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/workflows/ci.yml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/workflows/ci.yml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/tests/test_ci_guards.py"
+        },
+        {
+          "level": "target-open-proof",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/issues/50"
+        }
+      ],
+      "known_limitation": "End-to-end accepted same-repo path is still open #50.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/63",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-033",
+      "source_capability": "Public-fork exact-head authorization and revocation",
+      "source_paths": [
+        ".github/workflows/ci.yml"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source conventional workflow has no comparable exact comment authorization protocol.",
+      "source_enforcement_level": "workflow",
+      "target_paths": [
+        ".github/workflows/ci.yml",
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target requires one exact unedited authorization for the current head from a canonical write-capable non-author and responds to edit/delete/revocation.",
+      "target_enforcement_level": "merged workflow plus deterministic tests",
+      "status": "EXTENSION",
+      "behavioral_difference": "Target safely handles a threat absent from source.",
+      "retained_target_extension": "Preserve exact authorization, actor/repository identity, cancellation, and no credential bridge.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/workflows/ci.yml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/workflows/ci.yml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/tests/test_ci_guards.py"
+        },
+        {
+          "level": "target-open-proof",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/issues/51"
+        }
+      ],
+      "known_limitation": "Hosted public-fork success remains unproved in #51.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/63",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-034",
+      "source_capability": "Exact-head fail-closed status publisher",
+      "source_paths": [
+        ".github/workflows/ci.yml"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source relies on workflow Check Runs without the target publisher protocol.",
+      "source_enforcement_level": "workflow",
+      "target_paths": [
+        ".github/workflows/ci.yml",
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target preflights pending contexts, isolates workers, revalidates live identity/auth/diff, rejects newer-run ownership, maps fixed results, and fails closed/rolls back uncertainty.",
+      "target_enforcement_level": "merged workflow plus tests and observed failure publication",
+      "status": "EXTENSION",
+      "behavioral_difference": "Target binds status to the audited commit and source path more strongly.",
+      "retained_target_extension": "Preserve exact contexts, fixed result mapping, ownership checks, and rollback.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/workflows/ci.yml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/workflows/ci.yml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/tests/test_ci_guards.py"
+        }
+      ],
+      "known_limitation": "Successful publisher source/integration identity and enforcement are not proved.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/63",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-035",
+      "source_capability": "Live source-bound required-status merge wall",
+      "source_paths": [
+        ".github/scripts/setup-ruleset.sh",
+        ".github/scripts/governance-status.sh"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source can propose/profile checks and sense effective state but current live state was not used as target evidence.",
+      "source_enforcement_level": "actuator and sensor",
+      "target_paths": [
+        ".github/scripts/setup-ruleset.sh",
+        ".github/workflows/ci.yml"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target code can propose source-bound contexts, but active ruleset has no required_status_checks; recent PRs merged with all three publisher contexts failing.",
+      "target_enforcement_level": "merged definition; hosted negative observation",
+      "status": "PARTIAL",
+      "behavioral_difference": "Definition exists and is stronger, but enforcement is absent.",
+      "retained_target_extension": null,
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/setup-ruleset.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/governance-status.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/setup-ruleset.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/workflows/ci.yml"
+        },
+        {
+          "level": "target-open-proof",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/issues/52"
+        }
+      ],
+      "known_limitation": "Settings mutation is human-only and trusted integration ID remains unresolved.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/63",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-036",
+      "source_capability": "Source contributor Dev Container",
+      "source_paths": [
+        ".devcontainer/devcontainer.json",
+        ".devcontainer/devcontainer-lock.json",
+        ".devcontainer/post-create.sh"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source ships a Copilot/VS Code contributor container under adopter-owned .devcontainer and does not distribute it through its installer.",
+      "source_enforcement_level": "runtime configuration",
+      "target_paths": [],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target intentionally has no merged .devcontainer payload.",
+      "target_enforcement_level": "none",
+      "status": "NON_PORTABLE",
+      "behavioral_difference": "Do not copy mutable images, Copilot extensions, or adopter-path ownership assumptions.",
+      "retained_target_extension": null,
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.devcontainer/devcontainer.json"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.devcontainer/devcontainer-lock.json"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.devcontainer/post-create.sh"
+        }
+      ],
+      "known_limitation": "Static source config is Copilot/VS Code-specific and conflicts with the target namespace/safety decision.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/64",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": "The exact source container is product-specific, uses mutable components, and occupies an adopter-owned namespace."
+    },
+    {
+      "id": "CAP-037",
+      "source_capability": "Codex-native secure Dev Container boundary",
+      "source_paths": [],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source has no equivalent Codex-owned inactive payload/collision boundary.",
+      "source_enforcement_level": "none",
+      "target_paths": [
+        ".github/docs/agreements/adr/ADR-0003-codex-native-secure-dev-container.md",
+        ".github/docs/agreements/requirements.md"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target accepts a stronger design: optional inactive payload only under .codex/devcontainer, explicit collision-safe materialization, and separate runtime proof.",
+      "target_enforcement_level": "accepted agreement only",
+      "status": "EXTENSION",
+      "behavioral_difference": "Protect the architecture, but do not claim implementation: no payload exists at the baseline and #33 is frozen.",
+      "retained_target_extension": "Preserve Codex-owned namespace, adopter .devcontainer refusal, exact proof chain, and human activation.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/docs/agreements/adr/ADR-0003-codex-native-secure-dev-container.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/docs/agreements/requirements.md"
+        },
+        {
+          "level": "target-open-work",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/issues/33"
+        }
+      ],
+      "known_limitation": "Agreement acceptance is not runtime evidence.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/64",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-038",
+      "source_capability": "Always-on and path-scoped instruction migration",
+      "source_paths": [
+        ".github/copilot-instructions.md",
+        ".github/instructions/code-review.instructions.md",
+        ".github/instructions/docs.instructions.md",
+        ".github/instructions/firmware.instructions.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Copilot always-on and applyTo instruction files guide the source.",
+      "source_enforcement_level": "Copilot runtime guidance",
+      "target_paths": [
+        "AGENTS.md",
+        ".agents/skills/verification/SKILL.md",
+        ".github/docs/agreements/README.md"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target uses root AGENTS.md, agreements, and focused skills; adopters may add nested AGENTS.md for real path scope.",
+      "target_enforcement_level": "Codex-native instruction discovery and guidance",
+      "status": "CODEX_NATIVE",
+      "behavioral_difference": "Product-specific files are replaced by supported Codex layering; firmware sample is not imposed.",
+      "retained_target_extension": "Target keeps always-on context short and progressive.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/copilot-instructions.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/instructions/code-review.instructions.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/instructions/docs.instructions.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/instructions/firmware.instructions.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/AGENTS.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/verification/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/docs/agreements/README.md"
+        },
+        {
+          "level": "official-doc",
+          "ref": "https://learn.chatgpt.com/docs/agent-configuration/agents-md"
+        }
+      ],
+      "known_limitation": "Nested AGENTS conflict/cap/cloud parity remains to be exercised.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/77",
+        "kind": "task",
+        "readiness": "not-ready",
+        "note": "Evidence or acceptance Task exists and has no ai:ready label."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-039",
+      "source_capability": "Copilot agent and prompt migration",
+      "source_paths": [
+        ".github/agents/orchestrator.agent.md",
+        ".github/agents/planner.agent.md",
+        ".github/agents/reviewer.agent.md",
+        ".github/prompts/start-task.prompt.md",
+        ".github/prompts/replan.prompt.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Custom Copilot agents and prompt files package roles and entrypoints.",
+      "source_enforcement_level": "Copilot runtime configuration",
+      "target_paths": [
+        ".codex/agents/orchestrator.toml",
+        ".codex/agents/planner.toml",
+        ".codex/agents/reviewer.toml",
+        ".codex/agents/explorer.toml",
+        ".agents/skills/session-orchestration/agents/openai.yaml"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target rebuilds roles as Codex custom-agent TOML and skills with UI metadata; no deprecated prompt compatibility copy remains.",
+      "target_enforcement_level": "Codex-native configuration and structural tests",
+      "status": "CODEX_NATIVE",
+      "behavioral_difference": "Format is intentionally different; behavior is mapped to native discovery.",
+      "retained_target_extension": "Explorer shadowing and no-write defaults are explicit.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/agents/orchestrator.agent.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/agents/planner.agent.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/agents/reviewer.agent.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/prompts/start-task.prompt.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/prompts/replan.prompt.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.codex/agents/orchestrator.toml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.codex/agents/planner.toml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.codex/agents/reviewer.toml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.codex/agents/explorer.toml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/session-orchestration/agents/openai.yaml"
+        },
+        {
+          "level": "official-doc",
+          "ref": "https://learn.chatgpt.com/docs/agent-configuration/subagents"
+        }
+      ],
+      "known_limitation": "No implementation/worker role exists yet; custom format may evolve.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/61",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-040",
+      "source_capability": "Lifecycle skills and progressive disclosure",
+      "source_paths": [
+        ".github/skills/context-collection/SKILL.md",
+        ".github/skills/context-distillation/SKILL.md",
+        ".github/skills/plan-management/SKILL.md",
+        ".github/skills/project-onboarding/SKILL.md",
+        ".github/skills/retro/SKILL.md",
+        ".github/skills/session-orchestration/SKILL.md",
+        ".github/skills/task-routing/SKILL.md",
+        ".github/skills/verification/SKILL.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Eight Copilot skills implement the lifecycle.",
+      "source_enforcement_level": "runtime guidance",
+      "target_paths": [
+        ".agents/skills/context-collection/SKILL.md",
+        ".agents/skills/context-distillation/SKILL.md",
+        ".agents/skills/plan-management/SKILL.md",
+        ".agents/skills/project-onboarding/SKILL.md",
+        ".agents/skills/retro/SKILL.md",
+        ".agents/skills/session-orchestration/SKILL.md",
+        ".agents/skills/task-routing/SKILL.md",
+        ".agents/skills/verification/SKILL.md",
+        ".agents/skills/codex-automation/SKILL.md"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target ports all eight into Codex discovery and adds a ninth bounded automation-design skill.",
+      "target_enforcement_level": "Codex-native guidance plus structural/semantic tests",
+      "status": "CODEX_NATIVE",
+      "behavioral_difference": "Core behavior is rebuilt natively; automation coverage is a target addition.",
+      "retained_target_extension": "Nine canonical skills, metadata, degradation, and sync checks are retained.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/context-collection/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/context-distillation/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/plan-management/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/project-onboarding/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/retro/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/session-orchestration/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/task-routing/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/verification/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/context-collection/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/context-distillation/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/plan-management/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/project-onboarding/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/retro/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/session-orchestration/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/task-routing/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/verification/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/codex-automation/SKILL.md"
+        },
+        {
+          "level": "official-doc",
+          "ref": "https://learn.chatgpt.com/docs/build-skills"
+        }
+      ],
+      "known_limitation": "Skills guide behavior but are not hard lifecycle locks.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/61",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-041",
+      "source_capability": "VS Code Playwright MCP declaration",
+      "source_paths": [
+        ".vscode/mcp.json"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source declares an unpinned @latest Playwright MCP and does not distribute it.",
+      "source_enforcement_level": "editor runtime configuration",
+      "target_paths": [],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target intentionally does not invent a generic MCP endpoint or credential.",
+      "target_enforcement_level": "none",
+      "status": "NON_PORTABLE",
+      "behavioral_difference": "A project may later add reviewed portable .codex/config.toml MCP configuration, but this source file is not parity authority.",
+      "retained_target_extension": null,
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.vscode/mcp.json"
+        }
+      ],
+      "known_limitation": "Package is unpinned and source installer never installs it.",
+      "implementation_task": null,
+      "non_port_rationale": "The exact VS Code configuration is editor/product-specific and unsafe as generic Codex distribution."
+    },
+    {
+      "id": "CAP-042",
+      "source_capability": "Context connector contract and activation PR",
+      "source_paths": [
+        ".github/connectors/README.md",
+        ".github/connectors/CONNECTOR-TEMPLATE.md",
+        ".github/connectors/builtin.md",
+        ".github/connectors/speckit.md",
+        ".github/scripts/setup-sources.sh"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Discover/retrieve/pin/verify contract with preview-first activation and drift-to-replan.",
+      "source_enforcement_level": "guidance, deterministic structure checks, explicit local write",
+      "target_paths": [
+        ".github/connectors/README.md",
+        ".github/connectors/CONNECTOR-TEMPLATE.md",
+        ".github/connectors/builtin.md",
+        ".github/connectors/speckit.md",
+        ".github/scripts/setup-sources.sh"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target carries the same contract with no-network preview, explicit apply, pins, and review boundary.",
+      "target_enforcement_level": "guidance, deterministic structure checks, explicit local write",
+      "status": "PARITY",
+      "behavioral_difference": "Behavior aligns; no connector is live in either audited target baseline.",
+      "retained_target_extension": "Target installer preserves adopter source truth.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/connectors/README.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/connectors/CONNECTOR-TEMPLATE.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/connectors/builtin.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/connectors/speckit.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/setup-sources.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/connectors/README.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/connectors/CONNECTOR-TEMPLATE.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/connectors/builtin.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/connectors/speckit.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/setup-sources.sh"
+        }
+      ],
+      "known_limitation": "Fixture success does not prove source access or semantic sufficiency.",
+      "implementation_task": null,
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-043",
+      "source_capability": "Consent-gated adopter feedback",
+      "source_paths": [
+        ".github/scripts/feedback-lib.sh",
+        ".github/workflows/adopter-feedback.yml",
+        ".github/docs/adopter-feedback.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Unexpected interactive failures may offer a fixed public Issue payload after preview and literal consent.",
+      "source_enforcement_level": "script/workflow plus tests",
+      "target_paths": [
+        ".github/scripts/feedback-lib.sh",
+        ".github/workflows/adopter-feedback.yml",
+        ".github/docs/adopter-feedback.md"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target keeps TTY/non-CI/literal-y gates, a fixed eight-field allowlist, no paths/logs/remote guess, and a no-checkout receiver.",
+      "target_enforcement_level": "script/workflow plus tests",
+      "status": "EXTENSION",
+      "behavioral_difference": "Core parity exists; target privacy minimization and no-checkout receiver are stronger.",
+      "retained_target_extension": "Preserve no telemetry, fixed payload, exact consent, and least workflow permissions.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/feedback-lib.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/workflows/adopter-feedback.yml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/docs/adopter-feedback.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/feedback-lib.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/workflows/adopter-feedback.yml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/docs/adopter-feedback.md"
+        }
+      ],
+      "known_limitation": "Missing live from:adopter label means current receiver may need to create/classify it.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/64",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-044",
+      "source_capability": "Collision-, symlink-, provenance-, and stage-safe installer",
+      "source_paths": [
+        ".github/scripts/scaffold-init.sh",
+        ".github/scripts/tests/test-scaffold-init.sh"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source installs/upgrades scaffold paths, stages changes, and has broad fixtures, but currently copies source-specific .github docs into adopters.",
+      "source_enforcement_level": "deterministic installer plus fixtures",
+      "target_paths": [
+        ".github/scripts/scaffold-init.sh",
+        ".github/scripts/tests/test-scaffold-init.sh"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target resolves refs to immutable SHA, refuses collisions and any symlink ancestor even with force, stages but never commits, and preserves instance agreements/context/workflows/config on upgrade.",
+      "target_enforcement_level": "deterministic installer plus fixtures",
+      "status": "EXTENSION",
+      "behavioral_difference": "Target safety and adopter-truth preservation are stronger; source distribution leakage must not be imported.",
+      "retained_target_extension": "Preserve immutable provenance, refusal semantics, stage-only behavior, and upgrade ownership.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/scaffold-init.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/tests/test-scaffold-init.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/scaffold-init.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/tests/test-scaffold-init.sh"
+        }
+      ],
+      "known_limitation": "No live adopter rollout or native Windows E2E is proved.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/64",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-045",
+      "source_capability": "Windows Git Bash command launcher",
+      "source_paths": [
+        ".github/scripts/run.ps1",
+        ".github/scripts/tests/test-run-shim.sh"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source run.ps1 resolves Git-for-Windows Bash, excludes WSL, forwards commands, and has a Windows workflow.",
+      "source_enforcement_level": "launcher plus fixtures/hosted Windows check",
+      "target_paths": [],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target has no general run.ps1 launcher.",
+      "target_enforcement_level": "none",
+      "status": "GAP",
+      "behavioral_difference": "Windows operators lack the source command shim.",
+      "retained_target_extension": null,
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/run.ps1"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/tests/test-run-shim.sh"
+        }
+      ],
+      "known_limitation": "Source hosted evidence covers the launcher, not every Bash path.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/64",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-046",
+      "source_capability": "Windows installer bootstrap",
+      "source_paths": [
+        ".github/scripts/scaffold-init.ps1"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "PowerShell bootstraps the canonical Bash installer; it lacks a dedicated native regression workflow.",
+      "source_enforcement_level": "runtime bootstrap",
+      "target_paths": [
+        ".github/scripts/scaffold-init.ps1",
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target has a Git-for-Windows Bash/TLS cleanup launcher with static/hermetic validation, but no native Windows end-to-end evidence.",
+      "target_enforcement_level": "runtime bootstrap plus static fixtures",
+      "status": "PARTIAL",
+      "behavioral_difference": "Equivalent concept exists; proof and exact source-current behavior remain incomplete.",
+      "retained_target_extension": "Target WSL exclusion and cleanup safety remain protected.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/scaffold-init.ps1"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/scaffold-init.ps1"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/tests/test_ci_guards.py"
+        }
+      ],
+      "known_limitation": "Native Windows installation and every downstream Bash path are unproved.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/64",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-047",
+      "source_capability": "Skills-only Codex plugin artifact",
+      "source_paths": [
+        ".github/docs/context/platform-capabilities/agent-plugins-spike.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source spike concludes plugins cannot replace authoritative repository-local scaffold assets and leaves major activation/update surfaces unproved.",
+      "source_enforcement_level": "descriptive spike evidence",
+      "target_paths": [
+        "plugin/agentic-dev-kit-for-codex/.codex-plugin/plugin.json",
+        "plugin/agentic-dev-kit-for-codex/skills/session-orchestration/SKILL.md",
+        ".github/scripts/check-skills.sh"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target ships a valid skills-only plugin with canonical byte/mode sync and safe read-only degradation when full-kit controls are absent.",
+      "target_enforcement_level": "distribution artifact plus deterministic validation",
+      "status": "EXTENSION",
+      "behavioral_difference": "Target adds a useful bounded channel without pretending it installs governance.",
+      "retained_target_extension": "Preserve skills-only scope, synchronization, and partial-install degradation.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/docs/context/platform-capabilities/agent-plugins-spike.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/plugin/agentic-dev-kit-for-codex/.codex-plugin/plugin.json"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/plugin/agentic-dev-kit-for-codex/skills/session-orchestration/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/check-skills.sh"
+        },
+        {
+          "level": "official-doc",
+          "ref": "https://learn.chatgpt.com/docs/plugins"
+        }
+      ],
+      "known_limitation": "Registration, publication, installation, and representative live use remain unproved.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/64",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-048",
+      "source_capability": "Plugin publication, repository activation, update, rollback, and cross-surface behavior",
+      "source_paths": [
+        ".github/docs/context/platform-capabilities/agent-plugins-spike.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source records only partial CLI observations and a no-go for authoritative distribution.",
+      "source_enforcement_level": "descriptive runtime spike",
+      "target_paths": [
+        "plugin/agentic-dev-kit-for-codex/.codex-plugin/plugin.json"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target validates an artifact but has no marketplace record, live install, update, rollback, IDE behavior, or representative use evidence.",
+      "target_enforcement_level": "static artifact",
+      "status": "UNKNOWN",
+      "behavioral_difference": "Do not infer product state from repository files.",
+      "retained_target_extension": null,
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/docs/context/platform-capabilities/agent-plugins-spike.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/plugin/agentic-dev-kit-for-codex/.codex-plugin/plugin.json"
+        },
+        {
+          "level": "official-doc",
+          "ref": "https://learn.chatgpt.com/docs/plugins"
+        }
+      ],
+      "known_limitation": "Current plugins are supported in desktop/CLI but not IDE; installation needs a new session.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/77",
+        "kind": "task",
+        "readiness": "not-ready",
+        "note": "Evidence or acceptance Task exists and has no ai:ready label."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-049",
+      "source_capability": "Official platform capability checkpoint sensor",
+      "source_paths": [
+        ".github/scripts/platform-capability-baseline.tsv",
+        ".github/scripts/retro-hygiene.sh",
+        ".github/scripts/tests/test-retro-hygiene.sh"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Monthly source-only comparison watches official Copilot surfaces and reports changed/unknown without treating change as support.",
+      "source_enforcement_level": "deterministic report plus scheduled workflow",
+      "target_paths": [
+        ".agents/skills/codex-automation/SKILL.md",
+        ".github/scripts/retro-hygiene.sh"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target has automation guidance and retro reporting but no current official Codex capability baseline/sensor.",
+      "target_enforcement_level": "guidance/report",
+      "status": "GAP",
+      "behavioral_difference": "Codex product drift is handled ad hoc rather than by a pinned checkpoint manifest.",
+      "retained_target_extension": null,
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/platform-capability-baseline.tsv"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/retro-hygiene.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/tests/test-retro-hygiene.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/codex-automation/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/retro-hygiene.sh"
+        }
+      ],
+      "known_limitation": "Point-in-time page hashes still cannot prove runtime capability.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/64",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-050",
+      "source_capability": "Preview-first label, Project, source, and ruleset helpers",
+      "source_paths": [
+        ".github/scripts/setup-labels.sh",
+        ".github/scripts/setup-project.sh",
+        ".github/scripts/setup-sources.sh",
+        ".github/scripts/setup-ruleset.sh"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source helpers vary: labels mutate directly, onboarding uses a legacy ruleset path, while newer profile logic exists.",
+      "source_enforcement_level": "mixed platform/local mutation",
+      "target_paths": [
+        ".github/scripts/setup-labels.sh",
+        ".github/scripts/setup-project.sh",
+        ".github/scripts/setup-sources.sh",
+        ".github/scripts/setup-ruleset.sh"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target helpers separate dry-run/apply, preflight identity, exact confirmation where risky, idempotence, and conflict failure.",
+      "target_enforcement_level": "explicit preview/apply plus fixtures",
+      "status": "EXTENSION",
+      "behavioral_difference": "Target safe-by-default mutation boundary is stronger.",
+      "retained_target_extension": "Preserve preview/apply, no silent fallback, and disabled-only ruleset creation.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/setup-labels.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/setup-project.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/setup-sources.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/setup-ruleset.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/setup-labels.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/setup-project.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/setup-sources.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/setup-ruleset.sh"
+        }
+      ],
+      "known_limitation": "Live target setup is incomplete: one label missing, no Project, ruleset proposal, or SOURCES registry.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/64",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-051",
+      "source_capability": "Onboarding, license trial, and durable next-session handoff",
+      "source_paths": [
+        ".github/skills/project-onboarding/SKILL.md",
+        ".github/prompts/onboard-project.prompt.md",
+        "README.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "P0-P6 onboarding hands off to a Project session, records deferred work, and invokes setup helpers; current ruleset call is stale.",
+      "source_enforcement_level": "normative procedure",
+      "target_paths": [
+        ".agents/skills/project-onboarding/SKILL.md",
+        "README.md",
+        ".github/scripts/tuning-status.sh"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target has preview/consent/deferred-ledger/Next steps/first-Epic handoff, but uses older Program naming and does not incorporate new source profile/HOTL commands.",
+      "target_enforcement_level": "normative procedure plus marker sensor",
+      "status": "PARTIAL",
+      "behavioral_difference": "Core adoption flow exists; current-source terminology/operator deltas remain.",
+      "retained_target_extension": "Target durable Deferred from onboarding ledger and preview boundaries remain protected.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/project-onboarding/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/prompts/onboard-project.prompt.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/README.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/project-onboarding/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/README.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/tuning-status.sh"
+        }
+      ],
+      "known_limitation": "Marker readiness does not prove live setup or license trial.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/64",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-052",
+      "source_capability": "Separation of kit development records from adopter agreements/context",
+      "source_paths": [
+        "docs/README.md",
+        ".github/docs/agreements/README.md",
+        ".github/docs/context/README.md",
+        ".github/docs/context/hotl-review/INDEX.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source claims root docs are non-distributed development records but newly stores/shows source-specific ADR/context under installer-copied .github adopter namespaces.",
+      "source_enforcement_level": "conflicting documentation and installer behavior",
+      "target_paths": [
+        ".github/docs/agreements/README.md",
+        ".github/docs/context/README.md",
+        ".github/scripts/scaffold-init.sh",
+        ".github/docs/agreements/adr/ADR-0004-codex-distribution-and-integrations.md"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target summarizes source design into kit agreements/guides and preserves adopter agreements/context during upgrade instead of copying raw source-specific records.",
+      "target_enforcement_level": "agreement plus installer tests",
+      "status": "EXTENSION",
+      "behavioral_difference": "Target avoids a current source distribution regression and must not copy internal/raw records blindly.",
+      "retained_target_extension": "Preserve namespace ownership and adopter truth; do not reproduce source local path or internal/public classification mismatches.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/docs/README.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/docs/agreements/README.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/docs/context/README.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/docs/context/hotl-review/INDEX.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/docs/agreements/README.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/docs/context/README.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/scaffold-init.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/docs/agreements/adr/ADR-0004-codex-distribution-and-integrations.md"
+        }
+      ],
+      "known_limitation": "Some target guides are stale and are corrected by this Planning PR.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/64",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-053",
+      "source_capability": "Action pinning, workflow permission, plugin, and scaffold guard wall",
+      "source_paths": [
+        ".github/scripts/check-action-pins.sh",
+        ".github/scripts/check-workflow-permissions.sh",
+        ".github/scripts/check-copilot-surface.sh",
+        ".github/workflows/ci.yml"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source checks full Action SHAs, permissions, Copilot surfaces, and shell fixtures.",
+      "source_enforcement_level": "deterministic scripts/workflow",
+      "target_paths": [
+        ".github/scripts/check_action_pins.py",
+        ".github/scripts/check-workflow-permissions.sh",
+        ".github/scripts/check-skills.sh",
+        ".github/workflows/ci.yml"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target scans all tracked workflows with Python, validates least permissions, Codex surfaces/plugin sync/no secrets, and runs broader portable/Python guard suites in isolated workers.",
+      "target_enforcement_level": "deterministic scripts/workflow",
+      "status": "EXTENSION",
+      "behavioral_difference": "Target wall is broader and Codex-native.",
+      "retained_target_extension": "Preserve complete action scan, pinned downloads, no-credential checkout, plugin equality, and scope boundaries.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/check-action-pins.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/check-workflow-permissions.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/check-copilot-surface.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/workflows/ci.yml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/check_action_pins.py"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/check-workflow-permissions.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/check-skills.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/workflows/ci.yml"
+        }
+      ],
+      "known_limitation": "Tracked checks do not prove the active ruleset requires them.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/63",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-054",
+      "source_capability": "Reserved Copilot setup workflow",
+      "source_paths": [
+        ".github/workflows/copilot-setup-steps.yml"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source reserves a Copilot cloud setup job with placeholder tuning.",
+      "source_enforcement_level": "Copilot platform workflow",
+      "target_paths": [],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target intentionally has no compatibility workflow; Codex cloud environments are configured on their own surface.",
+      "target_enforcement_level": "none",
+      "status": "NON_PORTABLE",
+      "behavioral_difference": "A fake reserved job would misrepresent Codex cloud setup.",
+      "retained_target_extension": "Target separates cloud Task result, branch/PR, and checks.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/workflows/copilot-setup-steps.yml"
+        }
+      ],
+      "known_limitation": "Cloud setup/agent networking remains environment-specific.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/77",
+        "kind": "task",
+        "readiness": "not-ready",
+        "note": "Evidence or acceptance Task exists and has no ai:ready label."
+      },
+      "non_port_rationale": "The reserved workflow name and lifecycle are specific to GitHub Copilot and have no Codex compatibility contract."
+    },
+    {
+      "id": "CAP-055",
+      "source_capability": "Hooks, MCP, Scheduled tasks, and automation boundaries",
+      "source_paths": [
+        ".vscode/mcp.json",
+        ".github/docs/context/platform-capabilities/agent-plugins-spike.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source contains a VS Code MCP declaration and product spike but no generic safe automation contract.",
+      "source_enforcement_level": "mixed product configuration/evidence",
+      "target_paths": [
+        ".agents/skills/codex-automation/SKILL.md",
+        ".agents/skills/codex-automation/references/supported-patterns.md",
+        ".codex/config.toml"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target provides Codex-native design guidance while enabling no generic hook, private MCP, Scheduled task, secret-bearing Action, or marketplace mutation by default.",
+      "target_enforcement_level": "Codex guidance and intentional absence",
+      "status": "CODEX_NATIVE",
+      "behavioral_difference": "Target maps mechanisms to supported surfaces and preserves explicit authority.",
+      "retained_target_extension": "No active generic automation is a safety extension, not an implementation gap.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.vscode/mcp.json"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/docs/context/platform-capabilities/agent-plugins-spike.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/codex-automation/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/codex-automation/references/supported-patterns.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.codex/config.toml"
+        },
+        {
+          "level": "official-doc",
+          "ref": "https://learn.chatgpt.com/docs/hooks"
+        },
+        {
+          "level": "official-doc",
+          "ref": "https://learn.chatgpt.com/docs/automations"
+        }
+      ],
+      "known_limitation": "Hooks are not complete path locks; scheduled tasks are product state; surface matrices vary.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/77",
+        "kind": "task",
+        "readiness": "not-ready",
+        "note": "Evidence or acceptance Task exists and has no ai:ready label."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-056",
+      "source_capability": "Read-only project custom agents",
+      "source_paths": [
+        ".github/agents/orchestrator.agent.md",
+        ".github/agents/planner.agent.md",
+        ".github/agents/reviewer.agent.md",
+        ".github/scripts/check-agent-tools.sh",
+        ".github/scripts/tests/test-agent-tools.sh"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source roles omit edit but retain execute, which can still write. A deterministic guard reconciles every orchestration protocol tool with the orchestrator allowlist and rejects edit aliases and wildcard access.",
+      "source_enforcement_level": "Copilot agent configuration plus deterministic allowlist guard",
+      "target_paths": [
+        ".codex/agents/orchestrator.toml",
+        ".codex/agents/planner.toml",
+        ".codex/agents/reviewer.toml",
+        ".codex/agents/explorer.toml"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target supplies four Codex roles with read-only defaults and explicit no-write instructions; project explorer shadows built-in explorer.",
+      "target_enforcement_level": "Codex runtime configuration plus tests",
+      "status": "PARTIAL",
+      "behavioral_difference": "Codex-native TOML and read-only sandbox defaults are safer than omitting edit alone, but the target has no equivalent per-tool protocol/allowlist reconciliation and runtime overrides remain authoritative.",
+      "retained_target_extension": "Four-role no-write defaults are retained.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/agents/orchestrator.agent.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/agents/planner.agent.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/agents/reviewer.agent.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/check-agent-tools.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/tests/test-agent-tools.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.codex/agents/orchestrator.toml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.codex/agents/planner.toml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.codex/agents/reviewer.toml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.codex/agents/explorer.toml"
+        }
+      ],
+      "known_limitation": "Parent/live overrides can broaden authority, no writer role exists, and current Codex configuration has no source-equivalent per-tool allowlist contract to reconcile.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/61",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-057",
+      "source_capability": "Agreements, attribution, license, and lineage",
+      "source_paths": [
+        "LICENSE",
+        "SCAFFOLD-CHANGELOG.md",
+        "docs/agreements/adr/ADR-0001-pluggable-context-connectors.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "MIT terms, changelog lineage, and reviewed decisions distinguish source development truth.",
+      "source_enforcement_level": "legal/document authority",
+      "target_paths": [
+        "LICENSE",
+        "NOTICE.md",
+        "SCAFFOLD-CHANGELOG.md",
+        ".github/docs/AGENTIC-DEV-KIT-LICENSE.txt",
+        ".github/docs/agreements/adr/ADR-0004-codex-distribution-and-integrations.md"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target carries MIT/NOTICE, source attribution, upgrade lineage, and Codex-native agreements.",
+      "target_enforcement_level": "legal/document authority",
+      "status": "PARITY",
+      "behavioral_difference": "Behavioral/legal intent is preserved with explicit origin attribution.",
+      "retained_target_extension": "Target separates kit-scoped license from adopter application license.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/LICENSE"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/SCAFFOLD-CHANGELOG.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/docs/agreements/adr/ADR-0001-pluggable-context-connectors.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/LICENSE"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/NOTICE.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/SCAFFOLD-CHANGELOG.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/docs/AGENTIC-DEV-KIT-LICENSE.txt"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/docs/agreements/adr/ADR-0004-codex-distribution-and-integrations.md"
+        }
+      ],
+      "known_limitation": "Presence does not prove a tag, release, downstream compliance, or agreement merge.",
+      "implementation_task": null,
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-058",
+      "source_capability": "Retro hygiene and consented upstream learning",
+      "source_paths": [
+        ".github/skills/retro/SKILL.md",
+        ".github/scripts/retro-hygiene.sh",
+        ".github/workflows/retro-hygiene.yml"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Second occurrence can promote a system-change proposal; monthly workflow opens a human-review Issue.",
+      "source_enforcement_level": "guidance, deterministic report, scheduled workflow",
+      "target_paths": [
+        ".agents/skills/retro/SKILL.md",
+        ".github/scripts/retro-hygiene.sh",
+        ".github/workflows/retro-hygiene.yml"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target keeps report-only/idempotent Issue behavior, explicit authorization, upstream-once fields, and no autonomous fix.",
+      "target_enforcement_level": "guidance, deterministic report, scheduled workflow",
+      "status": "EXTENSION",
+      "behavioral_difference": "Core parity exists; target explicit mutation and degradation boundaries are stronger.",
+      "retained_target_extension": "Preserve report-only defaults and human review.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/skills/retro/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/scripts/retro-hygiene.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/.github/workflows/retro-hygiene.yml"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/retro/SKILL.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/retro-hygiene.sh"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/workflows/retro-hygiene.yml"
+        }
+      ],
+      "known_limitation": "A scheduled report is not adoption or automatic remediation.",
+      "implementation_task": null,
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-059",
+      "source_capability": "Current-source trace and update tracking",
+      "source_paths": [
+        "SCAFFOLD-CHANGELOG.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source current tree is 135 files at the pinned SHA and advanced materially beyond the historical target map.",
+      "source_enforcement_level": "descriptive lineage plus tree evidence",
+      "target_paths": [
+        ".github/docs/guides/copilot-capability-map.md",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target map/test still pin 20637b and 110 files; this Planning PR adds exact inventories and current ledger while preserving a labeled historic compatibility appendix because the test is outside Task ownership.",
+      "target_enforcement_level": "descriptive map plus stale deterministic assertion",
+      "status": "PARTIAL",
+      "behavioral_difference": "Current audit authority is repaired, but the stale validator requires a later disjoint synchronization Task.",
+      "retained_target_extension": "Historical assertions remain clearly labeled, never presented as current.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/SCAFFOLD-CHANGELOG.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/docs/guides/copilot-capability-map.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/scripts/tests/test_runtime_parity.py"
+        }
+      ],
+      "known_limitation": "Future source drift must not silently repin accepted baselines.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/71",
+        "kind": "task",
+        "readiness": "not-ready",
+        "note": "Evidence or acceptance Task exists and has no ai:ready label."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-060",
+      "source_capability": "Truthful release, marketplace, Windows, and live-adoption proof limits",
+      "source_paths": [
+        "README.md",
+        "SCAFFOLD-CHANGELOG.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "Source distinguishes some runtime gaps but also contains changelog/README and namespace inconsistencies.",
+      "source_enforcement_level": "documentation",
+      "target_paths": [
+        ".github/docs/agreements/adr/ADR-0004-codex-distribution-and-integrations.md",
+        ".github/docs/guides/limitations.md",
+        "SCAFFOLD-CHANGELOG.md"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "Target explicitly refuses to infer tags/releases/checksums, marketplace state, native Windows execution, connector activation, DevContainer runtime, ruleset enforcement, or live adoption from static fixtures.",
+      "target_enforcement_level": "agreement/documentation",
+      "status": "EXTENSION",
+      "behavioral_difference": "Target evidence calibration is stronger and must remain a release gate.",
+      "retained_target_extension": "Preserve separation between definition, deterministic fixture, hosted observation, external product state, and human decision.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/README.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/SCAFFOLD-CHANGELOG.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/docs/agreements/adr/ADR-0004-codex-distribution-and-integrations.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.github/docs/guides/limitations.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/SCAFFOLD-CHANGELOG.md"
+        }
+      ],
+      "known_limitation": "No tag/release/live adopter/plugin publication/native Windows E2E exists.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/65",
+        "kind": "phase-epic-placeholder",
+        "readiness": "not-ready",
+        "note": "A detailed implementation Task will be created just in time after predecessor phases and human planning acceptance."
+      },
+      "non_port_rationale": null
+    },
+    {
+      "id": "CAP-061",
+      "source_capability": "Stacked or otherwise multi-PR Task activation",
+      "source_paths": [
+        "AGENTS.md",
+        "docs/agreements/adr/ADR-0003-two-tier-task-execution.md"
+      ],
+      "source_baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "source_behavior": "The source defines N sequential workers and dependent PR layers but explicitly keeps stacked execution off until a post-GA evaluation recorded at #89 passes.",
+      "source_enforcement_level": "normative guidance with an unresolved external activation reference",
+      "target_paths": [
+        "AGENTS.md",
+        ".agents/skills/session-orchestration/SKILL.md"
+      ],
+      "target_baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+      "target_behavior": "The target permits one Task writer, branch, worktree, and PR and has no stacked/multi-PR activation path.",
+      "target_enforcement_level": "normative guidance",
+      "status": "UNKNOWN",
+      "behavioral_difference": "The source shape is documented, but its live #89 resolves to an unrelated closed, unmerged governance PR rather than a post-GA stacked-PR evaluation. Neither source activation nor a target adoption decision is proved.",
+      "retained_target_extension": "Keep the target one-Task/one-writing-PR limit until source intent is resolved and a later human agreement explicitly activates a proved replacement.",
+      "evidence": [
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/AGENTS.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/blob/fd265ddef150fab86cd54d0e383c2c25fe297ffb/docs/agreements/adr/ADR-0003-two-tier-task-execution.md"
+        },
+        {
+          "level": "hosted-observation",
+          "ref": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/pull/89"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/AGENTS.md"
+        },
+        {
+          "level": "pinned-tree",
+          "ref": "https://github.com/mochan-tk/ttt1-codex/blob/0f114d2d98f8e906bf924a4fab873897c38963e1/.agents/skills/session-orchestration/SKILL.md"
+        }
+      ],
+      "known_limitation": "Task #71 must resolve the broken source reference; Phase #61 may only propose activation after a separate human agreement and deterministic/live evidence.",
+      "implementation_task": {
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/71",
+        "kind": "evidence-decision-task",
+        "readiness": "not-ready",
+        "note": "Task #71 first resolves the broken source authority. Multi-PR activation stays off; Phase #61 may create a later detailed Task only after separate human agreement and evidence."
+      },
+      "non_port_rationale": null
+    }
+  ]
+}

@@ -1,0 +1,3348 @@
+{
+  "schema_version": "1.0",
+  "inventory_kind": "target-tracked-file-inventory",
+  "repository": "mochan-tk/ttt1-codex",
+  "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+  "tree_oid": "8b431a48347a15958e5445ecd258d8f7b98573b1",
+  "tracked_file_count": 129,
+  "coverage_rule": "Exactly one row per path returned by git ls-files at the pinned baseline; open work is not merged implementation.",
+  "classification_counts": {
+    "descriptive": 11,
+    "distribution": 9,
+    "normative": 109
+  },
+  "files": [
+    {
+      "path": ".agents/skills/codex-automation/SKILL.md",
+      "capability": "codex-automation workflow package",
+      "lifecycle_role": "execution",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "Codex skill discovery"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "440c28a13546b9303fa124ba38cb82fe5a645f45",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".agents/skills/codex-automation/agents/openai.yaml",
+      "capability": "codex-automation workflow package",
+      "lifecycle_role": "execution",
+      "classification": "normative",
+      "enforcement_level": "runtime-metadata",
+      "dependencies": [
+        "Codex skill discovery"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "f4cfb7e800b2e4c300a74069bb12a275395976b0",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".agents/skills/codex-automation/references/supported-patterns.md",
+      "capability": "codex-automation workflow package",
+      "lifecycle_role": "execution",
+      "classification": "normative",
+      "enforcement_level": "template",
+      "dependencies": [
+        "Codex skill discovery"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "f1781f23df0a6baf4824d216d88fd521e453bd4b",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".agents/skills/context-collection/SKILL.md",
+      "capability": "context-collection workflow package",
+      "lifecycle_role": "context",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "Codex skill discovery"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "eaeaaa1d9b9985f9ecb0c5d1cec40a7bbf07d508",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".agents/skills/context-collection/agents/openai.yaml",
+      "capability": "context-collection workflow package",
+      "lifecycle_role": "context",
+      "classification": "normative",
+      "enforcement_level": "runtime-metadata",
+      "dependencies": [
+        "Codex skill discovery"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "89a6616c8114853ce08877b0c347a54458df8650",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".agents/skills/context-distillation/SKILL.md",
+      "capability": "context-distillation workflow package",
+      "lifecycle_role": "context",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "Codex skill discovery"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "34e956c1e34272a920a0bf9f74715bfb9d0a1b6f",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".agents/skills/context-distillation/agents/openai.yaml",
+      "capability": "context-distillation workflow package",
+      "lifecycle_role": "context",
+      "classification": "normative",
+      "enforcement_level": "runtime-metadata",
+      "dependencies": [
+        "Codex skill discovery"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "1c27237ac7fe9d6c3998990e16a50366a3429e55",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".agents/skills/plan-management/SKILL.md",
+      "capability": "plan-management workflow package",
+      "lifecycle_role": "planning",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "Codex skill discovery"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "b440b29118930d45e3732ebc270b23df44f06b27",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".agents/skills/plan-management/agents/openai.yaml",
+      "capability": "plan-management workflow package",
+      "lifecycle_role": "planning",
+      "classification": "normative",
+      "enforcement_level": "runtime-metadata",
+      "dependencies": [
+        "Codex skill discovery"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "d95d0c0e3ddf29a7725a17b62d894679dee9dbf3",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".agents/skills/plan-management/scripts/frontier.sh",
+      "capability": "plan-management workflow package",
+      "lifecycle_role": "planning",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Codex skill discovery"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "19deb0c95b3dc4e038aa9c4da9e726581566d5d7",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".agents/skills/plan-management/scripts/new-task.sh",
+      "capability": "plan-management workflow package",
+      "lifecycle_role": "planning",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Codex skill discovery"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "e5b55cfa90ce663e4e989cc3ba1f891e43cff21d",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".agents/skills/plan-management/templates/epic-body.md",
+      "capability": "plan-management workflow package",
+      "lifecycle_role": "planning",
+      "classification": "normative",
+      "enforcement_level": "template",
+      "dependencies": [
+        "Codex skill discovery"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "e79ebaefb48b16518f1ed47d6941f8a040064ece",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".agents/skills/plan-management/templates/task-body.md",
+      "capability": "plan-management workflow package",
+      "lifecycle_role": "planning",
+      "classification": "normative",
+      "enforcement_level": "template",
+      "dependencies": [
+        "Codex skill discovery"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "1cce52bb5df954f2b2adf8696e57a2074a4f70b6",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".agents/skills/project-onboarding/SKILL.md",
+      "capability": "project-onboarding workflow package",
+      "lifecycle_role": "onboarding",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "Codex skill discovery"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "1c0780dac1d498ade66997cb80e3ebce9610a6a5",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".agents/skills/project-onboarding/agents/openai.yaml",
+      "capability": "project-onboarding workflow package",
+      "lifecycle_role": "onboarding",
+      "classification": "normative",
+      "enforcement_level": "runtime-metadata",
+      "dependencies": [
+        "Codex skill discovery"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "b0f832a8d1006537abd8dbdf1e3c66cb71f061f3",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".agents/skills/retro/SKILL.md",
+      "capability": "retro workflow package",
+      "lifecycle_role": "learning",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "Codex skill discovery"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "057b3bf9fca8310a88c9604c6cd9e579eca73695",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".agents/skills/retro/agents/openai.yaml",
+      "capability": "retro workflow package",
+      "lifecycle_role": "learning",
+      "classification": "normative",
+      "enforcement_level": "runtime-metadata",
+      "dependencies": [
+        "Codex skill discovery"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "abc59d3736feb61f951c88132ed905b140b6f818",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".agents/skills/session-orchestration/SKILL.md",
+      "capability": "session-orchestration workflow package",
+      "lifecycle_role": "orchestration",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "Codex skill discovery"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "3054c234c082ece732f8e3d27596b98ad2ada25f",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".agents/skills/session-orchestration/agents/openai.yaml",
+      "capability": "session-orchestration workflow package",
+      "lifecycle_role": "orchestration",
+      "classification": "normative",
+      "enforcement_level": "runtime-metadata",
+      "dependencies": [
+        "Codex skill discovery"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "ddddef891f875c4b60556659335272b2f893a1b4",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".agents/skills/task-routing/SKILL.md",
+      "capability": "task-routing workflow package",
+      "lifecycle_role": "routing",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "Codex skill discovery"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "d9fd36e9a8b272c9b5b507d07ca612f8b08a5e9d",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".agents/skills/task-routing/agents/openai.yaml",
+      "capability": "task-routing workflow package",
+      "lifecycle_role": "routing",
+      "classification": "normative",
+      "enforcement_level": "runtime-metadata",
+      "dependencies": [
+        "Codex skill discovery"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "48eb39b92e19bbd21b4928ce4a60ee6a1ed8e226",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".agents/skills/verification/SKILL.md",
+      "capability": "verification workflow package",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "Codex skill discovery"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "770b7c4b7fe53d399c058004b3e50e911be2af3e",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".agents/skills/verification/agents/openai.yaml",
+      "capability": "verification workflow package",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "runtime-metadata",
+      "dependencies": [
+        "Codex skill discovery"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "d8cac782d2f18f15a29228294fd6be4777278ca2",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".codex/agents/explorer.toml",
+      "capability": "Codex project custom subagent role",
+      "lifecycle_role": "execution",
+      "classification": "normative",
+      "enforcement_level": "runtime-configuration",
+      "dependencies": [
+        "Codex custom subagents"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "known_limitations": [
+        "Read-only sandbox declarations are defaults; parent and live permission overrides remain authoritative."
+      ],
+      "file_type": "toml",
+      "git_mode": "100644",
+      "blob_oid": "0f5682657384ed0053bddb51958db397a7e9c845",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".codex/agents/orchestrator.toml",
+      "capability": "Codex project custom subagent role",
+      "lifecycle_role": "execution",
+      "classification": "normative",
+      "enforcement_level": "runtime-configuration",
+      "dependencies": [
+        "Codex custom subagents"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Read-only sandbox declarations are defaults; parent and live permission overrides remain authoritative."
+      ],
+      "file_type": "toml",
+      "git_mode": "100644",
+      "blob_oid": "88ef9d58b077f2f19f7a0ce94318d77a36aba5c8",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".codex/agents/planner.toml",
+      "capability": "Codex project custom subagent role",
+      "lifecycle_role": "execution",
+      "classification": "normative",
+      "enforcement_level": "runtime-configuration",
+      "dependencies": [
+        "Codex custom subagents"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "known_limitations": [
+        "Read-only sandbox declarations are defaults; parent and live permission overrides remain authoritative."
+      ],
+      "file_type": "toml",
+      "git_mode": "100644",
+      "blob_oid": "f218b337bcecaf51c847886e9a63844eeb8ac22e",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".codex/agents/reviewer.toml",
+      "capability": "Codex project custom subagent role",
+      "lifecycle_role": "execution",
+      "classification": "normative",
+      "enforcement_level": "runtime-configuration",
+      "dependencies": [
+        "Codex custom subagents"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "known_limitations": [
+        "Read-only sandbox declarations are defaults; parent and live permission overrides remain authoritative."
+      ],
+      "file_type": "toml",
+      "git_mode": "100644",
+      "blob_oid": "c31ca940a3d949610834130e707031e489132c67",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".codex/config.toml",
+      "capability": "portable Codex project configuration",
+      "lifecycle_role": "execution",
+      "classification": "normative",
+      "enforcement_level": "runtime-configuration",
+      "dependencies": [
+        "trusted Codex project"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "known_limitations": [
+        "Project trust and current runtime interpretation require direct observation."
+      ],
+      "file_type": "toml",
+      "git_mode": "100644",
+      "blob_oid": "feef0d7ecc05deb139ab0b5c1e881638d832497e",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".gitattributes",
+      "capability": "repository hygiene and portability",
+      "lifecycle_role": "distribution",
+      "classification": "distribution",
+      "enforcement_level": "git-configuration",
+      "dependencies": [],
+      "related_tests": [
+        ".github/scripts/tests/test-scaffold-init.sh"
+      ],
+      "known_limitations": [
+        "Applies only where Git honors the checked-out configuration."
+      ],
+      "file_type": "text",
+      "git_mode": "100644",
+      "blob_oid": "7ba4281b59270122aaf8b74254576aa04d85cd23",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/CODEOWNERS",
+      "capability": "review ownership wall",
+      "lifecycle_role": "governance",
+      "classification": "normative",
+      "enforcement_level": "platform-configuration",
+      "dependencies": [
+        "GitHub branch protection or rulesets"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "known_limitations": [
+        "CODEOWNERS alone does not require review; effective ruleset state must be inspected."
+      ],
+      "file_type": "text",
+      "git_mode": "100644",
+      "blob_oid": "2029bc817a43521f48e4982b114f235cc9253002",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/config.yml",
+      "capability": "Issue creation policy",
+      "lifecycle_role": "planning",
+      "classification": "normative",
+      "enforcement_level": "platform-schema",
+      "dependencies": [
+        "GitHub Issues"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "known_limitations": [
+        "Schema shapes new Issues but cannot guarantee body truth or lifecycle compliance."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "e11e5d4a29a858e7020cfbf3e7cf2efbc26a93bb",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/epic.yml",
+      "capability": "Epic work-order form",
+      "lifecycle_role": "planning",
+      "classification": "normative",
+      "enforcement_level": "platform-schema",
+      "dependencies": [
+        "GitHub Issues"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "known_limitations": [
+        "Schema shapes new Issues but cannot guarantee body truth or lifecycle compliance."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "0f97a2b36956e1ba3c1740c6530b068301886341",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/feedback.yml",
+      "capability": "adopter feedback intake",
+      "lifecycle_role": "planning",
+      "classification": "normative",
+      "enforcement_level": "platform-schema",
+      "dependencies": [
+        "GitHub Issues"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-feedback-receiver.sh"
+      ],
+      "known_limitations": [
+        "Schema shapes new Issues but cannot guarantee body truth or lifecycle compliance."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "400040a748ada8e51df809cd572d09a9df4bd993",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/task.yml",
+      "capability": "Task work-order form",
+      "lifecycle_role": "planning",
+      "classification": "normative",
+      "enforcement_level": "platform-schema",
+      "dependencies": [
+        "GitHub Issues"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "known_limitations": [
+        "Schema shapes new Issues but cannot guarantee body truth or lifecycle compliance."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "49590b0a0dba38c28d4a2f3469b8e2f7af0db536",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/PULL_REQUEST_TEMPLATE.md",
+      "capability": "pull-request evidence contract",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "platform-template",
+      "dependencies": [
+        "GitHub pull requests"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Template fields still require measured evidence and reviewer verification."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "bad7cfce32c4dcbf5daed8c5ed68f2666697d4ab",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/connectors/CONNECTOR-TEMPLATE.md",
+      "capability": "context connector contract",
+      "lifecycle_role": "context",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "setup-sources helper"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-connectors.sh"
+      ],
+      "known_limitations": [
+        "Definition and fixture success do not activate or authorize an external source."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "997e2dc5825d2cabeafbbbe01ab997ae86b958d4",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/connectors/README.md",
+      "capability": "normative Context Contract, connector schema, and activation/contribution policy",
+      "lifecycle_role": "context",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        ".github/docs/agreements/adr/ADR-0004-codex-distribution-and-integrations.md",
+        ".github/connectors/CONNECTOR-TEMPLATE.md",
+        ".github/connectors/builtin.md",
+        ".github/connectors/speckit.md",
+        ".github/scripts/check-connectors.sh",
+        ".github/scripts/setup-sources.sh"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-connectors.sh"
+      ],
+      "known_limitations": [
+        "Structure and presence are tested; contract sufficiency and connector activation are not."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "2db28fc6dc9592cff018cde6e5616c51d4e1ed67",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/connectors/builtin.md",
+      "capability": "context connector contract",
+      "lifecycle_role": "context",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "setup-sources helper"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-connectors.sh"
+      ],
+      "known_limitations": [
+        "Definition and fixture success do not activate or authorize an external source."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "232ad010675862983adba27216c94c2064052680",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/connectors/speckit.md",
+      "capability": "context connector contract",
+      "lifecycle_role": "context",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "setup-sources helper"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-connectors.sh"
+      ],
+      "known_limitations": [
+        "Definition and fixture success do not activate or authorize an external source."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "f6d451da30714eb918512cb1a46e0a7b22bec096",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/dependabot.yml",
+      "capability": "dependency update automation",
+      "lifecycle_role": "maintenance",
+      "classification": "normative",
+      "enforcement_level": "platform-configuration",
+      "dependencies": [
+        "GitHub Dependabot"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Configuration does not prove updates are enabled or merged."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "aea6e256ce6abc0cb27b007abfb529676103319c",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/docs/AGENTIC-DEV-KIT-LICENSE.txt",
+      "capability": "software license",
+      "lifecycle_role": "license",
+      "classification": "distribution",
+      "enforcement_level": "legal-text",
+      "dependencies": [],
+      "related_tests": [],
+      "known_limitations": [
+        "Repository presence does not prove a release or downstream compliance."
+      ],
+      "file_type": "text",
+      "git_mode": "100644",
+      "blob_oid": "2ef5e8e5eda6b10446b2e6c79120cfe98451b8c6",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/docs/AGENTIC-DEV-KIT-NOTICE.md",
+      "capability": "attribution and notice",
+      "lifecycle_role": "license",
+      "classification": "distribution",
+      "enforcement_level": "legal-text",
+      "dependencies": [],
+      "related_tests": [],
+      "known_limitations": [
+        "Repository presence does not prove a release."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "599f8d2425a861e92d4e6bfa9d5bf13a13a8abb2",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/docs/adopter-feedback.md",
+      "capability": "shared kit documentation",
+      "lifecycle_role": "documentation",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [],
+      "related_tests": [],
+      "known_limitations": [
+        "Document presence is not runtime evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "3dcdc10b233c2463ee0b3370bb7e64f83497f2a6",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/docs/agreements/README.md",
+      "capability": "project agreement",
+      "lifecycle_role": "agreement",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "human agreement merge"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Text is governance authority only after its owning agreement merge; executable controls remain separate."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "27106d4318bc457979e23ec2e6a3ace6a4998bb9",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/docs/agreements/adr/ADR-0001-codex-native-architecture.md",
+      "capability": "architecture decision",
+      "lifecycle_role": "agreement",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "human agreement merge"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Text is governance authority only after its owning agreement merge; executable controls remain separate."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "b80b03694440a75897de78dff020a6f87ba90b1c",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/docs/agreements/adr/ADR-0002-adlc-operating-model.md",
+      "capability": "architecture decision",
+      "lifecycle_role": "agreement",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "human agreement merge"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Text is governance authority only after its owning agreement merge; executable controls remain separate."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "19471f07b617047f6202ffe3e60dea904835b90f",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/docs/agreements/adr/ADR-0003-codex-native-secure-dev-container.md",
+      "capability": "architecture decision",
+      "lifecycle_role": "agreement",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "human agreement merge"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Text is governance authority only after its owning agreement merge; executable controls remain separate."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "5efd49c429eda7bb493fdcd6822db17f71965317",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/docs/agreements/adr/ADR-0004-codex-distribution-and-integrations.md",
+      "capability": "architecture decision",
+      "lifecycle_role": "agreement",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "human agreement merge"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Text is governance authority only after its owning agreement merge; executable controls remain separate."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "e9e0d97a0fbbada9699013280d11102e4d607d13",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/docs/agreements/glossary.md",
+      "capability": "project agreement",
+      "lifecycle_role": "agreement",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "human agreement merge"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Text is governance authority only after its owning agreement merge; executable controls remain separate."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "e099356bef420f65b627273743df4a349b7990f9",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/docs/agreements/non-goals.md",
+      "capability": "project agreement",
+      "lifecycle_role": "agreement",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "human agreement merge"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Text is governance authority only after its owning agreement merge; executable controls remain separate."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "93f7550944d0ee7ddb103caf492e1a1376172127",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/docs/agreements/requirements.md",
+      "capability": "project agreement",
+      "lifecycle_role": "agreement",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "human agreement merge"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Text is governance authority only after its owning agreement merge; executable controls remain separate."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "79737c50df6596182e835d2e8d1b2e99c00ea80b",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/docs/agreements/retro-log.md",
+      "capability": "project agreement",
+      "lifecycle_role": "agreement",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "human agreement merge"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Text is governance authority only after its owning agreement merge; executable controls remain separate."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "0e23e822d66c119abf3ac6863eb39e5c0fc95014",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/docs/context/README.md",
+      "capability": "context provenance and design record",
+      "lifecycle_role": "context",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "context collection/distillation"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Design context is evidence input, not an executable rule."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "3fd899e80adc2214aa2661e2fc32523601305c60",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/docs/guides/architecture.md",
+      "capability": "Codex control/execution architecture, session hierarchy, distribution, and native-capability boundaries",
+      "lifecycle_role": "architecture",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "AGENTS.md",
+        ".github/docs/agreements/**",
+        ".agents/skills/**",
+        ".codex/agents/**",
+        ".codex/config.toml",
+        ".github/workflows/**"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Documented topology and defaults do not prove runtime isolation, permissions, hosted events, or installation."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "5e4106873eabbc0d6d810b8fe3b9ca8b5a60a9c6",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/docs/guides/copilot-capability-map.md",
+      "capability": "historical Copilot-to-Codex surface/lifecycle/distribution parity map at 20637b and 110 files",
+      "lifecycle_role": "traceability",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "historical source pin",
+        "target control-plane files",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Superseded historical compatibility artifact; the test hardcodes 20637b/110 and it is not current-source authority."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "cede0affd976b5d640c794fccfc5d268d8958a12",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/docs/guides/examples.md",
+      "capability": "operator examples for skill invocation, connector activation, planning, verification, automation, and resume",
+      "lifecycle_role": "onboarding",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "named Skills",
+        ".github/scripts/setup-sources.sh"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Examples are illustrative prompts and commands and do not prove execution or current product support."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "05074fb689544c9900a0dbfacbc836873d88a0b5",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/docs/guides/limitations.md",
+      "capability": "declared Codex runtime, plugin, automation, migration, Dev Container, ruleset, Windows, tier, and release boundaries",
+      "lifecycle_role": "governance",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "official Codex documentation",
+        "open Tasks",
+        "current runtime and control-plane evidence"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Time-sensitive product statements and Task status require re-observation; presence is not enforcement."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "85bc8f9c4e47e5a89d8ef51285364f268cfa9935",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/docs/guides/maintenance.md",
+      "capability": "Skill, plugin, configuration, upgrade, validation, and release procedure",
+      "lifecycle_role": "maintenance",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "repository check scripts",
+        "installer",
+        "Skill and plugin validators",
+        "GitHub release and tag state"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Checklist is procedural guidance; no release, tag, plugin publication, or clean-commit artifact is proved."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "45e93cbc1c3d322222a713131d81ee575f685841",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/docs/guides/migration-from-copilot.md",
+      "capability": "manual Copilot-to-Codex ledger, surface, Task, and runtime migration runbook",
+      "lifecycle_role": "migration",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        ".github/docs/guides/copilot-capability-map.md",
+        "installer",
+        "Skills",
+        "official import and runtime documentation"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Manual migration guidance cannot guarantee source completeness, fresh runtime behavior, or safe live cutover."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "cccad45aa8c08acc15af2436c3d4de98212b2efd",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/docs/guides/quickstart.md",
+      "capability": "template, existing-repository installer, plugin, and first-verification onboarding runbook",
+      "lifecycle_role": "onboarding",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "Git",
+        "Bash",
+        "Ruby",
+        "jq",
+        "Python",
+        "Codex",
+        "gh",
+        "installer and setup helpers"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Commands are not proof of a completed install, live permissions, native Windows, tag availability, or plugin publication."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "986432279e4bd0e7c51b8d3eeaf8b4c40be5e1b6",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/check-changelog-refs.sh",
+      "capability": "offline changelog Issue/PR reference-range sensor",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "grep",
+        "sed",
+        "awk"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-changelog-refs.sh"
+      ],
+      "known_limitations": [
+        "The offline MAX_KNOWN ceiling is heuristic and does not prove that an in-range GitHub record exists or is intended."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "ef9eab78b0f5cfbec87f49429dc2d4ae13cfda58",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/check-connectors.sh",
+      "capability": "connector definition schema and operation-heading sensor",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "grep",
+        "sed",
+        "awk"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-connectors.sh"
+      ],
+      "known_limitations": [
+        "Structural conformance does not activate a connector or prove access, retrieval, pinning, or external-source truth."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "8a598ab8fd5b54f0fe48b5daf3dc91abc86cadf9",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/check-escalation-wording.sh",
+      "capability": "single-source escalation-budget wording sensor",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "grep",
+        "Git"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-escalation-wording.sh"
+      ],
+      "known_limitations": [
+        "Regex wording checks cannot prove that runtime retries or escalation follow the normative budget."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "f74284c9b557dd3b264dce00c292bb43926c717e",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/check-md-links.sh",
+      "capability": "repository-local Markdown link and documented-path sensor",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash",
+        "Python 3",
+        "Git"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "known_limitations": [
+        "External URLs are syntax-checked but never fetched, and application-owned Markdown outside named control paths is intentionally excluded."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "bd2342c7a11450a0f37530b2399f25a9325c8842",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/check-skills.sh",
+      "capability": "Codex Skill/custom-agent/plugin/configuration portability and synchronization wall",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash",
+        "Python 3.11+ with tomllib",
+        "Ruby with Psych/YAML",
+        "Git"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "known_limitations": [
+        "Static validation and exact plugin mirrors do not prove runtime role isolation, plugin installation/publication, or cross-surface behavior."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "10d3234803cf97efb119c3562d55b2662ec44ba4",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/check-template-sync.sh",
+      "capability": "Issue-form to canonical body-template contract synchronization sensor",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash",
+        "Python 3",
+        "Ruby with Psych/YAML",
+        "Git"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "known_limitations": [
+        "Structural field/heading synchronization does not prove semantic sufficiency, GitHub rendering, or post-creation enforcement."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "c6367ca0bc452e7cfa4173482fa58e316ef7731f",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/check-workflow-permissions.sh",
+      "capability": "job-level checkout contents-permission sensor",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "awk"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-workflow-permissions.sh"
+      ],
+      "known_limitations": [
+        "The static parser checks checkout jobs with explicit job-level permissions; it does not prove inherited permissions, token behavior, or live GitHub policy."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "82ed53b01920638072562f8edfb29977d90dac1c",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/check_action_pins.py",
+      "capability": "all-tracked-workflow external Action SHA/version pin sensor",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Python 3",
+        "Git"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "known_limitations": [
+        "Full-SHA and version-comment syntax do not prove Action provenance, runtime behavior, or live repository SHA-pinning policy."
+      ],
+      "file_type": "python",
+      "git_mode": "100644",
+      "blob_oid": "d58fefe9438ef2f12df3cb1ec39a6f33a5b83115",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/check_task_ritual.py",
+      "capability": "trusted-base Task/Plan link, edit-history, chronology, and type sensor",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Python 3",
+        "GitHub REST and GraphQL API access",
+        "repository/PR/head identity environment"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "known_limitations": [
+        "It does not enforce worker dispatch/release identity, changed-path ownership, high-risk approval, Outcome/Evidence completeness, or non-author approval.",
+        "Hosted correctness still depends on trusted base execution, event freshness, and live GitHub API state."
+      ],
+      "file_type": "python",
+      "git_mode": "100644",
+      "blob_oid": "25936345851ac3cebbbd36f3b362d8cd996b2bd2",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/feedback-lib.sh",
+      "capability": "consent-gated feedback library",
+      "lifecycle_role": "feedback",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "SCAFFOLD-CHANGELOG.md scaffold-version marker",
+        "Git for repository-root marker fallback",
+        "interactive stdin and stderr TTYs plus a working GitHub CLI for optional Issue creation",
+        "grep, sed, awk, uname, and optional jq for allowlist and version shaping"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-feedback-lib.sh"
+      ],
+      "known_limitations": [
+        "Sourced helper only: it is inert for non-enumerated callers, deliberate exits, CI or GitHub Actions, non-TTY execution, missing GitHub CLI, or an invalid or missing scaffold-version marker.",
+        "Only a literal y or Y sends the fixed allowlist; fixtures do not prove a real terminal, GitHub CLI authentication, or live Issue creation.",
+        "The audited target setup-ruleset.sh is accepted by feedback_arm but does not source this library."
+      ],
+      "file_type": "shell",
+      "git_mode": "100644",
+      "blob_oid": "a4b2d5d051eb42c0b8e1d23559e2256eecf98b41",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/retro-hygiene.sh",
+      "capability": "retro hygiene sensor",
+      "lifecycle_role": "learning",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash",
+        "Git and Git-tracked AGENTS.md files",
+        "authenticated GitHub CLI with Issues read access",
+        "Issues write access only for --create-issue",
+        "sed, sort, tr, and wc"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Candidate and monthly-review scans are capped at 1000 Issues; occurrence and link classification is regex-based, and the instruction budget covers only Git-tracked AGENTS.md files.",
+        "--create-issue only files a monthly needs:human review; it never promotes or closes candidates, and process-local double-checks cannot eliminate races with independent invocations.",
+        "The target has no dedicated retro-hygiene fixture suite or official Codex capability-baseline sensor; a scheduled report is not remediation."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "e4afa34ffa1a5defb0a6c0b918c42152d2d5d24d",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/scaffold-init.ps1",
+      "capability": "safe scaffold installer",
+      "lifecycle_role": "distribution",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Windows PowerShell with Invoke-WebRequest and TLS 1.2",
+        "Git for Windows bash.exe",
+        "network access to raw.githubusercontent.com",
+        "downloaded .github/scripts/scaffold-init.sh",
+        "SCAFFOLD_REF environment selection of the downloaded Bash installer revision"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-scaffold-init.sh"
+      ],
+      "known_limitations": [
+        "Thin bootstrap only: it downloads and delegates all install, collision, and provenance behavior to scaffold-init.sh and deliberately rejects the System32 WSL launcher.",
+        "The target suite inspects this file as text; native Windows Git Bash discovery, TLS download, argument forwarding, cleanup, and exit propagation are unproved.",
+        "SCAFFOLD_REF defaults to mutable main and accepts branch or tag references; the downloaded Bash installer has no independent digest verification, so immutability depends on the caller supplying a reviewed commit."
+      ],
+      "file_type": "powershell",
+      "git_mode": "100644",
+      "blob_oid": "9d659874e8faf58c24488cbdc5fd3626386c9cc6",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/scaffold-init.sh",
+      "capability": "safe scaffold installer",
+      "lifecycle_role": "distribution",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "Git",
+        "tar, find, sort, awk, grep, sed, and mktemp",
+        "curl for unauthenticated github.com network fetches",
+        "authenticated GitHub CLI for private-source fetches",
+        "template source containing .github, .agents/skills, and .codex/agents",
+        "optional .github/scripts/feedback-lib.sh"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-scaffold-init.sh"
+      ],
+      "known_limitations": [
+        "Network mode is github.com-only; fixture tests do not prove public or private fetches, tag resolution, or native Windows execution.",
+        "--force overwrites approved collisions, while --upgrade intentionally retains tuned surfaces and instance docs; the staged diff and retained files require human review before commit.",
+        "A dirty or non-Git SCAFFOLD_SOURCE_DIR records an unknown marker SHA, and the installer stages files but never commits or opens an adoption PR.",
+        "Fresh installs copy every .github path and upgrades install absent .github/docs paths, so distribution hygiene depends on repository contents."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "a2da0f23a09d52bf42d9505c79e87846232044a4",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/setup-labels.sh",
+      "capability": "preview-first setup helper",
+      "lifecycle_role": "distribution",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash",
+        "Git only when -R or --repo is omitted",
+        "github.com repository identity",
+        "authenticated GitHub CLI with label write permission for --apply",
+        "optional .github/scripts/feedback-lib.sh"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-feedback-receiver.sh",
+        ".github/scripts/tests/test-setup-labels.sh"
+      ],
+      "known_limitations": [
+        "--dry-run prints the fixed 12-label plan without reading live state; --apply force-updates matching labels but never removes extra labels or verifies downstream workflows.",
+        "At the audited baseline, the live repository is missing the canonical from:adopter label."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "86f51fc08d610ea2cb8fcc89ba29d9bb593872e5",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/setup-project.sh",
+      "capability": "preview-first setup helper",
+      "lifecycle_role": "distribution",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash",
+        "Git only when -R or --repo is omitted",
+        "jq",
+        "authenticated GitHub CLI with project scope and repository or Projects v2 access for --apply",
+        "GitHub Projects v2 CLI and GraphQL APIs",
+        "optional .github/scripts/feedback-lib.sh"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-setup-project.sh"
+      ],
+      "known_limitations": [
+        "--dry-run makes no GitHub calls, so it cannot validate project scope, account tier or policy, duplicate or conflicting resources, or link permission; live discovery is capped at 100 projects, 100 fields, and 50 views.",
+        "View creation is best-effort; Roadmap date-field selection and Kind grouping remain manual, and the Issue graph remains authoritative.",
+        "At the audited baseline no Project is linked, so only implementation and fixture parity are evidenced."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "35e241de958f27ce86ea553073a8be17e04e6747",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/setup-ruleset.sh",
+      "capability": "preview-first setup helper",
+      "lifecycle_role": "distribution",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash",
+        "jq",
+        "Git only when -R or --repo is omitted",
+        "interactive stdin for the --apply exact confirmation",
+        "authenticated GitHub CLI with repository-ruleset API permission for --apply",
+        "reviewed positive GitHub App integration ID",
+        "github.com rulesets API"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "known_limitations": [
+        "Creates or reuses only an exact enforcement-disabled proposal; it cannot update, activate, or delete a ruleset, and integration identity and enforcement remain human decisions.",
+        "The historical helper is not equivalent to the source's current profile, persisted-intent, reconcile, and governance-sensor behavior.",
+        "At the audited baseline no disabled proposal exists, and the active interim ruleset has no required status contexts."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "983d015379ff378b382bfd96dc9ae55b67b6bb1f",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/setup-sources.sh",
+      "capability": "preview-first setup helper",
+      "lifecycle_role": "distribution",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash",
+        "Git repository with a parseable github.com origin",
+        "authenticated GitHub CLI with repository and plan read access for --apply",
+        "grep, sed, tr, and date",
+        "specs history when speckit is selected",
+        "optional .github/scripts/feedback-lib.sh"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-setup-sources.sh"
+      ],
+      "known_limitations": [
+        "--dry-run performs only local repository and remote checks and cannot prove API access, visibility, or plan support.",
+        "Only builtin and speckit connectors on github.com are supported; private Free repositories and private repositories whose owner plan cannot be determined fail closed.",
+        "--apply writes only the local SOURCES.md registry; it never opens the activation PR, fills the builtin pin, adds speckit CODEOWNERS, or proves connector access or semantic sufficiency.",
+        "At the audited baseline no SOURCES registry or live connector exists."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "555f2a02d18c6a2710506e80fb9cdb533e810e63",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/tests/lib.sh",
+      "capability": "shared TAP-style Bash assertion and sandbox helper",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        "Bash 3.2+",
+        "Git",
+        "mktemp"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Sourced helper; no standalone assertions."
+      ],
+      "file_type": "shell",
+      "git_mode": "100644",
+      "blob_oid": "121b94f41b560867c726a3ef9e615dea1ec86765",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/tests/run-portable-tests.sh",
+      "capability": "portable shell regression-suite dispatcher",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        "Bash",
+        "the ten enumerated test-*.sh"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Runner only aggregates child exits; it does not test itself, Python suites, Windows, or hosted GitHub behavior."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "34a0e1c386bdb3c824739c3032d5e216670b7fdd",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/tests/test-changelog-refs.sh",
+      "capability": "changelog reference-range fixtures plus shipped-changelog smoke",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/check-changelog-refs.sh",
+        "SCAFFOLD-CHANGELOG.md"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "No live record existence or intent proof."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "b908b80c78f737725c5de5c0c6370b927c45db0e",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/tests/test-connectors.sh",
+      "capability": "connector-schema fixtures plus real connector-tree smoke",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/check-connectors.sh",
+        ".github/connectors/**"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Structure only; no activation or source-truth proof."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "ee17fa9a52d9e0b5cef3428360f0407a8cda59a1",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/tests/test-escalation-wording.sh",
+      "capability": "Codex escalation-budget wording-authority fixtures",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/check-escalation-wording.sh",
+        "Git"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Regex only, not runtime retry or escalation."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "58efac4b97c7a6b19617afab7978418fbfa193c6",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/tests/test-feedback-lib.sh",
+      "capability": "hermetic consent-gated feedback failure-path suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/feedback-lib.sh",
+        ".github/scripts/scaffold-init.sh",
+        "SCAFFOLD-CHANGELOG.md",
+        "Git",
+        "gh and TTY fixtures"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "No live Issue or real terminal/platform proof."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "9160f68ae2d603758105db5b501a3c904d69b267",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/tests/test-feedback-receiver.sh",
+      "capability": "shipped feedback form/workflow/label static and executable receiver suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        "Ruby YAML",
+        ".github/ISSUE_TEMPLATE/feedback.yml",
+        ".github/workflows/adopter-feedback.yml",
+        ".github/scripts/setup-labels.sh",
+        "gh shim"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "No live issues event, token, or permissions proof; it does not reconcile feedback-lib body markers."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "1f2cc9cba8b154bdd439de6c3e005ac5224d88c1",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/tests/test-scaffold-init.sh",
+      "capability": "Bash installer behavior plus PowerShell-bootstrap pinned-ref structural suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/scaffold-init.sh",
+        ".github/scripts/scaffold-init.ps1",
+        "Git",
+        "stubs"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "PowerShell is inspected as text, never executed natively; no live network or tag proof."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "bde95860e0e2b034e18680eeb3be2ed894fc770f",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/tests/test-setup-labels.sh",
+      "capability": "preview/apply/idempotent canonical-label bootstrap fixture suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/setup-labels.sh",
+        "gh stub"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "No live labels, scopes, or repository-mutation proof."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "86c1b7f2313f628e391d6388428ce7959c8573d5",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/tests/test-setup-project.sh",
+      "capability": "Projects-v2 preview/apply/view fixture suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/setup-project.sh",
+        "gh, GraphQL, and jq fixtures"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "No live schema, tier, scope, or UI proof."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "bb14137e59a1d2e547f682b4320000fb7020ec01",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/tests/test-setup-sources.sh",
+      "capability": "connector preflight/registry/dry-run/idempotency fixture suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/setup-sources.sh",
+        "Git",
+        "gh and jq fixtures"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "No live plan, API, or activation-PR proof."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "5a6a6b528049a8ed406efb2ba4d8b96d2c352790",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/tests/test-workflow-permissions.sh",
+      "capability": "checkout job-permission parser fixtures plus real-workflow smoke",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/check-workflow-permissions.sh",
+        "awk",
+        ".github/workflows/**"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Static parser, not full YAML, effective token, or live policy."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "1ca17739f684a4985f48d8aa89a03b80b69e04fd",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/tests/test_ci_guards.py",
+      "capability": "Action-pin, Task-ritual, namespace/portability, CI admission/controller/cancellation, and legacy ruleset-helper regression suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        "Python standard library",
+        "Git",
+        ".github/scripts/check_action_pins.py",
+        ".github/scripts/check_task_ritual.py",
+        ".github/scripts/check-skills.sh",
+        ".github/scripts/check-md-links.sh",
+        ".github/scripts/check-template-sync.sh",
+        ".github/workflows/ci.yml",
+        ".github/CODEOWNERS",
+        ".github/scripts/setup-ruleset.sh"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Mocks and local fixtures do not prove hosted admission, event trust, effective rulesets, or runtime sessions."
+      ],
+      "file_type": "python",
+      "git_mode": "100644",
+      "blob_oid": "2cd733d54b690cf5914b1918444e2d0815bfb85f",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/tests/test_runtime_parity.py",
+      "capability": "historical source-traceability, orchestration/onboarding/product-boundary, and canonical-to-plugin byte/mode parity suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        "Python standard library",
+        "all canonical and plugin skill trees",
+        ".codex/agents/orchestrator.toml",
+        ".github/docs/guides/architecture.md",
+        ".github/docs/guides/copilot-capability-map.md",
+        ".github/docs/guides/limitations.md",
+        ".github/docs/guides/migration-from-copilot.md"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Hardcodes superseded 20637b/110-file source and exact phrases; cannot prove current source or runtime behavior."
+      ],
+      "file_type": "python",
+      "git_mode": "100644",
+      "blob_oid": "d85ecbc6d408e3c641322013f7825272a5d45123",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/scripts/tuning-status.sh",
+      "capability": "onboarding completion sensor",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash",
+        "Git or GITHUB_REPOSITORY for repository identity",
+        ".github/workflows/ci.yml",
+        ".github/CODEOWNERS",
+        "grep and the literal CUSTOMIZE: sentinel convention"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "For noncanonical repositories it checks only CI and CODEOWNERS presence plus literal CUSTOMIZE: sentinels; it does not validate command correctness, CODEOWNER eligibility, ruleset setup, the license trial, or complete onboarding.",
+        "--ci emits warnings and always exits 0, while canonical mochan-tk/ttt1-codex identity bypasses sentinel inspection.",
+        "The target has no dedicated tuning-status fixture; marker readiness does not prove live setup or a license trial."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "567716b1d9eda0c65daa6aec0b2f36c82ff5734f",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/workflows/adopter-feedback.yml",
+      "capability": "adopter feedback receiver",
+      "lifecycle_role": "feedback",
+      "classification": "normative",
+      "enforcement_level": "automated-workflow",
+      "dependencies": [
+        "GitHub Actions"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-feedback-receiver.sh",
+        ".github/scripts/tests/test-workflow-permissions.sh",
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "known_limitations": [
+        "A tracked workflow does not prove it ran on the audited head or is required by the effective ruleset."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "4ab2a8f7abfe8342adaa0f45cc986584eff6b818",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "capability": "deterministic CI wall",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "automated-workflow",
+      "dependencies": [
+        "GitHub Actions"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-workflow-permissions.sh",
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "known_limitations": [
+        "A tracked workflow does not prove it ran on the audited head or is required by the effective ruleset.",
+        "Strong merged admission definition and tests, but same-repository/public-fork success, trusted status source, and active enforcement remain unproved."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "a3683eb86bafbd8c519402eda32b34951452c2c8",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".github/workflows/retro-hygiene.yml",
+      "capability": "retro hygiene report",
+      "lifecycle_role": "learning",
+      "classification": "normative",
+      "enforcement_level": "automated-workflow",
+      "dependencies": [
+        "GitHub Actions"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-workflow-permissions.sh",
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "known_limitations": [
+        "A tracked workflow does not prove it ran on the audited head or is required by the effective ruleset."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "a41c948812b4f1f46d88bf7c02936306c8972122",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": ".gitignore",
+      "capability": "repository hygiene and portability",
+      "lifecycle_role": "distribution",
+      "classification": "distribution",
+      "enforcement_level": "git-configuration",
+      "dependencies": [],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "known_limitations": [
+        "Applies only where Git honors the checked-out configuration."
+      ],
+      "file_type": "text",
+      "git_mode": "100644",
+      "blob_oid": "e1f361de2922374ef98c4fc7bcb9e0d8c42066de",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "AGENTS.md",
+      "capability": "Codex always-on contributor constitution",
+      "lifecycle_role": "governance",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "Codex AGENTS.md discovery"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "known_limitations": [
+        "Guidance is not a hard security boundary; GitHub checks and reviews remain authoritative."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "85e415e037a8c619c5409f24071e2bd091a93b58",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "capability": "contribution policy",
+      "lifecycle_role": "governance",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [],
+      "related_tests": [],
+      "known_limitations": [
+        "Policy text depends on human and platform enforcement."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "ae63fc4c2414e2a8d1c44b4328c06f5098838aac",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "LICENSE",
+      "capability": "software license",
+      "lifecycle_role": "license",
+      "classification": "distribution",
+      "enforcement_level": "legal-text",
+      "dependencies": [],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "known_limitations": [
+        "Repository presence does not prove a release or downstream compliance."
+      ],
+      "file_type": "text",
+      "git_mode": "100644",
+      "blob_oid": "2ef5e8e5eda6b10446b2e6c79120cfe98451b8c6",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "NOTICE.md",
+      "capability": "attribution and notice",
+      "lifecycle_role": "license",
+      "classification": "distribution",
+      "enforcement_level": "legal-text",
+      "dependencies": [],
+      "related_tests": [],
+      "known_limitations": [
+        "Repository presence does not prove a release."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "733a1e98139aeec1d11e06a9924d436b274456ac",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "README.md",
+      "capability": "Codex kit onboarding and operating overview",
+      "lifecycle_role": "onboarding",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "known_limitations": [
+        "Documentation does not prove live adoption, release, plugin publication, or external Settings state."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "867113f6db286f0b1fc9d120581f1584a9a4f775",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "SCAFFOLD-CHANGELOG.md",
+      "capability": "version lineage and upgrade history",
+      "lifecycle_role": "distribution",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [],
+      "related_tests": [
+        ".github/scripts/tests/test-changelog-refs.sh",
+        ".github/scripts/tests/test-scaffold-init.sh",
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "known_limitations": [
+        "Changelog claims require independent tree and runtime evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "d2eb389467b1d26c46948289c0cf2f930c76be01",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "SECURITY.md",
+      "capability": "security reporting policy",
+      "lifecycle_role": "governance",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [],
+      "related_tests": [],
+      "known_limitations": [
+        "Policy text depends on human and platform enforcement."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "79158b5120e78e06b319c0620a5e2f050dc571b7",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/.codex-plugin/plugin.json",
+      "capability": "Codex plugin manifest",
+      "lifecycle_role": "distribution",
+      "classification": "distribution",
+      "enforcement_level": "configuration",
+      "dependencies": [
+        "Codex plugin system"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "known_limitations": [
+        "Artifact validity does not prove registration, publication, installation, auto-update, or representative live use."
+      ],
+      "file_type": "json",
+      "git_mode": "100644",
+      "blob_oid": "16563b87b803129377b2e5f307c5a0c728a802ab",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/LICENSE",
+      "capability": "software license",
+      "lifecycle_role": "license",
+      "classification": "distribution",
+      "enforcement_level": "legal-text",
+      "dependencies": [],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "known_limitations": [
+        "Repository presence does not prove a release or downstream compliance."
+      ],
+      "file_type": "text",
+      "git_mode": "100644",
+      "blob_oid": "2ef5e8e5eda6b10446b2e6c79120cfe98451b8c6",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/NOTICE.md",
+      "capability": "attribution and notice",
+      "lifecycle_role": "license",
+      "classification": "distribution",
+      "enforcement_level": "legal-text",
+      "dependencies": [],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py"
+      ],
+      "known_limitations": [
+        "Repository presence does not prove a release."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "8b2a66086abb52adffcae9d49c1c6e947c79599b",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/skills/codex-automation/SKILL.md",
+      "capability": "codex-automation workflow package",
+      "lifecycle_role": "execution",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "Codex skill discovery",
+        "Codex plugin package"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Packaged copy has no GitHub control-plane authority and publication is unproven."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "440c28a13546b9303fa124ba38cb82fe5a645f45",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/skills/codex-automation/agents/openai.yaml",
+      "capability": "codex-automation workflow package",
+      "lifecycle_role": "execution",
+      "classification": "normative",
+      "enforcement_level": "runtime-metadata",
+      "dependencies": [
+        "Codex skill discovery",
+        "Codex plugin package"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Packaged copy has no GitHub control-plane authority and publication is unproven."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "f4cfb7e800b2e4c300a74069bb12a275395976b0",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/skills/codex-automation/references/supported-patterns.md",
+      "capability": "codex-automation workflow package",
+      "lifecycle_role": "execution",
+      "classification": "normative",
+      "enforcement_level": "template",
+      "dependencies": [
+        "Codex skill discovery",
+        "Codex plugin package"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Packaged copy has no GitHub control-plane authority and publication is unproven."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "f1781f23df0a6baf4824d216d88fd521e453bd4b",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/skills/context-collection/SKILL.md",
+      "capability": "context-collection workflow package",
+      "lifecycle_role": "context",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "Codex skill discovery",
+        "Codex plugin package"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Packaged copy has no GitHub control-plane authority and publication is unproven."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "eaeaaa1d9b9985f9ecb0c5d1cec40a7bbf07d508",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/skills/context-collection/agents/openai.yaml",
+      "capability": "context-collection workflow package",
+      "lifecycle_role": "context",
+      "classification": "normative",
+      "enforcement_level": "runtime-metadata",
+      "dependencies": [
+        "Codex skill discovery",
+        "Codex plugin package"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Packaged copy has no GitHub control-plane authority and publication is unproven."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "89a6616c8114853ce08877b0c347a54458df8650",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/skills/context-distillation/SKILL.md",
+      "capability": "context-distillation workflow package",
+      "lifecycle_role": "context",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "Codex skill discovery",
+        "Codex plugin package"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Packaged copy has no GitHub control-plane authority and publication is unproven."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "34e956c1e34272a920a0bf9f74715bfb9d0a1b6f",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/skills/context-distillation/agents/openai.yaml",
+      "capability": "context-distillation workflow package",
+      "lifecycle_role": "context",
+      "classification": "normative",
+      "enforcement_level": "runtime-metadata",
+      "dependencies": [
+        "Codex skill discovery",
+        "Codex plugin package"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Packaged copy has no GitHub control-plane authority and publication is unproven."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "1c27237ac7fe9d6c3998990e16a50366a3429e55",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/skills/plan-management/SKILL.md",
+      "capability": "plan-management workflow package",
+      "lifecycle_role": "planning",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "Codex skill discovery",
+        "Codex plugin package"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Packaged copy has no GitHub control-plane authority and publication is unproven."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "b440b29118930d45e3732ebc270b23df44f06b27",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/skills/plan-management/agents/openai.yaml",
+      "capability": "plan-management workflow package",
+      "lifecycle_role": "planning",
+      "classification": "normative",
+      "enforcement_level": "runtime-metadata",
+      "dependencies": [
+        "Codex skill discovery",
+        "Codex plugin package"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Packaged copy has no GitHub control-plane authority and publication is unproven."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "d95d0c0e3ddf29a7725a17b62d894679dee9dbf3",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/skills/plan-management/scripts/frontier.sh",
+      "capability": "plan-management workflow package",
+      "lifecycle_role": "planning",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Codex skill discovery",
+        "Codex plugin package"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Packaged copy has no GitHub control-plane authority and publication is unproven."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "19deb0c95b3dc4e038aa9c4da9e726581566d5d7",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/skills/plan-management/scripts/new-task.sh",
+      "capability": "plan-management workflow package",
+      "lifecycle_role": "planning",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Codex skill discovery",
+        "Codex plugin package"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Packaged copy has no GitHub control-plane authority and publication is unproven."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "e5b55cfa90ce663e4e989cc3ba1f891e43cff21d",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/skills/plan-management/templates/epic-body.md",
+      "capability": "plan-management workflow package",
+      "lifecycle_role": "planning",
+      "classification": "normative",
+      "enforcement_level": "template",
+      "dependencies": [
+        "Codex skill discovery",
+        "Codex plugin package"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Packaged copy has no GitHub control-plane authority and publication is unproven."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "e79ebaefb48b16518f1ed47d6941f8a040064ece",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/skills/plan-management/templates/task-body.md",
+      "capability": "plan-management workflow package",
+      "lifecycle_role": "planning",
+      "classification": "normative",
+      "enforcement_level": "template",
+      "dependencies": [
+        "Codex skill discovery",
+        "Codex plugin package"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Packaged copy has no GitHub control-plane authority and publication is unproven."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "1cce52bb5df954f2b2adf8696e57a2074a4f70b6",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/skills/project-onboarding/SKILL.md",
+      "capability": "project-onboarding workflow package",
+      "lifecycle_role": "onboarding",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "Codex skill discovery",
+        "Codex plugin package"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Packaged copy has no GitHub control-plane authority and publication is unproven."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "1c0780dac1d498ade66997cb80e3ebce9610a6a5",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/skills/project-onboarding/agents/openai.yaml",
+      "capability": "project-onboarding workflow package",
+      "lifecycle_role": "onboarding",
+      "classification": "normative",
+      "enforcement_level": "runtime-metadata",
+      "dependencies": [
+        "Codex skill discovery",
+        "Codex plugin package"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Packaged copy has no GitHub control-plane authority and publication is unproven."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "b0f832a8d1006537abd8dbdf1e3c66cb71f061f3",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/skills/retro/SKILL.md",
+      "capability": "retro workflow package",
+      "lifecycle_role": "learning",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "Codex skill discovery",
+        "Codex plugin package"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Packaged copy has no GitHub control-plane authority and publication is unproven."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "057b3bf9fca8310a88c9604c6cd9e579eca73695",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/skills/retro/agents/openai.yaml",
+      "capability": "retro workflow package",
+      "lifecycle_role": "learning",
+      "classification": "normative",
+      "enforcement_level": "runtime-metadata",
+      "dependencies": [
+        "Codex skill discovery",
+        "Codex plugin package"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Packaged copy has no GitHub control-plane authority and publication is unproven."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "abc59d3736feb61f951c88132ed905b140b6f818",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/skills/session-orchestration/SKILL.md",
+      "capability": "session-orchestration workflow package",
+      "lifecycle_role": "orchestration",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "Codex skill discovery",
+        "Codex plugin package"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Packaged copy has no GitHub control-plane authority and publication is unproven."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "3054c234c082ece732f8e3d27596b98ad2ada25f",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/skills/session-orchestration/agents/openai.yaml",
+      "capability": "session-orchestration workflow package",
+      "lifecycle_role": "orchestration",
+      "classification": "normative",
+      "enforcement_level": "runtime-metadata",
+      "dependencies": [
+        "Codex skill discovery",
+        "Codex plugin package"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Packaged copy has no GitHub control-plane authority and publication is unproven."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "ddddef891f875c4b60556659335272b2f893a1b4",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/skills/task-routing/SKILL.md",
+      "capability": "task-routing workflow package",
+      "lifecycle_role": "routing",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "Codex skill discovery",
+        "Codex plugin package"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Packaged copy has no GitHub control-plane authority and publication is unproven."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "d9fd36e9a8b272c9b5b507d07ca612f8b08a5e9d",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/skills/task-routing/agents/openai.yaml",
+      "capability": "task-routing workflow package",
+      "lifecycle_role": "routing",
+      "classification": "normative",
+      "enforcement_level": "runtime-metadata",
+      "dependencies": [
+        "Codex skill discovery",
+        "Codex plugin package"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Packaged copy has no GitHub control-plane authority and publication is unproven."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "48eb39b92e19bbd21b4928ce4a60ee6a1ed8e226",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/skills/verification/SKILL.md",
+      "capability": "verification workflow package",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "Codex skill discovery",
+        "Codex plugin package"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Packaged copy has no GitHub control-plane authority and publication is unproven."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "770b7c4b7fe53d399c058004b3e50e911be2af3e",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    },
+    {
+      "path": "plugin/agentic-dev-kit-for-codex/skills/verification/agents/openai.yaml",
+      "capability": "verification workflow package",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "runtime-metadata",
+      "dependencies": [
+        "Codex skill discovery",
+        "Codex plugin package"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/scripts/tests/test_runtime_parity.py"
+      ],
+      "known_limitations": [
+        "Packaged copy has no GitHub control-plane authority and publication is unproven."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "d8cac782d2f18f15a29228294fd6be4777278ca2",
+      "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1"
+    }
+  ],
+  "control_plane_snapshot": {
+    "observed_at_utc": "2026-08-19T03:44:49Z",
+    "scope_note": "GitHub state is a time-stamped control-plane observation, not merged file implementation and not part of the fixed target Git tree.",
+    "open_issue_count": 29,
+    "open_issues": [
+      {
+        "labels": [
+          "type:task",
+          "exec:cli"
+        ],
+        "number": 78,
+        "state": "open",
+        "title": "Spike: measure Codex concurrency limits, budgets, and observability",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/78",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:task",
+          "exec:app"
+        ],
+        "number": 77,
+        "state": "open",
+        "title": "Spike: observe cross-surface continuity across app, CLI, IDE, and cloud",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/77",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:task",
+          "exec:app"
+        ],
+        "number": 76,
+        "state": "open",
+        "title": "Spike: observe crash recovery, worker replacement, and stale-writer exclusion",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/76",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:task",
+          "exec:app"
+        ],
+        "number": 75,
+        "state": "open",
+        "title": "Spike: observe permission inheritance and failure propagation",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/75",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:task",
+          "exec:app"
+        ],
+        "number": 74,
+        "state": "open",
+        "title": "Spike: observe Codex managed-worktree branch and handoff semantics",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/74",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:task",
+          "exec:app"
+        ],
+        "number": 73,
+        "state": "open",
+        "title": "Spike: observe subagent checkout isolation and concurrent write behavior",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/73",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:task",
+          "exec:cli"
+        ],
+        "number": 72,
+        "state": "open",
+        "title": "Spike: observe Codex thread lineage, nesting, and control semantics",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/72",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:task",
+          "exec:app"
+        ],
+        "number": 71,
+        "state": "open",
+        "title": "Task: checkpoint current-source drift after the fixed audit",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/71",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:task",
+          "exec:app"
+        ],
+        "number": 70,
+        "state": "open",
+        "title": "Task: verify the human execution-model agreement decision",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/70",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:task",
+          "exec:app"
+        ],
+        "number": 69,
+        "state": "open",
+        "title": "Task: accept runtime-spike briefs and evidence controls",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/69",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:task",
+          "exec:app"
+        ],
+        "number": 68,
+        "state": "open",
+        "title": "Task: accept the official Codex capability baseline",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/68",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:task",
+          "exec:app"
+        ],
+        "number": 67,
+        "state": "open",
+        "title": "Task: accept the behavioral parity ledger and retained extensions",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/67",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:task",
+          "exec:app"
+        ],
+        "number": 66,
+        "state": "open",
+        "title": "Task: accept the pinned baseline and complete file inventories",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/66",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:epic"
+        ],
+        "number": 65,
+        "state": "open",
+        "title": "Epic: prove live adoption, recovery, and release readiness",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/65",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:epic"
+        ],
+        "number": 64,
+        "state": "open",
+        "title": "Epic: synchronize onboarding, installer, plugin, Windows, and distribution",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/64",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:epic"
+        ],
+        "number": 63,
+        "state": "open",
+        "title": "Epic: synchronize ritual, ownership, governance, review, and CI walls",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/63",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:epic"
+        ],
+        "number": 62,
+        "state": "open",
+        "title": "Epic: implement provider-neutral worker isolation and replacement",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/62",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:epic"
+        ],
+        "number": 61,
+        "state": "open",
+        "title": "Epic: introduce Task-supervisor and isolated PR-worker lifecycle",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/61",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:epic"
+        ],
+        "number": 60,
+        "state": "open",
+        "title": "Epic: prove Codex runtime and cross-surface capabilities",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/60",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:task",
+          "ai:ready",
+          "exec:app"
+        ],
+        "number": 59,
+        "state": "open",
+        "title": "Task: audit and plan the current Copilot-to-Codex reconstruction",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/59",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:epic"
+        ],
+        "number": 58,
+        "state": "open",
+        "title": "Epic: establish current baselines and Codex-native reconstruction plan",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/58",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:task",
+          "risk:high",
+          "exec:app"
+        ],
+        "number": 52,
+        "state": "open",
+        "title": "Task: bind required checks to the trusted publisher and activate the merge wall",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/52",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:task",
+          "risk:high",
+          "exec:app"
+        ],
+        "number": 51,
+        "state": "open",
+        "title": "Task: prove public-fork Actions admission and exact-SHA authorization",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/51",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:task",
+          "needs:human",
+          "needs:replan",
+          "risk:high",
+          "exec:app"
+        ],
+        "number": 50,
+        "state": "open",
+        "title": "Task: prove same-repository Actions admission",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/50",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:epic"
+        ],
+        "number": 49,
+        "state": "open",
+        "title": "Epic: prove the base-owned Actions admission and source-bound merge wall",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/49",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:epic"
+        ],
+        "number": 40,
+        "state": "open",
+        "title": "Epic: prove and release the Codex-native kit",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/40",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:task",
+          "risk:high",
+          "exec:app"
+        ],
+        "number": 33,
+        "state": "open",
+        "title": "Task: implement and prove the Codex-native secure Dev Container reference",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/33",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "retro:candidate"
+        ],
+        "number": 13,
+        "state": "open",
+        "title": "retro-candidate: auto-comment issue-body edit diffs via an Action",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/13",
+        "implementation_state": "open-unmerged"
+      },
+      {
+        "labels": [
+          "type:epic"
+        ],
+        "number": 1,
+        "state": "open",
+        "title": "Epic: Build the Codex-native ADLC template v1.0.0",
+        "url": "https://github.com/mochan-tk/ttt1-codex/issues/1",
+        "implementation_state": "open-unmerged"
+      }
+    ],
+    "open_pull_requests": [],
+    "issue_breakdown": {
+      "epics": 10,
+      "tasks": 18,
+      "retro_candidates": 1,
+      "ai_ready": [
+        59
+      ]
+    },
+    "remote_branch_count": 22,
+    "task_59_branch_at_snapshot": "Local registered branch/worktree only; no remote branch or PR before publication.",
+    "ruleset": {
+      "id": 20756738,
+      "name": "codex-adlc-main-protection-interim",
+      "enforcement": "active",
+      "target": "~DEFAULT_BRANCH",
+      "bypass_actors": [],
+      "rules": [
+        "deletion",
+        "non_fast_forward",
+        "pull_request"
+      ],
+      "pull_request": {
+        "required_approving_review_count": 1,
+        "dismiss_stale_reviews_on_push": true,
+        "require_code_owner_review": true,
+        "require_last_push_approval": true,
+        "required_review_thread_resolution": false
+      },
+      "required_status_checks": [],
+      "calibration": "Active human review wall, but no status source/context is required."
+    },
+    "actions_permissions": {
+      "enabled": true,
+      "allowed_actions": "all",
+      "sha_pinning_required": false,
+      "default_workflow_permissions": "read",
+      "can_approve_pull_request_reviews": false,
+      "external_event_policy": "UI-observed Policy 2851 is recorded in #50 but is not exposed by this API and is not independently inferred."
+    },
+    "live_setup": {
+      "canonical_labels": "11 of 12; from:adopter absent",
+      "linked_projects": 0,
+      "source_registry": false,
+      "disabled_source_bound_ruleset_proposal": false,
+      "tags": 0,
+      "releases": 0,
+      "plugin_marketplace_state": "unproved",
+      "native_windows_e2e": "unproved",
+      "live_adopter_trial": "unproved"
+    }
+  },
+  "security_and_runtime_open_work": [
+    {
+      "issue": 33,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/33",
+      "state": "frozen-unmerged",
+      "summary": "Secure Dev Container payload/runtime proof. Agreement exists, but no baseline payload or runtime test exists; artifact recoverability is UNKNOWN."
+    },
+    {
+      "issue": 49,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/49",
+      "state": "open-proof-epic",
+      "summary": "Base-owned admission and source-bound merge-wall proof chain."
+    },
+    {
+      "issue": 50,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/50",
+      "state": "risk-high-waiting-human-plan-approval",
+      "summary": "Same-repository hosted acceptance proof; no branch/worktree/PR/implementation."
+    },
+    {
+      "issue": 51,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/51",
+      "state": "not-ready-unstarted",
+      "summary": "Public-fork exact-SHA authorization proof; required independent identities not yet supplied."
+    },
+    {
+      "issue": 52,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/52",
+      "state": "not-ready-unstarted",
+      "summary": "Trusted publisher integration/source binding, wrong-source negative, live wall, and recovery guide."
+    },
+    {
+      "issue": 40,
+      "url": "https://github.com/mochan-tk/ttt1-codex/issues/40",
+      "state": "open-release-epic",
+      "summary": "No tags/releases/marketplace/Windows/live adoption; retained as phase #65 dependency."
+    }
+  ],
+  "hosted_evidence": [
+    {
+      "finding": "Recent planning Issue/comment activity produced default-branch receiver/controller noops.",
+      "calibration": "Proves event routing/noop only, not candidate execution."
+    },
+    {
+      "finding": "Merged PR heads #53, #55, and #57 have quality, scaffold-self-check, and secure-devcontainer FAILURE contexts.",
+      "calibration": "Concrete proof that the active ruleset does not require those contexts; not evidence that the merged code failed its separate reviews."
+    },
+    {
+      "finding": "Main baseline head has no commit statuses.",
+      "calibration": "Absence is not success."
+    },
+    {
+      "finding": "Same-repository/public-fork/source-binding successful end-to-end proofs remain open in #50-#52.",
+      "calibration": "Merged definition and deterministic tests are PARTIAL hosted evidence."
+    }
+  ],
+  "retained_extensions": [
+    {
+      "id": "EXT-001",
+      "capability": "Base-owned, no-checkout admission controller with exact repository/base/head/file/rename/diff revalidation and bootstrap denial.",
+      "paths": [
+        ".github/workflows/ci.yml",
+        ".github/scripts/tests/test_ci_guards.py"
+      ]
+    },
+    {
+      "id": "EXT-002",
+      "capability": "Exact unedited public-fork authorization, revocation, cancellation, and no credential/artifact bridge.",
+      "paths": [
+        ".github/workflows/ci.yml"
+      ]
+    },
+    {
+      "id": "EXT-003",
+      "capability": "Exact-head fail-closed status preflight/publisher and newer-run ownership rejection.",
+      "paths": [
+        ".github/workflows/ci.yml"
+      ]
+    },
+    {
+      "id": "EXT-004",
+      "capability": "Source-bound, exact-compatible, disabled-only ruleset proposal with no update/activate/delete path.",
+      "paths": [
+        ".github/scripts/setup-ruleset.sh"
+      ]
+    },
+    {
+      "id": "EXT-005",
+      "capability": "Dual CODEOWNER trust paths and human non-author review doctrine.",
+      "paths": [
+        ".github/CODEOWNERS",
+        "AGENTS.md"
+      ]
+    },
+    {
+      "id": "EXT-006",
+      "capability": "Immutable Plan chronology/edit-history and Plan-before-first-commit validation.",
+      "paths": [
+        ".github/scripts/check_task_ritual.py"
+      ]
+    },
+    {
+      "id": "EXT-007",
+      "capability": "Collision/symlink/immutable-ref/provenance/stage-only installer and adopter-truth-preserving upgrade.",
+      "paths": [
+        ".github/scripts/scaffold-init.sh"
+      ]
+    },
+    {
+      "id": "EXT-008",
+      "capability": "Nine canonical Skills, four read-only-default agents, and plugin byte/mode synchronization with partial-install degradation.",
+      "paths": [
+        ".agents/skills/**",
+        ".codex/agents/**",
+        "plugin/agentic-dev-kit-for-codex/**"
+      ]
+    },
+    {
+      "id": "EXT-009",
+      "capability": "Privacy-minimized literal-consent feedback and no-checkout receiver.",
+      "paths": [
+        ".github/scripts/feedback-lib.sh",
+        ".github/workflows/adopter-feedback.yml"
+      ]
+    },
+    {
+      "id": "EXT-010",
+      "capability": "Checked connector contract with preview-first activation and preserved adopter source truth.",
+      "paths": [
+        ".github/connectors/**",
+        ".github/scripts/setup-sources.sh"
+      ]
+    },
+    {
+      "id": "EXT-011",
+      "capability": "Codex-owned inactive secure Dev Container namespace and collision boundary.",
+      "paths": [
+        ".github/docs/agreements/adr/ADR-0003-codex-native-secure-dev-container.md"
+      ]
+    },
+    {
+      "id": "EXT-012",
+      "capability": "Explicit separation of repository definition, deterministic fixture, hosted observation, external product state, and human decision.",
+      "paths": [
+        ".github/docs/agreements/adr/ADR-0004-codex-distribution-and-integrations.md",
+        ".github/docs/guides/limitations.md"
+      ]
+    },
+    {
+      "id": "EXT-013",
+      "capability": "Preview/apply and fail-closed setup helpers.",
+      "paths": [
+        ".github/scripts/setup-labels.sh",
+        ".github/scripts/setup-project.sh",
+        ".github/scripts/setup-ruleset.sh",
+        ".github/scripts/setup-sources.sh"
+      ]
+    },
+    {
+      "id": "EXT-014",
+      "capability": "Report-only/idempotent retro hygiene and explicit mutation authority.",
+      "paths": [
+        ".github/scripts/retro-hygiene.sh",
+        ".github/workflows/retro-hygiene.yml"
+      ]
+    }
+  ],
+  "open_ownership_constraints": [
+    {
+      "issue": 33,
+      "paths": [
+        ".codex/devcontainer/**",
+        ".github/scripts/check_devcontainer.py",
+        ".github/scripts/materialize_devcontainer.py",
+        ".github/scripts/preflight_devcontainer.py",
+        ".github/scripts/check-skills.sh",
+        ".github/scripts/setup-ruleset.sh",
+        ".github/scripts/tests/test_devcontainer.py",
+        ".github/scripts/tests/test_ci_guards.py",
+        ".github/workflows/ci.yml",
+        ".github/CODEOWNERS",
+        "README.md",
+        "SCAFFOLD-CHANGELOG.md"
+      ]
+    },
+    {
+      "issue": 50,
+      "paths": [
+        "temporary .github/workflows/ci.yml canary",
+        ".github/docs/evidence/actions-admission-same-repository.md"
+      ]
+    },
+    {
+      "issue": 51,
+      "paths": [
+        "temporary .github/workflows/ci.yml canary",
+        ".github/docs/evidence/actions-admission-public-fork.md"
+      ]
+    },
+    {
+      "issue": 52,
+      "paths": [
+        ".github/docs/guides/actions-admission-recovery.md"
+      ]
+    }
+  ],
+  "audit_findings": [
+    {
+      "id": "TGT-FIND-001",
+      "severity": "high",
+      "finding": "Merged target still uses one sole-writer Task session and read-only support subagents; no Task-supervisor/isolated-PR-worker, dispatch/release, replacement, separately gated multi-PR activation path, or small-Task exemption exists."
+    },
+    {
+      "id": "TGT-FIND-002",
+      "severity": "high",
+      "finding": "Base-owned admission is a strong merged extension, but successful same-repository/public-fork/source-bound hosted proofs and live status enforcement are absent."
+    },
+    {
+      "id": "TGT-FIND-003",
+      "severity": "high",
+      "finding": "Active ruleset requires human/code-owner review but no status contexts; observed PRs merged with publisher contexts failing."
+    },
+    {
+      "id": "TGT-FIND-004",
+      "severity": "high",
+      "finding": "No ownership-overlap, governance-drift, effective-governance, or worker-dispatch sensor exists."
+    },
+    {
+      "id": "TGT-FIND-005",
+      "severity": "medium",
+      "finding": "Secure Dev Container is agreement-only; Windows E2E, plugin publication/install, tags/releases, and live adoption are unproved."
+    },
+    {
+      "id": "TGT-FIND-006",
+      "severity": "medium",
+      "finding": "Capability map and semantic regression test hardcode historical source 20637b/110-file assertions. Task #59 preserves a clearly historical compatibility appendix because the test is outside its ownership; a separate synchronization Task must update both."
+    },
+    {
+      "id": "TGT-FIND-007",
+      "severity": "medium",
+      "finding": "Accepted REQ-016 and REQ-017 cite ADR-0006, but neither the pinned target nor source contains ADR-0006. The dangling authority reference predates Task #59 and requires a separately owned agreement cleanup rather than silent repair in this planning diff."
+    }
+  ]
+}

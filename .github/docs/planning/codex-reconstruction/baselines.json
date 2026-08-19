@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "captured_at_utc": "2026-08-19T02:10:59Z",
+  "policy": "Merged default-branch state only. These SHAs are immutable for Task #59; later branch movement is recorded as drift and never silently substituted.",
+  "source": {
+    "repository": "mochan-tk/agentic-dev-kit-for-copilot",
+    "url": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot",
+    "default_branch": "main",
+    "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+    "tree_oid": "88f96493ec167602750c8dfec044629bd494a586",
+    "commit_time_utc": "2026-08-18T23:19:49Z",
+    "tracked_file_count": 135,
+    "submodules": [],
+    "clone_boundary": "Temporary external detached clone; partial clone; push URL disabled; no target worktree nesting.",
+    "retrieval_commands": [
+      "gh repo view mochan-tk/agentic-dev-kit-for-copilot --json defaultBranchRef,url",
+      "gh repo clone mochan-tk/agentic-dev-kit-for-copilot <external-temporary-directory> -- --filter=blob:none",
+      "git -C <external-temporary-directory> fetch origin main",
+      "git -C <external-temporary-directory> checkout --detach fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+      "git -C <external-temporary-directory> remote set-url --push origin DISABLED",
+      "git -C <external-temporary-directory> ls-files",
+      "git -C <external-temporary-directory> submodule status"
+    ]
+  },
+  "target": {
+    "repository": "mochan-tk/ttt1-codex",
+    "url": "https://github.com/mochan-tk/ttt1-codex",
+    "default_branch": "main",
+    "baseline_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+    "tree_oid": "8b431a48347a15958e5445ecd258d8f7b98573b1",
+    "commit_time_utc": "2026-08-13T12:39:12Z",
+    "tracked_file_count": 129,
+    "submodules": [],
+    "retrieval_commands": [
+      "gh repo view mochan-tk/ttt1-codex --json defaultBranchRef,url",
+      "git fetch origin main",
+      "git rev-parse origin/main",
+      "git ls-files",
+      "git submodule status"
+    ]
+  },
+  "post_capture_check": {
+    "checked_at_utc": "2026-08-19T03:01:05Z",
+    "source_default_branch_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+    "target_default_branch_sha": "0f114d2d98f8e906bf924a4fab873897c38963e1",
+    "drift_detected": false,
+    "note": "Both default branches still matched the fixed audit baselines before independent review."
+  },
+  "historical_source_map": {
+    "earlier_pr37_lineage": {
+      "baseline_sha": "f466c7e169243e2bea03b4b33a20f8c557328d96",
+      "tracked_file_count": 110,
+      "purpose": "Earlier 110-file authority recorded by PR #37 and historical REQ-037; superseded for current coverage by REQ-044."
+    },
+    "baseline_sha": "20637b703cbde6abd8934fc222abbe6c82bb4568",
+    "tracked_file_count": 110,
+    "disposition": "superseded-for-current-audit",
+    "current_delta": {
+      "added": 25,
+      "modified": 34,
+      "deleted": 0,
+      "changed_paths": 59
+    },
+    "note": "The 20637b baseline is retained for the existing semantic-test compatibility contract; the earlier f466c7e baseline is retained as PR #37 lineage. Neither is current source parity evidence."
+  }
+}

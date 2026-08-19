@@ -1,0 +1,2843 @@
+{
+  "schema_version": "1.0",
+  "inventory_kind": "source-tracked-file-inventory",
+  "repository": "mochan-tk/agentic-dev-kit-for-copilot",
+  "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb",
+  "tree_oid": "88f96493ec167602750c8dfec044629bd494a586",
+  "tracked_file_count": 135,
+  "coverage_rule": "Exactly one row per path returned by git ls-files at the pinned baseline; open work is not merged implementation.",
+  "classification_counts": {
+    "descriptive": 25,
+    "distribution": 7,
+    "normative": 103
+  },
+  "files": [
+    {
+      "path": ".devcontainer/devcontainer-lock.json",
+      "capability": "Copilot-oriented development container",
+      "lifecycle_role": "environment",
+      "classification": "distribution",
+      "enforcement_level": "runtime-configuration",
+      "dependencies": [
+        "Docker-compatible container runtime",
+        "VS Code Dev Containers"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Runtime behavior is not proven by static configuration.",
+        "Contains source-product assumptions and is not portable as-is to the Codex target."
+      ],
+      "file_type": "json",
+      "git_mode": "100644",
+      "blob_oid": "cdd61126b131d10de6056ed7cb36e3e319cee404",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".devcontainer/devcontainer.json",
+      "capability": "Copilot-oriented development container",
+      "lifecycle_role": "environment",
+      "classification": "distribution",
+      "enforcement_level": "runtime-configuration",
+      "dependencies": [
+        "Docker-compatible container runtime",
+        "VS Code Dev Containers"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Runtime behavior is not proven by static configuration.",
+        "Contains source-product assumptions and is not portable as-is to the Codex target."
+      ],
+      "file_type": "json",
+      "git_mode": "100644",
+      "blob_oid": "003dca4281d1ed2419100850dcd61c0e61712ad7",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".devcontainer/post-create.sh",
+      "capability": "Copilot-oriented development container",
+      "lifecycle_role": "environment",
+      "classification": "distribution",
+      "enforcement_level": "runtime-configuration",
+      "dependencies": [
+        "Docker-compatible container runtime",
+        "VS Code Dev Containers"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Runtime behavior is not proven by static configuration.",
+        "Contains source-product assumptions and is not portable as-is to the Codex target."
+      ],
+      "file_type": "shell",
+      "git_mode": "100644",
+      "blob_oid": "5e6212dc9c0d00cab1c9984d04eccaf796878dc5",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".gitattributes",
+      "capability": "repository hygiene and portability",
+      "lifecycle_role": "distribution",
+      "classification": "distribution",
+      "enforcement_level": "git-configuration",
+      "dependencies": [],
+      "related_tests": [
+        ".github/scripts/tests/test-scaffold-init.sh"
+      ],
+      "known_limitations": [
+        "Applies only where Git honors the checked-out configuration."
+      ],
+      "file_type": "text",
+      "git_mode": "100644",
+      "blob_oid": "beda7eb8fb0d073281b23f758094da7348e92ee8",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/CODEOWNERS",
+      "capability": "review ownership wall",
+      "lifecycle_role": "governance",
+      "classification": "normative",
+      "enforcement_level": "platform-configuration",
+      "dependencies": [
+        "GitHub branch protection or rulesets"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "CODEOWNERS alone does not require review; effective ruleset state must be inspected."
+      ],
+      "file_type": "text",
+      "git_mode": "100644",
+      "blob_oid": "01237cfa7acff3828e705d86862409ac2b3a76ad",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/ai-task.yml",
+      "capability": "Task work-order form",
+      "lifecycle_role": "planning",
+      "classification": "normative",
+      "enforcement_level": "platform-schema",
+      "dependencies": [
+        "GitHub Issues"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Schema shapes new Issues but cannot guarantee body truth or lifecycle compliance."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "f8d70b3d44f53de307d88284f192da79cdf45fdd",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/config.yml",
+      "capability": "Issue creation policy",
+      "lifecycle_role": "planning",
+      "classification": "normative",
+      "enforcement_level": "platform-schema",
+      "dependencies": [
+        "GitHub Issues"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Schema shapes new Issues but cannot guarantee body truth or lifecycle compliance."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "a3649e71ac42fee71010da2292893c900536e650",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/epic.yml",
+      "capability": "Epic work-order form",
+      "lifecycle_role": "planning",
+      "classification": "normative",
+      "enforcement_level": "platform-schema",
+      "dependencies": [
+        "GitHub Issues"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Schema shapes new Issues but cannot guarantee body truth or lifecycle compliance."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "2fd09aceddf192a2d2c1816dcdc2a25873340da4",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/feedback.yml",
+      "capability": "adopter feedback intake",
+      "lifecycle_role": "planning",
+      "classification": "normative",
+      "enforcement_level": "platform-schema",
+      "dependencies": [
+        "GitHub Issues"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-feedback-receiver.sh"
+      ],
+      "known_limitations": [
+        "Schema shapes new Issues but cannot guarantee body truth or lifecycle compliance."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "7b2ff47f4ec7e99cd42c48dd083e2721fde35d79",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/PULL_REQUEST_TEMPLATE.md",
+      "capability": "pull-request evidence contract",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "platform-template",
+      "dependencies": [
+        "GitHub pull requests"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Template fields still require measured evidence and reviewer verification."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "145a05bbc0050c215b397e7d7c029507c7f065fa",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/agents/orchestrator.agent.md",
+      "capability": "Copilot custom agent role",
+      "lifecycle_role": "execution",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "GitHub Copilot custom agents"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Copilot-specific format is non-portable to Codex; runtime permissions require direct evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "5574a1422f53651330a204dce08dce49ea4c1f59",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/agents/planner.agent.md",
+      "capability": "Copilot custom agent role",
+      "lifecycle_role": "execution",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "GitHub Copilot custom agents"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Copilot-specific format is non-portable to Codex; runtime permissions require direct evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "7227835f359f3383cd2ddbc47ffb69e5e1ce867e",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/agents/reviewer.agent.md",
+      "capability": "Copilot custom agent role",
+      "lifecycle_role": "execution",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "GitHub Copilot custom agents"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Copilot-specific format is non-portable to Codex; runtime permissions require direct evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "36901b4a8835ebe8f0989994bf3847bcd2809beb",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/connectors/CONNECTOR-TEMPLATE.md",
+      "capability": "context connector contract",
+      "lifecycle_role": "context",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "setup-sources helper"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-connectors.sh"
+      ],
+      "known_limitations": [
+        "Definition and fixture success do not activate or authorize an external source."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "997e2dc5825d2cabeafbbbe01ab997ae86b958d4",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/connectors/README.md",
+      "capability": "normative Context Contract, connector schema, and activation/contribution policy",
+      "lifecycle_role": "context",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "docs/agreements/adr/ADR-0001-pluggable-context-connectors.md",
+        ".github/connectors/CONNECTOR-TEMPLATE.md",
+        ".github/connectors/builtin.md",
+        ".github/connectors/speckit.md",
+        ".github/scripts/check-connectors.sh",
+        ".github/scripts/setup-sources.sh"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-connectors.sh"
+      ],
+      "known_limitations": [
+        "Structure and presence are tested; contract sufficiency and connector activation are not."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "386639f24f8323ce92bed53c5ea6518bc50c2dc5",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/connectors/builtin.md",
+      "capability": "context connector contract",
+      "lifecycle_role": "context",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "setup-sources helper"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-connectors.sh"
+      ],
+      "known_limitations": [
+        "Definition and fixture success do not activate or authorize an external source."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "3bf19026be22f7d167f9c26d82410c4b9b9ca022",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/connectors/speckit.md",
+      "capability": "context connector contract",
+      "lifecycle_role": "context",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "setup-sources helper"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-connectors.sh"
+      ],
+      "known_limitations": [
+        "Definition and fixture success do not activate or authorize an external source."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "441b1c8e639813a49dcc200ae4c1c2b018f91a5a",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/copilot-instructions.md",
+      "capability": "repository-wide Copilot operational instructions, first-contact gate, and Task/PR workflow",
+      "lifecycle_role": "execution",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        ".github/ISSUE_TEMPLATE/ai-task.yml",
+        ".github/scripts/check-copilot-surface.sh",
+        ".github/scripts/run.ps1",
+        ".github/scripts/tuning-status.sh",
+        ".github/skills/session-orchestration/SKILL.md",
+        "AGENTS.md"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-retro-hygiene.sh"
+      ],
+      "known_limitations": [
+        "Normative agent guidance and tuning markers are not a hard runtime boundary; the exact-file test is only a line-budget input and does not prove execution."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "c2ec9fb4c156b5139b7d88624593216c69a800f0",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/dependabot.yml",
+      "capability": "dependency update automation",
+      "lifecycle_role": "maintenance",
+      "classification": "normative",
+      "enforcement_level": "platform-configuration",
+      "dependencies": [
+        "GitHub Dependabot"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Configuration does not prove updates are enabled or merged."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "6af32ceb7ba6cc8198bd7d6bd4c1b016dedb2f80",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/docs/adopter-feedback.md",
+      "capability": "shared kit documentation",
+      "lifecycle_role": "documentation",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [],
+      "related_tests": [],
+      "known_limitations": [
+        "Document presence is not runtime evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "deb4d4bf9ba4f11afd264d31f1a81449a8b80aae",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/docs/agreements/README.md",
+      "capability": "project agreement",
+      "lifecycle_role": "agreement",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "human agreement merge"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Text is governance authority only after its owning agreement merge; executable controls remain separate."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "413054a2fb8f80406c62491fdb558efa302c43f0",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/docs/agreements/adr/ADR-0000-template.md",
+      "capability": "architecture decision",
+      "lifecycle_role": "agreement",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "human agreement merge"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Text is governance authority only after its owning agreement merge; executable controls remain separate."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "269f127a929cf24e2f9979c189a725b2683bb80d",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/docs/agreements/adr/ADR-0004-hotl-governance-sensors.md",
+      "capability": "architecture decision",
+      "lifecycle_role": "agreement",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "human agreement merge"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Text is governance authority only after its owning agreement merge; executable controls remain separate.",
+        "Its adopter-agreement namespace conflicts with source documentation claiming scaffold ADRs live only under root docs and are never installed.",
+        "Initial install distributes this source-scaffold ADR as adopter agreement truth."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "e2e3dc57e97df9b62fa93919064c8012b605ca00",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/docs/agreements/glossary.md",
+      "capability": "project agreement",
+      "lifecycle_role": "agreement",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "human agreement merge"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Text is governance authority only after its owning agreement merge; executable controls remain separate."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "cc5336086dd24145067be37c4282288cd2fa8709",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/docs/agreements/non-goals.md",
+      "capability": "project agreement",
+      "lifecycle_role": "agreement",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "human agreement merge"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Text is governance authority only after its owning agreement merge; executable controls remain separate."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "abd4ca28ba184f6aa5173b383afab873038577f0",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/docs/agreements/requirements.md",
+      "capability": "project agreement",
+      "lifecycle_role": "agreement",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "human agreement merge"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Text is governance authority only after its owning agreement merge; executable controls remain separate."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "f68e5804e54c7e71ce65775794685bab70270676",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/docs/agreements/retro-log.md",
+      "capability": "project agreement",
+      "lifecycle_role": "agreement",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "human agreement merge"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Text is governance authority only after its owning agreement merge; executable controls remain separate."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "f401f268702fd21efeb8db85e7b380ef69f3de5d",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/docs/context/README.md",
+      "capability": "context provenance and design record",
+      "lifecycle_role": "context",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "context collection/distillation"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Design context is evidence input, not an executable rule."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "3b915dda3cd9968757c90d8d3a03f11e6378e0b6",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/docs/context/hotl-review/INDEX.md",
+      "capability": "context provenance and design record",
+      "lifecycle_role": "context",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "context collection/distillation"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Design context is evidence input, not an executable rule.",
+        "Source-specific development evidence is stored in an installer-copied adopter context namespace, contradicting the stated distribution boundary."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "c742d052e505f3ef0fc445f88ccee9a99b87213a",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/docs/context/hotl-review/feasibility.md",
+      "capability": "context provenance and design record",
+      "lifecycle_role": "context",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "context collection/distillation"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Design context is evidence input, not an executable rule.",
+        "Source-specific development evidence is stored in an installer-copied adopter context namespace, contradicting the stated distribution boundary."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "e26b38da4f31e687f78b80188676f57a3398b398",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/docs/context/hotl-review/review.md",
+      "capability": "context provenance and design record",
+      "lifecycle_role": "context",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "context collection/distillation"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Design context is evidence input, not an executable rule.",
+        "Source-specific development evidence is stored in an installer-copied adopter context namespace, contradicting the stated distribution boundary."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "1f1e979c0f3863a5edadcf8e7d5c872404071d27",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/docs/context/platform-capabilities/agent-plugins-spike.md",
+      "capability": "context provenance and design record",
+      "lifecycle_role": "context",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "context collection/distillation"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Design context is evidence input, not an executable rule.",
+        "Source-specific development evidence is stored in an installer-copied adopter context namespace, contradicting the stated distribution boundary.",
+        "Contains a committed personal absolute-path example; downstream planning must cite the path/line class without reproducing the value."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "f4e86772c31265d2a568943501ca827786a8baed",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/docs/context/readme-redesign/INDEX.md",
+      "capability": "context provenance and design record",
+      "lifecycle_role": "context",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "context collection/distillation"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Design context is evidence input, not an executable rule.",
+        "Source-specific development evidence is stored in an installer-copied adopter context namespace, contradicting the stated distribution boundary.",
+        "Declares internal sensitivity while committed to a public repository."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "402862377fd934da3542149b2d12bf8169aa8566",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/docs/context/readme-redesign/source.md",
+      "capability": "context provenance and design record",
+      "lifecycle_role": "context",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "context collection/distillation"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Design context is evidence input, not an executable rule.",
+        "Source-specific development evidence is stored in an installer-copied adopter context namespace, contradicting the stated distribution boundary.",
+        "Declares internal sensitivity while committed to a public repository."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "0ebe611ff091ab61180c8b80fbad69d9fdb2477b",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/docs/context/session-naming/2026-08-18-owner-decision.md",
+      "capability": "context provenance and design record",
+      "lifecycle_role": "context",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "context collection/distillation"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Design context is evidence input, not an executable rule.",
+        "Source-specific development evidence is stored in an installer-copied adopter context namespace, contradicting the stated distribution boundary."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "7f0794bbe39fd31bc8f4af4a1520b05731c5a2f9",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/docs/context/session-naming/INDEX.md",
+      "capability": "context provenance and design record",
+      "lifecycle_role": "context",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "context collection/distillation"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Design context is evidence input, not an executable rule.",
+        "Source-specific development evidence is stored in an installer-copied adopter context namespace, contradicting the stated distribution boundary."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "b443ba14c2712799dbcfb049df11f33b08bc90d9",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/instructions/code-review.instructions.md",
+      "capability": "path-scoped Copilot instructions",
+      "lifecycle_role": "execution",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "GitHub Copilot instruction discovery"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Product-specific instruction format is not consumed by Codex."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "1336728a7d8f72520bec2b97a2ed25568e17d0b3",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/instructions/docs.instructions.md",
+      "capability": "path-scoped Copilot instructions",
+      "lifecycle_role": "execution",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "GitHub Copilot instruction discovery"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Product-specific instruction format is not consumed by Codex."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "68ff889b87df96282cdb014f1ee88a1922dfc072",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/instructions/firmware.instructions.md",
+      "capability": "path-scoped Copilot instructions",
+      "lifecycle_role": "execution",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "GitHub Copilot instruction discovery"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Product-specific instruction format is not consumed by Codex.",
+        "Sample firmware assumptions are project-specific, not generic policy."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "556eab35ba90ad185f90188873cccb7ddc03c48f",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/prompts/breakdown-epic.prompt.md",
+      "capability": "Copilot reusable prompt",
+      "lifecycle_role": "execution",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "GitHub Copilot prompt files"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Prompt-file surface is product-specific and is replaced by Codex skills/agent starters."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "4df4ac3335dcfb1f10c169fff189ec3f83eedce2",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/prompts/distill-context.prompt.md",
+      "capability": "Copilot reusable prompt",
+      "lifecycle_role": "execution",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "GitHub Copilot prompt files"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Prompt-file surface is product-specific and is replaced by Codex skills/agent starters."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "cfabb41f2c76c2be0014077ff932bc8523fb3d9a",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/prompts/kickoff-context.prompt.md",
+      "capability": "Copilot reusable prompt",
+      "lifecycle_role": "execution",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "GitHub Copilot prompt files"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Prompt-file surface is product-specific and is replaced by Codex skills/agent starters."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "9b565657def003a3c04cfd9ec6e67578ff7d2906",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/prompts/onboard-project.prompt.md",
+      "capability": "Copilot reusable prompt",
+      "lifecycle_role": "execution",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "GitHub Copilot prompt files"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Prompt-file surface is product-specific and is replaced by Codex skills/agent starters."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "bb01b2a9891aa3c9d9163fd489c6749edce0f548",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/prompts/replan.prompt.md",
+      "capability": "Copilot reusable prompt",
+      "lifecycle_role": "execution",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "GitHub Copilot prompt files"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Prompt-file surface is product-specific and is replaced by Codex skills/agent starters."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "8d6c69d496e61f7c767422871dd70cf130cd31f0",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/prompts/retro.prompt.md",
+      "capability": "Copilot reusable prompt",
+      "lifecycle_role": "execution",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "GitHub Copilot prompt files"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Prompt-file surface is product-specific and is replaced by Codex skills/agent starters."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "57271dd17b6baa3590d6bc5daccc0ab06c68120f",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/prompts/start-task.prompt.md",
+      "capability": "Copilot reusable prompt",
+      "lifecycle_role": "execution",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "GitHub Copilot prompt files"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Prompt-file surface is product-specific and is replaced by Codex skills/agent starters."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "c6a2bc53d02b009a6d7dbad3f3a861f149db5f22",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/check-action-pins.sh",
+      "capability": "full-SHA GitHub Action reference and version-comment sensor",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "Git",
+        "grep",
+        "xargs"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-action-pins.sh"
+      ],
+      "known_limitations": [
+        "Static syntax checks do not prove Action provenance, runtime behavior, or repository SHA-pinning policy."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "719b2e2c2f94929a0e17be20cbb9566d90501ddd",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/check-agent-tools.sh",
+      "capability": "orchestrator protocol-to-tool-allowlist reconciliation sensor",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "awk",
+        "grep",
+        "sed",
+        "tr"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-agent-tools.sh"
+      ],
+      "known_limitations": [
+        "The Copilot runtime silently ignores unrecognized tool names, so the guard proves text reconciliation rather than actual tool availability.",
+        "It rejects edit aliases and wildcard access but execute remains capable of writes."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "02bd285aa632e946864bc2ac22750637ce0ee125",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/check-changelog-refs.sh",
+      "capability": "offline changelog Issue/PR reference-range sensor",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "grep",
+        "sed",
+        "awk"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-changelog-refs.sh"
+      ],
+      "known_limitations": [
+        "The offline MAX_KNOWN ceiling is heuristic and does not prove that an in-range GitHub record exists or is the intended record."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "ef9eab78b0f5cfbec87f49429dc2d4ae13cfda58",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/check-connectors.sh",
+      "capability": "connector definition schema and operation-heading sensor",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "grep",
+        "sed",
+        "awk"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-connectors.sh"
+      ],
+      "known_limitations": [
+        "Structural conformance does not activate a connector or prove access, retrieval, pinning, or external-source truth."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "8a598ab8fd5b54f0fe48b5daf3dc91abc86cadf9",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/check-copilot-surface.sh",
+      "capability": "Copilot Skill/agent/prompt/instruction structure, ceiling, language, and tool-surface wall",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "Python 3 with PyYAML",
+        "Git",
+        ".github/scripts/check-agent-tools.sh"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Structural/frontmatter/text validation does not prove Copilot discovery, tool availability, runtime isolation, or behavior."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "bb7b615d44c84d2d9f8cf07612890663a0c4012e",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/check-escalation-wording.sh",
+      "capability": "single-source escalation-budget wording sensor",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "grep",
+        "Git"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-escalation-wording.sh"
+      ],
+      "known_limitations": [
+        "Regex wording checks cannot prove that runtime retries or escalation follow the normative budget."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "13cf2e47f76b50b6c14bf9fd7d7aca7a58a30bb1",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/check-md-links.sh",
+      "capability": "scaffold-owned Markdown repository-path existence sensor",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "grep",
+        "awk",
+        "Git"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "The source checker validates a bounded .github path pattern and intentional allowlist only; it does not fetch external URLs or cover all Markdown link syntax."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "5ee962d8387be95816a9622946c0c945b409d1ae",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/check-task-ritual.sh",
+      "capability": "Task claim/Plan/dispatch/release/exemption chronology and PR-link sensor",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "GitHub CLI and authenticated GitHub API access",
+        "awk/grep/sed/tr/coreutils"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-task-ritual.sh",
+        ".github/scripts/tests/test-ritual-adoption.sh",
+        ".github/scripts/tests/test-ritual-chronology.sh",
+        ".github/scripts/tests/test-ritual-dispatch.sh",
+        ".github/scripts/tests/test-ritual-linkage.sh"
+      ],
+      "known_limitations": [
+        "Recorded runtime session IDs are required but cannot be authenticated against an app-local session tree.",
+        "Actor authorization, comment-event freshness, expected issuer, Outcome/Evidence completeness, and worktree isolation remain incomplete; source Issue #6 tracks the external-delegation threat."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "9365796d80e80e6ee1a94bc6e0cb08686682852c",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/check-template-sync.sh",
+      "capability": "Issue-form to canonical body-template heading synchronization sensor",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "grep",
+        "sed",
+        "Git"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Heading/label order checks do not prove semantic equivalence, GitHub form rendering, or post-creation enforcement."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "1512aa6663b9dd5e15f29455ec2a9a5ad9b7c37c",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/check-workflow-permissions.sh",
+      "capability": "job-level checkout contents-permission sensor",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "awk"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-workflow-permissions.sh"
+      ],
+      "known_limitations": [
+        "The static parser checks checkout jobs with explicit job-level permissions; it does not prove inherited permissions, token behavior, or live GitHub policy."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "82ed53b01920638072562f8edfb29977d90dac1c",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/feedback-lib.sh",
+      "capability": "consent-gated feedback library",
+      "lifecycle_role": "feedback",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "Git",
+        "grep",
+        "sed",
+        "awk",
+        "uname",
+        "optional jq",
+        "authenticated GitHub CLI and interactive TTY for issue submission",
+        "SCAFFOLD-CHANGELOG.md scaffold-version marker",
+        "docs/context/feedback-loop/privacy-posture.md allowlist contract"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-feedback-lib.sh",
+        ".github/scripts/tests/test-feedback-receiver.sh"
+      ],
+      "known_limitations": [
+        "Only fixed-enum callers and unguarded ERR-trap failures can offer feedback; deliberate exits, CI, non-TTY runs, missing metadata, or missing GitHub CLI stay silent.",
+        "EXIT-trap chaining recognizes only the Bash single-quoted trap shape, and fixtures simulate the TTY/GitHub CLI path rather than proving a live public Issue submission."
+      ],
+      "file_type": "shell",
+      "git_mode": "100644",
+      "blob_oid": "b09747ae0bc8ffa2183fec48b578b97cdb45c67b",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/governance-controls.tsv",
+      "capability": "governance state sensor",
+      "lifecycle_role": "governance",
+      "classification": "normative",
+      "enforcement_level": "configuration",
+      "dependencies": [
+        ".github/scripts/governance-drift.sh",
+        "the five CI control signatures and remediation paths declared by the manifest"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-governance-drift.sh"
+      ],
+      "known_limitations": [
+        "Coverage is allowlist-based and currently limited to five exact-line signatures in .github/workflows/ci.yml; new controls or semantically equivalent edits are invisible until the manifest changes.",
+        "A stale or incorrectly anchored signature can report misleading drift; the TSV itself performs no validation or enforcement."
+      ],
+      "file_type": "tsv",
+      "git_mode": "100644",
+      "blob_oid": "f38f1af165a6404d21aa734d0a17f186c88283b8",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/governance-drift.sh",
+      "capability": "governance state sensor",
+      "lifecycle_role": "governance",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "awk",
+        "grep",
+        ".github/scripts/governance-controls.tsv",
+        "optional .github/docs/agreements/governance-control-waivers.tsv",
+        "local target files below --root"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-governance-drift.sh"
+      ],
+      "known_limitations": [
+        "It proves only that each anchored text signature is present in a local file; it does not prove that the workflow or control executes or matches live GitHub settings.",
+        "Waivers require only a known control ID and non-empty reason, and the sensor reports but never remediates drift."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "230e08e1ad7df5f66970866eef8dc262131b0555",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/governance-status.sh",
+      "capability": "governance state sensor",
+      "lifecycle_role": "governance",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "authenticated GitHub CLI with repository and organization read access",
+        "jq",
+        "mktemp/awk/grep/sed/tr/wc core utilities",
+        "GitHub APIs for repository rules, rulesets, Actions permissions and variables, check runs, contents, and organization plans"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-governance-status.sh"
+      ],
+      "known_limitations": [
+        "This is a GET-only point-in-time sensor: it neither persists a profile nor mutates controls, and missing permissions, API failures, or rate limits remain UNKNOWN.",
+        "Required-check source binding depends on the latest observed check runs, while merge-queue applicability uses plan metadata and a static workflow-trigger scan; absent or ambiguous evidence remains UNCHECKABLE rather than proving safety."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "5011dd461523eb72916a930db58ae2d35d99fbf3",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/ownership-overlap.sh",
+      "capability": "ownership overlap sensor",
+      "lifecycle_role": "governance",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "authenticated GitHub CLI with Issue read access",
+        "GitHub Task Issue bodies containing exactly one File ownership section",
+        "mktemp/wc/tr core utilities"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-ownership-overlap.sh"
+      ],
+      "known_limitations": [
+        "Only literal prefixes before *, ?, or [ are compared; glob semantics, case, symlinks, and filesystem normalization are not resolved, so comparison is intentionally conservative and malformed bodies are UNCHECKABLE.",
+        "It compares only the Issue numbers explicitly supplied and does not discover all active Tasks or reserve ownership paths."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "7ed866ebd4baaf5d73f2a3ebcb1dedb35638a52a",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/platform-capability-baseline.tsv",
+      "capability": "platform capability baseline",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "configuration",
+      "dependencies": [
+        ".github/scripts/retro-hygiene.sh",
+        "the five official GitHub Copilot changelog, RSS, and documentation URLs recorded by the baseline"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-retro-hygiene.sh"
+      ],
+      "known_limitations": [
+        "Committed values are aging snapshots that detect byte or GUID/date changes at five selected URLs; they do not establish capability semantics or availability in any runtime.",
+        "Regression fixtures overwrite checkpoint values, so they validate schema and consumer behavior but not the freshness or correctness of the committed baseline."
+      ],
+      "file_type": "tsv",
+      "git_mode": "100644",
+      "blob_oid": "28699a56040dc9776fe3afb22a65a2cb38f3b10d",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/retro-hygiene.sh",
+      "capability": "retro hygiene sensor",
+      "lifecycle_role": "learning",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "authenticated GitHub CLI with Issue read access and Issue write access for --create-issue",
+        "curl",
+        "Python 3",
+        "sha256sum",
+        "awk/grep/sed/tr/wc/mktemp core utilities",
+        "SCAFFOLD-CHANGELOG.md",
+        ".github/scripts/platform-capability-baseline.tsv",
+        "AGENTS.md",
+        ".github/copilot-instructions.md",
+        ".github/skills/retro/SKILL.md"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-retro-hygiene.sh"
+      ],
+      "known_limitations": [
+        "Candidate counts treat the filing as occurrence 1 and count only comments whose body starts exactly Occurrence:; they do not verify same-root-cause evidence and can undercount other recorded forms.",
+        "Platform checkpoints are network, hash, and RSS change signals at selected URLs rather than product-capability proof; missing tools, redirects, or fetch failures become unknown.",
+        "The always-on budget is only a 150-line heuristic for two files, and --create-issue idempotency is based on one open monthly title."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "49df279b865f6a6f7484621158fc7c48a2b1b3cd",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/run.ps1",
+      "capability": "cross-platform launcher",
+      "lifecycle_role": "distribution",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "PowerShell",
+        "Git for Windows Git Bash",
+        "an existing target script path to invoke"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-run-shim.sh"
+      ],
+      "known_limitations": [
+        "The file is a thin launcher that accepts any existing script path; all safety, semantics, and output interpretation remain in the invoked shell script.",
+        "Regression coverage is structural and non-Windows and does not exercise native-Windows Git Bash discovery or execution."
+      ],
+      "file_type": "powershell",
+      "git_mode": "100644",
+      "blob_oid": "269b798e1d163b0832a3036114c9550684a1aa76",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/scaffold-init.ps1",
+      "capability": "safe scaffold installer",
+      "lifecycle_role": "distribution",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Windows PowerShell 5.1+ or PowerShell",
+        "Invoke-WebRequest with TLS 1.2 access to raw.githubusercontent.com",
+        "Git for Windows Git Bash",
+        "the remote .github/scripts/scaffold-init.sh bootstrap",
+        "SCAFFOLD_REPO, SCAFFOLD_REF, and SCAFFOLD_SOURCE_DIR environment contract"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "The PowerShell bootstrap always downloads scaffold-init.sh from the moving main branch without an independent digest or signature; SCAFFOLD_REF affects only the later Bash fetch.",
+        "No dedicated native-Windows or hosted-Windows regression validates TLS download, Git Bash discovery, argument forwarding, cleanup, or exit propagation."
+      ],
+      "file_type": "powershell",
+      "git_mode": "100644",
+      "blob_oid": "6baa8ca94535d25c3b3b1cc1e4ac4ba95542321f",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/scaffold-init.sh",
+      "capability": "safe scaffold installer",
+      "lifecycle_role": "distribution",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "Git",
+        "curl and tar for public network installs",
+        "authenticated GitHub CLI for private-source installs or API ref resolution",
+        "find/sort/grep/sed/awk/cut core utilities",
+        "a source template tree or GitHub commit tarball",
+        "optional .github/scripts/feedback-lib.sh",
+        "optional .github/scripts/governance-drift.sh after upgrade"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-scaffold-init.sh"
+      ],
+      "known_limitations": [
+        "Initial install copies every source .github path and upgrade installs absent files in every ownership class, so source-development records can be carried into adopter repositories.",
+        "Upgrade ownership is path-classified: engine collisions are overwritten while tuned and instance-document collisions are kept, so project changes inside engine files rely on subsequent Git diff review.",
+        "Network content is commit-addressed but not independently signed, and a dirty local source records sha=unknown.",
+        "An unresolved SCAFFOLD_REF matching only 7 to 39 hexadecimal characters is accepted as a commit without expansion; the tarball may fetch, but the 40-hex scaffold-version contract records sha=unknown and version-bound feedback stays disabled."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "7236d06b901da97c2a1a37fd4a51f6fbd89a75d1",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/setup-labels.sh",
+      "capability": "preview-first setup helper",
+      "lifecycle_role": "distribution",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "authenticated GitHub CLI with label write access",
+        "optional .github/scripts/feedback-lib.sh"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-feedback-receiver.sh"
+      ],
+      "known_limitations": [
+        "The script has no dry-run or separate apply gate: after authentication it immediately creates or refreshes all 12 labels.",
+        "gh label create --force overwrites same-name label colors and descriptions but does not remove obsolete or extra labels."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "f76b67dcbe9563cfb61bd56451f7c51a68f8afca",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/setup-project.sh",
+      "capability": "preview-first setup helper",
+      "lifecycle_role": "distribution",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "GitHub CLI 2.45+ authenticated with project scope",
+        "jq",
+        "GitHub Projects v2 CLI and GraphQL APIs",
+        "optional .github/scripts/feedback-lib.sh"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-setup-project.sh"
+      ],
+      "known_limitations": [
+        "Projects remains a visualization cache; the helper does not create or synchronize authoritative Issue parent, blocker, or origin relationships.",
+        "Roadmap date-field selection and Kind grouping remain manual UI steps, and view creation can warn and continue, leaving a partially configured board.",
+        "Date validation checks YYYY-MM-DD shape and lexical order only, not calendar validity."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "4dd5b61186b8488e5e8fff143e5b40d3958087ca",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/setup-ruleset.sh",
+      "capability": "preview-first setup helper",
+      "lifecycle_role": "distribution",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "jq",
+        "authenticated GitHub CLI with repository administration, Actions-variable, ruleset, repository-metadata, and check-run access",
+        "GitHub rulesets, Actions variables, repository metadata, and check-runs APIs",
+        "optional .github/scripts/feedback-lib.sh"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-setup-ruleset.sh"
+      ],
+      "known_limitations": [
+        "The onboarding/default no-profile path can reuse a same-name ruleset by changing only enforcement without validating its rules, bypasses, conditions, or required checks; profile-aware reconciliation is opt-in.",
+        "Team source binding is inferred from latest check runs and fails closed when evidence is absent, ambiguous, or issued by multiple apps.",
+        "Profile persistence and ruleset mutation are separate API writes, so a later failure can leave recorded intent without a matching ruleset; live activation remains human-owned."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "c36e2cf098cab29851d5da2eb0f340b0dd5f1940",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/setup-sources.sh",
+      "capability": "preview-first setup helper",
+      "lifecycle_role": "distribution",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "Git repository with a github.com origin",
+        "authenticated GitHub CLI with repository and owner-plan read access",
+        "sed/grep/tr/date core utilities",
+        ".github/connectors/README.md and builtin/speckit connector definitions",
+        "optional .github/scripts/feedback-lib.sh"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-setup-sources.sh"
+      ],
+      "known_limitations": [
+        "It writes only a pending SOURCES.md registry entry; it neither creates the activation PR nor validates sufficiency, retrieval, access, or completed pin evidence.",
+        "An existing connector heading short-circuits without validating status or pin, and the speckit SHA is only the last commit touching specs/ and excludes dirty or untracked content.",
+        "Private-repository support uses a coarse owner-plan API check and fails closed when plan evidence is unavailable."
+      ],
+      "file_type": "shell",
+      "git_mode": "100644",
+      "blob_oid": "e60fe75c1fd47f5ca7ccfb8ae80f395162f196ff",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tests/lib.sh",
+      "capability": "shared TAP-style Bash assertions, Git sandbox, and gh-fixture library",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        "Bash 3.2+",
+        "Git",
+        "mktemp"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Sourced helper; no standalone assertions and helper success is not subject behavior."
+      ],
+      "file_type": "shell",
+      "git_mode": "100644",
+      "blob_oid": "afa5384e9fde7f42f0551a3a6668c1d2e3e2a164",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tests/run-tests.sh",
+      "capability": "source-template offline shell regression suite dispatcher",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        "Bash",
+        "SCAFFOLD-CHANGELOG source-template marker",
+        "all test-*.sh"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Runner aggregates child exits but does not test itself; it refuses adopted instances unless FORCE_GUARD_TESTS=1."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "a68e54b858a55ebe555e69f9aa219eece763e279",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tests/test-action-pins.sh",
+      "capability": "Action reference pin-guard fixture suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/check-action-pins.sh",
+        "Git"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Synthetic workflows only; it does not inspect the pinned repository workflows."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "417e5a3cae9b6f6a408a2d801a821f3a7879e061",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tests/test-agent-tools.sh",
+      "capability": "orchestrator protocol/tool-allowlist fixture suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/check-agent-tools.sh",
+        "Bash",
+        "awk",
+        "grep",
+        "sed",
+        "tr"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Synthetic role/skill text cannot prove runtime tool availability or isolation."
+      ],
+      "file_type": "shell",
+      "git_mode": "100644",
+      "blob_oid": "0577ded76c6f117894a8531861de8e33b9a2217a",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tests/test-changelog-refs.sh",
+      "capability": "changelog reference-range guard fixture plus shipped-changelog smoke suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/check-changelog-refs.sh",
+        "SCAFFOLD-CHANGELOG.md"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Proves regex and ceiling behavior, not existence or intent of in-range GitHub records."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "b908b80c78f737725c5de5c0c6370b927c45db0e",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tests/test-connectors.sh",
+      "capability": "connector schema guard fixtures plus real connector-tree smoke suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/check-connectors.sh",
+        ".github/connectors/**"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Structural headings and metadata only; no connector activation or source truth."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "ee17fa9a52d9e0b5cef3428360f0407a8cda59a1",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tests/test-escalation-wording.sh",
+      "capability": "escalation-count single-source wording fixture suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/check-escalation-wording.sh",
+        "Git"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Regex fixtures cannot prove runtime retry or escalation behavior."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "178a844f7c17cb3f492f090e8e7ad80b6da2ff15",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tests/test-feedback-lib.sh",
+      "capability": "hermetic consent-gated feedback failure-path suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/feedback-lib.sh",
+        ".github/scripts/scaffold-init.sh",
+        "SCAFFOLD-CHANGELOG.md",
+        "Git",
+        "gh stub",
+        "TTY seam"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "No live upstream Issue, real interactive terminal, or external platform proof."
+      ],
+      "file_type": "shell",
+      "git_mode": "100644",
+      "blob_oid": "fce1632234b8e9f64ab374130cb39c667eafb7b5",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tests/test-feedback-receiver.sh",
+      "capability": "static shipped feedback form/workflow/label/library synchronization suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        "Python with PyYAML",
+        ".github/ISSUE_TEMPLATE/feedback.yml",
+        ".github/workflows/adopter-feedback.yml",
+        ".github/scripts/setup-labels.sh",
+        ".github/scripts/feedback-lib.sh"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Static source assertions; no live issues event, label mutation, or permissions proof."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "9b6970a397461fa1249719fab4087e8f7249ca23",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tests/test-governance-drift.sh",
+      "capability": "local governance manifest/waiver/drift-state and non-mutation suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/governance-drift.sh",
+        ".github/scripts/governance-controls.tsv",
+        ".github/workflows/ci.yml",
+        "Git",
+        "awk",
+        "grep"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Local signatures only; does not observe effective GitHub settings."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "a143889a6cd607f3837a202e6e14c66da7adddf4",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tests/test-governance-status.sh",
+      "capability": "GET-only effective-governance profile/ruleset/Actions/CODEOWNERS fixture suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/governance-status.sh",
+        "gh and jq fixture payloads"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "API fixtures cannot prove live tier, issuer, bypass, or event behavior."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "ce0bef43fcc3b53fd97f5ba6c5aea543d49aff1b",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tests/test-ownership-overlap.sh",
+      "capability": "Task ownership-body parser, conservative overlap, and producer fixture suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/ownership-overlap.sh",
+        "gh and jq fixtures"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Literal-prefix and glob heuristics are not Git pathspec or actual checkout isolation proof."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "028e60aed3fef2caa564be1e74e434bc1236d8b1",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tests/test-retro-hygiene.sh",
+      "capability": "monthly retro-hygiene and platform-checkpoint fixture suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/retro-hygiene.sh",
+        ".github/scripts/platform-capability-baseline.tsv",
+        "SCAFFOLD-CHANGELOG.md",
+        "AGENTS.md",
+        ".github/copilot-instructions.md",
+        "gh and curl fixtures"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Fixture hashes and API stubs do not prove current upstream content or scheduled execution."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "7d1a773fbd9eb689b9d7d7bf20e3900896348b33",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tests/test-ritual-adoption.sh",
+      "capability": "Task-ritual adoption/onboarding exemption fixture suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/check-task-ritual.sh",
+        "gh fixtures"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Diff and marker fixtures do not authenticate actors, sessions, or live event freshness."
+      ],
+      "file_type": "shell",
+      "git_mode": "100644",
+      "blob_oid": "3a6627b85c70a1c2ec6dd8efaa0539b5f41a13f2",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tests/test-ritual-chronology.sh",
+      "capability": "Task claim-to-Plan-to-commit chronology and comment-immutability fixture suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/check-task-ritual.sh",
+        "gh fixtures"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Timestamp and edit fixtures do not prove runtime actions or current comment-event re-evaluation."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "f4e7a5805d940ac00db3c2fafa29f27936a56f28",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tests/test-ritual-dispatch.sh",
+      "capability": "worker dispatch/release/replacement and small-Task exemption fixture suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/check-task-ritual.sh",
+        "gh fixtures"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Required session IDs are text only and cannot be verified against app-local sessions."
+      ],
+      "file_type": "shell",
+      "git_mode": "100644",
+      "blob_oid": "e4816d97ba418c21d17acd6089aaaac9e361f1ba",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tests/test-ritual-linkage.sh",
+      "capability": "Plan-link provenance, Task-label, and bot-allowlist fixture suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/check-task-ritual.sh",
+        "gh fixtures"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Does not solve comment-author authorization or trusted check issuer."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "478c514b3ce9245395baf3c8c3772ca7c2be041c",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tests/test-run-shim.sh",
+      "capability": "Windows Git-Bash launcher structural and optional PowerShell behavior suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/run.ps1",
+        "optional pwsh or powershell",
+        "Git Bash fixture"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "On non-Windows it may skip execution and never proves a native hosted Windows path."
+      ],
+      "file_type": "shell",
+      "git_mode": "100644",
+      "blob_oid": "84c26d1eecec89f8328dc6c55befa06e3aba78d4",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tests/test-scaffold-init.sh",
+      "capability": "Bash installer collision/symlink/upgrade/provenance hermetic suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/scaffold-init.sh",
+        "Git",
+        "gh, git, and curl stubs"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Tests local Bash fixtures, not scaffold-init.ps1, native Windows, or real network/tag resolution."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "e060e59ef1fc4c8dabdae2de091ed8eabafba8a9",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tests/test-setup-project.sh",
+      "capability": "Projects-v2 init/view/item/date idempotency fixture suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/setup-project.sh",
+        "gh, jq, and GraphQL fixtures"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Stubs do not prove live schema, account tier, scopes, UI view configuration, or permissions."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "e315fc653b45bca2de29b937fe686b02a343da21",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tests/test-setup-ruleset.sh",
+      "capability": "ruleset profile, persisted intent, source-binding, reconciliation, and fail-closed fixture suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/setup-ruleset.sh",
+        "gh and jq fixtures"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "No live ruleset activation, trusted check issuer, merge admission, or plan-tier proof."
+      ],
+      "file_type": "shell",
+      "git_mode": "100644",
+      "blob_oid": "f9a33237d1a353083a1a1d7b9494aafd55f5424e",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tests/test-setup-sources.sh",
+      "capability": "connector activation preflight/registry/dry-run/idempotency fixture suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/setup-sources.sh",
+        "Git",
+        "gh and jq fixtures"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "No live plan, tier, API, or activation-PR sufficiency proof."
+      ],
+      "file_type": "shell",
+      "git_mode": "100644",
+      "blob_oid": "de51cd869458607e5fd06ed3ccacd7859b415e42",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tests/test-task-ritual.sh",
+      "capability": "core Task-link/claim/Plan/bot/usage ritual fixture suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/check-task-ritual.sh",
+        "gh fixtures"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Only core existence cases; chronology, dispatch, and linkage require sibling suites and no live authorization is proven."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "de5ae5b2265c8ae8c8aa406586259bf70d427551",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tests/test-tuning-status.sh",
+      "capability": "onboarding marker/report/quiet/CI-summary fixture suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/tuning-status.sh",
+        "filesystem fixtures"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Synthetic markers do not prove the shipped repository is tuned or onboarding was accepted."
+      ],
+      "file_type": "shell",
+      "git_mode": "100644",
+      "blob_oid": "72c3431722fa260bda223594707f0908f877b4f8",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tests/test-workflow-permissions.sh",
+      "capability": "job-level checkout-permission parser fixtures plus real-workflow smoke suite",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-test",
+      "dependencies": [
+        ".github/scripts/tests/lib.sh",
+        ".github/scripts/check-workflow-permissions.sh",
+        "awk",
+        ".github/workflows/**"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Static indentation parser is not full YAML or effective-token evaluation and cannot prove live permissions."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "1ca17739f684a4985f48d8aa89a03b80b69e04fd",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/scripts/tuning-status.sh",
+      "capability": "onboarding completion sensor",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "Bash 3.2+",
+        "find",
+        "sort",
+        "grep",
+        ".github/copilot-instructions.md",
+        ".github/workflows/ci.yml",
+        ".github/workflows/copilot-setup-steps.yml",
+        ".github/CODEOWNERS",
+        ".github/instructions/*.instructions.md",
+        ".github/docs/agreements/**",
+        "optional GITHUB_STEP_SUMMARY"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-tuning-status.sh"
+      ],
+      "known_limitations": [
+        "This is a bounded fixed-string heuristic: missing target files are skipped, and removing markers can report TUNED without proving project-specific commands, ownership, or runtime behavior.",
+        "--ci deliberately always exits 0 and only emits warnings or optional summary output, so CI does not enforce onboarding completion."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "1b764f3bd67e897e64c11c98503e5750d73746dd",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/skills/context-collection/SKILL.md",
+      "capability": "context-collection workflow package",
+      "lifecycle_role": "context",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "GitHub Copilot skill discovery"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "cead6452f8a7015ef2070596bde26da3e2ae2cfd",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/skills/context-distillation/SKILL.md",
+      "capability": "context-distillation workflow package",
+      "lifecycle_role": "context",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "GitHub Copilot skill discovery"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "4f2e57a7f613cdadb7c7d76306c3a04458ca7b08",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/skills/plan-management/SKILL.md",
+      "capability": "plan-management workflow package",
+      "lifecycle_role": "planning",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "GitHub Copilot skill discovery"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "4c76ec1a95516358b038f915668e01eac7f126e5",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/skills/plan-management/scripts/frontier.sh",
+      "capability": "plan-management workflow package",
+      "lifecycle_role": "planning",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "GitHub Copilot skill discovery"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "af0905cb90626001c50c2937d35ba7ea5f9d077c",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/skills/plan-management/scripts/new-task.sh",
+      "capability": "plan-management workflow package",
+      "lifecycle_role": "planning",
+      "classification": "normative",
+      "enforcement_level": "deterministic-script",
+      "dependencies": [
+        "GitHub Copilot skill discovery"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "shell",
+      "git_mode": "100755",
+      "blob_oid": "1156b004fd554b12cdccf55bc5b62a98e3a82bda",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/skills/plan-management/templates/epic-body.md",
+      "capability": "plan-management workflow package",
+      "lifecycle_role": "planning",
+      "classification": "normative",
+      "enforcement_level": "template",
+      "dependencies": [
+        "GitHub Copilot skill discovery"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "b01a35256b48f1c1e1c31c4d1e35822767bd5551",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/skills/plan-management/templates/task-body.md",
+      "capability": "plan-management workflow package",
+      "lifecycle_role": "planning",
+      "classification": "normative",
+      "enforcement_level": "template",
+      "dependencies": [
+        "GitHub Copilot skill discovery"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "2338d2e79db0afad54e498d5582b80ad63fa198f",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/skills/project-onboarding/SKILL.md",
+      "capability": "project-onboarding workflow package",
+      "lifecycle_role": "onboarding",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "GitHub Copilot skill discovery"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "20643ee9c8f5c3e0221db41e05b0abe3e1b22943",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/skills/retro/SKILL.md",
+      "capability": "retro workflow package",
+      "lifecycle_role": "learning",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "GitHub Copilot skill discovery"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "e0f059e8b98d9692c4ae47d45c9da49a9ab711f3",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/skills/session-orchestration/SKILL.md",
+      "capability": "session-orchestration workflow package",
+      "lifecycle_role": "orchestration",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "GitHub Copilot skill discovery"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "d50002b5a95fef18fb651cd4fe31b459593bedb0",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/skills/task-routing/SKILL.md",
+      "capability": "task-routing workflow package",
+      "lifecycle_role": "routing",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "GitHub Copilot skill discovery"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "30a6b0123f82b15f6379a4b1e62f5c6d30c7e984",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/skills/verification/SKILL.md",
+      "capability": "verification workflow package",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "GitHub Copilot skill discovery"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Runtime adherence remains subject to parent instructions and direct evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "6d0916437bf490116cefaf71e234a6f1aa3eaf6a",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/workflows/adopter-feedback.yml",
+      "capability": "adopter feedback receiver",
+      "lifecycle_role": "feedback",
+      "classification": "normative",
+      "enforcement_level": "automated-workflow",
+      "dependencies": [
+        "GitHub Actions"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-feedback-receiver.sh",
+        ".github/scripts/tests/test-workflow-permissions.sh"
+      ],
+      "known_limitations": [
+        "A tracked workflow does not prove it ran on the audited head or is required by the effective ruleset."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "66767cfbff5773e553a5753334458cbd2302e6be",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "capability": "deterministic CI wall",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "automated-workflow",
+      "dependencies": [
+        "GitHub Actions"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-governance-drift.sh",
+        ".github/scripts/tests/test-workflow-permissions.sh"
+      ],
+      "known_limitations": [
+        "A tracked workflow does not prove it ran on the audited head or is required by the effective ruleset."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "6a6e2ff6a7210091e4776a932d647d9dc5662c4a",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/workflows/copilot-setup-steps.yml",
+      "capability": "Copilot setup workflow",
+      "lifecycle_role": "verification",
+      "classification": "normative",
+      "enforcement_level": "automated-workflow",
+      "dependencies": [
+        "GitHub Actions"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-workflow-permissions.sh"
+      ],
+      "known_limitations": [
+        "A tracked workflow does not prove it ran on the audited head or is required by the effective ruleset."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "d64fd0b1b2ba7ee7cfc32c773711f0a881d8df5c",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".github/workflows/retro-hygiene.yml",
+      "capability": "retro hygiene report",
+      "lifecycle_role": "learning",
+      "classification": "normative",
+      "enforcement_level": "automated-workflow",
+      "dependencies": [
+        "GitHub Actions"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-workflow-permissions.sh"
+      ],
+      "known_limitations": [
+        "A tracked workflow does not prove it ran on the audited head or is required by the effective ruleset."
+      ],
+      "file_type": "yaml",
+      "git_mode": "100644",
+      "blob_oid": "8e2db7437c1950e435c04a9210a6461651197a01",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".gitignore",
+      "capability": "repository hygiene and portability",
+      "lifecycle_role": "distribution",
+      "classification": "distribution",
+      "enforcement_level": "git-configuration",
+      "dependencies": [],
+      "related_tests": [],
+      "known_limitations": [
+        "Applies only where Git honors the checked-out configuration."
+      ],
+      "file_type": "text",
+      "git_mode": "100644",
+      "blob_oid": "8b8c60b83d8d879d40b0c803931a1d68d76ab742",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": ".vscode/mcp.json",
+      "capability": "Playwright MCP editor configuration",
+      "lifecycle_role": "tooling",
+      "classification": "distribution",
+      "enforcement_level": "runtime-configuration",
+      "dependencies": [
+        "VS Code",
+        "unversioned @latest MCP package"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Not distributed by the source installer; package is unpinned; not a generic Codex configuration."
+      ],
+      "file_type": "json",
+      "git_mode": "100644",
+      "blob_oid": "31c602233091bbcb068833d9c833b24bf3812a7e",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": "AGENTS.md",
+      "capability": "Copilot contributor constitution",
+      "lifecycle_role": "governance",
+      "classification": "normative",
+      "enforcement_level": "runtime-guidance",
+      "dependencies": [
+        "GitHub Copilot instruction loading"
+      ],
+      "related_tests": [
+        ".github/scripts/tests/test-retro-hygiene.sh"
+      ],
+      "known_limitations": [
+        "Guidance is not a hard security boundary; GitHub checks and reviews remain authoritative."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "d575018d2d456c9376144495467cfcf8ac498b96",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": "LICENSE",
+      "capability": "software license",
+      "lifecycle_role": "license",
+      "classification": "distribution",
+      "enforcement_level": "legal-text",
+      "dependencies": [],
+      "related_tests": [],
+      "known_limitations": [
+        "Repository presence does not prove a release or downstream compliance."
+      ],
+      "file_type": "text",
+      "git_mode": "100644",
+      "blob_oid": "746b0d8d979fac8e7c16526552d1fe2aa3330832",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": "README.md",
+      "capability": "human-on-the-loop onboarding and operating overview",
+      "lifecycle_role": "onboarding",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [],
+      "related_tests": [],
+      "known_limitations": [
+        "The current overview links governance sensors but omits detailed operator command mappings claimed by the latest changelog."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "76480f3ae0458926d854e62f51d10958ff229bd3",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": "SCAFFOLD-CHANGELOG.md",
+      "capability": "version lineage and upgrade history",
+      "lifecycle_role": "distribution",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [],
+      "related_tests": [
+        ".github/scripts/tests/test-changelog-refs.sh",
+        ".github/scripts/tests/test-retro-hygiene.sh",
+        ".github/scripts/tests/test-scaffold-init.sh"
+      ],
+      "known_limitations": [
+        "Changelog claims require independent tree and runtime evidence."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "c0898a331200d0a332c5c4423fefc9017531a95f",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": "docs/README.md",
+      "capability": "source-template development-record authority and installer namespace boundary",
+      "lifecycle_role": "governance",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "docs/context/**",
+        "docs/agreements/**",
+        ".github/scripts/scaffold-init.sh",
+        ".github/docs/context/README.md",
+        ".github/docs/agreements/README.md"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Its root-docs-only and never-installed boundary is contradicted by pinned ADR-0004 and source-specific context under installer-copied .github/**."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "338036efc2e03a45e2fc9dc557974fa34d265a39",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": "docs/agreements/adr/ADR-0001-pluggable-context-connectors.md",
+      "capability": "architecture decision",
+      "lifecycle_role": "agreement",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "human agreement merge"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Text is governance authority only after its owning agreement merge; executable controls remain separate."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "5c201dec9ad2a14b3d3556b78129eaed41650f55",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": "docs/agreements/adr/ADR-0002-consent-gated-adopter-feedback.md",
+      "capability": "architecture decision",
+      "lifecycle_role": "agreement",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "human agreement merge"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Text is governance authority only after its owning agreement merge; executable controls remain separate."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "65c4c20ee9fd2c91d0738a38fa8558be8761dc42",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": "docs/agreements/adr/ADR-0003-two-tier-task-execution.md",
+      "capability": "architecture decision",
+      "lifecycle_role": "agreement",
+      "classification": "normative",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "human agreement merge"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Text is governance authority only after its owning agreement merge; executable controls remain separate.",
+        "Stacked-PR activation and cited Issue identity are not fully reconciled with current GitHub history."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "f07906ce7eea7dc45b04cbdd1b739557ec018df8",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": "docs/context/connector-design/INDEX.md",
+      "capability": "context provenance and design record",
+      "lifecycle_role": "context",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "context collection/distillation"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Design context is evidence input, not an executable rule."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "86de857495e41c6c8063ccbd64a137fbf001ab4f",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": "docs/context/connector-design/context-contract.md",
+      "capability": "context provenance and design record",
+      "lifecycle_role": "context",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "context collection/distillation"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Design context is evidence input, not an executable rule."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "7fa97c391aaf5ddfa23e4af4524b16f13867bb17",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": "docs/context/connector-design/design-session-decisions.md",
+      "capability": "context provenance and design record",
+      "lifecycle_role": "context",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "context collection/distillation"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Design context is evidence input, not an executable rule."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "4657920646573c6d363e4e6f2691d31b79ecc663",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": "docs/context/connector-design/elicitation-ux-blueprint.md",
+      "capability": "context provenance and design record",
+      "lifecycle_role": "context",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "context collection/distillation"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Design context is evidence input, not an executable rule."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "4a0dace3dd5abc5c7ad07d95c82b2a64da3900b8",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": "docs/context/connector-design/prior-art-kiro-speckit-bmad.md",
+      "capability": "context provenance and design record",
+      "lifecycle_role": "context",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "context collection/distillation"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Design context is evidence input, not an executable rule."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "8f0270bd30694440019d8ce18e239f3560c0166d",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": "docs/context/connector-design/setup-wizard-and-support-matrix.md",
+      "capability": "context provenance and design record",
+      "lifecycle_role": "context",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "context collection/distillation"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Design context is evidence input, not an executable rule."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "dcc9b44ef7e2595b3daa9aa33924e3e4aec7764a",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": "docs/context/feedback-loop/INDEX.md",
+      "capability": "context provenance and design record",
+      "lifecycle_role": "context",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "context collection/distillation"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Design context is evidence input, not an executable rule."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "13983e7aff1a02d09157d7f63feab91005c3f73a",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": "docs/context/feedback-loop/design-session-decisions.md",
+      "capability": "context provenance and design record",
+      "lifecycle_role": "context",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "context collection/distillation"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Design context is evidence input, not an executable rule."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "6e72594a4d20d0ab391dd2478552577c06005528",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": "docs/context/feedback-loop/privacy-posture.md",
+      "capability": "context provenance and design record",
+      "lifecycle_role": "context",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "context collection/distillation"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Design context is evidence input, not an executable rule."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "d417b2c7114913aaea80b03014f3c5f7e5458fe8",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": "docs/context/feedback-loop/transport-alternatives.md",
+      "capability": "context provenance and design record",
+      "lifecycle_role": "context",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "context collection/distillation"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Design context is evidence input, not an executable rule."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "dfb455fc8394fb48e858c2e86fe61dbf59b7afb1",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": "docs/context/feedback-loop/version-identity.md",
+      "capability": "context provenance and design record",
+      "lifecycle_role": "context",
+      "classification": "descriptive",
+      "enforcement_level": "documentation",
+      "dependencies": [
+        "context collection/distillation"
+      ],
+      "related_tests": [],
+      "known_limitations": [
+        "Design context is evidence input, not an executable rule."
+      ],
+      "file_type": "markdown",
+      "git_mode": "100644",
+      "blob_oid": "778dea93c35ddb3fb4058f8b75c4e04f81770585",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": "docs/images/agentic-development-kit-overview.png",
+      "capability": "documentation visual asset",
+      "lifecycle_role": "documentation",
+      "classification": "descriptive",
+      "enforcement_level": "none",
+      "dependencies": [],
+      "related_tests": [],
+      "known_limitations": [
+        "Descriptive guidance must be reconciled with current scripts, runtime evidence, and GitHub state."
+      ],
+      "file_type": "image",
+      "git_mode": "100644",
+      "blob_oid": "068ab89538b731f7e1ae4c438b90549a91421216",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    },
+    {
+      "path": "docs/logo.png",
+      "capability": "documentation visual asset",
+      "lifecycle_role": "documentation",
+      "classification": "descriptive",
+      "enforcement_level": "none",
+      "dependencies": [],
+      "related_tests": [],
+      "known_limitations": [
+        "Descriptive guidance must be reconciled with current scripts, runtime evidence, and GitHub state."
+      ],
+      "file_type": "image",
+      "git_mode": "100644",
+      "blob_oid": "7e71f8bd89dbbebfb584d73a15184124d3070c98",
+      "baseline_sha": "fd265ddef150fab86cd54d0e383c2c25fe297ffb"
+    }
+  ],
+  "control_plane_context": {
+    "observed_at_utc": "2026-08-19T02:12:17Z",
+    "baseline_scope": "Context only. Open source work is not part of the pinned merged tree and was not mutated.",
+    "open_issues": [
+      {
+        "number": 6,
+        "url": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/issues/6",
+        "title": "Ritual wall threat model: unauthenticated comments and no CI re-run on comment events",
+        "labels": [
+          "type:task",
+          "needs:human",
+          "exec:app"
+        ],
+        "disposition": "Open limitation: actor authorization, comment-event freshness, attempt/head binding, and expected check issuer remain unresolved."
+      }
+    ],
+    "open_pull_requests": [
+      {
+        "number": 104,
+        "url": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/pull/104",
+        "title": "Consume persisted governance intent in governance status",
+        "head_sha": "65836cb9c71f5bc7c0e9d6784d4a9926b06373a7",
+        "mergeable_state": "dirty",
+        "disposition": "Open/unmerged context only. Equivalent behavior may exist through later merged history, but this PR is not baseline implementation evidence."
+      }
+    ],
+    "referenced_closed_records": [
+      {
+        "number": 89,
+        "url": "https://github.com/mochan-tk/agentic-dev-kit-for-copilot/pull/89",
+        "title": "Expose governance-control drift with validated manifest + waiver-aware reporting",
+        "state": "closed-unmerged",
+        "disposition": "ADR-0003 and AGENTS.md cite #89 as the post-GA stacked-PR activation evaluation, but the live record is this unrelated governance PR. Multi-PR activation is therefore UNKNOWN and remains off."
+      }
+    ],
+    "baseline_check_runs": [
+      {
+        "name": "quality",
+        "conclusion": "success"
+      },
+      {
+        "name": "scaffold-self-check",
+        "conclusion": "success"
+      },
+      {
+        "name": "copilot-surface",
+        "conclusion": "success"
+      },
+      {
+        "name": "windows-launcher",
+        "conclusion": "success"
+      },
+      {
+        "name": "task-ritual",
+        "conclusion": "skipped",
+        "note": "Expected for the observed push run; not a passing ritual verdict."
+      },
+      {
+        "name": "Dependabot",
+        "conclusion": "success"
+      }
+    ],
+    "caveat": "Observed Check Run conclusions were not substituted for local log inspection, effective ruleset state, or runtime evidence."
+  },
+  "audit_findings": [
+    {
+      "id": "SRC-FIND-001",
+      "severity": "high",
+      "finding": "Current two-tier lifecycle is Project conductor -> Epic conductor -> Task supervisor -> isolated PR worker, with durable dispatch/release and a pre-commit small-Task exemption."
+    },
+    {
+      "id": "SRC-FIND-002",
+      "severity": "high",
+      "finding": "Initial install copies all .github files and upgrade installs absent documentation; newly added source-specific ADR/context records therefore leak into adopter truth namespaces despite documentation saying development records belong under root docs and are never installed."
+    },
+    {
+      "id": "SRC-FIND-003",
+      "severity": "high",
+      "finding": "Task ritual validates marker chronology but not runtime session identity, Outcome/Evidence completion, role authorization, worktree isolation, or comment freshness; open Issue #6 tracks external-delegation risk."
+    },
+    {
+      "id": "SRC-FIND-004",
+      "severity": "medium",
+      "finding": "Ruleset solo/team profiles and governance sensors exist, but onboarding still invokes the legacy no-profile path and README lacks detailed operator commands claimed by recent changelog text."
+    },
+    {
+      "id": "SRC-FIND-005",
+      "severity": "medium",
+      "finding": "run.ps1 has Windows workflow evidence; scaffold-init.ps1 lacks direct native-Windows regression."
+    },
+    {
+      "id": "SRC-FIND-006",
+      "severity": "medium",
+      "finding": "Plugin spike is a no-go for replacing repository assets; declarative activation, auto-update, cloud/IDE/app behavior remain unproved."
+    },
+    {
+      "id": "SRC-FIND-007",
+      "severity": "medium",
+      "finding": "One public raw plugin spike includes a personal absolute-path example, and two public provenance files declare internal sensitivity. Planning artifacts cite only path/class, never the sensitive string."
+    },
+    {
+      "id": "SRC-FIND-008",
+      "severity": "high",
+      "finding": "ADR-0003 and AGENTS.md define stacked PR mechanics but keep activation off pending post-GA evaluation at #89. Live source #89 is an unrelated closed, unmerged governance PR, so the activation condition is broken or ambiguous and must not be treated as active source parity."
+    }
+  ]
+}
