@@ -9,10 +9,12 @@ Use these terms consistently in Issues, PRs, skills, scripts, and documentation.
 | Landing | Writing information to a commit, Issue, PR, or check so it survives the current session. |
 | Ledger | The connected GitHub record of intent, process, result, and evidence. |
 | Ledger completeness | The rule that every change, however small, travels through the agent and GitHub record path; silent human changes are ledger gaps. |
-| Three Merges | The agreement, license, and completion merges that concentrate human judgment in durable events. |
-| Agreement merge | Human merge of reviewed requirements, decisions, non-goals, or vocabulary that defines what to build. |
-| License merge | Human merge of measured setup evidence after one end-to-end trial proves unattended delegation can traverse the repository; it is an autonomy license, distinct from the MIT software license. |
-| Completion merge | Human merge of a Task PR after its executable acceptance criteria, required checks, evidence, and design review are satisfied. |
+| Three Merges | The agreement, license, and completion merge decisions that concentrate human judgment in durable events. License is always human-executed. Agreement and completion are human-executed by default; after two human-merged bootstrap PRs, only one exact mechanical invocation may use the bounded ADR-0007 exception. |
+| Agreement merge | Human-governed acceptance of reviewed requirements, decisions, non-goals, or vocabulary that defines what to build. It is human-executed by default; ADR-0007 may delegate only one exact mechanical invocation after bootstrap and never its own agreement PR. |
+| License merge | Non-delegable human merge of measured setup evidence after one end-to-end trial proves unattended delegation can traverse the repository; it is an autonomy license, distinct from the MIT software license. |
+| Completion merge | Human-governed acceptance of a Task PR after its executable acceptance criteria, required checks, Evidence, and design review are satisfied. It is human-executed by default; ADR-0007 may delegate only one exact mechanical invocation after bootstrap. |
+| Mechanical merge invocation | The single exact-head request that applies an already authorized agreement or completion decision. It is execution, not approval, review, or Evidence. |
+| Bounded agent merge-invocation license | The default-off, single-use ADR-0007 exception that binds one primary executor and a distinct human authorizer to one repository, PR, merge class, base, head SHA, method, expiry, review choice, and exact Settings tuple. It never applies to license or bootstrap merges. |
 | Minimum receptacle | Phase 0α: the thin repository structure needed to receive distilled project knowledge. |
 | Measured setup | Phase 0β: Codex guidance, skills, agents, commands, and automation filled from agreements and verified by running them. |
 | Work order | The requester-owned Task Issue body containing objective, context, acceptance criteria, boundaries, ownership, verification, and routing. |
